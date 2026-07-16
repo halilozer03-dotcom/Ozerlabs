@@ -49,7 +49,7 @@ export const translations = {
     ],
     projects: [
       { tag: 'MOBILE · ANDROID', title: 'Özer Bend Pro', desc: 'Application de calcul du facteur K et de prévisualisation 3D pour les professionnels du pliage de tôle.', meta: ['REACT · CAPACITOR', '2026'] },
-      { tag: 'SITE CLIENT · WEB', title: 'HD Auto', desc: 'Site vitrine pour un garage automobile, avec présentation des services et prise de rendez-vous.', meta: ['HTML · CSS · JS', '2026'], url: 'https://wwwhdauto.com' },
+      { tag: 'SITE CLIENT · WEB', title: 'HD Auto', desc: 'Site vitrine pour un garage automobile, avec présentation des services et prise de rendez-vous.', meta: ['HTML · CSS · JS', '2026'], logo: 'https://wwwhdauto.com/assets/hd-auto-icon.png', url: 'https://wwwhdauto.com' },
     ],
     contact: {
       heading: 'Un projet en tête ?',
@@ -115,7 +115,7 @@ export const translations = {
     ],
     projects: [
       { tag: 'MOBILE · ANDROID', title: 'Özer Bend Pro', desc: 'K-factor calculation and 3D preview app for sheet metal bending professionals.', meta: ['REACT · CAPACITOR', '2026'] },
-      { tag: 'CLIENT SITE · WEB', title: 'HD Auto', desc: 'Showcase site for an auto garage, with service highlights and appointment booking.', meta: ['HTML · CSS · JS', '2026'], url: 'https://wwwhdauto.com' },
+      { tag: 'CLIENT SITE · WEB', title: 'HD Auto', desc: 'Showcase site for an auto garage, with service highlights and appointment booking.', meta: ['HTML · CSS · JS', '2026'], logo: 'https://wwwhdauto.com/assets/hd-auto-icon.png', url: 'https://wwwhdauto.com' },
     ],
     contact: {
       heading: 'Got a project in mind?',
@@ -181,7 +181,7 @@ export const translations = {
     ],
     projects: [
       { tag: 'MOBILE · ANDROID', title: 'Özer Bend Pro', desc: 'Sac büküm profesyonelleri için K-faktör hesaplama ve 3D önizleme uygulaması.', meta: ['REACT · CAPACITOR', '2026'] },
-      { tag: 'MÜŞTERİ · WEB', title: 'HD Auto', desc: 'Oto tamir ve bakım servisi için hizmet tanıtımı ve randevu alma özellikli tanıtım sitesi.', meta: ['HTML · CSS · JS', '2026'], url: 'https://wwwhdauto.com' },
+      { tag: 'MÜŞTERİ · WEB', title: 'HD Auto', desc: 'Oto tamir ve bakım servisi için hizmet tanıtımı ve randevu alma özellikli tanıtım sitesi.', meta: ['HTML · CSS · JS', '2026'], logo: 'https://wwwhdauto.com/assets/hd-auto-icon.png', url: 'https://wwwhdauto.com' },
     ],
     contact: {
       heading: 'Bir proje mi var aklında?',

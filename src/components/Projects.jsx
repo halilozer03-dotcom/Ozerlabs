@@ -17,7 +17,7 @@ export default function Projects() {
           <a className="project-row" href={p.url || '#'} target={p.url ? '_blank' : undefined} rel={p.url ? 'noopener noreferrer' : undefined}>
             <span className="tag">{p.tag}</span>
             <div>
-              <h3>{p.title}</h3>
+              <h3>{p.logo && <img src={p.logo} alt="" style={{height:22,width:22,objectFit:"contain",verticalAlign:"middle",marginRight:10,borderRadius:4}} />}{p.title}</h3>
               <p>{p.desc}</p>
             </div>
             <div className="meta">
