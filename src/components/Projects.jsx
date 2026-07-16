@@ -14,7 +14,7 @@ export default function Projects() {
 
       {t.projects.map((p, i) => (
         <Reveal delay={i * 100} key={p.title}>
-          <a className="project-row" href="#">
+          <a className="project-row" href={p.url || '#'} target={p.url ? '_blank' : undefined} rel={p.url ? 'noopener noreferrer' : undefined}>
             <span className="tag">{p.tag}</span>
             <div>
               <h3>{p.title}</h3>
