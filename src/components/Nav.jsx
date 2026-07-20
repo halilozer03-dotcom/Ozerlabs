@@ -7,15 +7,16 @@ export default function Nav() {
 
   return (
     <nav>
-      <a href="#" className="logo">
+      <a href="/" className="logo">
         <img src={logoIcon} alt="Ozer Labs" className="logo-img" />
       </a>
       <div className="nav-right">
         <div className="nav-links">
-          <a href="#hakkimda">{t.nav.about}</a>
-          <a href="#hizmetler">{t.nav.services}</a>
-          <a href="#projeler">{t.nav.projects}</a>
-          <a href="#iletisim">{t.nav.contact}</a>
+          <a href="/#hakkimda">{t.nav.about}</a>
+          <a href="/#hizmetler">{t.nav.services}</a>
+          <a href="/#projeler">{t.nav.projects}</a>
+          <a href="/blog">Blog</a>
+          <a href="/#iletisim">{t.nav.contact}</a>
         </div>
         <div className="lang-switch" role="group" aria-label="Language">
           {languages.map((l) => (

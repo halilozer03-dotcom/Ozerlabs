@@ -1,3 +1,4 @@
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { LanguageProvider } from './i18n/LanguageContext.jsx'
 import Nav from './components/Nav.jsx'
 import Banner from './components/Banner.jsx'
@@ -9,11 +10,12 @@ import Projects from './components/Projects.jsx'
 import Pricing from './components/Pricing.jsx'
 import Contact from './components/Contact.jsx'
 import Footer from './components/Footer.jsx'
+import BlogList from './components/BlogList.jsx'
+import BlogPost from './components/BlogPost.jsx'
 
-export default function App() {
+function Home() {
   return (
-    <LanguageProvider>
-      <Nav />
+    <>
       <Banner />
       <Hero />
       <About />
@@ -22,7 +24,22 @@ export default function App() {
       <Projects />
       <Pricing />
       <Contact />
-      <Footer />
+    </>
+  )
+}
+
+export default function App() {
+  return (
+    <LanguageProvider>
+      <BrowserRouter>
+        <Nav />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/blog" element={<BlogList />} />
+          <Route path="/blog/:slug" element={<BlogPost />} />
+        </Routes>
+        <Footer />
+      </BrowserRouter>
     </LanguageProvider>
   )
 }
