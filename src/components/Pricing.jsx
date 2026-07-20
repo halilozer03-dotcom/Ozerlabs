@@ -7,7 +7,7 @@ export default function Pricing() {
   return (
     <section id="fiyatlandirma" className="pricing">
       <div className="section-label">
-        <span className="num">04</span>
+        <span className="num">05</span>
         <h2>{t.sectionLabels.pricing}</h2>
         <div className="rule" />
       </div>

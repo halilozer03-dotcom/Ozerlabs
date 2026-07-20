@@ -12,6 +12,7 @@ import Contact from './components/Contact.jsx'
 import Footer from './components/Footer.jsx'
 import BlogList from './components/BlogList.jsx'
 import BlogPost from './components/BlogPost.jsx'
+import BlogPreview from './components/BlogPreview.jsx'
 
 function Home() {
   return (
@@ -22,6 +23,7 @@ function Home() {
       <Services />
       <Process />
       <Projects />
+      <BlogPreview />
       <Pricing />
       <Contact />
     </>

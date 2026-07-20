@@ -25,7 +25,7 @@ export default function Contact() {
   return (
     <section id="iletisim" className="contact">
       <div className="section-label">
-        <span className="num">05</span>
+        <span className="num">06</span>
         <h2>{t.sectionLabels.contact}</h2>
         <div className="rule" />
       </div>
