@@ -1,5 +1,41 @@
 export const posts = [
   {
+    slug: 'kucuk-isletmeler-icin-google-business-profile-rehberi',
+    title: 'Küçük İşletmeler İçin Google Business Profile Rehberi',
+    excerpt: 'Google\'da arandığınızda haritada ve arama sonuçlarında çıkmak istiyorsanız, ilk adım bir web sitesi değil — Google Business Profile\'dır. Nasıl kurulur, neye dikkat etmeli?',
+    date: '2026-07-20',
+    lang: 'tr',
+    content: `
+"Bourgoin-Jallieu'de oto tamirci" ya da "yakınımdaki kebapçı" diye arama yaptığınızda karşınıza çıkan harita, işletme adı, yıldızlı puan ve yorumlar — hepsi tek bir kaynaktan geliyor: **Google Business Profile** (eski adıyla Google My Business). Bir web siteniz olsa bile, bu profil olmadan yerel aramalarda görünmeniz neredeyse imkansız.
+
+## Google Business Profile Nedir, Web Sitesinden Farkı Ne?
+
+Web siteniz, insanların bilinçli olarak sizi arayıp tıkladığında gördüğü yerdir. Business Profile ise Google'ın kendisi tarafından, arama sonucunun ve haritanın içine gömülü olarak gösterilir — insanlar sizi aramasa bile "yakınımda X" gibi genel aramalarda karşılarına çıkarsınız. İkisi birbirini tamamlar, biri diğerinin yerine geçmez.
+
+## Kurulum Adımları
+
+1. **business.google.com** adresine işletme sahibinin kendi Google hesabıyla girilir. Mülkiyetin işletmede kalması için bu adımı işletme sahibinin kendi hesabıyla yapması önemlidir — ajans veya danışman hesabıyla değil.
+2. İşletme adı, kategori (ör. "Oto Tamirci", "Restoran") ve adres girilir.
+3. Doğrulama adımı gelir — genellikle posta yoluyla bir kod gönderilir, bazı durumlarda telefon veya video doğrulaması da sunulur.
+4. Doğrulama tamamlanınca profil canlıya çıkar ve düzenlenebilir hale gelir.
+
+## Profili Güçlü Tutan Detaylar
+
+- **Çalışma saatleri** güncel ve doğru olmalı — özellikle tatil günlerinde güncellemeyi unutmayın.
+- **Fotoğraflar** düzenli eklenmeli: dış cephe, iç mekan, ürün/hizmet fotoğrafları. Görsel yoğunluğu az olan profiller güven vermez.
+- **Yorumlara yanıt verin** — hem olumlu hem olumsuz yorumlara kısa, profesyonel yanıtlar Google'ın gözünde de aktif bir işletme sinyali oluşturur.
+- **Kategori seçimi** kritik: yanlış veya çok genel bir kategori, doğru aramalarda çıkmamanıza sebep olur.
+
+## Web Siteniz ile Bağlantı
+
+Business Profile'a eklediğiniz web sitesi linki, hem kullanıcıyı sitenize yönlendirir hem de Google'a "bu web sitesi ile bu işletme aynı yer" sinyalini verir — bu da SEO açısından web sitenizin güvenilirliğini artırır. Bu yüzden web sitesi ve Business Profile'ı birlikte düşünmek, ayrı ayrı ele almaktan çok daha etkilidir.
+
+## Özet
+
+Bir web siteniz varsa ama Business Profile'ınız yoksa, potansiyel müşterilerinizin büyük kısmına hâlâ görünmüyorsunuz demektir. İkisi birlikte, hem güven inşa eden hem de yerel aramada bulunmanızı sağlayan tam bir dijital varlık oluşturur.
+`.trim(),
+  },
+  {
     slug: 'restoran-web-sitesi-mi-siparis-sistemi-mi',
     title: 'Restoran İçin Web Sitesi mi, Yoksa Sipariş Sistemi mi?',
     excerpt: 'İki seçenek birbirinin yerine geçmez — farklı ihtiyaçlara cevap verir. Hangisinin işletmenize uygun olduğuna karar vermeden önce farkı netleştirelim.',
