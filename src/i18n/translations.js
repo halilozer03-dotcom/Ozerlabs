@@ -15,9 +15,9 @@ export const translations = {
     },
     about: {
       eyebrow: 'Qui',
-      heading: 'Bonjour, je suis Ozer.',
-      body1: "Je suis développeur et designer indépendant basé en France. Du site web à l'application mobile, je conçois, code et livre tout moi-même — sans couche d'agence, vous travaillez directement avec moi.",
-      body2: 'Mon intérêt pour le pliage de tôle et la fabrication de précision influence aussi mon approche du logiciel : mesuré, testé, et conçu pour vraiment fonctionner.',
+      heading: 'Bonjour, je suis Özer.',
+      body1: "Je suis développeur et designer indépendant basé en France. Du site web à l'application mobile, je conçois, développe et livre chaque projet moi-même. Sans intermédiaire, vous travaillez directement avec moi, de la première idée jusqu'à la mise en production.",
+      body2: "Ma passion pour le pliage de tôle et la fabrication de précision influence également ma façon de concevoir des logiciels : des solutions pensées avec rigueur, testées sur le terrain et développées pour répondre à des besoins concrets.",
       stats: [
         { value: 'Web + Mobile', label: 'Une personne, deux plateformes' },
         { value: 'IA', label: 'Processus de production assisté' },
