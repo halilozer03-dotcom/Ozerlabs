@@ -48,7 +48,7 @@ export const translations = {
       { id: 'AI—03', title: 'Solutions assistées par IA', desc: "Des produits renforcés par l'automatisation, des moteurs de calcul intelligents et des processus de production assistés par l'IA." },
     ],
     projects: [
-      { tag: 'MOBILE · ANDROID', title: 'Özer Bend Pro', desc: 'Application de calcul du facteur K et de prévisualisation 3D pour les professionnels du pliage de tôle.', meta: ['REACT · CAPACITOR', '2026'] },
+      { tag: 'MOBILE · ANDROID', title: 'Özer Bend Pro', desc: 'Application de calcul du facteur K et de prévisualisation 3D pour les professionnels du pliage de tôle.', meta: ['REACT · CAPACITOR', '2026'], url: 'https://play.google.com/store/apps/details?id=com.ozer.bendpro' },
       { tag: 'SITE CLIENT · WEB', title: 'HD Auto', desc: 'Site vitrine pour un garage automobile, avec présentation des services et prise de rendez-vous.', meta: ['HTML · CSS · JS', '2026'], logo: 'https://wwwhdauto.com/assets/hd-auto-icon.png', url: 'https://wwwhdauto.com' },
       { tag: 'SITE CLIENT · WEB', title: 'Maison Fairouz', desc: "Site vitrine trilingue pour une pâtisserie orientale artisanale, avec galerie de créations et espace admin.", meta: ['REACT · CLOUDFLARE', '2026'], logo: 'https://maisonfairouz.com/media/logo-static.jpg', url: 'https://maisonfairouz.com' },
       { tag: 'SITE CLIENT · WEB', title: 'Prod Metal', desc: "Site vitrine pour une entreprise de métallerie, avec galerie de réalisations et espace admin pour la gestion des photos.", meta: ['REACT · CLOUDFLARE', '2026'] },
@@ -116,7 +116,7 @@ export const translations = {
       { id: 'AI—03', title: 'AI-Powered Solutions', desc: 'Products strengthened by automation, smart calculation engines, and AI-assisted production workflows.' },
     ],
     projects: [
-      { tag: 'MOBILE · ANDROID', title: 'Özer Bend Pro', desc: 'K-factor calculation and 3D preview app for sheet metal bending professionals.', meta: ['REACT · CAPACITOR', '2026'] },
+      { tag: 'MOBILE · ANDROID', title: 'Özer Bend Pro', desc: 'K-factor calculation and 3D preview app for sheet metal bending professionals.', meta: ['REACT · CAPACITOR', '2026'], url: 'https://play.google.com/store/apps/details?id=com.ozer.bendpro' },
       { tag: 'CLIENT SITE · WEB', title: 'HD Auto', desc: 'Showcase site for an auto garage, with service highlights and appointment booking.', meta: ['HTML · CSS · JS', '2026'], logo: 'https://wwwhdauto.com/assets/hd-auto-icon.png', url: 'https://wwwhdauto.com' },
       { tag: 'CLIENT SITE · WEB', title: 'Maison Fairouz', desc: 'Trilingual showcase site for an artisan oriental pastry shop, with a creations gallery and admin panel.', meta: ['REACT · CLOUDFLARE', '2026'], logo: 'https://maisonfairouz.com/media/logo-static.jpg', url: 'https://maisonfairouz.com' },
       { tag: 'CLIENT SITE · WEB', title: 'Prod Metal', desc: 'Showcase site for a metalworking company, with a project gallery and an admin panel for photo management.', meta: ['REACT · CLOUDFLARE', '2026'] },
@@ -184,7 +184,7 @@ export const translations = {
       { id: 'AI—03', title: 'AI Destekli Çözümler', desc: 'Otomasyon, akıllı hesaplama motorları ve yapay zeka destekli üretim süreçleriyle güçlendirilmiş ürünler.' },
     ],
     projects: [
-      { tag: 'MOBILE · ANDROID', title: 'Özer Bend Pro', desc: 'Sac büküm profesyonelleri için K-faktör hesaplama ve 3D önizleme uygulaması.', meta: ['REACT · CAPACITOR', '2026'] },
+      { tag: 'MOBILE · ANDROID', title: 'Özer Bend Pro', desc: 'Sac büküm profesyonelleri için K-faktör hesaplama ve 3D önizleme uygulaması.', meta: ['REACT · CAPACITOR', '2026'], url: 'https://play.google.com/store/apps/details?id=com.ozer.bendpro' },
       { tag: 'MÜŞTERİ · WEB', title: 'HD Auto', desc: 'Oto tamir ve bakım servisi için hizmet tanıtımı ve randevu alma özellikli tanıtım sitesi.', meta: ['HTML · CSS · JS', '2026'], logo: 'https://wwwhdauto.com/assets/hd-auto-icon.png', url: 'https://wwwhdauto.com' },
       { tag: 'MÜŞTERİ · WEB', title: 'Maison Fairouz', desc: 'Doğu pastacılığı için üç dilli (FR/TR/AR) tanıtım sitesi, ürün galerisi ve admin paneliyle.', meta: ['REACT · CLOUDFLARE', '2026'], logo: 'https://maisonfairouz.com/media/logo-static.jpg', url: 'https://maisonfairouz.com' },
       { tag: 'MÜŞTERİ · WEB', title: 'Prod Metal', desc: 'Metal işleme firması için referans galerisi ve fotoğraf yönetim panelli tanıtım sitesi.', meta: ['REACT · CLOUDFLARE', '2026'] },
