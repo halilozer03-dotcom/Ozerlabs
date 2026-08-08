@@ -12,7 +12,7 @@ const initialsOf = (title) =>
     .join('')
     .toUpperCase()
 
-function ProjectCard({ project, viewLabel, featured = false }) {
+function ProjectCard({ project, viewLabel, labels, featured = false }) {
   // Logolar müşteri sitelerinden gelir; erişilemezse baş harflere düşülür.
   const [logoFailed, setLogoFailed] = useState(false)
   const showLogo = project.logo && !logoFailed
@@ -33,6 +33,18 @@ function ProjectCard({ project, viewLabel, featured = false }) {
       className={`card project-card${linked ? ' card--interactive' : ''}${featured ? ' project-card--featured' : ''}`}
       {...linkProps}
     >
+      {/* Durum çipi: "yayında, her gün kullanılıyor" başlığı altında
+          henüz yayına girmemiş bir işin ayrımsız durması yanlış bilgi
+          verir. Tasarım aşamasındaki iş açıkça öyle işaretlenir. */}
+      <span
+        className={`tag project-card__status${
+          project.status === 'design' ? '' : ' tag--live'
+        }`}
+      >
+        {project.status !== 'design' && <span className="tag__dot" />}
+        {project.status === 'design' ? labels.statusDesign : labels.statusLive}
+      </span>
+
       <div className={`project-card__cover${project.cover ? ' project-card__cover--shot' : ''}`}>
         {/* Öne çıkan projede kapak, uygulamanın gerçek ekranından bir
             kesit: ölçü satırı ve büküm parametreleri. Logo plakası
@@ -119,7 +131,12 @@ export default function Projects() {
               className={i === 0 ? 'projects__lead' : undefined}
               key={p.title}
             >
-              <ProjectCard project={p} viewLabel={t.sections.projects.view} featured={i === 0} />
+              <ProjectCard
+                project={p}
+                viewLabel={t.sections.projects.view}
+                labels={t.sections.projects}
+                featured={i === 0}
+              />
             </Reveal>
           ))}
         </ul>

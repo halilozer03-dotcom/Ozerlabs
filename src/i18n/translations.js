@@ -63,7 +63,7 @@ export const translations = {
     sectionLabels: { about: 'Méthode', services: 'Services', projects: 'Projets', pricing: 'Périmètre', contact: 'Contact' },
     sections: {
       services: { title: 'Des solutions numériques qui font grandir votre activité', sub: "De la vitrine au système de commande : construit pour votre besoin, jamais découpé dans un template." },
-      projects: { title: 'Livrés, en ligne, utilisés tous les jours', sub: 'Pas des démos : de vrais clients, de vrais utilisateurs.', view: 'Voir le projet', noLink: 'Projet client' },
+      projects: { title: 'Livrés, en ligne, utilisés tous les jours', sub: 'Pas des démos : de vrais clients, de vrais utilisateurs.', statusLive: 'En ligne', statusDesign: 'En conception', view: 'Voir le projet', noLink: 'Projet client' },
       why: { title: 'La personne à qui vous parlez écrit le code', sub: "Pas d'agence entre vous et le code. Quatre étapes, et vous savez d'avance ce qui vient." },
       pricing: { title: "Ce que vous obtenez, annoncé d'avance", sub: 'Chaque projet a son périmètre. Après un échange, vous recevez un devis écrit à prix fixe.' },
       blog: { title: "Notes de l'atelier", sub: "Ce que j'apprends en concevant et en livrant de vrais produits." },
@@ -75,15 +75,15 @@ export const translations = {
       { icon: 'cpu', id: 'AI—03', title: 'Solutions assistées par IA', desc: "Des moteurs de calcul et des flux qui automatisent le travail manuel. Pas de l'IA décorative : de l'ingénierie qui vous fait gagner du temps." },
     ],
     solutions: {
-      eyebrow: 'Bases prêtes',
-      title: 'Des bases qui tournent déjà, pour votre secteur',
-      sub: "On ne part pas de zéro. Ces systèmes fonctionnent : on les met en place avec votre carte, vos prestations et votre marque.",
+      eyebrow: 'Systèmes en cours',
+      title: 'Des systèmes que nous développons pour votre secteur',
+      sub: "Les deux systèmes sont en cours de conception. On cadre le périmètre ensemble et la première mise en place se fait pour votre établissement.",
       items: [
         {
           id: 'commande',
           icon: 'shopping-bag',
           title: 'Système de commande pour restaurant',
-          lead: "Base conçue pour un restaurant qui travaille surtout en à emporter et en livraison.",
+          lead: "En conception pour un restaurant qui travaille surtout en à emporter et en livraison.",
           body: "Le client scanne le QR code posé sur la table, la carte s'ouvre sur son téléphone. Il ajoute le produit avec ses options (portion, suppléments) et laisse une note. Il paie en ligne par carte ou choisit de régler au comptoir. La commande arrive aussitôt sur l'écran en cuisine ; l'équipe la fait avancer : acceptée, en préparation, prête. Aucune plateforme intermédiaire, aucune commission sur le chiffre d'affaires.",
           flow: ['QR code', 'Carte', 'Panier', 'Paiement', 'Écran cuisine'],
           points: [
@@ -99,7 +99,7 @@ export const translations = {
           id: 'rdv',
           icon: 'calendar-check',
           title: 'Système de rendez-vous pour salon',
-          lead: "Pour les salons qui prennent leurs rendez-vous en ligne et gèrent un seul agenda.",
+          lead: "En conception pour les salons qui prennent leurs rendez-vous en ligne et gèrent un seul agenda.",
           body: "Le client choisit la prestation, puis le collaborateur, voit ses créneaux libres et réserve. Les créneaux sont calculés selon la durée de la prestation, donc pas de chevauchement. Côté salon, tous les rendez-vous arrivent dans un seul panneau.",
           flow: ['Prestation', 'Collaborateur', 'Créneau', 'Confirmation'],
           points: [
@@ -115,7 +115,7 @@ export const translations = {
       { tag: 'MOBILE · ANDROID', logo: '/bendiq-logo.webp', cover: '/bendiq-kapak.webp', title: 'BENDIQ', desc: "Calcul du facteur K, aperçu 3D, lecture des cotes par IA et export PDF du dessin technique, pour les professionnels du pliage de tôle.", meta: ['REACT · CAPACITOR', '2026'], url: 'https://play.google.com/store/apps/details?id=com.ozer.bendpro' },
       { tag: 'SITE CLIENT · WEB', title: 'HD Auto', desc: 'Site vitrine pour un garage automobile, avec présentation des services et prise de rendez-vous.', meta: ['HTML · CSS · JS', '2026'], logo: 'https://wwwhdauto.com/assets/hd-auto-icon.png', url: 'https://wwwhdauto.com' },
       { tag: 'SITE CLIENT · WEB', title: 'Maison Fairouz', desc: "Site vitrine trilingue pour une pâtisserie orientale artisanale, avec galerie de créations et espace admin.", meta: ['REACT · CLOUDFLARE', '2026'], logo: 'https://maisonfairouz.com/media/logo-static.jpg', url: 'https://maisonfairouz.com' },
-      { tag: 'SITE CLIENT · WEB', title: 'Prod Metal', desc: "Site vitrine pour une entreprise de métallerie, avec galerie de réalisations et espace admin pour la gestion des photos.", meta: ['REACT · CLOUDFLARE', '2026'] },
+      { tag: 'SITE CLIENT · WEB', title: 'Prod Metal', status: 'design', desc: "Site vitrine pour une entreprise de métallerie, avec galerie de réalisations et espace admin pour la gestion des photos.", meta: ['REACT · CLOUDFLARE', '2026'] },
       { tag: 'SITE CLIENT · WEB', title: 'Yürük Hukuk & Danışmanlık', desc: "Site vitrine pour un cabinet d'avocats spécialisé en droit commercial, avec présentation des domaines d'expertise et localisation.", meta: ['REACT · CLOUDFLARE', '2026'], logo: 'https://yurukhukuk.com/assets/logo-mark-CCAZKFpe.png', url: 'https://yurukhukuk.com' },
     ],
     contact: {
@@ -205,7 +205,7 @@ export const translations = {
     sectionLabels: { about: 'How we work', services: 'Services', projects: 'Projects', pricing: 'Scope', contact: 'Contact' },
     sections: {
       services: { title: 'Digital solutions built to grow your business', sub: 'From a landing page to a full ordering system — built for your need, never cut from a template.' },
-      projects: { title: 'Shipped, live, and used every day', sub: 'Not demos: real clients, real users.', view: 'View project', noLink: 'Client project' },
+      projects: { title: 'Shipped, live, and used every day', sub: 'Not demos: real clients, real users.', statusLive: 'Live', statusDesign: 'In design', view: 'View project', noLink: 'Client project' },
       why: { title: 'You talk to the person who writes the code', sub: 'No agency between you and the code. Four steps, and you always know what comes next.' },
       pricing: { title: 'What you get, stated up front', sub: 'Every project has its own scope. After a call, you get a written fixed-price quote.' },
       blog: { title: 'Notes from the workshop', sub: 'What I learn while designing and shipping real products.' },
@@ -217,15 +217,15 @@ export const translations = {
       { icon: 'cpu', id: 'AI—03', title: 'AI-Powered Solutions', desc: 'Calculation engines and workflows that automate manual work. Not decorative AI — engineering that gives you hours back.' },
     ],
     solutions: {
-      eyebrow: 'Ready foundations',
-      title: 'Working foundations for your sector',
-      sub: 'We do not start from zero. These systems already run; we set them up with your menu, your services and your brand.',
+      eyebrow: 'Systems in progress',
+      title: 'Systems we are building for your sector',
+      sub: 'Both systems are still in design. We scope it together and the first setup is built around your business.',
       items: [
         {
           id: 'ordering',
           icon: 'shopping-bag',
           title: 'Restaurant ordering system',
-          lead: 'Built for a restaurant working mainly on takeaway and collection.',
+          lead: 'Being designed for a restaurant working mainly on takeaway and collection.',
           body: 'The customer scans the QR code on the table and the menu opens on their phone. They add an item with its options (size, extras) and leave a note. They pay online by card or choose to pay at the counter. The order lands on the kitchen screen instantly and staff move it along: accepted, preparing, ready. No middleman platform, no commission on turnover.',
           flow: ['QR code', 'Menu', 'Cart', 'Payment', 'Kitchen board'],
           points: [
@@ -241,7 +241,7 @@ export const translations = {
           id: 'booking',
           icon: 'calendar-check',
           title: 'Salon booking system',
-          lead: 'For salons taking bookings online and running one shared calendar.',
+          lead: 'Being designed for salons taking bookings online and running one shared calendar.',
           body: "The customer picks a service, then a staff member, sees that person's free slots and books. Slots are calculated from the service duration, so nothing overlaps. On the salon side, every booking lands in a single panel.",
           flow: ['Service', 'Staff', 'Slot', 'Confirmation'],
           points: [
@@ -257,7 +257,7 @@ export const translations = {
       { tag: 'MOBILE · ANDROID', logo: '/bendiq-logo.webp', cover: '/bendiq-kapak.webp', title: 'BENDIQ', desc: 'K-factor calculation, 3D preview, AI-assisted measurement scanning and technical drawing PDF export for sheet metal professionals.', meta: ['REACT · CAPACITOR', '2026'], url: 'https://play.google.com/store/apps/details?id=com.ozer.bendpro' },
       { tag: 'CLIENT SITE · WEB', title: 'HD Auto', desc: 'Showcase site for an auto garage, with service highlights and appointment booking.', meta: ['HTML · CSS · JS', '2026'], logo: 'https://wwwhdauto.com/assets/hd-auto-icon.png', url: 'https://wwwhdauto.com' },
       { tag: 'CLIENT SITE · WEB', title: 'Maison Fairouz', desc: 'Trilingual showcase site for an artisan oriental pastry shop, with a creations gallery and admin panel.', meta: ['REACT · CLOUDFLARE', '2026'], logo: 'https://maisonfairouz.com/media/logo-static.jpg', url: 'https://maisonfairouz.com' },
-      { tag: 'CLIENT SITE · WEB', title: 'Prod Metal', desc: 'Showcase site for a metalworking company, with a project gallery and an admin panel for photo management.', meta: ['REACT · CLOUDFLARE', '2026'] },
+      { tag: 'CLIENT SITE · WEB', title: 'Prod Metal', status: 'design', desc: 'Showcase site for a metalworking company, with a project gallery and an admin panel for photo management.', meta: ['REACT · CLOUDFLARE', '2026'] },
       { tag: 'CLIENT SITE · WEB', title: 'Yürük Hukuk & Danışmanlık', desc: 'Showcase site for a commercial law firm, with practice areas presentation and office location.', meta: ['REACT · CLOUDFLARE', '2026'], logo: 'https://yurukhukuk.com/assets/logo-mark-CCAZKFpe.png', url: 'https://yurukhukuk.com' },
     ],
     contact: {
@@ -347,7 +347,7 @@ export const translations = {
     sectionLabels: { about: 'Çalışma biçimi', services: 'Hizmetler', projects: 'Projeler', pricing: 'Kapsam', contact: 'İletişim' },
     sections: {
       services: { title: 'İşini büyüten dijital çözümler', sub: 'Kurumsal sayfadan sipariş sistemine kadar — ihtiyacına göre kurulur, hazır şablondan kesilmez.' },
-      projects: { title: 'Teslim edildi, yayında, her gün kullanılıyor', sub: 'Demo değil: gerçek müşteriler, gerçek kullanıcılar.', view: 'Projeyi İncele', noLink: 'Müşteri projesi' },
+      projects: { title: 'Teslim edildi, yayında, her gün kullanılıyor', sub: 'Demo değil: gerçek müşteriler, gerçek kullanıcılar.', statusLive: 'Yayında', statusDesign: 'Tasarım aşamasında', view: 'Projeyi İncele', noLink: 'Müşteri projesi' },
       why: { title: 'Konuştuğun kişi kodu yazar', sub: 'Seninle kodun arasında ajans yok. Dört adım, her adımda ne olacağını önceden bilirsin.' },
       pricing: { title: 'Ne aldığını baştan bil', sub: 'Her projenin kapsamı farklı. Görüşmeden sonra sabit fiyatlı, yazılı teklif alırsın.' },
       blog: { title: 'Atölyeden notlar', sub: 'Gerçek ürün tasarlarken ve teslim ederken öğrendiklerim.' },
@@ -359,15 +359,15 @@ export const translations = {
       { icon: 'cpu', id: 'AI—03', title: 'AI Destekli Çözümler', desc: 'Elle yapılan işi otomatiğe alan hesaplama motorları ve akıllı akışlar. Süs olsun diye yapay zekâ değil; sana saat kazandıran mühendislik.' },
     ],
     solutions: {
-      eyebrow: 'Hazır taslaklar',
-      title: 'Sektörünüz için çalışan taslaklar',
-      sub: 'Sıfırdan başlamıyoruz. Bu sistemler çalışır hâlde duruyor; menünüz, hizmetleriniz ve markanızla kurulur.',
+      eyebrow: 'Geliştirdiğimiz sistemler',
+      title: 'Sektörünüz için geliştirdiğimiz sistemler',
+      sub: 'İki sistemin de tasarımı sürüyor. Kapsamı birlikte belirleyip ilk kurulumu sizin işinize göre yapıyoruz.',
       items: [
         {
           id: 'siparis',
           icon: 'shopping-bag',
           title: 'Restoran sipariş sistemi',
-          lead: 'Ağırlıklı olarak gel-al ve paket servis çalışan bir restoran için kurulmuş taslak.',
+          lead: 'Ağırlıklı olarak gel-al ve paket servis çalışan bir restoran için tasarlanıyor.',
           body: 'Müşteri masadaki karekodu okutur, menü telefonunda açılır. Ürünü seçenekleriyle (porsiyon, ekstra malzeme) sepete atar, sipariş notunu yazar. Kartla online öder ya da tezgahta ödemeyi seçer. Sipariş mutfaktaki panoya anında düşer; personel kabul edildi, hazırlanıyor, hazır diye ilerletir. Arada aracı platform yok, cirodan komisyon kesilmez.',
           flow: ['QR kod', 'Menü', 'Sepet', 'Ödeme', 'Mutfak panosu'],
           points: [
@@ -383,7 +383,7 @@ export const translations = {
           id: 'randevu',
           icon: 'calendar-check',
           title: 'Kuaför randevu sistemi',
-          lead: 'Randevusunu telefondan alan, takvimi tek yerden yöneten salonlar için.',
+          lead: 'Randevusunu telefondan alan, takvimi tek yerden yöneten salonlar için tasarlanıyor.',
           body: 'Müşteri hizmeti seçer, sonra çalışanı seçer, o çalışanın uygun saatlerini görür ve randevusunu bırakır. Uygun saatler hizmet süresine göre hesaplandığı için çakışma olmaz. Salon tarafında bütün randevular tek panelde toplanır.',
           flow: ['Hizmet', 'Çalışan', 'Saat', 'Onay'],
           points: [
@@ -399,7 +399,7 @@ export const translations = {
       { tag: 'MOBILE · ANDROID', logo: '/bendiq-logo.webp', cover: '/bendiq-kapak.webp', title: 'BENDIQ', desc: 'Sac büküm için K-faktör hesabı, 3D önizleme, yapay zekâ ile ölçü tarama ve teknik çizim PDF çıktısı.', meta: ['REACT · CAPACITOR', '2026'], url: 'https://play.google.com/store/apps/details?id=com.ozer.bendpro' },
       { tag: 'MÜŞTERİ · WEB', title: 'HD Auto', desc: 'Oto tamir ve bakım servisi için hizmet tanıtımı ve randevu alma özellikli tanıtım sitesi.', meta: ['HTML · CSS · JS', '2026'], logo: 'https://wwwhdauto.com/assets/hd-auto-icon.png', url: 'https://wwwhdauto.com' },
       { tag: 'MÜŞTERİ · WEB', title: 'Maison Fairouz', desc: 'Doğu pastacılığı için üç dilli (FR/TR/AR) tanıtım sitesi, ürün galerisi ve admin paneliyle.', meta: ['REACT · CLOUDFLARE', '2026'], logo: 'https://maisonfairouz.com/media/logo-static.jpg', url: 'https://maisonfairouz.com' },
-      { tag: 'MÜŞTERİ · WEB', title: 'Prod Metal', desc: 'Metal işleme firması için referans galerisi ve fotoğraf yönetim panelli tanıtım sitesi.', meta: ['REACT · CLOUDFLARE', '2026'] },
+      { tag: 'MÜŞTERİ · WEB', title: 'Prod Metal', status: 'design', desc: 'Metal işleme firması için referans galerisi ve fotoğraf yönetim panelli tanıtım sitesi.', meta: ['REACT · CLOUDFLARE', '2026'] },
       { tag: 'MÜŞTERİ · WEB', title: 'Yürük Hukuk & Danışmanlık', desc: 'Ticaret hukuku alanında uzman bir avukatlık bürosu için uzmanlık alanları ve konum bilgisi içeren tanıtım sitesi.', meta: ['REACT · CLOUDFLARE', '2026'], logo: 'https://yurukhukuk.com/assets/logo-mark-CCAZKFpe.png', url: 'https://yurukhukuk.com' },
     ],
     contact: {

@@ -1752,3 +1752,20 @@ a.contact-detail:hover {
   line-height: var(--lh-normal);
   max-width: 46ch;
 }
+
+/* Durum çipi — kapağın sağ üst köşesinde, kartın üstünde durur */
+.project-card__status {
+  position: absolute;
+  top: var(--space-4);
+  right: var(--space-4);
+  z-index: 3;
+  background: color-mix(in srgb, var(--ink-950) 82%, transparent);
+  border-color: var(--border);
+  backdrop-filter: none;
+}
+
+/* Yayında: yeşil nokta zaten .tag--live ile geliyor.
+   Tasarım aşamasında: sessiz, iddiasız. */
+.project-card__status:not(.tag--live) {
+  color: var(--text-muted);
+}
