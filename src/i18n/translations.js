@@ -1,3 +1,5 @@
+import { PLAY_BENDIQ } from '../content/links.js'
+
 export const translations = {
   fr: {
     nav: {
@@ -29,6 +31,7 @@ export const translations = {
       ctaSecondaryShort: 'Voir nos projets',
       visualAlt: "Écran de l'application BENDIQ : longueur développée 1106,8 mm, longueur 2000 mm, poids 34,75 kg et allongement 3,30 mm par pli.",
       visualCaption: 'BENDIQ — en ligne sur Google Play',
+      visualLink: 'Ouvrir BENDIQ sur Google Play',
     },
     about: {
       eyebrow: 'Qui',
@@ -112,7 +115,7 @@ export const translations = {
       ],
     },
     projects: [
-      { tag: 'MOBILE · ANDROID', logo: '/bendiq-logo.webp', cover: '/bendiq-kapak.webp', title: 'BENDIQ', desc: "Calcul du facteur K, aperçu 3D, lecture des cotes par IA et export PDF du dessin technique, pour les professionnels du pliage de tôle.", meta: ['REACT · CAPACITOR', '2026'], url: 'https://play.google.com/store/apps/details?id=com.ozer.bendpro' },
+      { tag: 'MOBILE · ANDROID', logo: '/bendiq-logo.webp', cover: '/bendiq-kapak.webp', title: 'BENDIQ', desc: "Calcul du facteur K, aperçu 3D, lecture des cotes par IA et export PDF du dessin technique, pour les professionnels du pliage de tôle.", meta: ['REACT · CAPACITOR', '2026'], url: PLAY_BENDIQ },
       { tag: 'SITE CLIENT · WEB', title: 'HD Auto', desc: 'Site vitrine pour un garage automobile, avec présentation des services et prise de rendez-vous.', meta: ['HTML · CSS · JS', '2026'], logo: '/brand/hd-auto.webp', url: 'https://wwwhdauto.com' },
       { tag: 'SITE CLIENT · WEB', title: 'Maison Fairouz', desc: "Site vitrine trilingue pour une pâtisserie orientale artisanale, avec galerie de créations et espace admin.", meta: ['REACT · CLOUDFLARE', '2026'], logo: '/brand/maison-fairouz.webp', url: 'https://maisonfairouz.com' },
       { tag: 'SITE CLIENT · WEB', title: 'Prod Metal', status: 'design', logo: '/brand/prod-metal.webp', desc: "Site vitrine pour une entreprise de métallerie, avec galerie de réalisations et espace admin pour la gestion des photos.", meta: ['REACT · CLOUDFLARE', '2026'] },
@@ -171,6 +174,7 @@ export const translations = {
       ctaSecondaryShort: 'See Our Work',
       visualAlt: 'BENDIQ app screen: flat length 1106.8 mm, length 2000 mm, weight 34.75 kg and 3.30 mm bend allowance per bend.',
       visualCaption: 'BENDIQ — live on Google Play',
+      visualLink: 'Open BENDIQ on Google Play',
     },
     about: {
       eyebrow: 'Who',
@@ -254,7 +258,7 @@ export const translations = {
       ],
     },
     projects: [
-      { tag: 'MOBILE · ANDROID', logo: '/bendiq-logo.webp', cover: '/bendiq-kapak.webp', title: 'BENDIQ', desc: 'K-factor calculation, 3D preview, AI-assisted measurement scanning and technical drawing PDF export for sheet metal professionals.', meta: ['REACT · CAPACITOR', '2026'], url: 'https://play.google.com/store/apps/details?id=com.ozer.bendpro' },
+      { tag: 'MOBILE · ANDROID', logo: '/bendiq-logo.webp', cover: '/bendiq-kapak.webp', title: 'BENDIQ', desc: 'K-factor calculation, 3D preview, AI-assisted measurement scanning and technical drawing PDF export for sheet metal professionals.', meta: ['REACT · CAPACITOR', '2026'], url: PLAY_BENDIQ },
       { tag: 'CLIENT SITE · WEB', title: 'HD Auto', desc: 'Showcase site for an auto garage, with service highlights and appointment booking.', meta: ['HTML · CSS · JS', '2026'], logo: '/brand/hd-auto.webp', url: 'https://wwwhdauto.com' },
       { tag: 'CLIENT SITE · WEB', title: 'Maison Fairouz', desc: 'Trilingual showcase site for an artisan oriental pastry shop, with a creations gallery and admin panel.', meta: ['REACT · CLOUDFLARE', '2026'], logo: '/brand/maison-fairouz.webp', url: 'https://maisonfairouz.com' },
       { tag: 'CLIENT SITE · WEB', title: 'Prod Metal', status: 'design', logo: '/brand/prod-metal.webp', desc: 'Showcase site for a metalworking company, with a project gallery and an admin panel for photo management.', meta: ['REACT · CLOUDFLARE', '2026'] },
@@ -313,6 +317,7 @@ export const translations = {
       ctaSecondaryShort: 'Projeleri Gör',
       visualAlt: 'BENDIQ uygulama ekranı: kesilecek en 1106,8 mm, boy 2000 mm, ağırlık 34,75 kg ve büküm başına 3,30 mm büküm payı.',
       visualCaption: "BENDIQ — Google Play'de yayında",
+      visualLink: "BENDIQ'i Google Play'de aç",
     },
     about: {
       eyebrow: 'Kim',
@@ -396,7 +401,7 @@ export const translations = {
       ],
     },
     projects: [
-      { tag: 'MOBILE · ANDROID', logo: '/bendiq-logo.webp', cover: '/bendiq-kapak.webp', title: 'BENDIQ', desc: 'Sac büküm için K-faktör hesabı, 3D önizleme, yapay zekâ ile ölçü tarama ve teknik çizim PDF çıktısı.', meta: ['REACT · CAPACITOR', '2026'], url: 'https://play.google.com/store/apps/details?id=com.ozer.bendpro' },
+      { tag: 'MOBILE · ANDROID', logo: '/bendiq-logo.webp', cover: '/bendiq-kapak.webp', title: 'BENDIQ', desc: 'Sac büküm için K-faktör hesabı, 3D önizleme, yapay zekâ ile ölçü tarama ve teknik çizim PDF çıktısı.', meta: ['REACT · CAPACITOR', '2026'], url: PLAY_BENDIQ },
       { tag: 'MÜŞTERİ · WEB', title: 'HD Auto', desc: 'Oto tamir ve bakım servisi için hizmet tanıtımı ve randevu alma özellikli tanıtım sitesi.', meta: ['HTML · CSS · JS', '2026'], logo: '/brand/hd-auto.webp', url: 'https://wwwhdauto.com' },
       { tag: 'MÜŞTERİ · WEB', title: 'Maison Fairouz', desc: 'Doğu pastacılığı için üç dilli (FR/TR/AR) tanıtım sitesi, ürün galerisi ve admin paneliyle.', meta: ['REACT · CLOUDFLARE', '2026'], logo: '/brand/maison-fairouz.webp', url: 'https://maisonfairouz.com' },
       { tag: 'MÜŞTERİ · WEB', title: 'Prod Metal', status: 'design', logo: '/brand/prod-metal.webp', desc: 'Metal işleme firması için referans galerisi ve fotoğraf yönetim panelli tanıtım sitesi.', meta: ['REACT · CLOUDFLARE', '2026'] },

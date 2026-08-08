@@ -513,6 +513,50 @@
 }
 
 /* Telefon çerçevesi */
+/* Görselin tamamı Play sayfasına giden tek bağlantı. .hero-visual'ın
+   dikey akışını devraldığı için aynı sütun düzenini ve boşluğu taşır;
+   yoksa telefon ile alt yazı birbirine yapışıyor. */
+.hero-visual__link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  width: 100%;
+  text-decoration: none;
+  color: inherit;
+  transition: transform var(--dur-base) var(--ease-out);
+}
+
+/* Genel :focus-visible kuralı --r-xs veriyor; 26 px yarıçaplı cihaz
+   çerçevesinde köşeler yanlış duruyor. */
+.hero-visual__link:focus-visible {
+  border-radius: 30px;
+  outline-offset: 6px;
+}
+
+@media (hover: hover) {
+  .hero-visual__link:hover {
+    transform: translateY(-4px);
+  }
+
+  .hero-visual__link:hover .device {
+    border-color: var(--brand-600);
+    box-shadow: var(--shadow-xl), var(--glow-btn);
+  }
+
+  .hero-visual__link:hover .device__caption {
+    color: var(--text);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-visual__link,
+  .hero-visual__link:hover {
+    transform: none;
+    transition: none;
+  }
+}
+
 .device {
   position: relative;
   margin: 0;
@@ -543,6 +587,13 @@
   font-size: var(--fs-xs);
   color: var(--text-soft);
   white-space: nowrap;
+  transition: color var(--dur-base) var(--ease-out);
+}
+
+/* Dışarı çıkan bağlantı işareti — ok, yazıya boşluk bırakmadan yapışır. */
+.device__caption svg {
+  margin-left: calc(var(--space-2) * -0.5);
+  opacity: 0.7;
 }
 
 .device__dot {

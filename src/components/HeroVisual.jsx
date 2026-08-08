@@ -1,4 +1,6 @@
 import { useLanguage } from '../i18n/LanguageContext.jsx'
+import { PLAY_BENDIQ } from '../content/links.js'
+import Icon from './Icon.jsx'
 
 /**
  * Hero görseli: Google Play'de yayında olan BENDIQ uygulamasının
@@ -8,6 +10,12 @@ import { useLanguage } from '../i18n/LanguageContext.jsx'
  * Görsel dekoratif DEĞİL: ürünün çalıştığının kanıtı olduğu için
  * gerçek alt metni var ve ekran okuyuculara açık.
  * Oran 9:16 sabit olduğu için CLS üretmez.
+ *
+ * Tamamı Play sayfasına giden tek bir bağlantı. Alt yazı zaten
+ * "Google Play'de yayında" diyordu ama tıklanmıyordu; ziyaretçinin ilk
+ * gördüğü kanıt, ürüne giden yolun da kendisi olmalı. Bağlantının
+ * erişilebilir adı görsel alt metni değil ayrı bir eylem cümlesi
+ * (visualLink) — "…1106,8 mm…" bir bağlantı adı olarak anlamsız kalıyor.
  */
 export default function HeroVisual() {
   const { t } = useLanguage()
@@ -16,23 +24,32 @@ export default function HeroVisual() {
     <div className="hero-visual">
       <div className="hero-visual__glow" aria-hidden="true" />
 
-      <figure className="device">
-        <img
-          className="device__screen"
-          src="/bendiq-teknik-cizim.webp"
-          alt={t.hero.visualAlt}
-          width="720"
-          height="1280"
-          loading="eager"
-          fetchpriority="high"
-          decoding="async"
-        />
-      </figure>
+      <a
+        className="hero-visual__link"
+        href={PLAY_BENDIQ}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={t.hero.visualLink}
+      >
+        <figure className="device">
+          <img
+            className="device__screen"
+            src="/bendiq-teknik-cizim.webp"
+            alt={t.hero.visualAlt}
+            width="720"
+            height="1280"
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+          />
+        </figure>
 
-      <span className="device__caption">
-        <i className="device__dot" aria-hidden="true" />
-        {t.hero.visualCaption}
-      </span>
+        <span className="device__caption">
+          <i className="device__dot" aria-hidden="true" />
+          {t.hero.visualCaption}
+          <Icon name="arrow-up-right" size={14} />
+        </span>
+      </a>
     </div>
   )
 }
