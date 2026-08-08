@@ -66,9 +66,11 @@
   color: var(--nav-fg-strong);
 }
 
+/* İşaret kare değil (O+L yan yana): yüksekliğe kilitlenir, genişlik
+   oranından gelir. Sabit kare verilirse monogram yanlardan ezilir. */
 .brand__mark {
-  width: 36px;
   height: 36px;
+  width: auto;
   flex: 0 0 auto;
 }
 
