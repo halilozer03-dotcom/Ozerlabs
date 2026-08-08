@@ -1537,12 +1537,12 @@ a.contact-detail:hover {
 }
 
 /* Kapak, kesitin oranina sabit: boylece gorsel hic kirpilmaz.
-   Sabit yukseklik verildiginde ciplerin alti kesiliyordu. */
-@media (min-width: 900px) {
-  .project-card--featured .project-card__cover {
-    aspect-ratio: 1020 / 350;
-    height: auto;
-  }
+   Sabit yukseklik verildiginde ciplerin alti kesiliyordu.
+   Her genislikte gecerli: 16/10'luk varsayilan kutuda object-fit
+   kesiti yanlardan kirpiyor, telefonda genisligin %55'i gorunuyordu. */
+.project-card--featured .project-card__cover {
+  aspect-ratio: 1020 / 350;
+  height: auto;
 }
 
 /* Öne çıkan projede kapak = uygulamanın gerçek ekranından kesit.

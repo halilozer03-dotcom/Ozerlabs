@@ -1,9 +1,10 @@
 /* ============================================================
    OZERLABS — STİL GİRİŞ NOKTASI
-   Katman sırası bilinçli: token → taban → bileşen → bölüm.
+   Katman sırası bilinçli: font → token → taban → bileşen → bölüm.
    Sonraki katman öncekinin değişkenlerini kullanır, ezmez.
    ============================================================ */
 
+@import './styles/fonts.css';
 @import './styles/tokens.css';
 @import './styles/base.css';
 @import './styles/components.css';

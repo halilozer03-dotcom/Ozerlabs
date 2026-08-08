@@ -1,6 +1,8 @@
-/* Marka işareti — vektörel.
-   Halka marka gradyanını, "Z" ise currentColor'ı kullanır; böylece
-   koyu hero üstünde beyaz, camlaşmış açık navigasyonda lacivert olur.
+/* Marka işareti — vektörel. Kaynak logodaki "OL" monogramı:
+   açık halka "O", üzerine binen eğik "L".
+   Halka marka gradyanını (üstte camgöbeği → altta mor), "L" ise
+   currentColor'ı kullanır; böylece koyu hero üstünde beyaz,
+   camlaşmış açık navigasyonda lacivert olur.
    Gradyan id'si örnek başına benzersiz üretilir (aynı sayfada birden
    fazla logo olduğunda id çakışması olmasın diye). */
 
@@ -20,9 +22,10 @@ export function LogoMark({ size = 36, className }) {
       focusable="false"
     >
       <defs>
-        <linearGradient id={`ring-${gid}`} x1="4" y1="40" x2="42" y2="8" gradientUnits="userSpaceOnUse">
+        {/* Yön kaynak logoyla aynı: tepede camgöbeği, sol alt uçta mor. */}
+        <linearGradient id={`ring-${gid}`} x1="34" y1="9" x2="12" y2="39" gradientUnits="userSpaceOnUse">
           <stop offset="0%" stopColor="#22D3EE" />
-          <stop offset="52%" stopColor="#2563EB" />
+          <stop offset="55%" stopColor="#2F6BF0" />
           <stop offset="100%" stopColor="#6366F1" />
         </linearGradient>
       </defs>
@@ -36,14 +39,16 @@ export function LogoMark({ size = 36, className }) {
         strokeLinecap="butt"
       />
 
-      {/* Kesişen "Z" */}
+      {/* Halkanın üzerine binen eğik "L" — kaynak logodaki gibi
+          sağ üstten sol alta iner, ayak sağa uzanır. */}
       <path
-        d="M18.5 13.5 H38 L18 34.5 H38"
+        d="M32.5 11.5 L23 34 H38"
         fill="none"
         stroke="currentColor"
         strokeWidth="5.5"
         strokeLinejoin="miter"
         strokeMiterlimit="3"
+        strokeLinecap="butt"
       />
     </svg>
   )
