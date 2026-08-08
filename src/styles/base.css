@@ -152,6 +152,13 @@ ol {
   margin-inline: auto;
 }
 
+/* Okuma sutunu: 18 px metinde ~68 karakter.
+   Yazi sayfasi 880 pxde ~95 karaktere cikiyordu, uzun metinde yorucu. */
+.container-read {
+  width: min(100% - var(--gutter) * 2, var(--container-read));
+  margin-inline: auto;
+}
+
 .section {
   position: relative;
   padding-block: var(--section-y);

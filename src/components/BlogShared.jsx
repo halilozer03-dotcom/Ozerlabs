@@ -7,9 +7,30 @@ import { Link } from 'react-router-dom'
 import Icon from './Icon.jsx'
 
 export const BLOG_LABELS = {
-  fr: { section: 'Derniers articles', all: 'Tous les articles', back: 'Tous les articles' },
-  en: { section: 'Latest articles', all: 'All articles', back: 'All posts' },
-  tr: { section: 'Son Yazılar', all: 'Tüm yazılar', back: 'Tüm yazılar' },
+  fr: {
+    section: 'Derniers articles',
+    all: 'Tous les articles',
+    back: 'Tous les articles',
+    ctaTitle: 'Un projet de ce type ?',
+    ctaText: "Dites-moi ce que vous voulez construire ; on en parle sans engagement.",
+    ctaBtn: 'Devis gratuit',
+  },
+  en: {
+    section: 'Latest articles',
+    all: 'All articles',
+    back: 'All posts',
+    ctaTitle: 'Working on something like this?',
+    ctaText: 'Tell me what you want to build — the first conversation costs nothing.',
+    ctaBtn: 'Get a free quote',
+  },
+  tr: {
+    section: 'Son Yazılar',
+    all: 'Tüm yazılar',
+    back: 'Tüm yazılar',
+    ctaTitle: 'Benzer bir işin mi var?',
+    ctaText: 'Ne yapmak istediğini yaz; ilk görüşme hiçbir şeye mal olmaz.',
+    ctaBtn: 'Ücretsiz teklif al',
+  },
 }
 
 export function PostCard({ post, lang }) {

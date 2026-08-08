@@ -31,7 +31,7 @@ export default function BlogPost() {
 
   return (
     <main className="section blog-page" id="main">
-      <div className="container-narrow">
+      <div className="container-read">
         <Link to="/blog" className="btn btn--ghost" style={{ marginBottom: 'var(--space-6)' }}>
           <Icon name="arrow-right" size={15} style={{ transform: 'rotate(180deg)' }} />
           {labels.back}
@@ -53,13 +53,18 @@ export default function BlogPost() {
           />
         </article>
 
-        <hr
-          style={{
-            border: 'none',
-            borderTop: '1px solid var(--border)',
-            margin: 'var(--space-12) 0 var(--space-6)',
-          }}
-        />
+        {/* Yazı sonu CTA: blog dönüşüm hunisinin girişidir.
+            Okuyucu buraya geldiyse konuya zaten ilgili. */}
+        <aside className="post-cta">
+          <div>
+            <h2 className="post-cta__title">{labels.ctaTitle}</h2>
+            <p className="post-cta__text">{labels.ctaText}</p>
+          </div>
+          <Link to={{ pathname: '/', hash: '#iletisim' }} className="btn btn--primary">
+            {labels.ctaBtn}
+            <Icon name="arrow-right" size={16} className="btn__icon" />
+          </Link>
+        </aside>
 
         <Link to="/blog" className="btn btn--secondary btn--sm">
           <Icon name="arrow-right" size={15} style={{ transform: 'rotate(180deg)' }} />
