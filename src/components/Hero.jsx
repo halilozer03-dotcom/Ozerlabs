@@ -1,36 +1,66 @@
+import { Link } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
+import Icon from './Icon.jsx'
+import HeroVisual from './HeroVisual.jsx'
 
 export default function Hero() {
   const { t } = useLanguage()
   const [line1, line2, line3] = t.hero.titleLines
 
+  // Güven göstergeleri sitede zaten var olan bilgilerden gelir —
+  // yeni, doğrulanamaz iddia eklenmez.
+  const trust = [
+    { icon: 'check-circle', value: t.eyebrow.status.value, label: t.eyebrow.status.label },
+    { icon: 'map-pin', value: t.eyebrow.location.value, label: t.eyebrow.location.label },
+    {
+      icon: 'clock',
+      value: t.contact.details[2].value,
+      label: t.contact.details[2].label,
+    },
+  ]
+
   return (
-    <section className="hero grid-bg">
-      <div className="crosshair c1" />
-      <div className="crosshair c2" />
-      <div className="crosshair c3" />
-      <div className="crosshair c4" />
+    <section className="hero dot-grid" data-surface="void" aria-labelledby="hero-title">
+      <div className="container hero__inner">
+        <div className="hero__copy">
+          <span className="tag tag--brand hero__badge">
+            <Icon name="sparkles" size={13} />
+            {t.hero.badge}
+          </span>
 
-      <div className="hero-content">
-        <div className="eyebrow-block">
-          <div><span>{t.eyebrow.brand.label}</span>{t.eyebrow.brand.value}</div>
-          <div><span>{t.eyebrow.location.label}</span>{t.eyebrow.location.value}</div>
-          <div><span>{t.eyebrow.discipline.label}</span>{t.eyebrow.discipline.value}</div>
-          <div><span>{t.eyebrow.status.label}</span>{t.eyebrow.status.value}</div>
+          <h1 className="hero__title" id="hero-title">
+            {line1} {line2} <span className="accent">{line3}</span>
+          </h1>
+
+          <p className="hero__sub">{t.hero.sub}</p>
+
+          <div className="hero__actions">
+            <Link to={{ pathname: '/', hash: '#projeler' }} className="btn btn--primary">
+              {t.hero.ctaPrimary}
+              <Icon name="arrow-right" size={17} className="btn__icon" />
+            </Link>
+            <Link to={{ pathname: '/', hash: '#iletisim' }} className="btn btn--secondary">
+              {t.hero.ctaSecondaryShort}
+              <Icon name="message-circle" size={17} />
+            </Link>
+          </div>
+
+          <ul className="hero__trust">
+            {trust.map((item) => (
+              <li className="trust-item" key={item.label}>
+                <span className="trust-item__icon">
+                  <Icon name={item.icon} size={18} />
+                </span>
+                <span>
+                  <strong className="trust-item__value">{item.value}</strong>
+                  <span className="trust-item__label">{item.label}</span>
+                </span>
+              </li>
+            ))}
+          </ul>
         </div>
 
-        <h1>
-          {line1}<br />
-          {line2}<br />
-          <span className="accent">{line3}</span>
-        </h1>
-
-        <p className="hero-sub">{t.hero.sub}</p>
-
-        <div className="cta-row">
-          <a href="#projeler" className="btn-primary">{t.hero.ctaPrimary}</a>
-          <a href="#iletisim" className="btn-secondary">{t.hero.ctaSecondary}</a>
-        </div>
+        <HeroVisual />
       </div>
     </section>
   )

@@ -1,0 +1,228 @@
+/* ============================================================
+   OZERLABS — DESIGN TOKENS
+   Tek gerçek kaynak. Renk, tipografi, boşluk, radius, gölge,
+   hareket ve katman değerleri yalnızca burada tanımlanır.
+   Bileşen dosyaları ham değer (hex, px) kullanmaz.
+
+   YÖN: yazılımcı stüdyosu — koyu zemin öncelikli, neon mavi vurgu.
+   Ham "ink" skalası nötr merdivendir: 950 en koyu, 50 en açık.
+   Semantik katman (bölüm 11) bu merdiveni KOYU yüzeye bağlar.
+   ============================================================ */
+
+:root {
+  /* ---------- 1. Marka paleti (ham) ----------
+     Neon mavi yalnızca koyu zeminde neondur. Açık zeminde
+     brand-600 beyazla 2,7:1 verir — bu yüzden birincil buton
+     neon dolgu + KOYU metin kullanır (7,2:1). */
+  --brand-700: #0087DB;
+  --brand-600: #00A3FF; /* Primary  */
+  --brand-500: #33B5FF; /* Secondary */
+  --brand-400: #66C8FF;
+  --brand-100: rgba(0, 163, 255, 0.14);
+  --brand-50: rgba(0, 163, 255, 0.07);
+
+  /* Camgöbeği — AKSAN DEĞİL. Yalnızca veri, ölçü ve rakam. */
+  --accent-600: #00B8E6;
+  --accent-500: #00D4FF;
+  --accent-400: #4DE2FF;
+
+  /* ---------- 2. Nötr merdiven (lacivert bias) ----------
+     Bölümler renk değiştirerek değil, bu merdivende
+     YÜKSEKLİK değiştirerek ayrışır. */
+  --ink-950: #05080F; /* void — hero, footer */
+  --ink-900: #070B14; /* base — sayfa zemini */
+  --ink-850: #0D1420; /* raise — kart, yükseltilmiş bölüm */
+  --ink-800: #131C2B; /* raise-2 — kart hover, girinti */
+  --ink-700: #1B2637; /* raise-3 — vurgulu kart */
+  --ink-600: #2C3B52; /* kenar, ayırıcı */
+  --ink-500: #64748B; /* soluk metin sınırı */
+  --ink-400: #93A3B8;
+  --ink-300: #B8C4D4;
+  --ink-200: #D6DEE8;
+  --ink-100: #E8EDF4;
+  --ink-50: #F4F7FB;
+  --white: #FFFFFF;
+
+  /* ---------- 3. Durum renkleri ---------- */
+  --success: #22C55E;
+  --warning: #F5A524;
+  --danger: #FF5C5C;
+
+  /* ---------- 4. Işık ve çizgi ----------
+     Gradyan afiş yok. Neon üç yerde: birincil buton parıltısı,
+     bölüm sınırındaki hairline, hero/iletişim atmosferi. */
+  --hairline: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 163, 255, 0.55) 35%,
+    rgba(0, 212, 255, 0.35) 65%,
+    transparent 100%
+  );
+  --atmos: radial-gradient(60% 80% at 15% 0%, rgba(0, 163, 255, 0.14), transparent 60%),
+    radial-gradient(50% 70% at 90% 20%, rgba(0, 212, 255, 0.08), transparent 65%);
+
+  /* Geriye dönük gradyan adları — düz neon yüzeye bağlandı.
+     Kullanım yerleri temizlendikçe bunlar kaldırılacak. */
+  --grad-brand: var(--brand-600);
+  --grad-brand-soft: var(--brand-600);
+  --grad-text: var(--brand-500);
+  --grad-cta: var(--ink-950);
+
+  /* ---------- 5. Tipografi ----------
+     Archivo: geniş gövdeli teknik grotesk, koyu zeminde net.
+     Inter: koyu zeminde en güvenilir okuma.
+     JetBrains Mono: ölçü, rakam, etiket — kimliği taşıyan unsur. */
+  --font-display: 'Archivo', 'Segoe UI Variable Display', 'Segoe UI', system-ui, sans-serif;
+  --font-body: 'Inter', 'Segoe UI Variable Text', 'Segoe UI', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Cascadia Mono', Consolas, ui-monospace, monospace;
+
+  /* Akışkan tip ölçeği — CLS üretmeyecek şekilde clamp'li.
+     Dokuz kademe yediye indi: 17px ve 11px ölçek dışıydı. */
+  --fs-display: clamp(2.25rem, 1.30rem + 4.20vw, 4.25rem); /* 36 → 68 */
+  --fs-h1: clamp(2rem, 1.42rem + 2.55vw, 3.25rem); /* 32 → 52 */
+  --fs-h2: clamp(1.625rem, 1.27rem + 1.55vw, 2.375rem); /* 26 → 38 */
+  --fs-h3: clamp(1.125rem, 1.02rem + 0.45vw, 1.375rem); /* 18 → 22 */
+  --fs-lg: 1.125rem; /* 18 — giriş paragrafı */
+  --fs-md: 1rem; /* 16 — gövde (15'ten çıkarıldı) */
+  --fs-sm: 0.875rem; /* 14 */
+  --fs-xs: 0.8125rem; /* 13 */
+  --fs-label: 0.6875rem; /* 11 — mono etiket */
+
+  /* Koyu zeminde açık harf optik olarak şişer: fazladan nefes. */
+  --lh-tight: 1.06;
+  --lh-snug: 1.25;
+  --lh-normal: 1.68;
+  --lh-relaxed: 1.78;
+
+  --tracking-tight: -0.025em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.08em;
+  --tracking-wider: 0.16em;
+
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700; /* üst sınır — 800 koyu zeminde parlama yapar */
+
+  /* ---------- 6. Boşluk ölçeği (4px tabanlı) ----------
+     20 / 40 / 80 adımları kaldırıldı: keyfiliğin kaynağı onlardı. */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-24: 96px;
+
+  /* Bölüm ve konteyner ritmi */
+  --container: 1240px;
+  --container-narrow: 880px;
+  --container-read: 680px;
+  --gutter: clamp(20px, 5vw, 40px);
+  --section-y: clamp(64px, 8vw, 120px);
+
+  /* Izgara: tüm kart ızgaraları TEK gap kullanır. */
+  --grid-gap: var(--space-6); /* 24 */
+  --grid-gap-mobile: var(--space-4); /* 16 */
+
+  /* ---------- 7. Radius ---------- */
+  --r-xs: 4px;
+  --r-sm: 8px; /* buton, form alanı */
+  --r-md: 10px; /* kart */
+  --r-lg: 14px; /* büyük panel, görsel */
+  --r-full: 999px; /* yalnızca durum noktası */
+
+  /* ---------- 8. Derinlik ----------
+     Koyu zeminde gölge işe yaramaz: derinlik zemin kademesi +
+     kenar çizgisi ile kurulur. Parıltı üç yerle sınırlı. */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.35);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.45);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.55);
+  --shadow-xl: 0 24px 64px rgba(0, 0, 0, 0.6);
+  --glow-btn: 0 0 20px rgba(0, 163, 255, 0.28);
+  --glow-btn-hover: 0 0 28px rgba(0, 163, 255, 0.45);
+  --glow-ring: 0 0 0 1px rgba(0, 163, 255, 0.35);
+
+  /* ---------- 9. Hareket ---------- */
+  --dur-fast: 120ms;
+  --dur-base: 200ms;
+  --dur-slow: 320ms;
+  --dur-reveal: 480ms;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* ---------- 10. Katmanlar ---------- */
+  --z-base: 1;
+  --z-sticky: 60;
+  --z-nav: 80;
+  --z-drawer: 90;
+  --z-skip: 100;
+
+  /* ---------- 11. Semantik yüzey (KOYU varsayılan) ----------
+     Site baştan sona koyu. Bölümler açık/koyu değişerek değil,
+     zemin kademesi değiştirerek ayrışır. */
+  --bg: var(--ink-900);
+  --surface: var(--ink-850);
+  --surface-2: var(--ink-800);
+  --surface-inset: var(--ink-950);
+  --border: var(--ink-600);
+  --border-strong: var(--ink-500);
+  --text: #E8EEF7;
+  --text-soft: #93A3B8;
+  --text-muted: #6E7F96; /* base üstünde 4,8:1 */
+  --brand: var(--brand-600);
+  --brand-contrast: var(--ink-950); /* neon dolgu üstüne KOYU metin */
+  --brand-tint: var(--brand-100);
+  --data: var(--accent-500); /* ölçü ve rakam */
+  --ring: var(--brand-600);
+  --card-shadow: var(--shadow-sm);
+  --card-shadow-hover: var(--shadow-md);
+  --glow: rgba(0, 163, 255, 0.35);
+}
+
+/* ---------- 11b. GEÇİŞ ALIAS'LARI ----------
+   Ölçekten çıkarılan adlar hâlâ bileşen dosyalarında kullanılıyor.
+   Tanımsız değişken CSS'te sessizce ölür, o yüzden burada yeni
+   ölçeğe bağlanıyorlar. Kullanım yerleri temizlendikçe silinecek. */
+:root {
+  --space-5: var(--space-6); /* 20 → 24 */
+  --space-10: var(--space-12); /* 40 → 48 */
+  --r-xl: var(--r-lg); /* 24 → 14 */
+  --r-2xl: var(--r-lg); /* 32 → 14 */
+  --fs-2xs: var(--fs-label); /* 11 */
+  --shadow-brand: var(--glow-btn);
+  --shadow-brand-lg: var(--glow-btn-hover);
+  --violet-500: var(--brand-600); /* mor uç kaldırıldı */
+}
+
+/* ---------- 12. Zemin kademeleri ----------
+   Bölüm zemini bu sınıflarla verilir; ham renk kullanılmaz.
+   Ritim: void → base → raise → base → raise → base → void */
+[data-surface='void'] {
+  --bg: var(--ink-950);
+  --surface: var(--ink-900);
+  --surface-2: var(--ink-850);
+}
+
+[data-surface='base'] {
+  --bg: var(--ink-900);
+  --surface: var(--ink-850);
+  --surface-2: var(--ink-800);
+}
+
+[data-surface='raise'] {
+  --bg: var(--ink-850);
+  --surface: var(--ink-800);
+  --surface-2: var(--ink-700);
+  --border: var(--ink-700);
+}
+
+/* Geriye dönük: 'dark' eski adı, base ile aynı davranır. */
+[data-surface='dark'] {
+  --bg: var(--ink-900);
+  --surface: var(--ink-850);
+  --surface-2: var(--ink-800);
+}

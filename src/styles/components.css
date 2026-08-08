@@ -1,0 +1,502 @@
+/* ============================================================
+   OZERLABS — TEKRAR KULLANILAN BİLEŞENLER
+   Buton, kart, etiket, ikon rozeti, bölüm başlığı, form.
+   Hepsi semantik değişkenlerle çalışır: aynı sınıf hem açık
+   hem koyu bölümde doğru görünür.
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   1. BUTON — tek tip yükseklik, radius, geçiş
+   ------------------------------------------------------------ */
+.btn {
+  --btn-h: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: var(--btn-h);
+  padding-inline: var(--space-6);
+  /* Hap biçimi bırakıldı: 8px köşe — makine paneli düğmesi. */
+  border-radius: var(--r-sm);
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.005em;
+  white-space: nowrap;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition:
+    transform var(--dur-base) var(--ease-out),
+    box-shadow var(--dur-base) var(--ease-out),
+    background-color var(--dur-base) var(--ease-out),
+    border-color var(--dur-base) var(--ease-out),
+    color var(--dur-base) var(--ease-out);
+}
+
+.btn:active {
+  transform: translateY(0) scale(0.985);
+}
+
+.btn__icon {
+  transition: transform var(--dur-base) var(--ease-out);
+}
+
+.btn:hover .btn__icon {
+  transform: translateX(3px);
+}
+
+/* Birincil — marka dolgusu */
+/* Neon dolgu KOYU metin ister: beyaz metin #00A3FF üstünde 2,7:1
+   ile okunmaz, koyu metin 7,2:1 verir. */
+.btn--primary {
+  background: var(--brand-600);
+  color: var(--brand-contrast);
+  box-shadow: var(--glow-btn);
+}
+
+.btn--primary:hover {
+  background: var(--brand-500);
+  transform: translateY(-2px);
+  box-shadow: var(--glow-btn-hover);
+}
+
+/* İkincil — çerçeveli, opak yüzey.
+   Cam efekti kaldırıldı: zemin sayfadan bir kademe yukarıda durur. */
+.btn--secondary {
+  background: var(--surface);
+  color: var(--text);
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-xs);
+}
+
+.btn--secondary:hover {
+  background: var(--surface-2);
+  border-color: var(--brand);
+  color: var(--brand);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Sade — metin bağlantısı görünümlü */
+/* Metin görünümlü ama yine de rahat dokunulabilir bir hedef
+   (WCAG 2.5.8 için 24px yeterli; mobilde 38px'e çıkarılıyor). */
+.btn--ghost {
+  min-height: auto;
+  padding: var(--space-2) 0;
+  border-radius: var(--r-xs);
+  color: var(--brand);
+  font-size: var(--fs-sm);
+}
+
+.btn--ghost:hover {
+  color: var(--brand-700);
+}
+
+.btn--full {
+  width: 100%;
+}
+
+.btn--sm {
+  --btn-h: 40px;
+  padding-inline: var(--space-5);
+  font-size: var(--fs-xs);
+}
+
+/* ------------------------------------------------------------
+   2. KART — TEK yapı: aynı radius, padding, kenarlık, hover
+   ------------------------------------------------------------ */
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: var(--space-8);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  box-shadow: var(--card-shadow);
+  overflow: hidden;
+  transition:
+    transform var(--dur-base) var(--ease-out),
+    box-shadow var(--dur-base) var(--ease-out),
+    border-color var(--dur-base) var(--ease-out);
+}
+
+/* Kart bulanıklığı kaldırıldı: koyu zeminde derinlik
+   zemin kademesi + kenar çizgisi ile kurulur. */
+
+/* Kenar parıltısı — hover'da beliren ince marka çizgisi */
+.card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: var(--grad-brand);
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity var(--dur-base) var(--ease-out);
+  pointer-events: none;
+}
+
+/* İşaretçi yalnızca gerçekten tıklanabilir kartlarda değişir —
+   hover efekti alan ama link olmayan kartlar yanıltmaz. */
+a.card--interactive {
+  cursor: pointer;
+}
+
+.card--interactive:hover,
+.card--interactive:focus-visible {
+  transform: translateY(-6px);
+  box-shadow: var(--card-shadow-hover);
+  border-color: transparent;
+}
+
+.card--interactive:hover::after,
+.card--interactive:focus-visible::after {
+  opacity: 1;
+}
+
+.card__title {
+  font-size: var(--fs-h3);
+  margin-bottom: var(--space-3);
+}
+
+.card__text {
+  font-size: var(--fs-sm);
+  line-height: var(--lh-relaxed);
+  color: var(--text-soft);
+}
+
+.card__foot {
+  margin-top: auto;
+  padding-top: var(--space-6);
+}
+
+/* ------------------------------------------------------------
+   3. İKON ROZETİ — tek ikon dili (48px kutu, 24px stroke ikon)
+   ------------------------------------------------------------ */
+.icon-badge {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  flex: 0 0 auto;
+  border-radius: var(--r-md);
+  background: var(--brand-tint);
+  color: var(--brand);
+  margin-bottom: var(--space-6);
+  transition:
+    background-color var(--dur-base) var(--ease-out),
+    color var(--dur-base) var(--ease-out),
+    transform var(--dur-base) var(--ease-out);
+}
+
+.card--interactive:hover .icon-badge {
+  background: var(--brand-600);
+  color: var(--brand-contrast);
+  transform: scale(1.06);
+}
+
+.icon-badge--sm {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--r-sm);
+  margin-bottom: var(--space-4);
+}
+
+/* ------------------------------------------------------------
+   4. ETİKET / ROZET
+   ------------------------------------------------------------ */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 5px var(--space-3);
+  border-radius: var(--r-xs);
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  /* muted ton bu zeminde 4.34:1'de kalıyordu */
+  color: var(--text-soft);
+  font-family: var(--font-mono);
+  font-size: var(--fs-2xs);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.tag--brand {
+  border-color: transparent;
+  background: var(--brand-tint);
+  color: var(--brand);
+}
+
+.tag--live {
+  color: var(--success);
+}
+
+.tag__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--r-full);
+  background: currentColor;
+  flex: 0 0 auto;
+}
+
+.tag--live .tag__dot {
+  animation: pulse-dot 2.4s var(--ease-in-out) infinite;
+}
+
+@keyframes pulse-dot {
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.5);
+  }
+  50% {
+    opacity: 0.65;
+    box-shadow: 0 0 0 6px rgba(34, 197, 94, 0);
+  }
+}
+
+/* ------------------------------------------------------------
+   5. BÖLÜM BAŞLIĞI — her bölümde aynı ritim
+   ------------------------------------------------------------ */
+.section-head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  max-width: 640px;
+  margin-bottom: clamp(40px, 5vw, 64px);
+}
+
+.section-head--center {
+  align-items: center;
+  text-align: center;
+  margin-inline: auto;
+}
+
+/* Başlık + yan aksiyon: dar ekranda alt alta, geniş ekranda yan yana. */
+.section-head--split {
+  max-width: none;
+  align-items: flex-start;
+  gap: var(--space-6);
+}
+
+@media (min-width: 720px) {
+  .section-head--split {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: var(--space-8);
+  }
+}
+
+.section-head--split .section-head__body {
+  max-width: 620px;
+}
+
+.section-head__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--fs-2xs);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--brand);
+}
+
+.eyebrow::before {
+  content: '';
+  width: 18px;
+  height: 1px;
+  background: currentColor;
+  flex: 0 0 auto;
+}
+
+.section-head--center .eyebrow::before {
+  display: none;
+}
+
+.section-title {
+  font-size: var(--fs-h2);
+}
+
+.section-title .accent {
+  background: var(--grad-brand-soft);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+[data-surface='dark'] .section-title .accent {
+  background: var(--grad-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.section-sub {
+  font-size: var(--fs-lg);
+  line-height: var(--lh-normal);
+  color: var(--text-soft);
+}
+
+/* ------------------------------------------------------------
+   6. IZGARA — tek tip kolon sistemi
+   ------------------------------------------------------------ */
+.grid {
+  display: grid;
+  gap: var(--space-6);
+  grid-template-columns: repeat(var(--cols, 1), minmax(0, 1fr));
+}
+
+@media (min-width: 620px) {
+  .grid--2,
+  .grid--3,
+  .grid--4 {
+    --cols: 2;
+  }
+}
+
+@media (min-width: 940px) {
+  .grid--3 {
+    --cols: 3;
+  }
+  .grid--4 {
+    --cols: 4;
+  }
+}
+
+/* ------------------------------------------------------------
+   7. FORM
+   ------------------------------------------------------------ */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.field__label {
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-medium);
+  color: var(--text-soft);
+}
+
+.field__control {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  min-height: 48px;
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--r-sm);
+  color: var(--text);
+  font-size: var(--fs-md);
+  transition:
+    border-color var(--dur-base) var(--ease-out),
+    box-shadow var(--dur-base) var(--ease-out);
+}
+
+.field__control::placeholder {
+  color: var(--text-muted);
+}
+
+.field__control:hover {
+  border-color: var(--brand-400);
+}
+
+.field__control:focus {
+  border-color: var(--brand-600);
+  box-shadow: 0 0 0 4px var(--brand-tint);
+}
+
+/* Fare ile odaklanınca yalnızca kenarlık+hâle; klavyede
+   base.css'teki odak halkası da korunur. */
+.field__control:focus:not(:focus-visible) {
+  outline: none;
+}
+
+textarea.field__control {
+  resize: vertical;
+  min-height: 132px;
+  line-height: var(--lh-normal);
+}
+
+/* Bütçe aralığı seçimi — sayfada rakam olmamasının karşılığı.
+   Zorunlu değil; ilk seçenek "henüz bilmiyorum". */
+select.field__control {
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  padding-right: var(--space-8);
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2393A3B8' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--space-4) center;
+}
+
+/* Açılır listenin kendisi tarayıcı çizer: koyu zeminde okunur kalsın. */
+select.field__control option {
+  background: var(--surface);
+  color: var(--text);
+}
+
+.form-status {
+  min-height: 20px;
+  font-size: var(--fs-xs);
+  color: var(--success);
+}
+
+/* ------------------------------------------------------------
+   8. YÜKSELTİLMİŞ YÜZEY
+   Eski cam efektinin yerini alır: bulanıklık yok, zemin
+   kademesi + kenar çizgisi ile derinlik.
+   ------------------------------------------------------------ */
+.glass {
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+
+/* ------------------------------------------------------------
+   9. DEKORATİF ARKA PLAN IŞIKLARI
+   ------------------------------------------------------------ */
+.glow-orb {
+  position: absolute;
+  border-radius: var(--r-full);
+  filter: blur(90px);
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.dot-grid::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0);
+  background-size: 32px 32px;
+  opacity: 0.07;
+  pointer-events: none;
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 75%);
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 75%);
+}
+
+/* Etiketler kart genişliğine yayılmasın: kart bir sütun flex olduğu için
+   çocukları stretch oluyordu (öne çıkan kartta tam genişlik çubuk). */
+.card .tag {
+  align-self: flex-start;
+}

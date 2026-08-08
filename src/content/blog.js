@@ -1,12 +1,12 @@
 export const posts = [
   {
-    slug: 'ozer-bend-pro-hikayesi',
+    slug: 'bendiq-hikayesi',
     date: '2026-07-20',
     fr: {
-      title: "L'histoire d'ÖZER BEND PRO : une app de calcul de pliage de tôle",
-      excerpt: "D'un tableur de calcul manuel à une application Android complète avec aperçu 3D — comment est né ÖZER BEND PRO, et pourquoi construire un produit soi-même reste un pari qui vaut le coup.",
+      title: "L'histoire d'BENDIQ : une app de calcul de pliage de tôle",
+      excerpt: "D'un tableur de calcul manuel à une application Android complète avec aperçu 3D — comment est né BENDIQ, et pourquoi construire un produit soi-même reste un pari qui vaut le coup.",
       content: `
-Tous les projets chez Ozer Labs ne sont pas des sites pour des clients. **ÖZER BEND PRO** est un produit propre, né d'un besoin concret : les professionnels du pliage de tôle calculent encore souvent leurs facteurs K et leurs développés à la main ou sur un tableur approximatif.
+Tous les projets chez Ozer Labs ne sont pas des sites pour des clients. **BENDIQ** est un produit propre, né d'un besoin concret : les professionnels du pliage de tôle calculent encore souvent leurs facteurs K et leurs développés à la main ou sur un tableur approximatif.
 
 ## Le problème de départ
 
@@ -14,7 +14,7 @@ Le facteur K et la longueur développée sont essentiels pour plier une tôle av
 
 ## Ce que fait l'application
 
-ÖZER BEND PRO calcule le facteur K et le développé à partir de données machine réelles, propose un aperçu 3D en temps réel du profil plié, et génère un PDF prêt à partager avec l'atelier ou le client. Tout depuis un téléphone Android, sans tableur ni calcul manuel.
+BENDIQ calcule le facteur K et le développé à partir de données machine réelles, propose un aperçu 3D en temps réel du profil plié, et génère un PDF prêt à partager avec l'atelier ou le client. Tout depuis un téléphone Android, sans tableur ni calcul manuel.
 
 ## Un modèle freemium pensé pour l'essai réel
 
@@ -24,7 +24,7 @@ Le facteur K et la longueur développée sont essentiels pour plier une tôle av
 
 ## Pourquoi construire un produit, pas seulement des sites
 
-Développer ÖZER BEND PRO en parallèle des sites clients a demandé une infrastructure différente : CI/CD via GitHub Actions, build et signature automatiques, gestion de licence via Supabase, publication sur Google Play. C'est plus de travail qu'un site vitrine — mais un produit continue de générer de la valeur sans qu'on reparte de zéro à chaque nouveau client.
+Développer BENDIQ en parallèle des sites clients a demandé une infrastructure différente : CI/CD via GitHub Actions, build et signature automatiques, gestion de licence via Supabase, publication sur Google Play. C'est plus de travail qu'un site vitrine — mais un produit continue de générer de la valeur sans qu'on reparte de zéro à chaque nouveau client.
 
 ## Et maintenant ?
 
@@ -32,10 +32,10 @@ L'application est actuellement en alpha fermée sur Google Play (177 pays, phase
 `.trim(),
     },
     en: {
-      title: "The Story of ÖZER BEND PRO: A Sheet Metal Bending Calculator App",
-      excerpt: "From manual calculations on a rough spreadsheet to a full Android app with 3D preview — how ÖZER BEND PRO came to be, and why building your own product is a bet worth making.",
+      title: "The Story of BENDIQ: A Sheet Metal Bending Calculator App",
+      excerpt: "From manual calculations on a rough spreadsheet to a full Android app with 3D preview — how BENDIQ came to be, and why building your own product is a bet worth making.",
       content: `
-Not every project at Ozer Labs is a client site. **ÖZER BEND PRO** is an in-house product, born from a real problem: sheet metal bending professionals often still calculate K-factors and flat-pattern lengths by hand or on a rough spreadsheet.
+Not every project at Ozer Labs is a client site. **BENDIQ** is an in-house product, born from a real problem: sheet metal bending professionals often still calculate K-factors and flat-pattern lengths by hand or on a rough spreadsheet.
 
 ## The starting problem
 
@@ -43,7 +43,7 @@ K-factor and developed length are essential for bending sheet metal precisely �
 
 ## What the app does
 
-ÖZER BEND PRO calculates K-factor and developed length from real machine data, shows a live 3D preview of the bent profile, and generates a PDF ready to share with the shop floor or a client. All from an Android phone, no spreadsheet or manual math required.
+BENDIQ calculates K-factor and developed length from real machine data, shows a live 3D preview of the bent profile, and generates a PDF ready to share with the shop floor or a client. All from an Android phone, no spreadsheet or manual math required.
 
 ## A freemium model built for real trial
 
@@ -53,7 +53,7 @@ K-factor and developed length are essential for bending sheet metal precisely �
 
 ## Why build a product, not just websites
 
-Building ÖZER BEND PRO alongside client sites required different infrastructure: CI/CD via GitHub Actions, automatic build and signing, license management through Supabase, publishing to Google Play. It's more upfront work than a showcase site — but a product keeps generating value without starting from scratch for every new client.
+Building BENDIQ alongside client sites required different infrastructure: CI/CD via GitHub Actions, automatic build and signing, license management through Supabase, publishing to Google Play. It's more upfront work than a showcase site — but a product keeps generating value without starting from scratch for every new client.
 
 ## What's next
 
@@ -61,10 +61,10 @@ The app is currently in closed alpha on Google Play (177 countries, testing phas
 `.trim(),
     },
     tr: {
-      title: 'Sac Bükme Hesaplama Uygulaması: ÖZER BEND PRO Hikayesi',
-      excerpt: 'Elle yapılan hesaplardan 3D önizlemeli tam bir Android uygulamasına — ÖZER BEND PRO nasıl doğdu ve kendi ürününü inşa etmek neden değerli bir bahis?',
+      title: 'Sac Bükme Hesaplama Uygulaması: BENDIQ Hikayesi',
+      excerpt: 'Elle yapılan hesaplardan 3D önizlemeli tam bir Android uygulamasına — BENDIQ nasıl doğdu ve kendi ürününü inşa etmek neden değerli bir bahis?',
       content: `
-Ozer Labs'ta her proje bir müşteri sitesi değil. **ÖZER BEND PRO**, gerçek bir ihtiyaçtan doğan kendi ürünümüz: sac büküm profesyonelleri hâlâ çoğu zaman K-faktörünü ve açınım uzunluğunu elle ya da gelişigüzel bir excel tablosunda hesaplıyor.
+Ozer Labs'ta her proje bir müşteri sitesi değil. **BENDIQ**, gerçek bir ihtiyaçtan doğan kendi ürünümüz: sac büküm profesyonelleri hâlâ çoğu zaman K-faktörünü ve açınım uzunluğunu elle ya da gelişigüzel bir excel tablosunda hesaplıyor.
 
 ## Başlangıçtaki Problem
 
@@ -72,7 +72,7 @@ K-faktörü ve açınım uzunluğu, sacı doğru bükmek için kritik öneme sah
 
 ## Uygulama Ne Yapıyor?
 
-ÖZER BEND PRO, gerçek makine verilerinden K-faktörü ve açınım uzunluğunu hesaplıyor, bükülmüş profilin canlı 3D önizlemesini gösteriyor ve atölyeyle ya da müşteriyle paylaşılmaya hazır bir PDF üretiyor. Hepsi bir Android telefondan, excel ya da elle hesaplama olmadan.
+BENDIQ, gerçek makine verilerinden K-faktörü ve açınım uzunluğunu hesaplıyor, bükülmüş profilin canlı 3D önizlemesini gösteriyor ve atölyeyle ya da müşteriyle paylaşılmaya hazır bir PDF üretiyor. Hepsi bir Android telefondan, excel ya da elle hesaplama olmadan.
 
 ## Gerçek Denemeye Uygun Freemium Model
 
@@ -82,7 +82,7 @@ K-faktörü ve açınım uzunluğu, sacı doğru bükmek için kritik öneme sah
 
 ## Neden Sadece Site Değil, Ürün İnşa Etmek?
 
-ÖZER BEND PRO'yu müşteri siteleriyle paralel geliştirmek farklı bir altyapı gerektirdi: GitHub Actions üzerinden CI/CD, otomatik build ve imzalama, Supabase üzerinden lisans yönetimi, Google Play'e yayınlama. Bir vitrin sitesinden daha fazla ön emek — ama bir ürün, her yeni müşteride sıfırdan başlamadan değer üretmeye devam ediyor.
+BENDIQ'i müşteri siteleriyle paralel geliştirmek farklı bir altyapı gerektirdi: GitHub Actions üzerinden CI/CD, otomatik build ve imzalama, Supabase üzerinden lisans yönetimi, Google Play'e yayınlama. Bir vitrin sitesinden daha fazla ön emek — ama bir ürün, her yeni müşteride sıfırdan başlamadan değer üretmeye devam ediyor.
 
 ## Sırada Ne Var?
 
