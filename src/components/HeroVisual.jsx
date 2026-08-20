@@ -9,7 +9,8 @@ import Icon from './Icon.jsx'
  *
  * Görsel dekoratif DEĞİL: ürünün çalıştığının kanıtı olduğu için
  * gerçek alt metni var ve ekran okuyuculara açık.
- * Oran 9:16 sabit olduğu için CLS üretmez.
+ * Oran gerçek cihazın kendi oranı (384×832 CSS px → 720×1560) ve sabit
+ * olduğu için CLS üretmez. 9:16'ya sıkıştırmak kareyi kırpıyordu.
  *
  * Tamamı Play sayfasına giden tek bir bağlantı. Alt yazı zaten
  * "Google Play'de yayında" diyordu ama tıklanmıyordu; ziyaretçinin ilk
@@ -37,7 +38,7 @@ export default function HeroVisual() {
             src="/bendiq-teknik-cizim.webp"
             alt={t.hero.visualAlt}
             width="720"
-            height="1280"
+            height="1560"
             loading="eager"
             fetchpriority="high"
             decoding="async"

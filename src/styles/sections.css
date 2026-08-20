@@ -572,7 +572,9 @@
   display: block;
   width: 100%;
   height: auto;
-  aspect-ratio: 720 / 1280;
+  /* Gerçek cihazın oranı (384×832). 9:16 varsayımı kareyi kırpıyordu:
+     ekranın altındaki teknik çizim ve PDF düğmesi görünmüyordu. */
+  aspect-ratio: 720 / 1560;
   object-fit: cover;
   object-position: top center;
   border-radius: 18px;
@@ -1570,10 +1572,14 @@ a.contact-detail:hover {
     grid-template-columns: repeat(3, 1fr);
   }
 
-  /* Tek satır: iki satıra yayılan lead kart ızgarayı şişiriyordu
-     (bölüm 1.928 px'e çıkmıştı). */
+  /* Lead kart iki satır: kapak artık tam bir A4 çizim olduğu için kart
+     790 px ve tek satırda kalınca sağına 420 px boşluk düşüyordu.
+     İki satıra yayılınca o boşluğa iki kompakt kart giriyor ve ızgara
+     1.205 → 1.181 px'e iniyor. (Kapak 237 px'lik kesitken bunun tersi
+     geçerliydi: o zaman yayılma ızgarayı şişiriyordu.) */
   .projects__lead {
     grid-column: span 2;
+    grid-row: span 2;
   }
 }
 
@@ -1593,8 +1599,30 @@ a.contact-detail:hover {
    Sabit yukseklik verildiginde ciplerin alti kesiliyordu.
    Her genislikte gecerli: 16/10'luk varsayilan kutuda object-fit
    kesiti yanlardan kirpiyor, telefonda genisligin %55'i gorunuyordu. */
+/* Kapak = uygulamanın gerçek çıktısı (ölçülendirilmiş A4 teknik çizim),
+   kendi oranında akar — object-fit kırpması hiç devreye girmez.
+   Üstteki sabit boşluk durum çipi içindir: çip kapağın üstünde yüzer
+   (16 px + ~30 px) ve çizim kâğıdı beyaz olduğu için çipin kendi koyu
+   zemini beyazın üstünde okunmuyordu; koyu bant onu taşıyor.
+   Boşluk SABİT px: orana gömülen boşluk masaüstünde kocaman bir bant oluyor. */
 .project-card--featured .project-card__cover {
-  aspect-ratio: 1020 / 350;
+  aspect-ratio: auto;
+  height: auto;
+  display: block;
+  padding-top: 54px;
+  background: #090d14; /* çizimin oturduğu koyu zemin; token'lardan 2 birim koyu */
+}
+
+/* Çizim kapağın tamamını kaplamadığı için marka gradyanı ve ızgara
+   deseni üstteki boşlukta yabancı bir bant olarak görünürdü. */
+.project-card--featured .project-card__cover::before,
+.project-card--featured .project-card__cover::after {
+  display: none;
+}
+
+.project-card--featured .project-card__shot {
+  position: relative;
+  inset: auto;
   height: auto;
 }
 
@@ -1616,17 +1644,9 @@ a.contact-detail:hover {
   display: none;
 }
 
-/* Kesitin altı kart zeminine erisin: object-fit alttan kırptığı için
-   yarım kalan giriş alanları kırpık duruyordu. */
-.project-card__cover--shot::after {
-  content: '';
-  position: absolute;
-  inset: auto 0 0;
-  height: 18%;
-  z-index: 2;
-  background: linear-gradient(180deg, transparent, var(--surface));
-  pointer-events: none;
-}
+/* Kapak artık tam bir A4 çizim — yarım kalan bir giriş alanı yok.
+   Alttaki kaybolma gradyanı gizleyecek bir şey bulamayıp kâğıdın kendi
+   alt kenarını soldurduğu için kaldırıldı. */
 
 /* ============================================================
    SEKTÖREL TASLAKLAR — hizmetlerin devamı

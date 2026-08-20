@@ -46,16 +46,16 @@ function ProjectCard({ project, viewLabel, labels, featured = false }) {
       </span>
 
       <div className={`project-card__cover${project.cover ? ' project-card__cover--shot' : ''}`}>
-        {/* Öne çıkan projede kapak, uygulamanın gerçek ekranından bir
-            kesit: ölçü satırı ve büküm parametreleri. Logo plakası
-            782×260'lık alanda boş duruyordu. */}
+        {/* Öne çıkan projede kapak, uygulamanın gerçek çıktısı: A4 yatay
+            teknik çizim (kesit + ölçüler + detay X + izometrik). Logo
+            plakası 782×260'lık alanda boş duruyordu. */}
         {project.cover && (
           <img
             className="project-card__shot"
             src={project.cover}
             alt=""
             width="1020"
-            height="350"
+            height="600"
             loading="lazy"
             decoding="async"
           />
