@@ -29,7 +29,7 @@ güncellenir.
 | Yığın | React 18 · react-router-dom 7 · Vite 5 · marked (blog) · sharp (marka scripti) |
 | Yayın | Cloudflare, `wrangler.toml` → `wild-firefly-6ee1`, SPA fallback, `./dist` |
 | Dev sunucu | `ozerlabs-dev` (preview_start ile). Proje içi `.claude/launch.json` 5199 der ama cwd genelde `C:\Users\halil` olduğu için oradaki launch.json okunur; 5199'u BENDIQ tuttuğundan OzerLabs **5200**'e tanımlandı (`cwd` alanıyla) |
-| Diller | fr (varsayılan) · en · tr — `src/i18n/translations.js` tek kaynak, seçim `localStorage: ozerlabs-lang` |
+| Diller | fr (varsayılan) · en · tr — `src/i18n/translations.js` tek kaynak. Açılış dili ziyaretçinin **ülkesine** göre; kullanıcının açık seçimi `localStorage: ozerlabs-lang-v2` |
 | Sayfalar | `/` (yedi bölüm) · `/blog` · `/blog/:slug`; eski slug kalıcı yönlendirmede |
 | İletişim | `mailto:` ile — sunucu yok, form verisi hiçbir yere gönderilmez |
 
@@ -96,6 +96,22 @@ Yeni bir görev bunlardan birini bozuyorsa **önce nedenini söyle**, sonra doku
 - Dekoratif görsel `alt=""`; kanıt niteliğindeki görselin gerçek alt metni olur.
 
 ## 4. İçerik ve metin
+
+**Açılış dili — öncelik sırası (`LanguageContext.jsx`):**
+kullanıcının açık seçimi > **ülke** > tarayıcı dili > fr.
+
+- Ülke kendi origin'imizden okunur: Cloudflare her sitede `/cdn-cgi/trace`
+  sunar, `loc=XX` satırı ziyaretçinin ülkesini verir. **Üçüncü taraf IP
+  servisi kullanılmaz**, ziyaretçinin IP'si dışarı çıkmaz — yeni bir dil
+  kaynağı eklenecekse bu sınır korunur.
+- Eşleme `COUNTRY_LANG`: TR → tr; FR, BE, CH, LU, MC, MA, DZ, TN → fr;
+  listede olmayan her ülke → en. Ülke eklemek bu tablonun tek satırı.
+- İlk boyama senkron kalsın diye tarayıcı dili başlangıç değeridir; ülke
+  bilgisi ağdan gelince düzeltir. Yerelde `/cdn-cgi/trace` olmadığından tespit
+  sessizce atlanır — bu yüzden **ülke davranışı ancak canlıda doğrulanabilir**.
+- `localStorage` yalnızca **açık seçimde** yazılır, otomatik tespitte yazılmaz.
+  Anahtar `ozerlabs-lang-v2`; eskisi (`ozerlabs-lang`) her açılışta otomatik
+  yazıldığı için seçim ile tahmin ayırt edilemiyordu, artık okunmuyor.
 
 - **Üç dil eşzamanlı.** `translations.js` içinde `fr`, `en`, `tr` blokları aynı
   anahtar setini taşır. Bir dile metin ekleyip diğerini eski bırakmak hatadır —
@@ -197,6 +213,10 @@ görüntüsü ve açıklaması" (08-15).
   hesap doğruluğu testle kanıtlı) fr ve en'e eklendi; (3) `index.html` FR'ye
   çevrildi (`lang`, title, description, keywords, OG/Twitter, `og:locale`
   fr_FR + alternate, JSON-LD `availableLanguage`).
+
+- **08-20 — açılış dili ülkeye bağlandı** (`7ed1c75`). Canlıda doğrulandı:
+  tarayıcı dili `tr`, ülke FR → site Fransızca açıldı; sonra TR seçilip
+  yenilenince seçim korundu.
 
 ## 10. Açık durum (2026-08-20 ölçümü)
 
