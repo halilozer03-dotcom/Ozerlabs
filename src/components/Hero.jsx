@@ -34,14 +34,19 @@ export default function Hero() {
 
           <p className="hero__sub">{t.hero.sub}</p>
 
+          {/* Hedefler metinle eşleşmek ZORUNDA. 08-08 yeniden tasarımında
+              ctaPrimary "Projeleri Gör"den "Ücretsiz Teklif Al"a döndü ama
+              hash'ler eski kalmıştı: birincil buton projelere, ikincil buton
+              iletişime gidiyordu. Butonun yazdığı yere götürmemesi, sitenin
+              tek ticari eylemini kaybettiriyordu. */}
           <div className="hero__actions">
-            <Link to={{ pathname: '/', hash: '#projeler' }} className="btn btn--primary">
+            <Link to={{ pathname: '/', hash: '#iletisim' }} className="btn btn--primary">
               {t.hero.ctaPrimary}
               <Icon name="arrow-right" size={17} className="btn__icon" />
             </Link>
-            <Link to={{ pathname: '/', hash: '#iletisim' }} className="btn btn--secondary">
+            <Link to={{ pathname: '/', hash: '#projeler' }} className="btn btn--secondary">
               {t.hero.ctaSecondaryShort}
-              <Icon name="message-circle" size={17} />
+              <Icon name="layers" size={17} />
             </Link>
           </div>
 

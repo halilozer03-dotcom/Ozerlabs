@@ -1,23 +1,31 @@
 <!DOCTYPE html>
-<html lang="tr">
+<!-- Sunucudan gelen HTML'in dili sitenin VARSAYILAN dilidir (fr) ve hedef
+     pazarla (areaServed FR, € fiyatlar, Fransa konumu) aynıdır. Türkçeydi:
+     arama motoruna ve paylaşım önizlemesine yanlış pazarın dili gidiyordu.
+     Ziyaretçinin kendi dili çalışma anında LanguageContext ile ayarlanır.
+     hreflang bilerek eklenmedi: üç dil tek URL'de sunuluyor, ayrı adresler
+     olmadan hreflang doğru olmayan bir sinyal olur. -->
+<html lang="fr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ozer Labs — Web Tasarım & Mobil Geliştirme</title>
-    <meta name="description" content="Ozer Labs: Web tasarım, Android/iOS uygulama geliştirme ve AI destekli çözümler. Sadece tasarlamıyoruz, üretiyoruz." />
-    <meta name="keywords" content="web tasarım, mobil uygulama geliştirme, restoran sipariş sistemi, QR menü, kuaför randevu sistemi, Android, iOS, React, AI destekli yazılım, Fransa, freelance yazılımcı" />
+    <title>Ozer Labs — Sites web et applications mobiles</title>
+    <meta name="description" content="Sites web, applications iOS/Android et systèmes assistés par IA. De la conception à la mise en ligne, un seul interlocuteur — sans intermédiaire, sans mauvaise surprise." />
+    <meta name="keywords" content="création site web, développement application mobile, système de commande restaurant, menu QR, prise de rendez-vous coiffeur, Android, iOS, React, logiciel assisté par IA, France, développeur freelance" />
     <link rel="canonical" href="https://ozerlabs.com/" />
 
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Ozer Labs — Web Tasarım & Mobil Geliştirme" />
-    <meta property="og:description" content="Web tasarımdan Android/iOS uygulama geliştirmeye, AI destekli çözümlerle fikirlerin çalışan ürüne dönüştüğü yer." />
+    <meta property="og:title" content="Ozer Labs — Sites web et applications mobiles" />
+    <meta property="og:description" content="De la conception à la mise en ligne : sites web, applications iOS/Android et systèmes assistés par IA, livrés par la personne qui les construit." />
     <meta property="og:url" content="https://ozerlabs.com/" />
     <meta property="og:image" content="https://ozerlabs.com/og-image.jpg" />
-    <meta property="og:locale" content="tr_TR" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:locale:alternate" content="en_US" />
+    <meta property="og:locale:alternate" content="tr_TR" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Ozer Labs — Web Tasarım & Mobil Geliştirme" />
-    <meta name="twitter:description" content="Web tasarımdan Android/iOS uygulama geliştirmeye, AI destekli çözümlerle fikirlerin çalışan ürüne dönüştüğü yer." />
+    <meta name="twitter:title" content="Ozer Labs — Sites web et applications mobiles" />
+    <meta name="twitter:description" content="De la conception à la mise en ligne : sites web, applications iOS/Android et systèmes assistés par IA, livrés par la personne qui les construit." />
     <meta name="twitter:image" content="https://ozerlabs.com/og-image.jpg" />
 
     <script type="application/ld+json">
@@ -28,8 +36,9 @@
       "url": "https://ozerlabs.com",
       "image": "https://ozerlabs.com/og-image.jpg",
       "logo": "https://ozerlabs.com/brand/ozerlabs-lockup.webp",
-      "description": "Web tasarım, Android/iOS uygulama geliştirme ve AI destekli çözümler.",
+      "description": "Création de sites web, développement d'applications Android/iOS et systèmes assistés par IA.",
       "areaServed": "FR",
+      "availableLanguage": ["fr", "en", "tr"],
       "email": "ozer.labs@gmail.com"
     }
     </script>
