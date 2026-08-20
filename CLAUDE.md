@@ -200,8 +200,11 @@ görüntüsü ve açıklaması" (08-15).
 
 ## 10. Açık durum (2026-08-20 ölçümü)
 
-- **Commit edilmemiş 10 dosya** çalışma dizininde: 08-15'in BENDIQ görsel/metin
-  güncellemesi (7 dosya) + 08-20'nin üç düzeltmesi. Hiçbiri yayına alınmadı.
+- **Her şey yayında (2026-08-20).** İki commit (`5ee7076` BENDIQ görselleri,
+  `537f583` CTA + dil + meta + bu dosya) main'e gönderildi ve Cloudflare'e
+  deploy edildi (Version `91171a29`). `ozerlabs.com` ve
+  `wild-firefly-6ee1.halilozer03.workers.dev` ikisi de güncel içeriği sunuyor,
+  canlıda okunarak doğrulandı. Çalışma dizini temiz.
 - **Dil değişince `<title>` ve `<meta description>` güncellenmiyor.** Statik
   HTML'den geliyor; `LanguageContext` yalnızca `documentElement.lang` yazıyor.
   TR'ye geçen ziyaretçinin sekmesinde Fransızca başlık kalıyor. `BlogPost.jsx`
