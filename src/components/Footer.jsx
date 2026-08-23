@@ -16,6 +16,7 @@ const SOCIAL_LINKS = [
   { icon: 'linkedin', href: 'https://www.linkedin.com/in/halil-%C3%B6zer-97b21a310', label: 'LinkedIn' },
   { icon: 'youtube', href: 'https://www.youtube.com/@Ozerlabs', label: 'YouTube' },
   { icon: 'facebook', href: 'https://www.facebook.com/profile.php?id=61593729627340', label: 'Facebook' },
+  { icon: 'x', href: 'https://x.com/bendiq_', label: 'X' },
 ]
 
 export default function Footer() {
