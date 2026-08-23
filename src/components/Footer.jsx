@@ -11,7 +11,12 @@ import Icon from './Icon.jsx'
  * Icon.jsx'te tanımlı olmalı (github, linkedin, instagram, mail).
  * Uydurma profil linki eklenmez: yalnızca gerçekten var olanlar listelenir.
  */
-const SOCIAL_LINKS = [{ icon: 'mail', href: 'mailto:ozer.labs@gmail.com', label: 'E-mail' }]
+const SOCIAL_LINKS = [
+  { icon: 'mail', href: 'mailto:ozer.labs@gmail.com', label: 'E-mail' },
+  { icon: 'linkedin', href: 'https://www.linkedin.com/in/halil-%C3%B6zer-97b21a310', label: 'LinkedIn' },
+  { icon: 'youtube', href: 'https://www.youtube.com/@Ozerlabs', label: 'YouTube' },
+  { icon: 'facebook', href: 'https://www.facebook.com/profile.php?id=61593729627340', label: 'Facebook' },
+]
 
 export default function Footer() {
   const { lang, t } = useLanguage()

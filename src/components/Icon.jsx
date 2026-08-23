@@ -104,6 +104,15 @@ const PATHS = {
       <path d="M17.2 6.8v.1" />
     </>
   ),
+  facebook: (
+    <path d="M17.5 2.5h-2.8a4.7 4.7 0 0 0-4.7 4.7v2.8H7.2v4h2.8v7.5h4V14h2.8l1-4h-3.8V7.2a1 1 0 0 1 1-1h2.5Z" />
+  ),
+  youtube: (
+    <>
+      <path d="M2.7 16.8a23.4 23.4 0 0 1 0-9.6A2 2 0 0 1 4.1 5.8a48 48 0 0 1 15.8 0 2 2 0 0 1 1.4 1.4 23.4 23.4 0 0 1 0 9.6 2 2 0 0 1-1.4 1.4 48 48 0 0 1-15.8 0 2 2 0 0 1-1.4-1.4Z" />
+      <path d="m10 15 5-3-5-3v6Z" />
+    </>
+  ),
 }
 
 export default function Icon({ name, size = 20, className, strokeWidth = 1.75, ...rest }) {
