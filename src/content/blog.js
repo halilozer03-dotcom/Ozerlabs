@@ -1,5 +1,186 @@
 export const posts = [
   {
+    slug: 'combien-de-temps-site-vitrine',
+    date: '2026-08-23',
+    fr: {
+      title: "Combien de temps faut-il pour créer un site vitrine ?",
+      excerpt:
+        "Deux à trois semaines, c'est la réponse courte. Ce qui allonge vraiment un délai n'est presque jamais technique — voici ce qui compte, et ce que vous pouvez préparer avant même le premier échange.",
+      content: `
+La question revient à chaque premier échange, et c'est normal : vous avez une activité à faire tourner, et un chantier qui traîne coûte cher.
+
+La réponse courte : **deux à trois semaines** pour un site vitrine, une fois le périmètre fixé. Mais cette phrase mérite d'être ouverte, parce que le chiffre seul ne dit pas grand-chose.
+
+## Ce qui prend du temps n'est pas le code
+
+Écrire les pages d'un site vitrine bien cadré, c'est quelques jours. Ce qui étire un projet, c'est presque toujours autre chose :
+
+- **Les décisions.** Quelles prestations mettre en avant ? Quel est le message principal ? Une hésitation de trois jours sur la page d'accueil, c'est trois jours de plus.
+- **Le contenu.** Textes, photos, tarifs, horaires. Un site ne peut pas être livré avec des cases vides.
+- **Les allers-retours.** Chaque retour est utile, mais chacun a un coût en jours.
+
+Autrement dit : le délai dépend davantage de vous que de la technique. Ce n'est pas un reproche, c'est une information utile — parce que cela veut dire que vous avez la main dessus.
+
+## Les quatre étapes, et ce qu'elles demandent vraiment
+
+**1. Découverte.** On clarifie l'objectif, la cible et le budget, et le périmètre est écrit noir sur blanc. C'est l'étape la plus courte en temps de travail et la plus décisive pour le délai : un périmètre flou se paie en semaines plus tard.
+
+**2. Design.** L'interface et le parcours sont dessinés pour votre activité, pas découpés dans un template. C'est ici que se placent les vrais allers-retours — mieux vaut trancher sur une maquette que sur un site déjà construit.
+
+**3. Développement.** Le code est écrit, puis testé sur de vrais appareils. Pas seulement sur un grand écran de bureau : sur un téléphone, avec une connexion ordinaire, comme vos clients.
+
+**4. Mise en ligne.** Publication, configuration du domaine, vérifications. Puis le support et les mises à jour selon vos besoins.
+
+## Trois choses qui allongent réellement un délai
+
+**Le contenu qui n'existe pas encore.** Si les photos doivent être prises et les textes écrits pendant le projet, le calendrier suit ce rythme-là, pas celui du développement.
+
+**Le périmètre qui bouge en cours de route.** Ajouter une fonctionnalité au milieu du développement ne coûte pas seulement le temps de la construire : il faut la redessiner, la tester, la raccorder au reste. C'est précisément pour cela que le périmètre est fixé par écrit au départ, et que le prix ne bouge plus ensuite.
+
+**Les accès manquants.** Nom de domaine, hébergement, comptes existants. Un accès qu'on cherche pendant deux jours, c'est deux jours de retard sur une étape qui aurait pris dix minutes.
+
+## Ce que vous pouvez préparer dès maintenant
+
+Rien de tout cela n'est technique, et tout peut être fait avant le premier rendez-vous :
+
+- La liste de vos prestations, telles que vous les expliqueriez à un client au téléphone
+- Vos photos existantes, même imparfaites — on verra ensemble ce qui est utilisable
+- Vos horaires, votre zone d'intervention, vos moyens de contact
+- Un ou deux sites que vous trouvez clairs (le pourquoi compte plus que le quoi)
+
+Avec ces éléments, l'étape de découverte se règle en un échange au lieu de trois.
+
+## Et si c'est une application mobile ?
+
+Le rythme change : comptez **six à dix semaines** pour une application iOS et Android. La différence ne vient pas seulement du développement, mais des étapes qui n'existent pas pour un site : tests sur appareils réels, préparation des fiches de store, et le temps de validation par Google Play et l'App Store, qui ne dépend de personne d'autre qu'eux.
+
+## Une réponse honnête plutôt qu'une réponse rapide
+
+Un délai annoncé sans avoir vu le périmètre n'est pas un engagement, c'est un chiffre en l'air. C'est pour cela que le devis arrive après un échange, et pas avant : une fois le périmètre fixé, le prix est ferme et la date aussi.
+
+Si vous avez un projet en tête, décrivez-le en quelques lignes — même flou. On vous répond sous un à deux jours ouvrés avec un périmètre écrit et un délai que l'on peut tenir.
+`.trim(),
+    },
+    en: {
+      title: "How Long Does It Take to Build a Business Website?",
+      excerpt:
+        "Two to three weeks is the short answer. What actually stretches a timeline is almost never technical — here is what matters, and what you can prepare before the first conversation.",
+      content: `
+This question comes up in every first conversation, and rightly so: you have a business to run, and a project that drags is expensive.
+
+Short answer: **two to three weeks** for a business website, once the scope is agreed. But the number alone doesn't tell you much, so let's open it up.
+
+## What takes time isn't the code
+
+Writing the pages of a well-scoped website takes a few days. What stretches a project is almost always something else:
+
+- **Decisions.** Which services go front and centre? What is the main message? Three days of hesitation on the homepage is three days added.
+- **Content.** Text, photos, prices, opening hours. A site can't ship with empty boxes.
+- **Rounds of feedback.** Every round is useful, and every round costs days.
+
+In other words: the timeline depends more on you than on the technology. That isn't a complaint — it's useful information, because it means the schedule is largely in your hands.
+
+## The four stages, and what they actually demand
+
+**1. Discovery.** We clarify the goal, the audience and the budget, and the scope is written down. It's the shortest stage in working hours and the most decisive for the timeline: a vague scope gets paid for in weeks later on.
+
+**2. Design.** The interface and the journey are drawn for your business, not cut from a template. This is where the real back-and-forth belongs — it's far cheaper to change your mind on a mockup than on a site that's already built.
+
+**3. Development.** The code gets written, then tested on real devices. Not just on a large desktop screen: on a phone, on an ordinary connection, the way your customers will use it.
+
+**4. Launch.** Publishing, domain configuration, final checks. Then support and updates as you need them.
+
+## Three things that genuinely extend a timeline
+
+**Content that doesn't exist yet.** If photos still need taking and copy still needs writing during the project, the schedule follows that pace, not the development pace.
+
+**Scope that moves mid-project.** Adding a feature halfway through doesn't just cost the time to build it: it has to be redesigned, retested and connected to everything else. That's exactly why scope is fixed in writing at the start, and why the price doesn't move afterwards.
+
+**Missing access.** Domain name, hosting, existing accounts. Two days spent hunting for a login is two days lost on a step that should have taken ten minutes.
+
+## What you can prepare right now
+
+None of this is technical, and all of it can be done before the first meeting:
+
+- A list of your services, worded the way you'd explain them to a customer on the phone
+- Your existing photos, even imperfect ones — we'll work out together what's usable
+- Your opening hours, service area and contact details
+- One or two sites you find clear (why you find them clear matters more than which ones)
+
+With those in hand, discovery takes one conversation instead of three.
+
+## What about a mobile app?
+
+The rhythm changes: expect **six to ten weeks** for an iOS and Android app. The difference isn't only development, but the stages a website doesn't have: testing on real devices, preparing the store listings, and review time at Google Play and the App Store — which is in nobody's hands but theirs.
+
+## An honest answer beats a fast one
+
+A deadline quoted before anyone has seen the scope isn't a commitment, it's a number in the air. That's why the quote comes after a conversation rather than before it: once the scope is set, the price is firm and so is the date.
+
+If you have a project in mind, describe it in a few lines — even a rough one. You'll get a reply within one to two working days, with a written scope and a date that can actually be met.
+`.trim(),
+    },
+    tr: {
+      title: "Kurumsal Web Sitesi Ne Kadar Sürer?",
+      excerpt:
+        "Kısa cevap: iki-üç hafta. Ama bir projeyi asıl uzatan şey neredeyse hiçbir zaman teknik değildir — neyin süreyi belirlediğini ve daha ilk görüşmeden önce neleri hazırlayabileceğinizi anlatalım.",
+      content: `
+Bu soru her ilk görüşmede geliyor ve gelmesi de doğal: döndürmeniz gereken bir iş var, uzayan bir proje ise pahalıya mal oluyor.
+
+Kısa cevap: kapsam belirlendikten sonra bir tanıtım sitesi için **iki-üç hafta**. Ama tek başına bu rakam pek bir şey anlatmıyor; o yüzden açalım.
+
+## Zamanı alan şey kod değil
+
+Kapsamı net çizilmiş bir tanıtım sitesinin sayfalarını yazmak birkaç gün sürer. Projeyi uzatan şey neredeyse her zaman başka bir yerdedir:
+
+- **Kararlar.** Hangi hizmet öne çıkacak? Ana mesaj ne? Ana sayfa üzerinde üç günlük bir tereddüt, projeye eklenen üç gündür.
+- **İçerik.** Metin, fotoğraf, fiyat, çalışma saatleri. Bir site boş kutularla teslim edilemez.
+- **Gidiş-gelişler.** Her geri bildirim değerlidir, ama her turun gün cinsinden bir bedeli vardır.
+
+Yani süre, teknikten çok size bağlıdır. Bu bir sitem değil, işinize yarayacak bir bilgi: takvimin büyük kısmı sizin elinizde demek.
+
+## Dört aşama ve gerçekte ne istedikleri
+
+**1. Keşif.** Hedef, kitle ve bütçe netleşir; kapsam yazılı hale gelir. Çalışma saati olarak en kısa, süre açısından en belirleyici aşama budur: bulanık bırakılan bir kapsamın bedeli sonraki haftalarda ödenir.
+
+**2. Tasarım.** Arayüz ve kullanıcı yolculuğu sizin işinize göre çizilir, hazır bir şablondan kesilmez. Asıl gidiş-gelişlerin yeri burasıdır — fikir değiştirmek, kurulmuş bir site üzerinde değil maket üzerinde çok daha ucuzdur.
+
+**3. Geliştirme.** Kod yazılır, sonra gerçek cihazlarda test edilir. Yalnızca geniş bir masaüstü ekranında değil; telefonda, sıradan bir bağlantıyla, müşterilerinizin kullanacağı gibi.
+
+**4. Yayına alma.** Yayın, alan adı yapılandırması, son kontroller. Ardından ihtiyacınıza göre destek ve güncellemeler.
+
+## Süreyi gerçekten uzatan üç şey
+
+**Henüz var olmayan içerik.** Fotoğraflar proje sırasında çekilecek, metinler proje sırasında yazılacaksa takvim geliştirme hızına göre değil, o hıza göre ilerler.
+
+**Yol ortasında değişen kapsam.** Geliştirmenin ortasında yeni bir özellik eklemek yalnızca onu yapma süresine mal olmaz: yeniden tasarlanması, test edilmesi ve geri kalanla bağlanması gerekir. Kapsamın en başta yazılı olarak sabitlenmesinin ve fiyatın sonradan oynamamasının sebebi tam olarak budur.
+
+**Eksik erişimler.** Alan adı, barındırma, mevcut hesaplar. İki gün aranan bir şifre, on dakikalık bir adımda kaybedilen iki gündür.
+
+## Şimdiden hazırlayabilecekleriniz
+
+Bunların hiçbiri teknik değil ve hepsi ilk görüşmeden önce yapılabilir:
+
+- Hizmetlerinizin listesi — telefonda bir müşteriye anlatır gibi, o dille
+- Elinizdeki fotoğraflar, kusurlu olsalar bile; hangisi kullanılabilir, birlikte bakarız
+- Çalışma saatleriniz, hizmet bölgeniz, iletişim yollarınız
+- Size net gelen bir-iki site (hangisi olduğundan çok, neden net geldiği önemli)
+
+Bunlar elinizdeyse keşif aşaması üç görüşme yerine bir görüşmede biter.
+
+## Peki mobil uygulama olursa?
+
+Ritim değişir: iOS ve Android uygulaması için **altı-on hafta** beklemek gerekir. Fark yalnızca geliştirmeden gelmez; bir web sitesinde olmayan aşamalardan gelir: gerçek cihazlarda test, mağaza sayfalarının hazırlanması ve Google Play ile App Store'un inceleme süresi — ki o süre onlardan başka kimsenin elinde değildir.
+
+## Hızlı cevap yerine dürüst cevap
+
+Kapsamı görmeden verilen bir süre taahhüt değil, havada bir rakamdır. Teklifin görüşmeden önce değil sonra gelmesinin sebebi bu: kapsam bir kez belirlendiğinde fiyat da tarih de sabittir.
+
+Aklınızda bir proje varsa birkaç satırla anlatın — netleşmemiş olsa bile. Bir-iki iş günü içinde, yazılı bir kapsam ve gerçekten tutulabilecek bir tarihle dönüş yapıyoruz.
+`.trim(),
+    },
+  },
+  {
     slug: 'bendiq-hikayesi',
     date: '2026-07-20',
     fr: {
