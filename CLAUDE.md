@@ -145,14 +145,61 @@ kullanıcının açık seçimi > **ülke** > tarayıcı dili > fr.
   gitmez. Yalnızca iki dosya preload edilir, latin-ext bilerek edilmez.
 - Her `<img>` `width`/`height` taşır (CLS). Hero görseli `loading="eager"` +
   `fetchpriority="high"`, geri kalanı `lazy`.
-- Ölçülen derleme (2026-08-20): `js 298.70 kB / gzip 99.90 kB`,
-  `css 43.39 kB / gzip 8.80 kB`, süre ~0,7 sn. Belirgin artış gerekçe ister.
-- Yeni rota → `public/sitemap.xml`. `BlogPost.jsx` başlık ve açıklamayı çalışma
-  anında değiştirir, ayrılırken geri alır.
+- Ölçülen derleme (2026-08-23): `js 300.73 kB / gzip 100.82 kB`,
+  `css 43.39 kB / gzip 8.80 kB`, süre ~0,76 sn. Belirgin artış gerekçe ister.
+
+**Rota başına canonical — 2026-08-23'te kuruldu, bozulmamalı.**
+Site tek `dist/index.html` ile sunulduğu için (Cloudflare SPA fallback) her
+adres aynı `<head>`'i alıyordu: `/blog` ve `/blog/:slug` ana sayfanın canonical
+etiketini taşıyor, Google da onları "Alternate page with proper canonical tag"
+sayıp **dizine almıyordu**. 08-08'den 08-23'e kadar blog hiç dizine girmedi.
+
+- `npm run build` = `vite build && node scripts/prerender.mjs`. **Sıra
+  zorunlu:** `vite build` her seferinde `dist/`i boşaltır, prerender sonra
+  çalışmalı. Betiği tek başına veya önce çalıştırmak çıktıyı sessizce siler.
+- `prerender.mjs` taze `dist/index.html`'i kabuk alır ve **yalnızca `<head>`**
+  içindeki canonical, og:url, title, description, og:title, og:description,
+  twitter:title, twitter:description alanlarını rotaya göre değiştirip
+  `dist/blog.html` + `dist/blog/<slug>.html` yazar. **Gövdeye dokunmaz** —
+  üç dilin tek URL'de çalışma anında seçilmesi aynen korunur.
+- Alt dizin `index.html` değil **kardeş `.html`** yazılır: Cloudflare'in
+  varsayılan `html_handling` modu bunları slash'sız adreste 200 ile sunar,
+  `/blog/` biçimi 307 ile kanonik biçime döner. Bu yüzden `wrangler.toml`'a
+  dokunmak gerekmedi — **`main`, `run_worker_first`, `html_handling` eklenmez.**
+- `swapOnce()` her kalıp için **tam bir** eşleşme bekler; sıfır veya birden
+  fazla eşleşmede derleme kırılır. `index.html`'in `<head>` şablonu
+  değiştirilirse derleme burada durur — sessiz yanlış çıktı üretilmez.
+- **`sitemap.xml` artık üretilir**, elle tutulmaz (`public/sitemap.xml` silindi).
+  Rota listesi ve sitemap `src/content/blog.js`'ten türer: **yeni yazı eklemek
+  için yalnızca `blog.js`'e satır eklenir**, başka hiçbir dosyaya dokunulmaz.
+- Adresi değişen yazılar tek kaynakta: `src/content/redirects.js` → `LEGACY_SLUGS`.
+  Aynı liste hem `App.jsx`'teki istemci yönlendirmesini hem eski adres için
+  kanonik hedefi **yeni** yazıyı gösteren statik sayfayı besler.
+- `SITE_TITLE`/`SITE_DESCRIPTION` (`src/content/siteMeta.js`) elle yazılmaz:
+  `vite.config.js` bunları derleme anında `index.html`'den okuyup `define` ile
+  gömer. Tek kaynak `index.html` kalır, iki yerin ayrışması imkânsızdır.
+- `BlogPost.jsx` ve `BlogList.jsx` başlık/açıklamayı çalışma anında değiştirir,
+  ayrılırken **sitenin varsayılanına döner** (mount anındaki değere değil —
+  o değer artık sayfanın kendi statik başlığıdır ve sekmede kalırdı).
+- **Canonical'a JS ile dokunulmaz.** SPA gezinmesinde canonical ilk yüklenen
+  sayfanın adresinde kalır; bu bilinçlidir ve crawler için zararsızdır
+  (Googlebot istemci gezinmesi yapmaz, her URL'i sıfırdan yükler).
+- `hreflang` hâlâ **yok**: ön koşulu dil başına ayrı URL'dir.
 
 ## 7. Doğrulama protokolü — "tamam" demeden önce
 
 1. `npm run build` — hata yoksa ve bundle boyutu beklenen aralıktaysa geç.
+   Son satır **prerender özetini** yazmalı (`N rota + N eski adres yazıldı,
+   sitemap N URL ile üretildi`). Çıkmadıysa prerender çalışmamıştır.
+1b. Rota/SEO'ya dokunan her değişiklikte, deploy sonrası **canonical ölçülür**:
+   ```
+   for p in / /blog /blog/bendiq-hikayesi; do printf "%-45s " "$p"; \
+     curl -s "https://ozerlabs.com$p" | grep -o 'rel="canonical" href="[^"]*"'; done
+   ```
+   Her satır **kendi adresini** yazmalı ve sayfa başına **tam 1** canonical
+   olmalı. Deploy hemen sonrası edge önbelleği birkaç dakika eski sürümü
+   sunabilir (ölçüldü) — karışık sonuç görülürse ölçüm birkaç dakika sonra
+   tekrarlanır, `?cb=<rastgele>` ile gerçek dosya doğrudan kontrol edilebilir.
 2. `preview_start` → `ozerlabs-dev` (port 5199). Bash ile sunucu başlatma.
 3. `read_console_messages` (hata var mı) + `read_page` (içerik ve yapı).
 4. **Üç dilde** kontrol: fr, en, tr. Dil düğmesiyle geçilir.
@@ -233,3 +280,35 @@ görüntüsü ve açıklaması" (08-15).
 - `hreflang` **bilinçli olarak yok**: üç dil tek URL'de sunuluyor, ayrı adres
   olmadan hreflang yanlış sinyal olur. Dil başına URL'ye geçilirse eklenir.
 - Bunlar **tespit**tir; kullanıcı istemeden düzeltme yapılmaz.
+
+## 11. Canonical/indeksleme düzeltmesi (2026-08-23) — durum
+
+**ÇÖZÜLDÜ ve canlıda ölçüldü.** Google Search Console "Doğru standart etikete
+sahip alternatif sayfa" uyarısının kök nedeni bulundu (sabit canonical, §6) ve
+prerender ile giderildi. Commit `68779d3`, Cloudflare sürümü `451af771`.
+Canlı ölçüm: 5 rotanın 5'i 200 + kendi doğru canonical'ı (n=1); eski slug
+`/blog/ozer-bend-pro-hikayesi` yeni yazıyı kanonik gösteriyor; `/blog/` 307 →
+`/blog`; sitemap 5 URL; bilinmeyen rotalar hâlâ SPA fallback (gerileme yok).
+
+**Kullanıcı kararı bekleyen, kodla çözülemeyen üç iş:**
+1. **GSC "Düzeltmeyi doğrula"** — panel işi. Ölçüt: yukarıdaki curl çıktısı
+   5/5 doğru gelmeden **basılmaz**; erken basılırsa Google ilk örneklemede
+   sorunu görüp doğrulamayı anında başarısıza düşürür.
+2. **`www.ozerlabs.com` → apex 301** — bugün yönlendirmesiz 200 dönüyor.
+   Cloudflare Dashboard → Rules → Redirect Rules. Düzeltme bu olmadan da
+   çalışır (her iki hostta canonical apex'i gösteriyor) ama Google
+   yönlendirmeyi canonical'dan güçlü sinyal sayar.
+3. **`wild-firefly-6ee1.halilozer03.workers.dev` ikizi** — taranabilir durumda
+   (`robots.txt: Allow`). Dashboard → Workers & Pages → Settings → Domains &
+   Routes → workers.dev → Disable. **Not:** `main` alanı olmayan (salt varlık)
+   bir `wrangler.toml`'da `workers_dev = false` anahtarının kabul edilip
+   edilmediği ölçülmedi; dashboard'dan kapatılırsa her deploy sonrası kontrol
+   edilmeli.
+
+**Bu düzeltmenin kapsamadığı (ayrı konular):** üç dilin tek URL'de kalması
+çokdilli görünürlüğü çözmez — Googlebot yalnızca kendi IP'sine düşen tek dil
+varyantını görür. JSON-LD bloğu her rotada aynı kalır (blog yazısı için
+`BlogPosting` olmalıydı) — bugüne göre gerileme değil, bilinçli kapsam dışı.
+`ozer-bend-privacy/index.html` depoda var ama `dist/`e girmiyor; ozerlabs.com
+üzerindeki o adres SPA fallback'e düşüyor (Play Store'daki gerçek link GitHub
+Pages'i gösteriyor, bu yüzden acil değil).
