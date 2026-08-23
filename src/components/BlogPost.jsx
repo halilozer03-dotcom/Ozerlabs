@@ -3,6 +3,7 @@ import { useParams, Link, Navigate } from 'react-router-dom'
 import { marked } from 'marked'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
 import { posts } from '../content/blog.js'
+import { SITE_TITLE, SITE_DESCRIPTION } from '../content/siteMeta.js'
 import { BLOG_LABELS } from './BlogShared.jsx'
 import Icon from './Icon.jsx'
 
@@ -13,17 +14,18 @@ export default function BlogPost() {
   const localized = post ? post[lang] || post.tr : null
   const labels = BLOG_LABELS[lang] || BLOG_LABELS.tr
 
-  // SEO: başlık ve açıklama yazıya göre güncellenir, ayrılırken geri alınır.
+  // SEO: başlık ve açıklama yazıya göre güncellenir, ayrılırken sitenin
+  // varsayılanına döner. "Mount anındaki değer" saklanmıyor: bu sayfa artık
+  // kendi statik <title>'ıyla sunulduğu için o değer yazının kendi başlığıdır
+  // ve ana sayfaya geçildiğinde sekmede kalırdı.
   useEffect(() => {
     if (!localized) return
-    const prevTitle = document.title
     document.title = `${localized.title} — Ozer Labs Blog`
     const metaDesc = document.querySelector('meta[name="description"]')
-    const prevDesc = metaDesc?.getAttribute('content')
     if (metaDesc) metaDesc.setAttribute('content', localized.excerpt)
     return () => {
-      document.title = prevTitle
-      if (metaDesc && prevDesc) metaDesc.setAttribute('content', prevDesc)
+      document.title = SITE_TITLE
+      if (metaDesc) metaDesc.setAttribute('content', SITE_DESCRIPTION)
     }
   }, [localized])
 

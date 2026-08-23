@@ -13,6 +13,7 @@ import Contact from './components/Contact.jsx'
 import Footer from './components/Footer.jsx'
 import BlogList from './components/BlogList.jsx'
 import BlogPost from './components/BlogPost.jsx'
+import { LEGACY_SLUGS } from './content/redirects.js'
 
 /**
  * Rota değişiminde konumlandırma:
@@ -85,13 +86,18 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/blog" element={<BlogList />} />
-          {/* Ürün adı BENDIQ olunca yazının adresi de değişti.
-              Eski adres kalıcı olarak yenisine yönlendirilir:
-              paylaşılmış bağlantılar ve arama sonuçları kırılmaz. */}
-          <Route
-            path="/blog/ozer-bend-pro-hikayesi"
-            element={<Navigate to="/blog/bendiq-hikayesi" replace />}
-          />
+          {/* Adresi değişmiş yazılar yenisine yönlendirilir: paylaşılmış
+              bağlantılar ve arama sonuçları kırılmaz. Liste tek kaynaktan
+              (src/content/redirects.js) gelir; aynı listeden derleme anında
+              eski adres için kanonik hedefi doğru gösteren statik sayfa da
+              üretilir. */}
+          {Object.entries(LEGACY_SLUGS).map(([oldSlug, newSlug]) => (
+            <Route
+              key={oldSlug}
+              path={`/blog/${oldSlug}`}
+              element={<Navigate to={`/blog/${newSlug}`} replace />}
+            />
+          ))}
           <Route path="/blog/:slug" element={<BlogPost />} />
         </Routes>
         <Footer />
