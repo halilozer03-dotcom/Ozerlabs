@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
+import { GOOGLE_BUSINESS } from '../content/links.js'
 import Icon from './Icon.jsx'
 import HeroVisual from './HeroVisual.jsx'
 
@@ -9,6 +10,12 @@ export default function Hero() {
 
   // Güven göstergeleri sitede zaten var olan bilgilerden gelir —
   // yeni, doğrulanamaz iddia eklenmez.
+  //
+  // Google puanı bunun tek istisnası değil, tam tersi örneği: sayı
+  // uydurulmuyor, gerçek İşletme Profilinden geliyor ve ziyaretçinin
+  // kendi gözüyle doğrulayabilmesi için o profile linkli veriliyor.
+  // Puan veya değerlendirme sayısı değişirse translations.js'teki
+  // eyebrow.rating üç dilde birlikte güncellenir.
   const trust = [
     { icon: 'check-circle', value: t.eyebrow.status.value, label: t.eyebrow.status.label },
     { icon: 'map-pin', value: t.eyebrow.location.value, label: t.eyebrow.location.label },
@@ -16,6 +23,12 @@ export default function Hero() {
       icon: 'clock',
       value: t.contact.details[2].value,
       label: t.contact.details[2].label,
+    },
+    {
+      icon: 'star',
+      value: t.eyebrow.rating.value,
+      label: t.eyebrow.rating.label,
+      href: GOOGLE_BUSINESS,
     },
   ]
 
@@ -51,17 +64,36 @@ export default function Hero() {
           </div>
 
           <ul className="hero__trust">
-            {trust.map((item) => (
-              <li className="trust-item" key={item.label}>
-                <span className="trust-item__icon">
-                  <Icon name={item.icon} size={18} />
-                </span>
-                <span>
-                  <strong className="trust-item__value">{item.value}</strong>
-                  <span className="trust-item__label">{item.label}</span>
-                </span>
-              </li>
-            ))}
+            {trust.map((item) => {
+              const govde = (
+                <>
+                  <span className="trust-item__icon">
+                    <Icon name={item.icon} size={18} />
+                  </span>
+                  <span>
+                    <strong className="trust-item__value">{item.value}</strong>
+                    <span className="trust-item__label">{item.label}</span>
+                  </span>
+                </>
+              )
+
+              return (
+                <li key={item.label}>
+                  {item.href ? (
+                    <a
+                      className="trust-item trust-item--link"
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {govde}
+                    </a>
+                  ) : (
+                    <span className="trust-item">{govde}</span>
+                  )}
+                </li>
+              )
+            })}
           </ul>
         </div>
 

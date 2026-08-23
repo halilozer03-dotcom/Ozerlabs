@@ -64,6 +64,17 @@ Yeni bir görev bunlardan birini bozuyorsa **önce nedenini söyle**, sonra doku
   (`TechStrip.jsx`).
 - Hero güven göstergeleri sitede zaten var olan bilgilerden gelir; yeni ve
   doğrulanamaz iddia eklenmez (`Hero.jsx`).
+- **Google puanı göstergesi (2026-08-23):** dördüncü güven göstergesi gerçek
+  Google İşletme Profilinden gelir — **5,0 · 6 değerlendirme**, canlı profilden
+  ölçüldü. Sayı uydurulmuyor ve ziyaretçi doğrulayabilsin diye profile
+  **linkli** veriliyor (`links.js` → `GOOGLE_BUSINESS`). Puan veya sayı
+  değişirse `translations.js`'teki `eyebrow.rating` **üç dilde birlikte**
+  güncellenir; eski sayı bırakılırsa gösterge yanlış iddiaya dönüşür.
+- **Konum "Lyon, France"** (2026-08-23, kullanıcı talimatı). **Açık adres
+  hiçbir yere yazılmaz** — ne siteye, ne Google İşletme Profiline, ne sosyal
+  hesaplara. GBP bilerek "hizmet bölgesi" işletmesi olarak kurulu: konum alanı
+  *"Konum yok, yalnızca teslimat ve evlere yönelik hizmetler"*, yalnızca ülke
+  düzeyinde bölge listeli. Bu ayar bozulmamalı.
 - Sosyal bağlantılar yalnızca gerçekten var olan hesaplar (`Footer.jsx`).
 - Ölçülmemiş sayı yok: "X mutlu müşteri", "%Y dönüşüm", yıldız ortalaması,
   müşteri yorumu — hiçbiri uydurulmaz.

@@ -18,9 +18,10 @@ export const translations = {
     },
     eyebrow: {
       brand: { label: 'Marque', value: 'Ozer Labs' },
-      location: { label: 'Localisation', value: 'France' },
+      location: { label: 'Localisation', value: 'Lyon, France' },
       discipline: { label: 'Discipline', value: 'Web · Mobile (iOS/Android) · IA' },
       status: { label: 'Disponibilité', value: 'Nouveaux projets acceptés' },
+      rating: { label: 'Avis Google', value: '5,0 · 6 avis' },
     },
     hero: {
       badge: 'Web · Mobile · Intelligence artificielle',
@@ -126,7 +127,7 @@ export const translations = {
       body: "Site web, application mobile ou système assisté par IA — on est là pour transformer votre idée en produit qui tourne.",
       details: [
         { label: 'E-mail', value: 'ozer.labs@gmail.com', icon: 'mail' },
-        { label: 'Localisation', value: 'France', icon: 'map-pin' },
+        { label: 'Localisation', value: 'Lyon, France', icon: 'map-pin' },
         { label: 'Réponse', value: '1-2 jours ouvrés', icon: 'clock' },
       ],
       form: { budget: 'Budget estimé', budgetOptions: ['Je ne sais pas encore', 'Moins de 1 000 €', '1 000 – 5 000 €', '5 000 – 15 000 €', 'Plus de 15 000 €'], name: 'Nom', email: 'E-mail', message: 'Message', submit: 'Envoyer', namePlaceholder: 'Votre nom', emailPlaceholder: 'vous@exemple.com', messagePlaceholder: 'Que voulez-vous construire ?' },
@@ -161,9 +162,10 @@ export const translations = {
     },
     eyebrow: {
       brand: { label: 'Brand', value: 'Ozer Labs' },
-      location: { label: 'Location', value: 'France' },
+      location: { label: 'Location', value: 'Lyon, France' },
       discipline: { label: 'Discipline', value: 'Web · Mobile (iOS/Android) · AI' },
       status: { label: 'Availability', value: 'Accepting new projects' },
+      rating: { label: 'Google reviews', value: '5.0 · 6 reviews' },
     },
     hero: {
       badge: 'Web · Mobile · Artificial Intelligence',
@@ -269,7 +271,7 @@ export const translations = {
       body: "A website, a mobile app, or an AI-powered system — we're here to turn your idea into something that actually runs.",
       details: [
         { label: 'Email', value: 'ozer.labs@gmail.com', icon: 'mail' },
-        { label: 'Location', value: 'France', icon: 'map-pin' },
+        { label: 'Location', value: 'Lyon, France', icon: 'map-pin' },
         { label: 'Response', value: '1-2 business days', icon: 'clock' },
       ],
       form: { budget: 'Budget range', budgetOptions: ['Not sure yet', 'Under €1,000', '€1,000 – €5,000', '€5,000 – €15,000', 'Over €15,000'], name: 'Name', email: 'Email', message: 'Message', submit: 'Send', namePlaceholder: 'Your name', emailPlaceholder: 'you@example.com', messagePlaceholder: 'What do you want to build?' },
@@ -304,9 +306,10 @@ export const translations = {
     },
     eyebrow: {
       brand: { label: 'Marka', value: 'Ozer Labs' },
-      location: { label: 'Konum', value: 'Fransa' },
+      location: { label: 'Konum', value: 'Lyon, Fransa' },
       discipline: { label: 'Disiplin', value: 'Web · Mobil (iOS/Android) · AI' },
       status: { label: 'Durum', value: 'Yeni proje kabul ediyoruz' },
+      rating: { label: 'Google puanı', value: '5,0 · 6 değerlendirme' },
     },
     hero: {
       badge: 'Web · Mobil · Yapay Zekâ',
@@ -412,7 +415,7 @@ export const translations = {
       body: 'Web sitesi, mobil uygulama ya da yapay zekâ destekli bir sistem — fikrini gerçekten çalışan bir ürüne çevirmek için buradayız.',
       details: [
         { label: 'E-posta', value: 'ozer.labs@gmail.com', icon: 'mail' },
-        { label: 'Konum', value: 'Fransa', icon: 'map-pin' },
+        { label: 'Konum', value: 'Lyon, Fransa', icon: 'map-pin' },
         { label: 'Yanıt', value: '1-2 iş günü', icon: 'clock' },
       ],
       form: { budget: 'Bütçe aralığı', budgetOptions: ['Henüz bilmiyorum', '1.000 € altı', '1.000 – 5.000 €', '5.000 – 15.000 €', '15.000 € üzeri'], name: 'İsim', email: 'E-posta', message: 'Mesaj', submit: 'Gönder', namePlaceholder: 'Adın', emailPlaceholder: 'sen@ornek.com', messagePlaceholder: 'Ne yapmak istiyorsun?' },

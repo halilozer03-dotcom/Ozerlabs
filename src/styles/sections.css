@@ -470,6 +470,33 @@
   line-height: 1.4;
 }
 
+/* Google puanı göstergesi doğrulanabilir olsun diye profile linklidir.
+   Tıklanabilir olduğu görünmeli ama hero'daki iki butonla yarışmamalı:
+   renk değişmez, yalnızca ikon ve alt satır canlanır. */
+.trust-item--link {
+  text-decoration: none;
+  color: inherit;
+  border-radius: var(--r-sm);
+  transition: opacity var(--dur-fast) ease;
+}
+
+.trust-item--link .trust-item__label {
+  text-decoration: underline;
+  text-decoration-color: var(--border-strong);
+  text-underline-offset: 3px;
+}
+
+.trust-item--link:hover .trust-item__icon,
+.trust-item--link:focus-visible .trust-item__icon {
+  color: var(--data);
+}
+
+.trust-item--link:hover .trust-item__label,
+.trust-item--link:focus-visible .trust-item__label {
+  color: var(--text-soft);
+  text-decoration-color: currentColor;
+}
+
 @media (min-width: 1024px) {
   .hero__inner {
     grid-template-columns: minmax(0, 1.02fr) minmax(0, 1fr);

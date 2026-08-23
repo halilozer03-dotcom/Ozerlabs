@@ -114,6 +114,7 @@ const PATHS = {
     </>
   ),
   x: <path d="M4 4h4.6L20 20h-4.6L4 4ZM19.3 4l-6.5 7.4M4.7 20l6.5-7.4" />,
+  star: <path d="m12 3.2 2.72 5.51 6.08.89-4.4 4.29 1.04 6.06L12 17.09l-5.44 2.86 1.04-6.06-4.4-4.29 6.08-.89L12 3.2Z" />,
 }
 
 export default function Icon({ name, size = 20, className, strokeWidth = 1.75, ...rest }) {
