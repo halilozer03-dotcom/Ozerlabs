@@ -164,8 +164,10 @@ sayıp **dizine almıyordu**. 08-08'den 08-23'e kadar blog hiç dizine girmedi.
   üç dilin tek URL'de çalışma anında seçilmesi aynen korunur.
 - Alt dizin `index.html` değil **kardeş `.html`** yazılır: Cloudflare'in
   varsayılan `html_handling` modu bunları slash'sız adreste 200 ile sunar,
-  `/blog/` biçimi 307 ile kanonik biçime döner. Bu yüzden `wrangler.toml`'a
-  dokunmak gerekmedi — **`main`, `run_worker_first`, `html_handling` eklenmez.**
+  `/blog/` biçimi 307 ile kanonik biçime döner. Bu yüzden `wrangler.toml`'da
+  **`main`, `run_worker_first`, `html_handling` yoktur ve eklenmez** — site
+  salt statik varlık sunumu olarak kalır. (Dosyadaki tek ek ayar
+  `workers_dev = false`; gerekçesi §11'de.)
 - `swapOnce()` her kalıp için **tam bir** eşleşme bekler; sıfır veya birden
   fazla eşleşmede derleme kırılır. `index.html`'in `<head>` şablonu
   değiştirilirse derleme burada durur — sessiz yanlış çıktı üretilmez.
@@ -306,16 +308,27 @@ Not: bu iş için ayrı bir redirect Worker'ı da yazılmıştı; panel yolu ça
 gereksiz kaldı ve silindi. wrangler OAuth token'ında **zone yazma yetkisi yok**
 (yalnızca workers kapsamları), o yüzden Redirect Rules API ile kurulamaz.
 
-**Kullanıcı kararı bekleyen, kodla çözülemeyen iki iş:**
+**`workers.dev` ikizi: KAPATILDI (2026-08-23), canlıda ölçüldü.**
+`wild-firefly-6ee1.halilozer03.workers.dev` aynı içeriği ikinci bir adreste
+taranabilir halde sunuyordu. Çözüm **panelden değil koddan**: `wrangler.toml`'a
+`workers_dev = false` eklendi — salt varlık sunan (`main` alanı olmayan) bir
+yapılandırmada bu anahtar **kabul ediliyor** (ölçüldü). Kod yolu seçildi çünkü
+panelden kapatılan rota bir sonraki `wrangler deploy` ile yeniden açılabilir.
+Ölçüm: workers.dev üzerinde `/`, `/blog`, `/sitemap.xml` → **404**;
+`ozerlabs.com` **etkilenmedi** (5/5 canonical doğru, statik varlıklar 200).
+`workers.dev/robots.txt` hâlâ 200 döner ama o **bizim dosyamız değildir** —
+Cloudflare'in platform seviyesi içerik-sinyali metnidir; bizim `Allow: /` +
+sitemap satırımız orada yoktur.
+**İki beklenen çıktı, ikisi de normal:** (1) deploy `No targets deployed for
+wild-firefly-6ee1` yazar — bu yalnızca workers.dev tetikleyicisinin kalktığını
+söyler, özel alan adı (ozerlabs.com) etkilenmez, **site ayaktadır**;
+(2) `Preview URLs will be disabled` uyarısı gelir — bu projede önizleme URL'si
+kullanılmıyor, isteniyorsa `preview_urls = true` ile geri açılır.
+
+**Kullanıcı kararı bekleyen tek iş:**
 1. **GSC "Düzeltmeyi doğrula"** — panel işi. Ölçüt: yukarıdaki curl çıktısı
    5/5 doğru gelmeden **basılmaz**; erken basılırsa Google ilk örneklemede
    sorunu görüp doğrulamayı anında başarısıza düşürür.
-2. **`wild-firefly-6ee1.halilozer03.workers.dev` ikizi** — taranabilir durumda
-   (`robots.txt: Allow`). Dashboard → Workers & Pages → Settings → Domains &
-   Routes → workers.dev → Disable. **Not:** `main` alanı olmayan (salt varlık)
-   bir `wrangler.toml`'da `workers_dev = false` anahtarının kabul edilip
-   edilmediği ölçülmedi; dashboard'dan kapatılırsa her deploy sonrası kontrol
-   edilmeli.
 
 **Bu düzeltmenin kapsamadığı (ayrı konular):** üç dilin tek URL'de kalması
 çokdilli görünürlüğü çözmez — Googlebot yalnızca kendi IP'sine düşen tek dil

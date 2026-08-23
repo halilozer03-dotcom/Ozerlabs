@@ -1,6 +1,13 @@
 name = "wild-firefly-6ee1"
 compatibility_date = "2026-07-01"
 
+# Site yalnızca ozerlabs.com üzerinden sunulur.
+# workers.dev alt alan adı kapalı: açık kalırsa aynı içerik ikinci bir adreste
+# taranabilir hale gelir (robots.txt "Allow: /") ve arama motoruna kopya sinyali
+# gider. Bu satır olmadan panelden kapatılan rota bir sonraki deploy'da
+# yeniden açılabilir.
+workers_dev = false
+
 [assets]
 directory = "./dist"
 not_found_handling = "single-page-application"
