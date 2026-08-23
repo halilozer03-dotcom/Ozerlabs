@@ -290,15 +290,27 @@ Canlı ölçüm: 5 rotanın 5'i 200 + kendi doğru canonical'ı (n=1); eski slug
 `/blog/ozer-bend-pro-hikayesi` yeni yazıyı kanonik gösteriyor; `/blog/` 307 →
 `/blog`; sitemap 5 URL; bilinmeyen rotalar hâlâ SPA fallback (gerileme yok).
 
-**Kullanıcı kararı bekleyen, kodla çözülemeyen üç iş:**
+**`www` → apex 301: KURULDU (2026-08-23), canlıda ölçüldü.**
+Cloudflare Dashboard → ozerlabs.com → Rules → Redirect Rules, "Redirect from
+WWW to root" şablonundan. Kural adı `Redirect from WWW to root [Template]`,
+sıra 1, **Active**. Desen `https://www.*` → hedef `https://${1}`, durum **301**,
+**Preserve query string AÇIK** (şablon bunu varsayılan olarak kapalı getiriyor —
+açılmazsa `?utm_source=...` gibi parametreler kaybolur, elle işaretlendi).
+Ölçüm: `www.ozerlabs.com/blog` → 301 → `https://ozerlabs.com/blog` (tek hop),
+query string aynen korunuyor, apex istekleri **etkilenmedi** (200).
+**Tuzak:** Deploy sırasında Cloudflare *"This rule may not apply to your traffic
+— DNS may not be proxying www"* uyarısı verir. Bu uyarı bu zone için **yanlış**
+çıktı; "Ignore and deploy rule anyway" ile kuruldu ve gerçek istekle 301
+doğrulandı. Uyarıya bakıp DNS kaydı oluşturmaya gerek yok.
+Not: bu iş için ayrı bir redirect Worker'ı da yazılmıştı; panel yolu çalışınca
+gereksiz kaldı ve silindi. wrangler OAuth token'ında **zone yazma yetkisi yok**
+(yalnızca workers kapsamları), o yüzden Redirect Rules API ile kurulamaz.
+
+**Kullanıcı kararı bekleyen, kodla çözülemeyen iki iş:**
 1. **GSC "Düzeltmeyi doğrula"** — panel işi. Ölçüt: yukarıdaki curl çıktısı
    5/5 doğru gelmeden **basılmaz**; erken basılırsa Google ilk örneklemede
    sorunu görüp doğrulamayı anında başarısıza düşürür.
-2. **`www.ozerlabs.com` → apex 301** — bugün yönlendirmesiz 200 dönüyor.
-   Cloudflare Dashboard → Rules → Redirect Rules. Düzeltme bu olmadan da
-   çalışır (her iki hostta canonical apex'i gösteriyor) ama Google
-   yönlendirmeyi canonical'dan güçlü sinyal sayar.
-3. **`wild-firefly-6ee1.halilozer03.workers.dev` ikizi** — taranabilir durumda
+2. **`wild-firefly-6ee1.halilozer03.workers.dev` ikizi** — taranabilir durumda
    (`robots.txt: Allow`). Dashboard → Workers & Pages → Settings → Domains &
    Routes → workers.dev → Disable. **Not:** `main` alanı olmayan (salt varlık)
    bir `wrangler.toml`'da `workers_dev = false` anahtarının kabul edilip
