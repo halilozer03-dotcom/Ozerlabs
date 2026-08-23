@@ -187,7 +187,7 @@ Aklınızda bir proje varsa birkaç satırla anlatın — netleşmemiş olsa bil
       title: "L'histoire d'BENDIQ : une app de calcul de pliage de tôle",
       excerpt: "D'un tableur de calcul manuel à une application Android complète avec aperçu 3D — comment est né BENDIQ, et pourquoi construire un produit soi-même reste un pari qui vaut le coup.",
       content: `
-Tous les projets chez Ozer Labs ne sont pas des sites pour des clients. **BENDIQ** est un produit propre, né d'un besoin concret : les professionnels du pliage de tôle calculent encore souvent leurs facteurs K et leurs développés à la main ou sur un tableur approximatif.
+Tous les projets chez OzerLabs ne sont pas des sites pour des clients. **BENDIQ** est un produit propre, né d'un besoin concret : les professionnels du pliage de tôle calculent encore souvent leurs facteurs K et leurs développés à la main ou sur un tableur approximatif.
 
 ## Le problème de départ
 
@@ -216,7 +216,7 @@ L'application est actuellement en alpha fermée sur Google Play (177 pays, phase
       title: "The Story of BENDIQ: A Sheet Metal Bending Calculator App",
       excerpt: "From manual calculations on a rough spreadsheet to a full Android app with 3D preview — how BENDIQ came to be, and why building your own product is a bet worth making.",
       content: `
-Not every project at Ozer Labs is a client site. **BENDIQ** is an in-house product, born from a real problem: sheet metal bending professionals often still calculate K-factors and flat-pattern lengths by hand or on a rough spreadsheet.
+Not every project at OzerLabs is a client site. **BENDIQ** is an in-house product, born from a real problem: sheet metal bending professionals often still calculate K-factors and flat-pattern lengths by hand or on a rough spreadsheet.
 
 ## The starting problem
 
@@ -245,7 +245,7 @@ The app is currently in closed alpha on Google Play (177 countries, testing phas
       title: 'Sac Bükme Hesaplama Uygulaması: BENDIQ Hikayesi',
       excerpt: 'Elle yapılan hesaplardan 3D önizlemeli tam bir Android uygulamasına — BENDIQ nasıl doğdu ve kendi ürününü inşa etmek neden değerli bir bahis?',
       content: `
-Ozer Labs'ta her proje bir müşteri sitesi değil. **BENDIQ**, gerçek bir ihtiyaçtan doğan kendi ürünümüz: sac büküm profesyonelleri hâlâ çoğu zaman K-faktörünü ve açınım uzunluğunu elle ya da gelişigüzel bir excel tablosunda hesaplıyor.
+OzerLabs'ta her proje bir müşteri sitesi değil. **BENDIQ**, gerçek bir ihtiyaçtan doğan kendi ürünümüz: sac büküm profesyonelleri hâlâ çoğu zaman K-faktörünü ve açınım uzunluğunu elle ya da gelişigüzel bir excel tablosunda hesaplıyor.
 
 ## Başlangıçtaki Problem
 

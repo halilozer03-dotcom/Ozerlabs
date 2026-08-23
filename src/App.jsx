@@ -14,6 +14,7 @@ import Footer from './components/Footer.jsx'
 import BlogList from './components/BlogList.jsx'
 import BlogPost from './components/BlogPost.jsx'
 import { LEGACY_SLUGS } from './content/redirects.js'
+import { useDocumentMeta } from './hooks/useDocumentMeta.js'
 
 /**
  * Rota değişiminde konumlandırma:
@@ -44,6 +45,20 @@ function ScrollManager() {
   return null
 }
 
+/**
+ * Hiçbir rota eşleşmediğinde devreye girer (bilinmeyen adres — Cloudflare SPA
+ * fallback yüzünden uygulama yine de açılır). Ekrana hiçbir şey basmaz;
+ * bilinmeyen adresin gövde davranışı bugünküyle birebir aynı kalır. Tek işi
+ * sekmede bir önceki sayfanın başlığının kalmasını engellemek: sitenin
+ * varsayılan başlığını ziyaretçinin dilinde yazar. Böylece HER rota durumunda
+ * başlığın tek ve belirli bir sahibi olur.
+ */
+function DefaultMeta() {
+  const { t } = useLanguage()
+  useDocumentMeta(t.meta?.title, t.meta?.description)
+  return null
+}
+
 function SkipLink() {
   const { t } = useLanguage()
   return (
@@ -63,6 +78,16 @@ function SkipLink() {
  * uzaklaştıran tek bölümdü. Yazılar navigasyonda ve footer'da.
  */
 function Home() {
+  const { t } = useLanguage()
+
+  /* Sunucudan gelen kabuk fr'dir (index.html). Ziyaretçi başka bir dildeyse
+     sekmedeki başlık ve arama sonucu açıklaması da o dile geçmeli — bugüne
+     kadar yalnızca <html lang> değişiyordu. Blog sayfaları da aynı hook'u
+     kullanır; başlığı yazan tek yer odur. Optional chaining bilerek: eksik
+     bir çeviri anahtarı en fazla başlığın güncellenmemesine yol açsın, ASLA
+     uygulamayı düşürüp beyaz ekran vermesin. */
+  useDocumentMeta(t.meta?.title, t.meta?.description)
+
   return (
     <main id="main">
       <Hero />
@@ -99,6 +124,9 @@ export default function App() {
             />
           ))}
           <Route path="/blog/:slug" element={<BlogPost />} />
+          {/* Yalnızca <head> sahipliği için — gövde çıktısı yok, bkz. DefaultMeta.
+              404 sayfası EKLEMEZ: bilinmeyen adresin görünen davranışı aynı kalır. */}
+          <Route path="*" element={<DefaultMeta />} />
         </Routes>
         <Footer />
       </BrowserRouter>

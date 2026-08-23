@@ -2,6 +2,16 @@ import { PLAY_BENDIQ } from '../content/links.js'
 
 export const translations = {
   fr: {
+    /* Ana sayfanın sekme başlığı ve arama sonucu açıklaması.
+       fr metni index.html'deki <title> / <meta name="description"> ile
+       BİREBİR aynı olmak zorundadır: sunucudan giden kabuk fr'dir, aynı
+       sayfa çalışma anında bu değeri yazar. Eşitliği derleme doğrular
+       (scripts/prerender.mjs) — ayrışırlarsa build kırılır. */
+    meta: {
+      title: 'OzerLabs — Sites web et applications mobiles',
+      description:
+        'Sites web, applications iOS/Android et systèmes assistés par IA. De la conception à la mise en ligne, un seul interlocuteur — sans intermédiaire, sans mauvaise surprise.',
+    },
     nav: {
       about: 'Méthode',
       services: 'Services',
@@ -17,7 +27,7 @@ export const translations = {
       skip: 'Aller au contenu',
     },
     eyebrow: {
-      brand: { label: 'Marque', value: 'Ozer Labs' },
+      brand: { label: 'Marque', value: 'OzerLabs' },
       location: { label: 'Localisation', value: 'Lyon, France' },
       discipline: { label: 'Discipline', value: 'Web · Mobile (iOS/Android) · IA' },
       status: { label: 'Disponibilité', value: 'Nouveaux projets acceptés' },
@@ -131,14 +141,15 @@ export const translations = {
         { label: 'Réponse', value: '1-2 jours ouvrés', icon: 'clock' },
       ],
       form: { budget: 'Budget estimé', budgetOptions: ['Je ne sais pas encore', 'Moins de 1 000 €', '1 000 – 5 000 €', '5 000 – 15 000 €', 'Plus de 15 000 €'], name: 'Nom', email: 'E-mail', message: 'Message', submit: 'Envoyer', namePlaceholder: 'Votre nom', emailPlaceholder: 'vous@exemple.com', messagePlaceholder: 'Que voulez-vous construire ?' },
-      status: "Votre application e-mail va s'ouvrir — il ne reste qu'à envoyer.",
+      status:
+        "Votre application e-mail va s'ouvrir — il ne reste qu'à envoyer. Si rien ne s'ouvre, écrivez directement à ozer.labs@gmail.com.",
     },
     ctaBand: {
       title: 'Votre idée est prête ? Nous aussi.',
       text: "Dites-nous ce que vous voulez construire : on revient vers vous avec la solution la plus adaptée, sans engagement.",
     },
     footer: {
-      copyright: '© 2026 OZER LABS — FRANCE',
+      copyright: '© 2026 OZERLABS — FRANCE',
       cta: 'PRÊT ? → PARLONS-EN',
       columns: { company: 'Entreprise', contact: 'Contact' },
       social: 'Réseaux',
@@ -146,6 +157,11 @@ export const translations = {
   },
 
   en: {
+    meta: {
+      title: 'OzerLabs — Websites and mobile apps',
+      description:
+        'Websites, iOS/Android apps and AI-assisted systems. From design to launch, a single point of contact — no middlemen, no surprise invoices.',
+    },
     nav: {
       about: 'How we work',
       services: 'Services',
@@ -161,7 +177,7 @@ export const translations = {
       skip: 'Skip to content',
     },
     eyebrow: {
-      brand: { label: 'Brand', value: 'Ozer Labs' },
+      brand: { label: 'Brand', value: 'OzerLabs' },
       location: { label: 'Location', value: 'Lyon, France' },
       discipline: { label: 'Discipline', value: 'Web · Mobile (iOS/Android) · AI' },
       status: { label: 'Availability', value: 'Accepting new projects' },
@@ -275,14 +291,15 @@ export const translations = {
         { label: 'Response', value: '1-2 business days', icon: 'clock' },
       ],
       form: { budget: 'Budget range', budgetOptions: ['Not sure yet', 'Under €1,000', '€1,000 – €5,000', '€5,000 – €15,000', 'Over €15,000'], name: 'Name', email: 'Email', message: 'Message', submit: 'Send', namePlaceholder: 'Your name', emailPlaceholder: 'you@example.com', messagePlaceholder: 'What do you want to build?' },
-      status: 'Your mail app will open — just hit send.',
+      status:
+        'Your mail app will open — just hit send. If nothing opens, write directly to ozer.labs@gmail.com.',
     },
     ctaBand: {
       title: "Your idea is ready. So are we.",
       text: "Tell us what you want to build and we'll come back with the right solution — no strings attached.",
     },
     footer: {
-      copyright: '© 2026 OZER LABS — FRANCE',
+      copyright: '© 2026 OZERLABS — FRANCE',
       cta: "READY? → LET'S TALK",
       columns: { company: 'Company', contact: 'Contact' },
       social: 'Social',
@@ -290,6 +307,11 @@ export const translations = {
   },
 
   tr: {
+    meta: {
+      title: 'OzerLabs — Web sitesi ve mobil uygulama',
+      description:
+        'Web sitesi, iOS/Android uygulaması ve yapay zekâ destekli sistemler. Tasarımdan yayına kadar tek elden — aracı yok, sürpriz maliyet yok.',
+    },
     nav: {
       about: 'Çalışma biçimi',
       services: 'Hizmetler',
@@ -305,7 +327,7 @@ export const translations = {
       skip: 'İçeriğe atla',
     },
     eyebrow: {
-      brand: { label: 'Marka', value: 'Ozer Labs' },
+      brand: { label: 'Marka', value: 'OzerLabs' },
       location: { label: 'Konum', value: 'Lyon, Fransa' },
       discipline: { label: 'Disiplin', value: 'Web · Mobil (iOS/Android) · AI' },
       status: { label: 'Durum', value: 'Yeni proje kabul ediyoruz' },
@@ -419,14 +441,15 @@ export const translations = {
         { label: 'Yanıt', value: '1-2 iş günü', icon: 'clock' },
       ],
       form: { budget: 'Bütçe aralığı', budgetOptions: ['Henüz bilmiyorum', '1.000 € altı', '1.000 – 5.000 €', '5.000 – 15.000 €', '15.000 € üzeri'], name: 'İsim', email: 'E-posta', message: 'Mesaj', submit: 'Gönder', namePlaceholder: 'Adın', emailPlaceholder: 'sen@ornek.com', messagePlaceholder: 'Ne yapmak istiyorsun?' },
-      status: "Mail uygulaman açılacak — sadece gönder'e basman yeterli.",
+      status:
+        "Mail uygulaman açılacak — sadece gönder'e basman yeterli. Hiçbir şey açılmadıysa doğrudan ozer.labs@gmail.com adresine yaz.",
     },
     ctaBand: {
       title: 'Fikrin hazırsa, biz de hazırız.',
       text: 'Ne yapmak istediğini yaz; en uygun çözümü birlikte planlayalım. Teklif ücretsiz.',
     },
     footer: {
-      copyright: '© 2026 OZER LABS — FRANCE',
+      copyright: '© 2026 OZERLABS — FRANCE',
       cta: 'HAZIR MISIN? → KONUŞALIM',
       columns: { company: 'Kurumsal', contact: 'İletişim' },
       social: 'Sosyal',

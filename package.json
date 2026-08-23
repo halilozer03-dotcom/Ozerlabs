@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build && node scripts/prerender.mjs",
+    "deploy": "npm run build && npx wrangler deploy",
     "preview": "vite preview",
     "brand": "node scripts/prep-brand-assets.mjs"
   },

@@ -1,7 +1,7 @@
-import { useEffect } from 'react'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
+import { useDocumentMeta } from '../hooks/useDocumentMeta.js'
+import { blogListTitle } from '../content/brand.js'
 import { posts } from '../content/blog.js'
-import { SITE_TITLE, SITE_DESCRIPTION } from '../content/siteMeta.js'
 import Reveal from './Reveal.jsx'
 import { PostCard, BLOG_LABELS } from './BlogShared.jsx'
 
@@ -11,17 +11,10 @@ export default function BlogList() {
 
   // /blog kendi statik <title>'ıyla sunuluyor (scripts/prerender.mjs).
   // Ziyaretçi SPA içinde bu sayfaya geldiğinde aynı başlığı kendi dilinde
-  // görsün, ayrılırken de sitenin varsayılanına dönsün — BlogPost ile aynı
-  // sözleşme.
-  useEffect(() => {
-    document.title = `${t.sections.blog.title} — Ozer Labs`
-    const metaDesc = document.querySelector('meta[name="description"]')
-    if (metaDesc) metaDesc.setAttribute('content', t.sections.blog.sub)
-    return () => {
-      document.title = SITE_TITLE
-      if (metaDesc) metaDesc.setAttribute('content', SITE_DESCRIPTION)
-    }
-  }, [t])
+  // görür. Kalıp brand.js'ten gelir; statik ve çalışma anı başlıkları
+  // ayrışamaz. "Varsayılana dönme" adımı YOK: bağlanan rota kendi başlığını
+  // zaten yazıyor (bkz. hooks/useDocumentMeta.js).
+  useDocumentMeta(blogListTitle(t.sections.blog.title), t.sections.blog.sub)
 
   return (
     <main className="section blog-page" id="main">

@@ -188,12 +188,42 @@ sayıp **dizine almıyordu**. 08-08'den 08-23'e kadar blog hiç dizine girmedi.
 - Adresi değişen yazılar tek kaynakta: `src/content/redirects.js` → `LEGACY_SLUGS`.
   Aynı liste hem `App.jsx`'teki istemci yönlendirmesini hem eski adres için
   kanonik hedefi **yeni** yazıyı gösteren statik sayfayı besler.
-- `SITE_TITLE`/`SITE_DESCRIPTION` (`src/content/siteMeta.js`) elle yazılmaz:
-  `vite.config.js` bunları derleme anında `index.html`'den okuyup `define` ile
-  gömer. Tek kaynak `index.html` kalır, iki yerin ayrışması imkânsızdır.
-- `BlogPost.jsx` ve `BlogList.jsx` başlık/açıklamayı çalışma anında değiştirir,
-  ayrılırken **sitenin varsayılanına döner** (mount anındaki değere değil —
-  o değer artık sayfanın kendi statik başlığıdır ve sekmede kalırdı).
+**Sekme başlığı — tek sözleşme (2026-08-24).** `src/hooks/useDocumentMeta.js`
+başlığı ve açıklamayı yazan **tek** mekanizmadır ve **cleanup'ı yoktur**.
+Kural: **başlığın sahibi rotadır.** `<Routes>` aynı anda tek rota bileşeni
+bağlar, o bileşen kendi başlığını kendi yazar:
+`Home` → `t.meta`, `BlogList` → `blogListTitle(...)`, `BlogPost` → yazının
+başlığı, eşleşmeyen adres → `DefaultMeta` (yalnız `<head>` sahipliği, gövde
+çıktısı yok, 404 sayfası **değil**).
+- Bileşenler ayrılırken "varsayılana dönmez". Eski sözleşme bunu yapıyordu ve
+  o varsayılan `siteMeta.js`'ten gelen **sabit Fransızca** metindi: Türkçe
+  okuyan ziyaretçi blogdan çıkınca sekmede Fransızca başlık kalıyordu. Kök
+  neden buydu; `siteMeta.js` **silindi**, `vite.config.js`'teki `define`
+  bloğu da onunla birlikte kaldırıldı.
+- `t.meta?.title` erişimi **optional chaining ile** yazılır: eksik bir çeviri
+  anahtarı en fazla başlığın güncellenmemesine yol açsın, beyaz ekran değil.
+
+**Marka adı — tek kaynak `src/content/brand.js`.** Kanonik biçim **`OzerLabs`**
+(tek kelime). Gerekçe: logonun kelime markası, alan adı, Play geliştirici
+sayfası (`by.ozerlabs`) ve YouTube kanalı (`@Ozerlabs`) zaten tek kelime.
+Tümü büyük (`OZERLABS`) ayrı bir ad değil, **tipografik muameledir** — logoda
+ve footer telifinde öyle kalır. Blog başlık kalıpları (`blogListTitle`,
+`blogPostTitle`) da buradadır: aynı metni hem `prerender.mjs` hem bileşenler
+üretir, ayrışırlarsa sekme başlığı gezinme yönüne göre değişirdi.
+`brand.js` **Node tarafından da import edilir** — içine React/JSX konulmaz.
+
+**Derleme denetimleri — `scripts/prerender.mjs` (bozulmamalı).** Projede test,
+lint ve typecheck yok; tek kapı `npm run build`. Şunlar artık **derlemeyi
+kırar** (üçü de bozularak test edildi):
+1. `index.html` markası `brand.js` ile ayrışırsa
+2. üç dilden biri marka yazımını kaçırırsa
+3. kaynakta eski `Ozer Labs` yazımı kalırsa
+4. ana sayfanın fr `<head>` metni `translations.fr.meta` ile ayrışırsa
+5. üç dilin anahtar/tip şeması ayrışırsa (bir dilde eksik anahtar)
+6. bir blog yazısı bir dilde eksikse
+- `npm run deploy` = `build && wrangler deploy`. **Bayat `dist` yayına
+  çıkmasın diye** eklendi; elle `npx wrangler deploy` çağırmadan önce
+  `npm run build` çalıştırılmış olmalı.
 - **Canonical'a JS ile dokunulmaz.** SPA gezinmesinde canonical ilk yüklenen
   sayfanın adresinde kalır; bu bilinçlidir ve crawler için zararsızdır
   (Googlebot istemci gezinmesi yapmaz, her URL'i sıfırdan yükler).
@@ -285,11 +315,11 @@ görüntüsü ve açıklaması" (08-15).
   deploy edildi (Version `91171a29`). `ozerlabs.com` ve
   `wild-firefly-6ee1.halilozer03.workers.dev` ikisi de güncel içeriği sunuyor,
   canlıda okunarak doğrulandı. Çalışma dizini temiz.
-- **Dil değişince `<title>` ve `<meta description>` güncellenmiyor.** Statik
-  HTML'den geliyor; `LanguageContext` yalnızca `documentElement.lang` yazıyor.
-  TR'ye geçen ziyaretçinin sekmesinde Fransızca başlık kalıyor. `BlogPost.jsx`
-  başlığı kendi yönettiği için düzeltme oraya dikkat etmeli (mount'ta
-  `prevTitle` saklıyor, unmount'ta geri koyuyor) — çakışmadan çözülmeli.
+- ~~**Dil değişince `<title>` ve `<meta description>` güncellenmiyor.**~~
+  **ÇÖZÜLDÜ (2026-08-24).** `useDocumentMeta` sözleşmesiyle giderildi (§6).
+  Tarayıcıda ölçüldü: ana sayfada FR/EN/TR geçişinde başlık ve açıklama üç
+  dilde de değişiyor; TR'deyken yazı → `/blog` → ana sayfa gezinmesinde
+  sekmede Türkçe başlık kalıyor (eski hatada Fransızca kalıyordu).
 - `hreflang` **bilinçli olarak yok**: üç dil tek URL'de sunuluyor, ayrı adres
   olmadan hreflang yanlış sinyal olur. Dil başına URL'ye geçilirse eklenir.
 - Bunlar **tespit**tir; kullanıcı istemeden düzeltme yapılmaz.

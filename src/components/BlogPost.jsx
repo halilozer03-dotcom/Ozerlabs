@@ -1,33 +1,28 @@
-import { useEffect } from 'react'
 import { useParams, Link, Navigate } from 'react-router-dom'
 import { marked } from 'marked'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
+import { useDocumentMeta } from '../hooks/useDocumentMeta.js'
+import { blogPostTitle } from '../content/brand.js'
 import { posts } from '../content/blog.js'
-import { SITE_TITLE, SITE_DESCRIPTION } from '../content/siteMeta.js'
 import { BLOG_LABELS } from './BlogShared.jsx'
 import Icon from './Icon.jsx'
 
 export default function BlogPost() {
   const { slug } = useParams()
-  const { lang } = useLanguage()
+  const { lang, t } = useLanguage()
   const post = posts.find((p) => p.slug === slug)
   const localized = post ? post[lang] || post.tr : null
   const labels = BLOG_LABELS[lang] || BLOG_LABELS.tr
 
-  // SEO: başlık ve açıklama yazıya göre güncellenir, ayrılırken sitenin
-  // varsayılanına döner. "Mount anındaki değer" saklanmıyor: bu sayfa artık
-  // kendi statik <title>'ıyla sunulduğu için o değer yazının kendi başlığıdır
-  // ve ana sayfaya geçildiğinde sekmede kalırdı.
-  useEffect(() => {
-    if (!localized) return
-    document.title = `${localized.title} — Ozer Labs Blog`
-    const metaDesc = document.querySelector('meta[name="description"]')
-    if (metaDesc) metaDesc.setAttribute('content', localized.excerpt)
-    return () => {
-      document.title = SITE_TITLE
-      if (metaDesc) metaDesc.setAttribute('content', SITE_DESCRIPTION)
-    }
-  }, [localized])
+  // SEO: başlık ve açıklama yazıya ve dile göre güncellenir.
+  // Yazı bulunamazsa (veya o dilde metni yoksa) BOŞ BIRAKILMAZ — sitenin
+  // varsayılanı yazılır. Boş bırakmak sekmede bir önceki sayfanın başlığını
+  // kalıcı hale getirirdi.
+  // Hook koşulsuz ve erken return'ün ÜSTÜNDE çağrılır — hook sırası değişmez.
+  useDocumentMeta(
+    localized ? blogPostTitle(localized.title) : t.meta?.title,
+    localized ? localized.excerpt : t.meta?.description,
+  )
 
   if (!post) return <Navigate to="/blog" replace />
 

@@ -25,6 +25,9 @@ const LANG = 'fr' // sunucudan giden HTML sitenin varsayılan dilindedir (index.
 const { posts } = await import(new URL('../src/content/blog.js', import.meta.url).href)
 const { translations } = await import(new URL('../src/i18n/translations.js', import.meta.url).href)
 const { LEGACY_SLUGS } = await import(new URL('../src/content/redirects.js', import.meta.url).href)
+const { BRAND, blogListTitle, blogPostTitle } = await import(
+  new URL('../src/content/brand.js', import.meta.url).href
+)
 
 const esc = (s) =>
   String(s)
@@ -77,12 +80,136 @@ async function writePage(relPath, html) {
 const shell = await readFile(join(DIST, 'index.html'), 'utf8')
 const blogSection = translations[LANG].sections.blog
 
+const REPO = join(HERE, '..')
+const LANGS = ['fr', 'en', 'tr']
+
+/* ---------------------------------------------------------------------
+   DERLEME DENETİMLERİ
+
+   Bu projede test, lint ve typecheck YOK. Tek kapı `npm run build`.
+   Aşağıdaki denetimler, derlemeyi KIRMADAN yanlış çalışabilecek hataları
+   kapatır — sessiz yanlış çıktı üretilmez:
+     1. index.html'in marka adı brand.js ile ayrışması
+     2. üç dilden birinin marka yazımını kaçırması
+     3. eski "Ozer Labs" yazımının kaynakta kalması
+     4. ana sayfanın fr <head> metninin translations.fr.meta ile ayrışması
+     5. üç dilin anahtar/tip şemasının ayrışması (ör. bir dilde meta'nın
+        eksik olması -> o dilde sekme başlığı sessizce güncellenmez)
+     6. bir blog yazısının bir dilde eksik olması
+   --------------------------------------------------------------------- */
+
+/* 1) index.html kabuğu marka adıyla uyumlu mu? */
+for (const [needle, label] of [
+  [`<title>${BRAND} `, '<title>'],
+  [`"name": "${BRAND}"`, 'JSON-LD name'],
+  [`<meta property="og:site_name" content="${BRAND}" />`, 'og:site_name'],
+]) {
+  if (!shell.includes(needle)) {
+    throw new Error(
+      `prerender: index.html marka adı "${BRAND}" ile uyuşmuyor (${label}) — src/content/brand.js ile birlikte güncelleyin`,
+    )
+  }
+}
+
+/* 2) Üç dilde marka yazımı */
+for (const l of LANGS) {
+  const T = translations[l]
+  if (T.eyebrow.brand.value !== BRAND) {
+    throw new Error(
+      `prerender: translations.${l}.eyebrow.brand.value = "${T.eyebrow.brand.value}" — beklenen "${BRAND}"`,
+    )
+  }
+  if (!T.footer.copyright.includes(BRAND.toUpperCase())) {
+    throw new Error(
+      `prerender: translations.${l}.footer.copyright "${BRAND.toUpperCase()}" içermiyor: ${T.footer.copyright}`,
+    )
+  }
+}
+
+/* 3) Eski yazım taraması (metin kaynakları) */
+const metinKaynaklari = await Promise.all([
+  readFile(join(REPO, 'src', 'i18n', 'translations.js'), 'utf8'),
+  readFile(join(REPO, 'src', 'content', 'blog.js'), 'utf8'),
+])
+const eskiYazim = metinKaynaklari.join('\n').match(/Ozer\s+Labs/gi)
+if (eskiYazim) {
+  throw new Error(
+    `prerender: eski marka yazımı kalmış (${eskiYazim.length} yer) — translations.js / blog.js içinde "${BRAND}" kullanın`,
+  )
+}
+
+/* 4) Ana sayfanın fr <head> metni ile translations.fr.meta eşitliği.
+     Ana sayfa başlığı iki yerde yaşıyor: index.html (sunucudan giden kabuk,
+     prerender'ın temeli) ve translations.fr.meta (dil değişince çalışma
+     anında yazılan değer). Ayrışırlarsa aynı sayfa iki farklı fr başlık
+     gösterir ve bunu ne build ne konsol söyler. */
+function readOnce(pattern, label) {
+  const found = shell.match(pattern)
+  if (!found) {
+    throw new Error(`prerender: index.html içinde "${label}" okunamadı — şablon değişmiş olabilir`)
+  }
+  return found[1]
+}
+
+const homeMeta = translations[LANG].meta
+const shellTitle = readOnce(/<title>([^<]*)<\/title>/, 'title')
+const shellDesc = readOnce(/<meta name="description" content="([^"]*)" \/>/, 'description')
+
+if (esc(homeMeta.title) !== shellTitle || esc(homeMeta.description) !== shellDesc) {
+  throw new Error(
+    `prerender: ana sayfanın ${LANG} <head> metni translations.${LANG}.meta ile ayrışmış.\n` +
+      `  index.html   title: ${shellTitle}\n` +
+      `  translations title: ${esc(homeMeta.title)}\n` +
+      `  index.html   desc : ${shellDesc}\n` +
+      `  translations desc : ${esc(homeMeta.description)}`,
+  )
+}
+
+/* 5) Üç dilin şema eşitliği (anahtar adı + tip).
+     Diziler yaprak kabul edilir (tip + uzunluk): içerikleri dile göre
+     meşru olarak farklıdır, sayıları değil. */
+function sekil(o, p = '') {
+  if (Array.isArray(o)) return [`${p}:array(${o.length})`]
+  if (o === null || typeof o !== 'object') return [`${p}:${typeof o}`]
+  return Object.keys(o)
+    .sort()
+    .flatMap((k) => sekil(o[k], `${p}.${k}`))
+}
+
+const refSekil = sekil(translations[LANG])
+const refSet = new Set(refSekil)
+for (const l of LANGS.filter((x) => x !== LANG)) {
+  const curSekil = sekil(translations[l])
+  if (curSekil.join('|') !== refSekil.join('|')) {
+    const curSet = new Set(curSekil)
+    throw new Error(
+      `prerender: translations.${l} şekli ${LANG} ile ayrışıyor.\n` +
+        `  eksik/farklı: ${refSekil.filter((x) => !curSet.has(x)).join(', ') || '-'}\n` +
+        `  fazla/farklı: ${curSekil.filter((x) => !refSet.has(x)).join(', ') || '-'}`,
+    )
+  }
+}
+
+/* 6) Her blog yazısı üç dilde tam mı? Eksik bir dil derlemeyi KIRMIYORDU:
+     prerender yalnızca fr'yi okur, o dilde okuyan ziyaretçi ise yarım bir
+     sayfa görürdü. */
+for (const p of posts) {
+  for (const l of LANGS) {
+    for (const alan of ['title', 'excerpt', 'content']) {
+      const v = p[l]?.[alan]
+      if (typeof v !== 'string' || !v.trim()) {
+        throw new Error(`prerender: blog.js — "${p.slug}" yazısında ${l}.${alan} eksik`)
+      }
+    }
+  }
+}
+
 /* Dizine girmesi istenen rotalar — sitemap de bu listeden üretilir. */
 const routes = [
   {
     path: 'blog',
     url: `${ORIGIN}/blog`,
-    title: `${blogSection.title} — Ozer Labs`,
+    title: blogListTitle(blogSection.title),
     description: blogSection.sub,
     priority: '0.8',
     changefreq: 'weekly',
@@ -90,7 +217,7 @@ const routes = [
   ...posts.map((p) => ({
     path: `blog/${p.slug}`,
     url: `${ORIGIN}/blog/${p.slug}`,
-    title: `${p[LANG].title} — Ozer Labs Blog`,
+    title: blogPostTitle(p[LANG].title),
     description: p[LANG].excerpt,
     lastmod: p.date,
     priority: '0.6',
@@ -110,7 +237,7 @@ for (const [oldSlug, newSlug] of Object.entries(LEGACY_SLUGS)) {
   if (!target) throw new Error(`prerender: LEGACY_SLUGS hedefi bulunamadı: ${newSlug}`)
   await writePage(`blog/${oldSlug}`, pageHtml(shell, {
     url: `${ORIGIN}/blog/${newSlug}`,
-    title: `${target[LANG].title} — Ozer Labs Blog`,
+    title: blogPostTitle(target[LANG].title),
     description: target[LANG].excerpt,
   }))
   aliasCount += 1
