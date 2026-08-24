@@ -96,6 +96,7 @@ const LANGS = ['fr', 'en', 'tr']
      5. üç dilin anahtar/tip şemasının ayrışması (ör. bir dilde meta'nın
         eksik olması -> o dilde sekme başlığı sessizce güncellenmez)
      6. bir blog yazısının bir dilde eksik olması
+     7. sitede gösterilen sosyal profillerle JSON-LD sameAs'in ayrışması
    --------------------------------------------------------------------- */
 
 /* 1) index.html kabuğu marka adıyla uyumlu mu? */
@@ -201,6 +202,68 @@ for (const p of posts) {
         throw new Error(`prerender: blog.js — "${p.slug}" yazısında ${l}.${alan} eksik`)
       }
     }
+  }
+}
+
+/* 7) Sosyal profiller: sitede gösterilen liste ile JSON-LD sameAs aynı mı?
+     Aynı adresler iki yerde yaşıyor — Footer'ın beslendiği links.js ve
+     index.html'deki yapısal veri. Biri güncellenip diğeri unutulursa ne
+     derleme ne konsol uyarır: Google'a sayfada olmayan bir profil bildirilmiş
+     ya da sayfadaki profil Google'dan gizlenmiş olur. Karşılaştırma varlık
+     bazında yapılır; BENDIQ'in ürün hesabını stüdyonun sameAs'ine kaydırmak
+     da kimlik hatasıdır ve burada yakalanır. */
+const { SOCIAL_PROFILES, CONTACT_EMAIL, PLAY_BENDIQ } = await import(
+  new URL('../src/content/links.js', import.meta.url).href
+)
+
+const ldBlok = shell.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)
+if (!ldBlok) throw new Error('prerender: index.html içinde JSON-LD bloğu bulunamadı')
+let ld
+try {
+  ld = JSON.parse(ldBlok[1])
+} catch (e) {
+  throw new Error(`prerender: JSON-LD geçerli JSON değil — ${e.message}`)
+}
+const dugumler = ld['@graph'] || [ld]
+const dugumBul = (tip) => {
+  const d = dugumler.filter((n) => n['@type'] === tip)
+  if (d.length !== 1) throw new Error(`prerender: JSON-LD içinde tek bir ${tip} düğümü beklenir (bulunan: ${d.length})`)
+  return d[0]
+}
+const studio = dugumBul('ProfessionalService')
+const bendiq = dugumBul('SoftwareApplication')
+
+const kume = (arr) => [...new Set(arr)].sort().join(' | ')
+for (const [entity, dugum] of [
+  ['studio', studio],
+  ['bendiq', bendiq],
+]) {
+  const beklenen = kume(SOCIAL_PROFILES.filter((pr) => pr.entity === entity).map((pr) => pr.href))
+  const bulunan = kume(dugum.sameAs || [])
+  if (beklenen !== bulunan) {
+    throw new Error(
+      `prerender: "${entity}" profilleri links.js ile index.html JSON-LD arasında ayrışmış.
+` +
+        `  links.js : ${beklenen || '-'}
+` +
+        `  JSON-LD  : ${bulunan || '-'}`,
+    )
+  }
+}
+
+if (bendiq.url !== PLAY_BENDIQ) {
+  throw new Error(`prerender: JSON-LD BENDIQ url'i links.js ile ayrışmış: ${bendiq.url} != ${PLAY_BENDIQ}`)
+}
+if (studio.email !== CONTACT_EMAIL) {
+  throw new Error(`prerender: JSON-LD e-postası links.js ile ayrışmış: ${studio.email} != ${CONTACT_EMAIL}`)
+}
+
+/* Footer'da gösterilen her profilin ikonu Icon.jsx'te tanımlı olmalı —
+   tanımsız ad sessizce boş bir bağlantı çizer. */
+const ikonKaynak = await readFile(join(REPO, 'src', 'components', 'Icon.jsx'), 'utf8')
+for (const pr of SOCIAL_PROFILES.filter((x) => x.footer)) {
+  if (!new RegExp('^  ' + pr.icon + ':', 'm').test(ikonKaynak)) {
+    throw new Error(`prerender: Icon.jsx içinde "${pr.icon}" ikonu yok — ${pr.label} bağlantısı boş çizilir`)
   }
 }
 

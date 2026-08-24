@@ -4,19 +4,20 @@ import { posts } from '../content/blog.js'
 import { BLOG_LABELS } from './BlogShared.jsx'
 import Logo from './Logo.jsx'
 import Icon from './Icon.jsx'
+import { SOCIAL_PROFILES, CONTACT_EMAIL } from '../content/links.js'
 
 /**
- * Sosyal hesaplar tek yerden yönetilir.
- * Yeni hesap eklemek için buraya bir satır yeterli — ikon adı
- * Icon.jsx'te tanımlı olmalı (github, linkedin, instagram, mail).
- * Uydurma profil linki eklenmez: yalnızca gerçekten var olanlar listelenir.
+ * Sosyal hesaplar tek yerden yönetilir: src/content/links.js.
+ * Aynı liste JSON-LD sameAs'i de besler (bkz. prerender.mjs 7. denetim),
+ * bu yüzden yeni hesap oraya eklenir — buraya değil. İkon adı Icon.jsx'te
+ * tanımlı olmalı. Uydurma profil linki eklenmez: yalnızca gerçekten var
+ * olan hesaplar listelenir.
+ * E-posta profil değil, doğrudan iletişim ucu; o yüzden listenin başında
+ * ve yapısal veride "email" alanı olarak duruyor.
  */
 const SOCIAL_LINKS = [
-  { icon: 'mail', href: 'mailto:ozer.labs@gmail.com', label: 'E-mail' },
-  { icon: 'linkedin', href: 'https://www.linkedin.com/in/halil-%C3%B6zer-97b21a310', label: 'LinkedIn' },
-  { icon: 'youtube', href: 'https://www.youtube.com/@Ozerlabs', label: 'YouTube' },
-  { icon: 'facebook', href: 'https://www.facebook.com/profile.php?id=61593729627340', label: 'Facebook' },
-  { icon: 'x', href: 'https://x.com/bendiq_', label: 'X' },
+  { icon: 'mail', href: `mailto:${CONTACT_EMAIL}`, label: 'E-mail' },
+  ...SOCIAL_PROFILES.filter((p) => p.footer),
 ]
 
 export default function Footer() {

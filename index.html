@@ -31,22 +31,47 @@
     <meta name="twitter:description" content="De la conception à la mise en ligne : sites web, applications iOS/Android et systèmes assistés par IA, livrés par la personne qui les construit." />
     <meta name="twitter:image" content="https://ozerlabs.com/og-image.jpg" />
 
+    <!-- Varlık grafiği. Her sosyal profil, gerçekten temsil ettiği varlığın
+         altına yazılır: stüdyonun hesapları ProfessionalService'te, BENDIQ'in
+         ürün hesapları uygulamanın kendi düğümünde. Hepsini tek sameAs'e
+         yığmak Google'a "OzerLabs = Bendiq sayfası" demek olurdu.
+         Bu liste elle tutulmaz: kaynağı src/content/links.js -> SOCIAL_PROFILES
+         ve prerender.mjs'teki 7. denetim ikisi ayrışırsa derlemeyi kırar. -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "ProfessionalService",
-      "name": "OzerLabs",
-      "alternateName": "Ozer Labs",
-      "url": "https://ozerlabs.com",
-      "image": "https://ozerlabs.com/og-image.jpg",
-      "logo": "https://ozerlabs.com/brand/ozerlabs-lockup.webp",
-      "description": "Création de sites web, développement d'applications Android/iOS et systèmes assistés par IA.",
-      "areaServed": "FR",
-      "availableLanguage": ["fr", "en", "tr"],
-      "email": "ozer.labs@gmail.com",
-      "sameAs": [
-        "https://www.youtube.com/@Ozerlabs",
-        "https://play.google.com/store/apps/developer?id=by.ozerlabs"
+      "@graph": [
+        {
+          "@type": "ProfessionalService",
+          "@id": "https://ozerlabs.com/#studio",
+          "name": "OzerLabs",
+          "alternateName": "Ozer Labs",
+          "url": "https://ozerlabs.com",
+          "image": "https://ozerlabs.com/og-image.jpg",
+          "logo": "https://ozerlabs.com/brand/ozerlabs-lockup.webp",
+          "description": "Création de sites web, développement d'applications Android/iOS et systèmes assistés par IA.",
+          "areaServed": "FR",
+          "availableLanguage": ["fr", "en", "tr"],
+          "email": "ozer.labs@gmail.com",
+          "sameAs": [
+            "https://www.linkedin.com/in/halil-%C3%B6zer-97b21a310",
+            "https://www.youtube.com/@Ozerlabs",
+            "https://play.google.com/store/apps/developer?id=OzerLabs"
+          ]
+        },
+        {
+          "@type": "SoftwareApplication",
+          "@id": "https://ozerlabs.com/#bendiq",
+          "name": "BENDIQ",
+          "url": "https://play.google.com/store/apps/details?id=com.ozer.bendpro",
+          "operatingSystem": "Android",
+          "applicationCategory": "BusinessApplication",
+          "publisher": { "@id": "https://ozerlabs.com/#studio" },
+          "sameAs": [
+            "https://www.facebook.com/profile.php?id=61593729627340",
+            "https://x.com/bendiq_"
+          ]
+        }
       ]
     }
     </script>
