@@ -87,6 +87,18 @@
          istenir, o yüzden bilerek ön yüklenmiyor. -->
     <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+
+    <!-- Cloudflare Web Analytics. Çerezsiz, ziyaretçi parmak izi çıkarmaz,
+         veriyi üçüncü tarafa satmaz — sitenin gizlilik duruşuyla uyumlu.
+         BİLİNÇLİ TAVİZ: bu betik `static.cloudflareinsights.com`a istek
+         doğurur, yani "üçüncü tarafa hiç istek gitmez" sınırı artık yalnız
+         fontlar ve dil tespiti için geçerli (CLAUDE.md §6). Karşılığı:
+         ziyaretçi ve dönüşüm sayısı ölçülebilir hale geliyor; ölçüm olmadan
+         hiçbir iyileştirmenin etkisi doğrulanamıyordu.
+         Otomatik enjeksiyon bu sitede ÇALIŞMAZ (Workers static assets ile
+         sunuluyor, 12 ölçümde beacon gelmedi) — snippet bu yüzden elle duruyor.
+         Token panelden alınır: Web Analytics -> ozerlabs.com -> Manage site. -->
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "b4ce0c586a724a04997b242b3ed615d7"}'></script>
   </head>
   <body>
     <div id="root"></div>
