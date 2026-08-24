@@ -141,8 +141,11 @@ export const translations = {
         { label: 'Réponse', value: '1-2 jours ouvrés', icon: 'clock' },
       ],
       form: { budget: 'Budget estimé', budgetOptions: ['Je ne sais pas encore', 'Moins de 1 000 €', '1 000 – 5 000 €', '5 000 – 15 000 €', 'Plus de 15 000 €'], name: 'Nom', email: 'E-mail', message: 'Message', submit: 'Envoyer', namePlaceholder: 'Votre nom', emailPlaceholder: 'vous@exemple.com', messagePlaceholder: 'Que voulez-vous construire ?' },
-      status:
-        "Votre application e-mail va s'ouvrir — il ne reste qu'à envoyer. Si rien ne s'ouvre, écrivez directement à ozer.labs@gmail.com.",
+      status: {
+        sending: 'Envoi en cours…',
+        sent: 'Message reçu. Nous revenons vers vous sous 1 à 2 jours ouvrés.',
+        fallback: "L'envoi automatique n'a pas abouti. Votre application e-mail va s'ouvrir — il ne reste qu'à envoyer. Si rien ne s'ouvre, écrivez directement à ozer.labs@gmail.com.",
+      },
     },
     ctaBand: {
       title: 'Votre idée est prête ? Nous aussi.',
@@ -291,8 +294,11 @@ export const translations = {
         { label: 'Response', value: '1-2 business days', icon: 'clock' },
       ],
       form: { budget: 'Budget range', budgetOptions: ['Not sure yet', 'Under €1,000', '€1,000 – €5,000', '€5,000 – €15,000', 'Over €15,000'], name: 'Name', email: 'Email', message: 'Message', submit: 'Send', namePlaceholder: 'Your name', emailPlaceholder: 'you@example.com', messagePlaceholder: 'What do you want to build?' },
-      status:
-        'Your mail app will open — just hit send. If nothing opens, write directly to ozer.labs@gmail.com.',
+      status: {
+        sending: 'Sending…',
+        sent: "Message received. We'll get back to you within 1-2 business days.",
+        fallback: 'Automatic sending failed. Your mail app will open — just hit send. If nothing opens, write directly to ozer.labs@gmail.com.',
+      },
     },
     ctaBand: {
       title: "Your idea is ready. So are we.",
@@ -441,8 +447,11 @@ export const translations = {
         { label: 'Yanıt', value: '1-2 iş günü', icon: 'clock' },
       ],
       form: { budget: 'Bütçe aralığı', budgetOptions: ['Henüz bilmiyorum', '1.000 € altı', '1.000 – 5.000 €', '5.000 – 15.000 €', '15.000 € üzeri'], name: 'İsim', email: 'E-posta', message: 'Mesaj', submit: 'Gönder', namePlaceholder: 'Adın', emailPlaceholder: 'sen@ornek.com', messagePlaceholder: 'Ne yapmak istiyorsun?' },
-      status:
-        "Mail uygulaman açılacak — sadece gönder'e basman yeterli. Hiçbir şey açılmadıysa doğrudan ozer.labs@gmail.com adresine yaz.",
+      status: {
+        sending: 'Gönderiliyor…',
+        sent: 'Mesaj bize ulaştı. 1-2 iş günü içinde dönüş yapıyoruz.',
+        fallback: "Otomatik gönderim olmadı. Mail uygulaman açılacak — sadece gönder'e basman yeterli. Hiçbir şey açılmadıysa doğrudan ozer.labs@gmail.com adresine yaz.",
+      },
     },
     ctaBand: {
       title: 'Fikrin hazırsa, biz de hazırız.',

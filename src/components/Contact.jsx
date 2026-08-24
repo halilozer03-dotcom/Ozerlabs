@@ -3,6 +3,7 @@ import { useLanguage } from '../i18n/LanguageContext.jsx'
 import Reveal from './Reveal.jsx'
 import SectionHead from './SectionHead.jsx'
 import Icon from './Icon.jsx'
+import { BRAND } from '../content/brand.js'
 
 const CONTACT_EMAIL = 'ozer.labs@gmail.com'
 
@@ -17,10 +18,14 @@ const CONTACT_EMAIL = 'ozer.labs@gmail.com'
 export default function Contact() {
   const { t } = useLanguage()
   const [status, setStatus] = useState('')
+  const [sending, setSending] = useState(false)
 
-  // Gönderim davranışı değişmedi: mailto ile kullanıcının kendi
-  // posta uygulaması açılır, sunucuya veri gitmez.
-  function handleSubmit(e) {
+  /**
+   * Önce sunucuya (POST /api/contact) gönderilir — ziyaretçide posta
+   * istemcisi kurulu olmasa da mesaj bize ulaşır. İstek başarısız olursa
+   * eski mailto yoluna düşülür: mesaj hiçbir durumda sessizce kaybolmaz.
+   */
+  async function handleSubmit(e) {
     e.preventDefault()
     const form = e.target
     const name = form.name.value
@@ -28,12 +33,35 @@ export default function Contact() {
     const message = form.message.value
     const budget = form.budget.value
 
-    const subject = encodeURIComponent(`Ozer Labs — ${name}`)
-    const govde = [message, '', '—', name, email, `${t.contact.form.budget}: ${budget}`].join('\n')
-    const mailtoUrl = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${encodeURIComponent(govde)}`
+    setSending(true)
+    setStatus(t.contact.status.sending)
 
-    window.location.href = mailtoUrl
-    setStatus(t.contact.status)
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({
+          name,
+          email,
+          message,
+          budget,
+          company: form.company.value,
+          page: window.location.pathname,
+        }),
+      })
+      if (!res.ok) throw new Error(`http ${res.status}`)
+      form.reset()
+      setStatus(t.contact.status.sent)
+    } catch {
+      /* Sunucu ucu çalışmadı: yazılan metni kaybetmemek için eski mailto
+         davranışına düşülür ve form BİLEREK temizlenmez. */
+      const subject = encodeURIComponent(`${BRAND} — ${name}`)
+      const govde = [message, '', '—', name, email, `${t.contact.form.budget}: ${budget}`].join('\n')
+      window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${encodeURIComponent(govde)}`
+      setStatus(t.contact.status.fallback)
+    } finally {
+      setSending(false)
+    }
   }
 
   return (
@@ -132,12 +160,17 @@ export default function Contact() {
                 />
               </div>
 
-              <button type="submit" className="btn btn--primary btn--full">
+              <div className="sr-only" aria-hidden="true">
+                <label htmlFor="company">Company</label>
+                <input id="company" name="company" type="text" tabIndex={-1} autoComplete="off" />
+              </div>
+
+              <button type="submit" className="btn btn--primary btn--full" disabled={sending}>
                 {t.contact.form.submit}
                 <Icon name="arrow-right" size={16} className="btn__icon" />
               </button>
 
-              <p className="form-status" role="status">
+              <p className="form-status" role="status" aria-live="polite" aria-busy={sending}>
                 {status}
               </p>
             </form>

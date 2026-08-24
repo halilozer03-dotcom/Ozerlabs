@@ -8,6 +8,22 @@ compatibility_date = "2026-07-01"
 # yeniden açılabilir.
 workers_dev = false
 
+# İletişim formu ucu (worker/index.js). CLAUDE.md §6'daki "main/run_worker_first
+# eklenmez" kuralı, kapsamı sınırsız `run_worker_first = true` içindi: o biçim
+# HER isteği Worker'a sokar ve rota başına canonical üreten statik sunumu
+# riske atardı. Buradaki dizi biçimi Worker'ı YALNIZCA /api/* adreslerinde
+# devreye alır; /, /blog ve /blog/<slug> eskisi gibi doğrudan statik varlıktır.
+main = "worker/index.js"
+
 [assets]
 directory = "./dist"
 not_found_handling = "single-page-application"
+binding = "ASSETS"
+run_worker_first = ["/api/*"]
+
+# Cloudflare Email Routing üzerinden gönderim. destination_address doğrulanmış
+# olmak zorundadır (ozer.labs@gmail.com — 24.08.2026'da doğrulandı); aksi halde
+# send() çalışma anında hata verir.
+[[send_email]]
+name = "CONTACT_MAIL"
+destination_address = "ozer.labs@gmail.com"
