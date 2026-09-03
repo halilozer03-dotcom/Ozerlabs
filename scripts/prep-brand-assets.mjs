@@ -37,9 +37,9 @@ const ISLER = [
     boy: 256,
   },
   {
-    ad: 'prod-metal',
-    kaynak: MASAUSTU + 'logo-banner.png',
-    kirp: { left: 110, top: 50, width: 495, height: 495 },
+    ad: 'cims-metal',
+    kaynak: 'C:/Users/halil/prod-metal/src/assets/logo-cims-head.jpg',
+    kirp: { left: 20, top: 0, width: 404, height: 404 },
     boy: 256,
   },
 ]
