@@ -26,6 +26,7 @@ export default function Footer() {
 
   // Süreç ayrı bölüm olmaktan çıkıp Çalışma biçimi içine girdi.
   const company = [
+    { label: t.nav.metaliq, hash: '#metaliq' },
     { label: t.nav.services, hash: '#hizmetler' },
     { label: t.nav.solutions, hash: '#cozumler' },
     { label: t.nav.projects, hash: '#projeler' },

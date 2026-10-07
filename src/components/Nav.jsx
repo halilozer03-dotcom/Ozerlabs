@@ -6,8 +6,10 @@ import { useScrolled, useActiveSection, useBodyScrollLock } from '../hooks/useSc
 import Logo from './Logo.jsx'
 import Icon from './Icon.jsx'
 
-/** Menü tek kaynaktan üretilir: masaüstü ve çekmece aynı listeyi kullanır. */
+/** Menü tek kaynaktan üretilir: masaüstü ve çekmece aynı listeyi kullanır.
+    Sıra sayfadaki bölüm sırasıdır; METALIQ hero'nun hemen altında. */
 export const NAV_ITEMS = [
+  { key: 'metaliq', section: 'metaliq' },
   { key: 'services', section: 'hizmetler' },
   { key: 'solutions', section: 'cozumler' },
   { key: 'projects', section: 'projeler' },

@@ -117,6 +117,14 @@ const PATHS = {
   star: <path d="m12 3.2 2.72 5.51 6.08.89-4.4 4.29 1.04 6.06L12 17.09l-5.44 2.86 1.04-6.06-4.4-4.29 6.08-.89L12 3.2Z" />,
   close: <path d="M6 6l12 12M18 6 6 18" />,
   play: <path d="M8 5.5v13l10.5-6.5L8 5.5Z" />,
+  'arrow-down': <path d="M12 5v14M6 13l6 6 6-6" />,
+  list: <path d="M9 6h11M9 12h11M9 18h11M4.5 6h.01M4.5 12h.01M4.5 18h.01" />,
+  'file-text': (
+    <>
+      <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5Z" />
+      <path d="M14 3v5h5M9 13h6M9 17h6" />
+    </>
+  ),
 }
 
 export default function Icon({ name, size = 20, className, strokeWidth = 1.75, ...rest }) {

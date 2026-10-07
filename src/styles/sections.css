@@ -1870,236 +1870,276 @@ a.contact-detail:hover {
   color: var(--text-muted);
 }
 
-/* ---------- Ürün tanıtım penceresi (bağlantısız ürün: video + görseller) ----------
-   Ücretli verilen ürün canlı adrese bağlanmaz; kartın tamamı tek düğmedir ve
-   bu pencereyi açar. Video yalnız pencere açıkken yüklenir. */
-.project-card--showcase {
-  cursor: pointer;
+/* ============================================================
+   METALIQ — kendi ürünümüz, hero'nun hemen altında
+   Ücretli verilecek: canlı araca bağlantı yok, tanıtım burada.
+   Ana mesaj: basit bir 3D görsel değil — atölyeye giden belgeler.
+   ============================================================ */
+.metaliq__h {
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  font-weight: var(--fw-bold);
+  letter-spacing: -0.01em;
+  margin-bottom: var(--space-6);
 }
 
-/* Kartın tamamını kaplayan görünmez düğme: kapak ve gövde aynı hedeftir. */
-.project-card__open {
-  position: absolute;
-  inset: 0;
-  z-index: 3;
-  width: 100%;
-  height: 100%;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  cursor: pointer;
-}
-
-.project-card__open:focus-visible {
-  outline-offset: -2px;
-  border-radius: var(--r-md);
-}
-
-/* Klavyeyle odaklanınca kart, fareyle üstüne gelinmiş gibi davranır. */
-.project-card--showcase:has(.project-card__open:focus-visible) {
-  transform: translateY(-6px);
-  box-shadow: var(--card-shadow-hover);
-  border-color: transparent;
-}
-
-.project-card--showcase:has(.project-card__open:focus-visible) .project-card__overlay {
-  opacity: 1;
-}
-
-.project-card--showcase:has(.project-card__open:focus-visible) .project-card__overlay span {
-  transform: none;
-}
-
-.showcase {
-  position: fixed;
-  inset: 0;
-  z-index: var(--z-drawer);
+/* ---------- Video + çıktılar ---------- */
+/* minmax(0, 1fr): tablonun en küçük genişliği sütunu büyütüp telefonda
+   bölümü sağdan kırpıyordu (384 px'te ölçüldü); tablo kendi içinde kayar. */
+.metaliq__lead,
+.metaliq__proof,
+.metaliq__close {
   display: grid;
-  place-items: center;
-  padding: var(--space-6);
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-8);
+  align-items: start;
 }
 
-.showcase__backdrop {
-  position: absolute;
-  inset: 0;
-  background: rgba(5, 8, 15, 0.8);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  animation: showcase-fade var(--dur-base) var(--ease-out);
+.metaliq__proof,
+.metaliq__types,
+.metaliq__close {
+  margin-top: var(--space-16);
 }
 
-.showcase__panel {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  width: min(1120px, 100%);
-  max-height: calc(100vh - 2 * var(--space-6));
-  max-height: calc(100dvh - 2 * var(--space-6));
-  background: var(--surface);
+/* Zemin, aracın açık gri 3D zemini: poster yüklenmeden de dikiş görünmesin. */
+.metaliq__stage {
+  overflow: hidden;
   border: 1px solid var(--border);
   border-radius: var(--r-lg);
-  box-shadow: var(--shadow-xl);
-  overflow: hidden;
-  animation: drawer-in var(--dur-base) var(--ease-out);
+  background: var(--ink-100);
+  box-shadow: var(--shadow-lg);
 }
 
-.showcase__head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.metaliq__video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1280 / 882;
+}
+
+.metaliq__output-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-6);
+}
+
+.metaliq__output {
+  display: grid;
+  grid-template-columns: auto 1fr;
   gap: var(--space-4);
-  padding: var(--space-4) var(--space-6);
-  border-bottom: 1px solid var(--border);
+  align-items: start;
 }
 
-.showcase__heading {
+.metaliq__output .icon-badge {
+  margin-bottom: 0;
+}
+
+.metaliq__output-title {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: var(--space-3);
-  min-width: 0;
+  gap: var(--space-2) var(--space-3);
+  font-family: var(--font-display);
+  font-size: var(--fs-md);
+  font-weight: var(--fw-semibold);
+  margin-bottom: var(--space-2);
 }
 
-.showcase__title {
-  font-size: var(--fs-h3);
-  letter-spacing: var(--tracking-tight);
+.metaliq__output-title .tag {
+  font-size: var(--fs-label);
+  padding: 3px var(--space-2);
 }
 
-/* 44 px: dokunma hedefinin alt sınırı. */
-.showcase__close {
-  flex: none;
-  display: inline-grid;
-  place-items: center;
-  width: 44px;
-  height: 44px;
-  padding: 0;
+.metaliq__output-text {
+  font-size: var(--fs-sm);
+  line-height: var(--lh-normal);
+  color: var(--text-soft);
+}
+
+/* ---------- Kesim listesi tablosu ---------- */
+.metaliq__table-wrap {
+  overflow-x: auto;
   border: 1px solid var(--border);
-  border-radius: var(--r-sm);
-  background: transparent;
+  border-radius: var(--r-md);
+  background: var(--surface-inset);
+}
+
+.cutlist {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--fs-xs);
+  line-height: var(--lh-snug);
+}
+
+.cutlist caption {
+  caption-side: bottom;
+  padding: var(--space-3) var(--space-4);
+  text-align: left;
+  font-size: var(--fs-label);
+  color: var(--text-muted);
+  border-top: 1px solid var(--border);
+}
+
+.cutlist th,
+.cutlist td {
+  padding: var(--space-3) var(--space-4);
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--border);
+}
+
+.cutlist tbody tr:last-child th,
+.cutlist tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.cutlist thead th {
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.cutlist td {
+  color: var(--text-soft);
+}
+
+.cutlist__mark,
+.cutlist__mono,
+.cutlist__num {
+  font-family: var(--font-mono);
+  white-space: nowrap;
+}
+
+.cutlist__mark {
+  font-weight: var(--fw-medium);
   color: var(--text);
-  cursor: pointer;
-  transition:
-    border-color var(--dur-base) var(--ease-out),
-    color var(--dur-base) var(--ease-out);
 }
 
-.showcase__close:hover {
-  border-color: var(--brand);
-  color: var(--brand);
+.cutlist .cutlist__num {
+  text-align: right;
 }
 
-.showcase__body {
+/* Camgöbeği yalnızca ölçü: kesim boyu. */
+.cutlist .cutlist__data {
+  color: var(--data);
+}
+
+.metaliq__example-note {
+  margin-top: var(--space-4);
+  font-size: var(--fs-sm);
+  line-height: var(--lh-normal);
+  color: var(--text-soft);
+}
+
+/* ---------- Belge sayfaları ---------- */
+.metaliq__doc-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
   display: grid;
-  gap: var(--space-6);
-  padding: var(--space-6);
-  overflow-y: auto;
-  overscroll-behavior: contain;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
 }
 
-.showcase__gallery {
-  display: grid;
-  gap: var(--space-3);
-  min-width: 0;
-}
-
-/* Zemin, ekran görüntülerinin açık gri zemini: daha geniş arayüz
-   görüntüsü sığdırılınca kalan bant bir dikiş gibi görünmesin. */
-.showcase__media {
-  aspect-ratio: 1280 / 882;
+.metaliq__doc {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   overflow: hidden;
   border: 1px solid var(--border);
   border-radius: var(--r-md);
-  background: var(--ink-100);
-}
-
-.showcase__media video,
-.showcase__media img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-/* Küçük resimler tek satır: sığmazsa (telefon) yatay kayar. */
-.showcase__thumbs {
-  display: flex;
-  gap: var(--space-2);
-  margin: 0;
-  padding: 0 0 var(--space-1);
-  list-style: none;
-  overflow-x: auto;
-  scroll-snap-type: x proximity;
-}
-
-.showcase__thumbs > li {
-  flex: 1 0 72px;
-  scroll-snap-align: start;
-}
-
-.showcase__thumb {
-  position: relative;
-  display: block;
-  width: 100%;
-  aspect-ratio: 1280 / 882;
-  padding: 0;
-  overflow: hidden;
-  border: 2px solid transparent;
-  border-radius: var(--r-sm);
-  background: var(--ink-100);
-  cursor: pointer;
-  opacity: 0.7;
+  background: var(--surface);
+  color: var(--text);
+  text-decoration: none;
   transition:
-    opacity var(--dur-base) var(--ease-out),
-    border-color var(--dur-base) var(--ease-out);
+    border-color var(--dur-base) var(--ease-out),
+    transform var(--dur-base) var(--ease-out);
 }
 
-.showcase__thumb img {
+.metaliq__doc:hover {
+  border-color: var(--brand);
+  transform: translateY(-3px);
+}
+
+.metaliq__doc img {
   display: block;
   width: 100%;
-  height: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
+  background: var(--white);
 }
 
-.showcase__thumb:hover {
-  opacity: 1;
-}
-
-.showcase__thumb[aria-pressed='true'] {
-  border-color: var(--brand);
-  opacity: 1;
-}
-
-.showcase__thumb-play {
-  position: absolute;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  color: var(--white);
-  background: rgba(5, 8, 15, 0.4);
-}
-
-.showcase__text {
+.metaliq__doc-caption {
   display: flex;
-  flex-direction: column;
-  gap: var(--space-6);
-  min-width: 0;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  font-size: var(--fs-xs);
+  line-height: var(--lh-snug);
 }
 
-.showcase__lead {
-  font-size: var(--fs-lg);
+.metaliq__doc-caption svg {
+  flex: none;
+  color: var(--text-muted);
+  transition: color var(--dur-base) var(--ease-out);
+}
+
+.metaliq__doc:hover .metaliq__doc-caption svg {
+  color: var(--brand);
+}
+
+/* ---------- 11 iş türü ---------- */
+.metaliq__type-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3);
+}
+
+.metaliq__type {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  background: var(--surface);
+}
+
+.metaliq__type img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 720 / 471;
+  background: var(--ink-100);
+}
+
+.metaliq__type figcaption {
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--fs-xs);
   line-height: var(--lh-snug);
   color: var(--text);
 }
 
-.showcase__points {
-  display: grid;
-  gap: var(--space-3);
+/* ---------- Denetimler + eylem ---------- */
+.metaliq__check-list {
+  list-style: none;
   margin: 0;
   padding: 0;
-  list-style: none;
+  display: grid;
+  gap: var(--space-3);
 }
 
-.showcase__points li {
+.metaliq__check-list li {
   display: grid;
   grid-template-columns: auto 1fr;
   gap: var(--space-3);
@@ -2109,59 +2149,70 @@ a.contact-detail:hover {
   color: var(--text-soft);
 }
 
-.showcase__check {
+.metaliq__check {
   margin-top: 0.2em;
   color: var(--brand);
 }
 
-.showcase__action {
+.metaliq__cta {
   display: grid;
   gap: var(--space-3);
+  padding: var(--space-8);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  background: var(--surface);
 }
 
-.showcase__note {
+.metaliq__licence {
   font-size: var(--fs-xs);
   color: var(--text-muted);
   text-align: center;
 }
 
-@keyframes showcase-fade {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
+@media (min-width: 620px) {
+  .metaliq__type-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
-@media (min-width: 960px) {
-  .showcase__body {
-    grid-template-columns: minmax(0, 1.75fr) minmax(0, 1fr);
-    align-items: start;
+@media (min-width: 900px) {
+  .metaliq__close {
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    align-items: center;
   }
 }
 
-/* Telefonda pencere tam ekran yaprak: kenar boşluğu ve köşe yuvarlaması yok. */
+@media (min-width: 1024px) {
+  .metaliq__lead {
+    grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+  }
+
+  .metaliq__proof {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .metaliq__type-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
 @media (max-width: 559px) {
-  .showcase {
-    place-items: stretch;
-    padding: 0;
+  .cutlist th,
+  .cutlist td {
+    padding: var(--space-2);
   }
 
-  .showcase__panel {
-    height: 100vh;
-    height: 100dvh;
-    max-height: none;
-    border: 0;
-    border-radius: 0;
+  /* Başlıklar iki satıra inebilir: tablo 342 px'e sığsın, kaydırma gerekmesin. */
+  .cutlist thead th {
+    white-space: normal;
+    letter-spacing: 0;
   }
 
-  .showcase__head {
-    padding: var(--space-3) var(--space-4);
+  .cutlist .cutlist__mono {
+    white-space: normal;
   }
 
-  .showcase__body {
-    gap: var(--space-4);
-    padding: var(--space-4);
+  .metaliq__cta {
+    padding: var(--space-6);
   }
 }

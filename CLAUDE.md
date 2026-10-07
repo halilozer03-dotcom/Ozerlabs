@@ -33,8 +33,8 @@ güncellenir.
 | Sayfalar | `/` (yedi bölüm) · `/blog` · `/blog/:slug`; eski slug kalıcı yönlendirmede |
 | İletişim | `mailto:` ile — sunucu yok, form verisi hiçbir yere gönderilmez |
 
-Ana sayfa sırası: Hero → TechStrip → Hizmetler → Projeler → Çalışma biçimi →
-Kapsam → İletişim → Footer.
+Ana sayfa sırası: Hero → TechStrip → METALIQ (`#metaliq`) → Hizmetler →
+Projeler → Çalışma biçimi → Kapsam → İletişim → Footer.
 
 ## 2. Ticari zincir — her değişiklik bunun bir halkasına dokunur
 
@@ -88,29 +88,41 @@ Yeni bir görev bunlardan birini bozuyorsa **önce nedenini söyle**, sonra doku
 - Sayfada birincil buton **iki** tane: hero ve iletişim. Nav CTA'sı ve çekmece
   CTA'sı bunun dışındadır. Kart içi CTA'lar kaldırıldı — aynı çağrı sayfada
   yedi kez geçiyordu (`Services.jsx`, `Pricing.jsx`).
+  **İstisna (2026-10-07):** METALIQ bölümünün sonundaki "Demo iste" birincil
+  buton — web işi teklifi değil, ayrı bir ürünün demosu; bölümde tek eylem.
 - Blog önizlemesi ana sayfadan kaldırıldı, footer'a indi: ziyaretçiyi
   dönüşümden uzaklaştıran tek bölümdü (`App.jsx`, `Footer.jsx`).
 - "En çok tercih edilen" rozeti kaldırıldı: üç seçenekli solo stüdyoda
   popülerlik iddiası inandırıcı değil (`Pricing.jsx`).
 - Projeler ızgarası hiyerarşik: kendi ürünümüz büyük, müşteri işleri kompakt.
 
-**Bağlantısız ürün — tanıtım penceresi (2026-10-07, kullanıcı kararı)**
+**Bağlantısız ürün — ana sayfa bölümü `#metaliq` (2026-10-07, kullanıcı kararı)**
 - Ücretli verilecek ürün (**METALIQ**, eski adı "CIMS CAD") canlı adrese
-  **bağlanmaz**: kart `showcase` alanı taşır, tamamı tek düğmedir ve
-  `ProjectShowcase` penceresini açar (video + 6 görsel + 4 madde + "Demo
-  iste" → `#iletisim`). Medya tek kaynak `src/content/showcases.js`,
-  dosyalar `public/showcase/metaliq/`; metinler `translations.js`'te proje
-  kaydında (diziler şema denetiminde yalnız uzunlukla karşılaştırılır —
-  üç dili elle eş tut).
-- Görsel ve video çalışan araçtan çekildi (headless Chrome, gerçek GPU);
-  aracın üstteki CIMS marka satırı hiçbir karede yok. Pergola sahnesi
-  kullanıcı seçimi: duvara dayalı, lamelli düz çatı (Gibus Twist), üç cephe
-  motorlu zip perde — açık/eğimli pergola görüntüsü **reddedildi**.
-  Üretim betikleri: `~/.claude/tools/metaliq-showcase/`.
-- Pencere çekmeceyle aynı sözleşmede: `role="dialog"`, Escape, Tab döngüsü,
-  kapanınca odak karta döner; `document.body`'ye portal. Video yalnız
-  pencere açıkken DOM'da (sayfa yüküne eklenmez), hareket azaltmada kendi
-  oynamaz. İçindeki birincil buton çekmece CTA'sı gibi istisnadır.
+  **bağlanmaz**. Tanıtım hero'nun hemen altında ayrı bölümdür
+  (`Metaliq.jsx`, `data-surface="raise"`), nav'da ilk öğe. Projeler kartı
+  `anchor: 'metaliq'` taşır ve bölüme iner. İlk sürümdeki açılır pencere
+  (ProjectShowcase) kaldırıldı: kullanıcı tanıtımı eksik ve geride buldu.
+- **Ana mesaj (kullanıcı):** basit bir 3D görsel değil — atölyeye giden
+  belgeler: kesim listesi, PDF imalat dosyası, AutoCAD ve lazer kesim için
+  DXF. **"AutoCAD'e %100 entegre" yazılmaz** (AutoCAD'de açılış test
+  edilmedi); yazılan, ölçülen biçimdir: DXF R12, mm, parça türüne göre katman.
+- Kesim listesi tablosu gerçek çıktıdır (2000 mm korkuluk, canlı araçtan
+  ölçüldü; 2800 mm notu da). Araç değişirse `translations.js → metaliq.example`
+  üç dilde birlikte güncellenir. Diziler şema denetiminde yalnız uzunlukla
+  karşılaştırılır — üç dili elle eş tut.
+- 11 iş türünün hepsi gösterilir (video 11 sahne + 11 kutucuk). Pergola
+  sahnesi kullanıcı seçimi: duvara dayalı, lamelli düz çatı (Gibus Twist),
+  üç cephe motorlu zip perde — açık/eğimli pergola **reddedildi**.
+- Medya tek kaynak `src/content/metaliq.js`, dosyalar
+  `public/showcase/metaliq/` (Worker Range 206 yalnız `/showcase/*`'ta —
+  iOS video için şart). Her şey çalışan araçtan çekildi; aracın üstteki CIMS
+  marka satırı hiçbir karede yok. Video **kare kare** kaydedilir (screencast
+  sahne sürelerini tutarsız üretiyordu). Betikler:
+  `~/.claude/tools/metaliq-showcase/` (record2.cjs → assemble2.py →
+  prep_site.py, doğrulama verify2.cjs).
+- Video `preload="none"`: sayfa yüküne eklenmez, görünür olunca sessiz
+  oynar, çıkınca durur; ziyaretçi durdurursa bir daha başlatılmaz; hareket
+  azaltmada kendi oynamaz.
 
 **Sürtünme**
 - Fiyat bölümünün adı "Kapsam". Rakam yok, bu yüzden başlık da fiyat vaat

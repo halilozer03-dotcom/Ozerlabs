@@ -5,6 +5,7 @@ import { LanguageProvider, useLanguage } from './i18n/LanguageContext.jsx'
 import Nav from './components/Nav.jsx'
 import Hero from './components/Hero.jsx'
 import TechStrip from './components/TechStrip.jsx'
+import Metaliq from './components/Metaliq.jsx'
 import Services from './components/Services.jsx'
 import Projects from './components/Projects.jsx'
 import About from './components/About.jsx'
@@ -69,10 +70,12 @@ function SkipLink() {
 }
 
 /**
- * Ana sayfa yedi bölüm:
- * Hero (teknoloji şeridi gömülü) → Hizmetler → Projeler →
+ * Ana sayfa sekiz bölüm:
+ * Hero (teknoloji şeridi gömülü) → METALIQ (kendi ürünümüz, üstte
+ * öne çıkarıldı — kullanıcı kararı 07.10.2026) → Hizmetler → Projeler →
  * Çalışma biçimi (eski Hakkımızda + Süreç) → Kapsam →
  * İletişim (eski CTA bandı burada) → Footer (son yazılar burada).
+ * Zemin ritmi korunur: void → raise → base → raise → base → raise → base → void.
  *
  * Blog önizlemesi ana sayfadan indi: ziyaretçiyi dönüşümden
  * uzaklaştıran tek bölümdü. Yazılar navigasyonda ve footer'da.
@@ -92,6 +95,7 @@ function Home() {
     <main id="main">
       <Hero />
       <TechStrip />
+      <Metaliq />
       <Services />
       <Projects />
       <About />
