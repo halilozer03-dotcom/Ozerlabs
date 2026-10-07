@@ -1869,3 +1869,299 @@ a.contact-detail:hover {
 .project-card__status:not(.tag--live) {
   color: var(--text-muted);
 }
+
+/* ---------- Ürün tanıtım penceresi (bağlantısız ürün: video + görseller) ----------
+   Ücretli verilen ürün canlı adrese bağlanmaz; kartın tamamı tek düğmedir ve
+   bu pencereyi açar. Video yalnız pencere açıkken yüklenir. */
+.project-card--showcase {
+  cursor: pointer;
+}
+
+/* Kartın tamamını kaplayan görünmez düğme: kapak ve gövde aynı hedeftir. */
+.project-card__open {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.project-card__open:focus-visible {
+  outline-offset: -2px;
+  border-radius: var(--r-md);
+}
+
+/* Klavyeyle odaklanınca kart, fareyle üstüne gelinmiş gibi davranır. */
+.project-card--showcase:has(.project-card__open:focus-visible) {
+  transform: translateY(-6px);
+  box-shadow: var(--card-shadow-hover);
+  border-color: transparent;
+}
+
+.project-card--showcase:has(.project-card__open:focus-visible) .project-card__overlay {
+  opacity: 1;
+}
+
+.project-card--showcase:has(.project-card__open:focus-visible) .project-card__overlay span {
+  transform: none;
+}
+
+.showcase {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-drawer);
+  display: grid;
+  place-items: center;
+  padding: var(--space-6);
+}
+
+.showcase__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(5, 8, 15, 0.8);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  animation: showcase-fade var(--dur-base) var(--ease-out);
+}
+
+.showcase__panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: min(1120px, 100%);
+  max-height: calc(100vh - 2 * var(--space-6));
+  max-height: calc(100dvh - 2 * var(--space-6));
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-xl);
+  overflow: hidden;
+  animation: drawer-in var(--dur-base) var(--ease-out);
+}
+
+.showcase__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-4) var(--space-6);
+  border-bottom: 1px solid var(--border);
+}
+
+.showcase__heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+.showcase__title {
+  font-size: var(--fs-h3);
+  letter-spacing: var(--tracking-tight);
+}
+
+/* 44 px: dokunma hedefinin alt sınırı. */
+.showcase__close {
+  flex: none;
+  display: inline-grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  transition:
+    border-color var(--dur-base) var(--ease-out),
+    color var(--dur-base) var(--ease-out);
+}
+
+.showcase__close:hover {
+  border-color: var(--brand);
+  color: var(--brand);
+}
+
+.showcase__body {
+  display: grid;
+  gap: var(--space-6);
+  padding: var(--space-6);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.showcase__gallery {
+  display: grid;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+/* Zemin, ekran görüntülerinin açık gri zemini: daha geniş arayüz
+   görüntüsü sığdırılınca kalan bant bir dikiş gibi görünmesin. */
+.showcase__media {
+  aspect-ratio: 1280 / 882;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  background: var(--ink-100);
+}
+
+.showcase__media video,
+.showcase__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Küçük resimler tek satır: sığmazsa (telefon) yatay kayar. */
+.showcase__thumbs {
+  display: flex;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0 0 var(--space-1);
+  list-style: none;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+}
+
+.showcase__thumbs > li {
+  flex: 1 0 72px;
+  scroll-snap-align: start;
+}
+
+.showcase__thumb {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 1280 / 882;
+  padding: 0;
+  overflow: hidden;
+  border: 2px solid transparent;
+  border-radius: var(--r-sm);
+  background: var(--ink-100);
+  cursor: pointer;
+  opacity: 0.7;
+  transition:
+    opacity var(--dur-base) var(--ease-out),
+    border-color var(--dur-base) var(--ease-out);
+}
+
+.showcase__thumb img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.showcase__thumb:hover {
+  opacity: 1;
+}
+
+.showcase__thumb[aria-pressed='true'] {
+  border-color: var(--brand);
+  opacity: 1;
+}
+
+.showcase__thumb-play {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: var(--white);
+  background: rgba(5, 8, 15, 0.4);
+}
+
+.showcase__text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  min-width: 0;
+}
+
+.showcase__lead {
+  font-size: var(--fs-lg);
+  line-height: var(--lh-snug);
+  color: var(--text);
+}
+
+.showcase__points {
+  display: grid;
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.showcase__points li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-3);
+  align-items: start;
+  font-size: var(--fs-sm);
+  line-height: var(--lh-normal);
+  color: var(--text-soft);
+}
+
+.showcase__check {
+  margin-top: 0.2em;
+  color: var(--brand);
+}
+
+.showcase__action {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.showcase__note {
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+  text-align: center;
+}
+
+@keyframes showcase-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (min-width: 960px) {
+  .showcase__body {
+    grid-template-columns: minmax(0, 1.75fr) minmax(0, 1fr);
+    align-items: start;
+  }
+}
+
+/* Telefonda pencere tam ekran yaprak: kenar boşluğu ve köşe yuvarlaması yok. */
+@media (max-width: 559px) {
+  .showcase {
+    place-items: stretch;
+    padding: 0;
+  }
+
+  .showcase__panel {
+    height: 100vh;
+    height: 100dvh;
+    max-height: none;
+    border: 0;
+    border-radius: 0;
+  }
+
+  .showcase__head {
+    padding: var(--space-3) var(--space-4);
+  }
+
+  .showcase__body {
+    gap: var(--space-4);
+    padding: var(--space-4);
+  }
+}

@@ -94,6 +94,24 @@ Yeni bir görev bunlardan birini bozuyorsa **önce nedenini söyle**, sonra doku
   popülerlik iddiası inandırıcı değil (`Pricing.jsx`).
 - Projeler ızgarası hiyerarşik: kendi ürünümüz büyük, müşteri işleri kompakt.
 
+**Bağlantısız ürün — tanıtım penceresi (2026-10-07, kullanıcı kararı)**
+- Ücretli verilecek ürün (**METALIQ**, eski adı "CIMS CAD") canlı adrese
+  **bağlanmaz**: kart `showcase` alanı taşır, tamamı tek düğmedir ve
+  `ProjectShowcase` penceresini açar (video + 6 görsel + 4 madde + "Demo
+  iste" → `#iletisim`). Medya tek kaynak `src/content/showcases.js`,
+  dosyalar `public/showcase/metaliq/`; metinler `translations.js`'te proje
+  kaydında (diziler şema denetiminde yalnız uzunlukla karşılaştırılır —
+  üç dili elle eş tut).
+- Görsel ve video çalışan araçtan çekildi (headless Chrome, gerçek GPU);
+  aracın üstteki CIMS marka satırı hiçbir karede yok. Pergola sahnesi
+  kullanıcı seçimi: duvara dayalı, lamelli düz çatı (Gibus Twist), üç cephe
+  motorlu zip perde — açık/eğimli pergola görüntüsü **reddedildi**.
+  Üretim betikleri: `~/.claude/tools/metaliq-showcase/`.
+- Pencere çekmeceyle aynı sözleşmede: `role="dialog"`, Escape, Tab döngüsü,
+  kapanınca odak karta döner; `document.body`'ye portal. Video yalnız
+  pencere açıkken DOM'da (sayfa yüküne eklenmez), hareket azaltmada kendi
+  oynamaz. İçindeki birincil buton çekmece CTA'sı gibi istisnadır.
+
 **Sürtünme**
 - Fiyat bölümünün adı "Kapsam". Rakam yok, bu yüzden başlık da fiyat vaat
   etmiyor; her kart "ne alıyorum" + teslim süresi verir (`Pricing.jsx`).
