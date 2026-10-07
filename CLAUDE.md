@@ -107,11 +107,14 @@ Yeni bir görev bunlardan birini bozuyorsa **önce nedenini söyle**, sonra doku
   DXF. **"AutoCAD'e %100 entegre" yazılmaz** (AutoCAD'de açılış test
   edilmedi); yazılan, ölçülen biçimdir: DXF R12, mm, parça türüne göre katman.
 - **Lazere tüm korkuluk değil, yalnız sac gider** (kullanıcı, 2026-10-07).
-  Araç bugün sac-yalnız DXF vermiyor (iki DXF çıktısı da tüm korkuluk; sac
-  `TOLE` + `TOLE-PERCAGE` katmanlarında). Sitedeki lazer görseli bu iki
-  katmanın aracın DXF'inden ayıklanmış hâlidir (SP-01, 940 × 770 mm, 73
-  kesim; `laser_sheet.py`) ve alt metin bunu söyler. Araç sac-yalnız çıktı
-  kazanırsa görsel o çıktıdan yeniden üretilir.
+  Araç 2026-10-08'den beri bunu kendisi veriyor: "DXF découpe laser (tôle
+  seule)" (CAD PR #145) — her sac pozu ayrı dosya, yalnız `TOLE` +
+  `TOLE-PERCAGE`, poz + adet dosya adında, dosyada yazı yok. Sitedeki lazer
+  görseli bu çıktıdan üretilir: `laser_sheet.py` girişi
+  `assets/docs/railing-decoupe-laser-SP-01-x2.dxf` (canlı indirmeyle SHA-256
+  aynı; SP-01, 940 × 770 mm, 73 kesim, 2 adet). 07.10'daki elle ayıklanmış
+  görselle piksel piksel aynı çıktı (geometri birebir). Alt metin ("calques
+  TOLE et TOLE-PERCAGE du DXF de METALIQ") doğru kalır.
 - Kesim listesi tablosu gerçek çıktıdır (2000 mm korkuluk, canlı araçtan
   ölçüldü; 2800 mm notu da). Araç değişirse `translations.js → metaliq.example`
   üç dilde birlikte güncellenir. Diziler şema denetiminde yalnız uzunlukla
