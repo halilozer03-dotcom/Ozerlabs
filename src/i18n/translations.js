@@ -84,7 +84,7 @@ export const translations = {
       outputs: [
         { icon: 'list', title: 'Liste de débit', formats: 'CSV · PDF', text: "Chaque pièce avec son repère, son profil, sa longueur de débit en mm et sa quantité. Coupes d'extrémité (droite, biais, onglet, gueule de loup) et perçages indiqués ; achats et soudures ont leur propre liste." },
         { icon: 'file-text', title: 'Dossier de fabrication', formats: 'PDF · A4 / A3', text: "Plan de pose avec les trous d'ancrage, tableau de débit des barres, plans des platines avec les cotes X/Y des trous, module soudé avec la liste des soudures et l'ordre d'assemblage." },
-        { icon: 'layers', title: 'DXF pour AutoCAD et la découpe laser', formats: 'DXF R12 · mm', text: 'Un calque par type de pièce : montants, platines, lisses, main courante, cotes. Sur un panneau découpé au laser, contours de tôle et perçages ont leurs propres calques. Vous pouvez aussi importer votre motif en DXF.' },
+        { icon: 'layers', title: 'DXF pour AutoCAD et la découpe laser', formats: 'DXF R12 · mm', text: 'Un calque par type de pièce : montants, platines, lisses, main courante, cotes. Pour la découpe laser, la tôle (contour et découpes) est isolée sur ses propres calques : seule la tôle part au laser, pas le garde-corps. Vous pouvez aussi importer votre motif en DXF.' },
       ],
       example: {
         title: 'Exemple : garde-corps droit de 2000 mm',
@@ -102,13 +102,13 @@ export const translations = {
         note: 'Le même garde-corps à 2800 mm passe à deux modules et la liste se recalcule : main courante 2 × 1400 mm, 22 barreaux, 4 platines, lames et platine de jonction, boulonnerie M12 (4 vis, 4 écrous, 8 rondelles) et 20 ancrages.',
       },
       docs: {
-        title: 'Extraits du dossier de fabrication',
+        title: "Extraits des documents d'atelier",
         open: 'ouvrir en grand',
         items: [
           { key: 'dossier', caption: 'Couverture : état du dossier et sommaire', alt: 'Page de couverture du dossier de fabrication : état du dossier, pièces à fabriquer et sommaire' },
           { key: 'platine', caption: 'Platine : trous cotés en X/Y', alt: 'Plan de la platine de pied 120 × 120 × 10 avec quatre trous Ø13 et leurs cotes X/Y' },
           { key: 'module', caption: 'Module soudé : repères et soudures', alt: 'Plan du module de garde-corps soudé, repères dans des bulles, cotes 980, 980 et 2080 mm' },
-          { key: 'laser', caption: 'DXF : panneau découpé laser', alt: 'Extrait du DXF de face : panneau découpé au laser entre deux montants, repères DK-01, UL-01 et SP-01' },
+          { key: 'laser', caption: 'Découpe laser : la tôle seule, 940 × 770 mm', alt: 'Tôle SP-01 du garde-corps, 940 × 770 mm, avec ses 73 découpes : calques TOLE et TOLE-PERCAGE du DXF de METALIQ' },
         ],
       },
       types: {
@@ -292,7 +292,7 @@ export const translations = {
       outputs: [
         { icon: 'list', title: 'Cut list', formats: 'CSV · PDF', text: 'Every part with its mark, profile, cut length in mm and quantity. End cuts (square, bevel, mitre, fish-mouth) and holes are listed; purchased parts and welds have their own list.' },
         { icon: 'file-text', title: 'Fabrication file', formats: 'PDF · A4 / A3', text: 'Setting-out plan with anchor holes, bar cutting table, base-plate drawings with X/Y hole positions, welded module with the weld list and assembly order.' },
-        { icon: 'layers', title: 'DXF for AutoCAD and laser cutting', formats: 'DXF R12 · mm', text: 'One layer per part type: posts, base plates, rails, handrail, dimensions. On a laser-cut panel, sheet contours and holes have their own layers. You can also import your own pattern as DXF.' },
+        { icon: 'layers', title: 'DXF for AutoCAD and laser cutting', formats: 'DXF R12 · mm', text: 'One layer per part type: posts, base plates, rails, handrail, dimensions. For laser cutting, the sheet (outline and cut-outs) sits on its own layers: only the sheet goes to the laser, not the railing. You can also import your own pattern as DXF.' },
       ],
       example: {
         title: 'Example: 2000 mm straight railing',
@@ -310,13 +310,13 @@ export const translations = {
         note: 'The same railing at 2800 mm becomes two modules and the list recalculates: handrail 2 × 1400 mm, 22 balusters, 4 base plates, joint flats and joint plate, M12 bolting (4 bolts, 4 nuts, 8 washers) and 20 anchors.',
       },
       docs: {
-        title: 'From the fabrication file',
+        title: 'From the workshop documents',
         open: 'open full size',
         items: [
           { key: 'dossier', caption: 'Cover: file status and contents', alt: 'Cover page of the fabrication file: file status, parts to make and contents' },
           { key: 'platine', caption: 'Base plate: holes dimensioned in X/Y', alt: 'Drawing of the 120 × 120 × 10 base plate with four Ø13 holes and their X/Y positions' },
           { key: 'module', caption: 'Welded module: marks and welds', alt: 'Drawing of the welded railing module, part marks in balloons, dimensions 980, 980 and 2080 mm' },
-          { key: 'laser', caption: 'DXF: laser-cut panel', alt: 'Detail of the front DXF: laser-cut panel between two posts, marks DK-01, UL-01 and SP-01' },
+          { key: 'laser', caption: 'Laser cutting: the sheet only, 940 × 770 mm', alt: 'Railing sheet SP-01, 940 × 770 mm, with its 73 cut-outs: TOLE and TOLE-PERCAGE layers of the METALIQ DXF' },
         ],
       },
       types: {
@@ -500,7 +500,7 @@ export const translations = {
       outputs: [
         { icon: 'list', title: 'Kesim listesi', formats: 'CSV · PDF', text: 'Her parça poz numarası, profili, mm cinsinden kesim boyu ve adediyle. Uç kesimleri (düz, açılı, gönye, balık ağzı) ve delikler yazılır; satın alınacaklar ve kaynaklar ayrı listede.' },
         { icon: 'file-text', title: 'İmalat dosyası', formats: 'PDF · A4 / A3', text: 'Ankraj delikleriyle montaj planı, çubuk kesim tablosu, delikleri X/Y ölçülü platine çizimleri, kaynak listesi ve montaj sırasıyla kaynaklı modül.' },
-        { icon: 'layers', title: 'AutoCAD ve lazer kesim için DXF', formats: 'DXF R12 · mm', text: 'Her parça türü ayrı katmanda: dikme, platine, lama, küpeşte, ölçüler. Lazer kesim panelde sac konturu ve delikler kendi katmanlarında. Kendi motifinizi de DXF olarak içe alabilirsiniz.' },
+        { icon: 'layers', title: 'AutoCAD ve lazer kesim için DXF', formats: 'DXF R12 · mm', text: 'Her parça türü ayrı katmanda: dikme, platine, lama, küpeşte, ölçüler. Lazer kesim için sac (dış kontur ve kesimler) kendi katmanlarında ayrıdır: lazere korkuluk değil, yalnızca sac gider. Kendi motifinizi de DXF olarak içe alabilirsiniz.' },
       ],
       example: {
         title: 'Örnek: 2000 mm düz korkuluk',
@@ -518,13 +518,13 @@ export const translations = {
         note: "Aynı korkuluk 2800 mm'de iki modüle ayrılır ve liste yeniden hesaplanır: küpeşte 2 × 1400 mm, 22 dolgu çubuğu, 4 platine, birleşim lamaları ve platinesi, M12 bağlantı (4 cıvata, 4 somun, 8 pul) ve 20 ankraj.",
       },
       docs: {
-        title: 'İmalat dosyasından sayfalar',
+        title: 'Atölye belgelerinden örnekler',
         open: 'büyük aç',
         items: [
           { key: 'dossier', caption: 'Kapak: dosya durumu ve içindekiler', alt: 'İmalat dosyasının kapak sayfası: dosya durumu, imal edilecek parçalar ve içindekiler' },
           { key: 'platine', caption: 'Platine: delikler X/Y ölçülü', alt: '120 × 120 × 10 dikme platinesi çizimi, dört Ø13 delik ve X/Y ölçüleri' },
           { key: 'module', caption: 'Kaynaklı modül: pozlar ve kaynaklar', alt: 'Kaynaklı korkuluk modülü çizimi, balonlarda poz numaraları, 980, 980 ve 2080 mm ölçüleri' },
-          { key: 'laser', caption: 'DXF: lazer kesim panel', alt: 'Önden DXF çiziminden kesit: iki dikme arasında lazer kesim panel, DK-01, UL-01 ve SP-01 pozları' },
+          { key: 'laser', caption: 'Lazer kesim: yalnız sac, 940 × 770 mm', alt: 'Korkuluğun SP-01 sacı, 940 × 770 mm, 73 kesimle: METALIQ DXF\'inin TOLE ve TOLE-PERCAGE katmanları' },
         ],
       },
       types: {

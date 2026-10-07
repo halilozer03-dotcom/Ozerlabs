@@ -106,6 +106,12 @@ Yeni bir görev bunlardan birini bozuyorsa **önce nedenini söyle**, sonra doku
   belgeler: kesim listesi, PDF imalat dosyası, AutoCAD ve lazer kesim için
   DXF. **"AutoCAD'e %100 entegre" yazılmaz** (AutoCAD'de açılış test
   edilmedi); yazılan, ölçülen biçimdir: DXF R12, mm, parça türüne göre katman.
+- **Lazere tüm korkuluk değil, yalnız sac gider** (kullanıcı, 2026-10-07).
+  Araç bugün sac-yalnız DXF vermiyor (iki DXF çıktısı da tüm korkuluk; sac
+  `TOLE` + `TOLE-PERCAGE` katmanlarında). Sitedeki lazer görseli bu iki
+  katmanın aracın DXF'inden ayıklanmış hâlidir (SP-01, 940 × 770 mm, 73
+  kesim; `laser_sheet.py`) ve alt metin bunu söyler. Araç sac-yalnız çıktı
+  kazanırsa görsel o çıktıdan yeniden üretilir.
 - Kesim listesi tablosu gerçek çıktıdır (2000 mm korkuluk, canlı araçtan
   ölçüldü; 2800 mm notu da). Araç değişirse `translations.js → metaliq.example`
   üç dilde birlikte güncellenir. Diziler şema denetiminde yalnız uzunlukla
