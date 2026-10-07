@@ -79,7 +79,7 @@ export const translations = {
       eyebrow: 'METALIQ · notre logiciel de métallerie',
       title: 'Pas une simple vue 3D : les documents pour fabriquer',
       sub: "Le métallier saisit ses cotes. METALIQ modélise l'ouvrage en 3D, puis sort la liste de débit, le dossier de fabrication PDF et les fichiers DXF pour AutoCAD et la découpe laser.",
-      video: "Démonstration de METALIQ : garde-corps élargi de 2000 à 2800 mm, garde-corps fer forgé, aluminium et verre, porte, devanture, clôture, grille sur muret, mezzanine, essai de circulation dans l'escalier et pergola fermée par des stores zip.",
+      video: "Démonstration de METALIQ : garde-corps en U à panneaux de tôle découpée au laser, vu sur 360°, puis garde-corps fer forgé, aluminium et verre, porte, devanture, clôture, grille sur muret, mezzanine, essai de circulation dans l'escalier et pergola fermée par des stores zip.",
       outputsTitle: "Ce que l'atelier reçoit",
       outputs: [
         { icon: 'list', title: 'Liste de débit', formats: 'CSV · PDF', text: "Chaque pièce avec son repère, son profil, sa longueur de débit en mm et sa quantité. Coupes d'extrémité (droite, biais, onglet, gueule de loup) et perçages indiqués ; achats et soudures ont leur propre liste." },
@@ -113,7 +113,7 @@ export const translations = {
       },
       types: {
         title: "11 types d'ouvrages",
-        items: { railing: 'Garde-corps acier', ferforge: 'Garde-corps fer forgé', aluminium: 'Garde-corps aluminium', verre: 'Garde-corps en verre', portail: 'Porte et portail', devanture: 'Devanture vitrée', grillage: 'Grillage et clôture', muret: 'Grille sur muret', mezzanine: 'Mezzanine', escalier: 'Escalier', pergola: 'Pergola' },
+        items: { railing: 'Garde-corps acier, tôle laser', ferforge: 'Garde-corps fer forgé', aluminium: 'Garde-corps aluminium', verre: 'Garde-corps en verre', portail: 'Porte et portail', devanture: 'Devanture vitrée', grillage: 'Grillage et clôture', muret: 'Grille sur muret', mezzanine: 'Mezzanine', escalier: 'Escalier', pergola: 'Pergola' },
       },
       checks: {
         title: 'Contrôles intégrés',
@@ -287,7 +287,7 @@ export const translations = {
       eyebrow: 'METALIQ · our metalwork software',
       title: 'Not just a 3D view: the documents to build it',
       sub: 'The fabricator enters the dimensions. METALIQ models the job in 3D, then outputs the cut list, a PDF fabrication file and DXF files for AutoCAD and laser cutting.',
-      video: 'METALIQ demo: railing widened from 2000 to 2800 mm, wrought-iron, aluminium and glass railings, door, shopfront, fence, fence on a low wall, mezzanine, walk test on the staircase and a pergola closed with zip screens.',
+      video: 'METALIQ demo: U-shaped railing with laser-cut sheet panels shown through 360°, then wrought-iron, aluminium and glass railings, door, shopfront, fence, fence on a low wall, mezzanine, walk test on the staircase and a pergola closed with zip screens.',
       outputsTitle: 'What the workshop gets',
       outputs: [
         { icon: 'list', title: 'Cut list', formats: 'CSV · PDF', text: 'Every part with its mark, profile, cut length in mm and quantity. End cuts (square, bevel, mitre, fish-mouth) and holes are listed; purchased parts and welds have their own list.' },
@@ -321,7 +321,7 @@ export const translations = {
       },
       types: {
         title: '11 product types',
-        items: { railing: 'Steel railing', ferforge: 'Wrought-iron railing', aluminium: 'Aluminium railing', verre: 'Glass railing', portail: 'Door and gate', devanture: 'Glazed shopfront', grillage: 'Fence', muret: 'Fence on a low wall', mezzanine: 'Mezzanine', escalier: 'Staircase', pergola: 'Pergola' },
+        items: { railing: 'Steel railing, laser-cut sheet', ferforge: 'Wrought-iron railing', aluminium: 'Aluminium railing', verre: 'Glass railing', portail: 'Door and gate', devanture: 'Glazed shopfront', grillage: 'Fence', muret: 'Fence on a low wall', mezzanine: 'Mezzanine', escalier: 'Staircase', pergola: 'Pergola' },
       },
       checks: {
         title: 'Built-in checks',
@@ -495,7 +495,7 @@ export const translations = {
       eyebrow: 'METALIQ · metal imalat yazılımımız',
       title: 'Basit bir 3D görsel değil: imalat için belgeler',
       sub: 'Usta ölçüleri girer. METALIQ işi 3D modeller; ardından kesim listesini, PDF imalat dosyasını ve AutoCAD ile lazer kesim için DXF dosyalarını çıkarır.',
-      video: "METALIQ tanıtımı: 2000 mm'den 2800 mm'ye genişleyen korkuluk, ferforje, alüminyum ve cam korkuluk, kapı, camekân, çit, duvar üstü çit, asma kat, merdivende yürüme testi ve zip perdeyle kapanan pergola.",
+      video: "METALIQ tanıtımı: lazer kesim sac panelli U korkuluk 360° döner; ardından ferforje, alüminyum ve cam korkuluk, kapı, camekân, çit, duvar üstü çit, asma kat, merdivende yürüme testi ve zip perdeyle kapanan pergola.",
       outputsTitle: 'Atölyeye giden belgeler',
       outputs: [
         { icon: 'list', title: 'Kesim listesi', formats: 'CSV · PDF', text: 'Her parça poz numarası, profili, mm cinsinden kesim boyu ve adediyle. Uç kesimleri (düz, açılı, gönye, balık ağzı) ve delikler yazılır; satın alınacaklar ve kaynaklar ayrı listede.' },
@@ -529,7 +529,7 @@ export const translations = {
       },
       types: {
         title: '11 iş türü',
-        items: { railing: 'Çelik korkuluk', ferforge: 'Ferforje korkuluk', aluminium: 'Alüminyum korkuluk', verre: 'Cam korkuluk', portail: 'Kapı ve bahçe kapısı', devanture: 'Camekân / giriş', grillage: 'Çit', muret: 'Duvar üstü çit', mezzanine: 'Asma kat', escalier: 'Merdiven', pergola: 'Pergola' },
+        items: { railing: 'Çelik korkuluk, lazer sac', ferforge: 'Ferforje korkuluk', aluminium: 'Alüminyum korkuluk', verre: 'Cam korkuluk', portail: 'Kapı ve bahçe kapısı', devanture: 'Camekân / giriş', grillage: 'Çit', muret: 'Duvar üstü çit', mezzanine: 'Asma kat', escalier: 'Merdiven', pergola: 'Pergola' },
       },
       checks: {
         title: 'Yerleşik denetimler',
