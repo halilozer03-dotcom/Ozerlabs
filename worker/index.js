@@ -7,10 +7,11 @@
  * doğrudan ozer.labs@gmail.com'a gönderir; istemci tarafı hata alırsa eski
  * `mailto:` yoluna düşer (Contact.jsx), yani mesaj her iki durumda da kaybolmaz.
  *
- * Kapsam bilinçli olarak dar: Worker YALNIZCA /api/* isteklerini görür
- * (wrangler.toml → [assets] run_worker_first). Diğer bütün adresler eskisi
+ * Kapsam bilinçli olarak dar: Worker YALNIZCA /api/* ve /showcase/*
+ * isteklerini görür (wrangler.toml → [assets] run_worker_first; /showcase
+ * yalnız video için bayt aralığı ekler, aşağıda). Diğer bütün adresler eskisi
  * gibi statik varlık olarak sunulur; rota başına canonical üreten prerender
- * düzeni ve SPA fallback davranışı değişmez. Buraya düşen /api dışı bir istek
+ * düzeni ve SPA fallback davranışı değişmez. Buraya düşen başka bir istek
  * olursa varlık sunucusuna geri devredilir.
  */
 
@@ -141,12 +142,65 @@ async function contact(request, env) {
   return json({ ok: true }, 200)
 }
 
+/**
+ * Tanıtım medyası için bayt aralığı (Range) desteği — /showcase/*.
+ *
+ * Statik varlık sunucusu Range başlığını yok sayıp her isteğe 200 + tam
+ * gövde dönüyor (07.10.2026 canlıda ölçüldü: `Range: bytes=0-1` → 200,
+ * 3.218.345 bayt, Accept-Ranges yok). iOS Safari <video> için aralık ister;
+ * 206 alamazsa videoyu oynatmaz. Bu yüzden yalnız /showcase/* Worker'dan
+ * geçer (wrangler.toml → run_worker_first): varlık Range'siz alınır, istenen
+ * dilim 206 ile döner. Range'siz istek (görseller) olduğu gibi geçer.
+ */
+const RANGE_RE = /^bytes=(\d*)-(\d*)$/
+
+async function showcaseMedia(request, env) {
+  const headers = new Headers(request.headers)
+  const range = headers.get('range')
+  headers.delete('range')
+  const res = await env.ASSETS.fetch(new Request(request.url, { method: request.method, headers }))
+
+  const m = range ? RANGE_RE.exec(range.trim()) : null
+  if (request.method !== 'GET' || res.status !== 200 || !m || (m[1] === '' && m[2] === '')) {
+    const out = new Response(res.body, res)
+    if (res.status === 200) out.headers.set('accept-ranges', 'bytes')
+    return out
+  }
+
+  const buf = await res.arrayBuffer()
+  const size = buf.byteLength
+  let start
+  let end
+  if (m[1] === '') {
+    // Sonek biçimi: son N bayt.
+    start = Math.max(0, size - Number(m[2]))
+    end = size - 1
+  } else {
+    start = Number(m[1])
+    end = m[2] === '' ? size - 1 : Math.min(Number(m[2]), size - 1)
+  }
+
+  if (start >= size || start > end) {
+    return new Response(null, {
+      status: 416,
+      headers: { 'content-range': `bytes */${size}`, 'accept-ranges': 'bytes' },
+    })
+  }
+
+  const out = new Headers(res.headers)
+  out.set('content-range', `bytes ${start}-${end}/${size}`)
+  out.set('content-length', String(end - start + 1))
+  out.set('accept-ranges', 'bytes')
+  return new Response(buf.slice(start, end + 1), { status: 206, headers: out })
+}
+
 export default {
   async fetch(request, env) {
     const { pathname } = new URL(request.url)
 
     if (pathname === '/api/contact') return contact(request, env)
     if (pathname.startsWith('/api/')) return json({ ok: false, error: 'not-found' }, 404)
+    if (pathname.startsWith('/showcase/')) return showcaseMedia(request, env)
 
     /* /api dışı bir istek buraya düşmemeli; düşerse statik varlığa devret. */
     return env.ASSETS.fetch(request)

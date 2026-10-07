@@ -19,7 +19,9 @@ main = "worker/index.js"
 directory = "./dist"
 not_found_handling = "single-page-application"
 binding = "ASSETS"
-run_worker_first = ["/api/*"]
+# /showcase/*: tanıtım videosu için bayt aralığı (206) — varlık sunucusu Range'i
+# yok sayıyor, iOS Safari aralıksız videoyu oynatmıyor (worker/index.js).
+run_worker_first = ["/api/*", "/showcase/*"]
 
 # Cloudflare Email Routing üzerinden gönderim. destination_address doğrulanmış
 # olmak zorundadır (ozer.labs@gmail.com — 24.08.2026'da doğrulandı); aksi halde
