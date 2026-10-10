@@ -41,8 +41,8 @@ export const translations = {
       ctaPrimary: 'Devis gratuit',
       ctaSecondary: 'Voir nos projets',
       ctaSecondaryShort: 'Voir nos projets',
-      visualAlt: "Écran de l'application BENDIQ : longueur développée 1106,8 mm, longueur 2000 mm, poids 34,75 kg, avec le plan 2D coté, les vues 3D/4D et l'export PDF en dessous.",
-      visualCaption: 'BENDIQ — en ligne sur Google Play',
+      visualAlt: "Écran 4D de BENDIQ : la presse plieuse complète simulée, le contrôle de collision indique « No collision », avec les commandes de lecture de l'animation de pliage en dessous.",
+      visualCaption: 'BENDIQ 4D — sur Google Play',
       visualLink: 'Ouvrir BENDIQ sur Google Play',
     },
     about: {
@@ -179,7 +179,7 @@ export const translations = {
       ],
     },
     projects: [
-      { tag: 'MOBILE · ANDROID', logo: '/bendiq-logo.webp', cover: '/bendiq-kapak.webp', title: 'BENDIQ', desc: "Développé et perte au pli pour presse plieuse : plan 2D coté, aperçu 3D au rayon réel, animation 4D de l'ordre de pliage, implantation des trous et export PDF A4. 25 langues.", meta: ['REACT · CAPACITOR', '2026'], url: PLAY_BENDIQ },
+      { tag: 'MOBILE · ANDROID', logo: '/bendiq-logo.webp', cover: '/bendiq-kapak.webp', title: 'BENDIQ', desc: "Calcul de pliage pour presse plieuse : développé et perte au pli apprise de votre machine, plan 2D coté, 3D au vrai rayon, la presse plieuse complète en 4D avec simulateur de collision, DXF pour le laser, gabarit 1:1 et PDF. 25 langues.", meta: ['REACT · CAPACITOR', '2026'], url: PLAY_BENDIQ },
       { tag: 'LOGICIEL MÉTIER · WEB', title: 'METALIQ', cover: '/showcase/metaliq/cover.webp', desc: 'Logiciel de conception 3D pour la métallerie : garde-corps, escaliers, portes et portails, clôtures, mezzanines et pergolas, avec liste de débit, DXF et dossier de fabrication.', meta: ['REACT · THREE.JS', '2026'], anchor: 'metaliq' },
       { tag: 'SAAS · WEB', title: 'FacturIQ', status: 'design', desc: "Facturation électronique pour artisans et TPE : devis, acompte, solde et avoir, factures Factur-X vérifiées selon la norme EN 16931, export FEC pour le comptable.", meta: ['TYPESCRIPT · POSTGRESQL', '2026'] },
       { tag: 'SITE CLIENT · WEB', title: 'HD Auto', desc: 'Site vitrine pour un garage automobile, avec présentation des services et prise de rendez-vous.', meta: ['HTML · CSS · JS', '2026'], logo: '/brand/hd-auto.webp', url: 'https://wwwhdauto.com' },
@@ -249,8 +249,8 @@ export const translations = {
       ctaPrimary: 'Get a Free Quote',
       ctaSecondary: 'See Our Work',
       ctaSecondaryShort: 'See Our Work',
-      visualAlt: 'BENDIQ app screen: flat length 1106.8 mm, length 2000 mm, weight 34.75 kg, with the dimensioned 2D drawing, 3D/4D views and PDF export below.',
-      visualCaption: 'BENDIQ — live on Google Play',
+      visualAlt: 'BENDIQ 4D screen: the full press brake simulated, the collision check reads “No collision”, with the playback controls for the bending animation below.',
+      visualCaption: 'BENDIQ 4D — on Google Play',
       visualLink: 'Open BENDIQ on Google Play',
     },
     about: {
@@ -387,7 +387,7 @@ export const translations = {
       ],
     },
     projects: [
-      { tag: 'MOBILE · ANDROID', logo: '/bendiq-logo.webp', cover: '/bendiq-kapak.webp', title: 'BENDIQ', desc: 'Flat pattern and bend allowance for press brakes: dimensioned 2D drawing, 3D preview at the real radius, a 4D animation of the bending sequence, hole layout and A4 PDF output. 25 languages.', meta: ['REACT · CAPACITOR', '2026'], url: PLAY_BENDIQ },
+      { tag: 'MOBILE · ANDROID', logo: '/bendiq-logo.webp', cover: '/bendiq-kapak.webp', title: 'BENDIQ', desc: 'Bending calculator for press brakes: flat pattern and bend deduction learned from your own machine, dimensioned 2D drawing, 3D at the real radius, the full press brake in 4D with a collision simulator, DXF for the laser, 1:1 template and PDF. 25 languages.', meta: ['REACT · CAPACITOR', '2026'], url: PLAY_BENDIQ },
       { tag: 'BUSINESS SOFTWARE · WEB', title: 'METALIQ', cover: '/showcase/metaliq/cover.webp', desc: '3D design software for metal fabricators: railings, staircases, doors and gates, fences, mezzanines and pergolas, with cut list, DXF and fabrication file.', meta: ['REACT · THREE.JS', '2026'], anchor: 'metaliq' },
       { tag: 'SAAS · WEB', title: 'FacturIQ', status: 'design', desc: 'E-invoicing for tradespeople and small businesses: quotes, deposits, balance and credit notes, Factur-X invoices checked against EN 16931, and an FEC export for the accountant.', meta: ['TYPESCRIPT · POSTGRESQL', '2026'] },
       { tag: 'CLIENT SITE · WEB', title: 'HD Auto', desc: 'Showcase site for an auto garage, with service highlights and appointment booking.', meta: ['HTML · CSS · JS', '2026'], logo: '/brand/hd-auto.webp', url: 'https://wwwhdauto.com' },
@@ -457,8 +457,8 @@ export const translations = {
       ctaPrimary: 'Ücretsiz Teklif Al',
       ctaSecondary: 'Projeleri Gör',
       ctaSecondaryShort: 'Projeleri Gör',
-      visualAlt: 'BENDIQ uygulama ekranı: kesilecek en 1106,8 mm, boy 2000 mm, ağırlık 34,75 kg; altında ölçülendirilmiş 2D teknik çizim, 3D/4D görünümler ve PDF çıktısı.',
-      visualCaption: "BENDIQ — Google Play'de yayında",
+      visualAlt: 'BENDIQ 4D ekranı: abkant presin tamamı simüle ediliyor, çarpışma denetimi “No collision” gösteriyor; altında büküm animasyonunun oynatma düğmeleri.',
+      visualCaption: "BENDIQ 4D — Google Play'de",
       visualLink: "BENDIQ'i Google Play'de aç",
     },
     about: {
@@ -595,7 +595,7 @@ export const translations = {
       ],
     },
     projects: [
-      { tag: 'MOBILE · ANDROID', logo: '/bendiq-logo.webp', cover: '/bendiq-kapak.webp', title: 'BENDIQ', desc: 'Abkant pres için açınım ve büküm payı hesabı: ölçülendirilmiş 2D teknik çizim, gerçek radüslü 3D, büküm sırasını gösteren 4D animasyon, delik yerleşimi ve A4 PDF çıktısı. 25 dil.', meta: ['REACT · CAPACITOR', '2026'], url: PLAY_BENDIQ },
+      { tag: 'MOBILE · ANDROID', logo: '/bendiq-logo.webp', cover: '/bendiq-kapak.webp', title: 'BENDIQ', desc: "Abkant pres için büküm hesabı: makinenizden öğrenilen büküm payı ve açınım, ölçülendirilmiş 2D çizim, gerçek radüslü 3D, çarpışma simülatörüyle abkantın tamamı 4D'de, lazer için DXF, 1:1 şablon ve PDF. 25 dil.", meta: ['REACT · CAPACITOR', '2026'], url: PLAY_BENDIQ },
       { tag: 'İŞ YAZILIMI · WEB', title: 'METALIQ', cover: '/showcase/metaliq/cover.webp', desc: 'Metal imalatçıları için 3D tasarım yazılımı: korkuluk, merdiven, kapı ve bahçe kapısı, çit, asma kat ve pergola; kesim listesi, DXF ve imalat dosyası.', meta: ['REACT · THREE.JS', '2026'], anchor: 'metaliq' },
       { tag: 'SAAS · WEB', title: 'FacturIQ', status: 'design', desc: 'Zanaatkâr ve küçük işletmeler için e-fatura: teklif, avans, bakiye ve iade faturası; EN 16931 kurallarıyla denetlenen Factur-X faturaları ve muhasebeci için FEC dışa aktarımı.', meta: ['TYPESCRIPT · POSTGRESQL', '2026'] },
       { tag: 'MÜŞTERİ · WEB', title: 'HD Auto', desc: 'Oto tamir ve bakım servisi için hizmet tanıtımı ve randevu alma özellikli tanıtım sitesi.', meta: ['HTML · CSS · JS', '2026'], logo: '/brand/hd-auto.webp', url: 'https://wwwhdauto.com' },

@@ -599,9 +599,9 @@
   display: block;
   width: 100%;
   height: auto;
-  /* Gerçek cihazın oranı (384×832). 9:16 varsayımı kareyi kırpıyordu:
-     ekranın altındaki teknik çizim ve PDF düğmesi görünmüyordu. */
-  aspect-ratio: 720 / 1560;
+  /* Görselin kendi oranı (720×1383). 9:16 varsayımı kareyi kırpıyordu:
+     ekranın altındaki oynatma düğmeleri görünmüyordu. */
+  aspect-ratio: 720 / 1383;
   object-fit: cover;
   object-position: top center;
   border-radius: 18px;

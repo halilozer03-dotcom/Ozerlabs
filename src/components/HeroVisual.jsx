@@ -9,7 +9,8 @@ import Icon from './Icon.jsx'
  *
  * Görsel dekoratif DEĞİL: ürünün çalıştığının kanıtı olduğu için
  * gerçek alt metni var ve ekran okuyuculara açık.
- * Oran gerçek cihazın kendi oranı (384×832 CSS px → 720×1560) ve sabit
+ * Görsel 4D pres ekranı (Play mağaza karesinden, başlık yazısı kırpıldı:
+ * yalnız Türkçe olduğu için üç dilde kullanılamazdı). Oran 720×1383 ve sabit
  * olduğu için CLS üretmez. 9:16'ya sıkıştırmak kareyi kırpıyordu.
  *
  * Tamamı Play sayfasına giden tek bir bağlantı. Alt yazı zaten
@@ -35,10 +36,10 @@ export default function HeroVisual() {
         <figure className="device">
           <img
             className="device__screen"
-            src="/bendiq-teknik-cizim.webp"
+            src="/bendiq-4d-pres.webp"
             alt={t.hero.visualAlt}
             width="720"
-            height="1560"
+            height="1383"
             loading="eager"
             fetchpriority="high"
             decoding="async"
