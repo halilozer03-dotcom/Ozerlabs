@@ -133,6 +133,25 @@ Yeni bir görev bunlardan birini bozuyorsa **önce nedenini söyle**, sonra doku
   oynar, çıkınca durur; ziyaretçi durdurursa bir daha başlatılmaz; hareket
   azaltmada kendi oynamaz.
 
+**12.10.2026 eklemeleri (kullanıcı istekleri)**
+- **Hero kitle ayrımı:** ikincil "Projeleri gör" yerine iki bağlantı (Endüstriyel /
+  Yerel işletme çözümleri). İkisi de `#projeler`'e iner ve ızgarayı
+  `location.state.segment` ile süzer (`Projects.jsx` süzgeç: Tümü / Endüstriyel /
+  Yerel işletme; projede `segments` dizisi, üç dilde aynı). Birincil eylem tek kaldı.
+  `App.jsx` ScrollManager `location.key`'e de bakar (aynı hash'e ikinci gidişte kaydırma).
+- **Hero görseli = BENDIQ ana ekranı** (Play karesi 01_calculation, durum çubuğu ve
+  alttaki beyaz 2D kırpılmış) + üstünde hazır marka bandı `bendiq-banner-serit`
+  → `public/bendiq-ana-ekran.webp` 698×1557. 4D pres karesi BENDIQ proje kartında
+  çizimin yanında (`screen` alanı).
+- **METALIQ 3D = aracın KENDİ görüntüleyicisi**, salt görüntüleme vitrin derlemesi:
+  cims-cad PR #146, `cad-tool/vite.vitrine.config.js` → `dist-vitrine/` →
+  `public/showcase/metaliq/3d/` (elle kopyalanır; araç değişince yeniden derlenip
+  kopyalanır). 11 iş türü (kutucuklarla aynı kurulum), korkuluklarda platine yandan
+  (alın). **Çıktı YOK** (kullanıcı: "CAD'i kullanıma açma, sadece 3D"): paket ölçüldü —
+  DXF/PDF/STL/CSV kodu 0; düzenleme paneli, komut çubuğu, kayıt yok. iframe bölüme
+  400 px kala yüklenir (~750 kB gzip). Aracın dilleri FR/TR; EN ziyaretçi FR görür.
+- FacturIQ kartı logosu `public/brand/facturiq.webp` (kullanıcının verdiği logonun amblemi).
+
 **Sürtünme**
 - Fiyat bölümünün adı "Kapsam". Rakam yok, bu yüzden başlık da fiyat vaat
   etmiyor; her kart "ne alıyorum" + teslim süresi verir (`Pricing.jsx`).

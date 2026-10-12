@@ -57,11 +57,31 @@ export default function Hero() {
               {t.hero.ctaPrimary}
               <Icon name="arrow-right" size={17} className="btn__icon" />
             </Link>
-            <Link to={{ pathname: '/', hash: '#projeler' }} className="btn btn--secondary">
-              {t.hero.ctaSecondaryShort}
-              <Icon name="layers" size={17} />
-            </Link>
           </div>
+
+          {/* Kitle ayrımı: ikincil "Projeleri gör" yerine iki yol. İkisi de
+              projeler ızgarasına iner ve onu ilgili kitleye süzer
+              (Projects.jsx, location.state.segment); ziyaretçi orada
+              "Tümü"ne dönebilir. Birincil eylem tek kalır. */}
+          <nav className="hero__segments" aria-label={t.hero.segments.label}>
+            <span className="hero__segments-label">{t.hero.segments.label}</span>
+            <Link
+              to={{ pathname: '/', hash: '#projeler' }}
+              state={{ segment: 'industry' }}
+              className="btn btn--secondary btn--sm"
+            >
+              <Icon name="layers" size={16} />
+              {t.hero.segments.industry}
+            </Link>
+            <Link
+              to={{ pathname: '/', hash: '#projeler' }}
+              state={{ segment: 'local' }}
+              className="btn btn--secondary btn--sm"
+            >
+              <Icon name="map-pin" size={16} />
+              {t.hero.segments.local}
+            </Link>
+          </nav>
 
           <ul className="hero__trust">
             {trust.map((item) => {

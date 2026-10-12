@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
 import { METALIQ_MEDIA } from '../content/metaliq.js'
@@ -70,6 +70,65 @@ function DemoVideo({ label }) {
 }
 
 /**
+ * METALIQ'in KENDİ 3D görüntüleyicisi (CAD aracının "vitrin" derlemesi —
+ * cims-cad `vite.vitrine.config.js`, dosyalar public/showcase/metaliq/3d/).
+ * Kullanıcı 12.10.2026: basit yeniden çizim değil, güncel CAD; ölçüleri
+ * aç/kapa gibi araçlar içinde çalışsın; 11 iş türü; alın bağlantı.
+ * Canlı araca bağlantı DEĞİL: düzenleme ve dışa aktarım vitrin derlemesinde
+ * yok. ~750 kB (gzip) olduğu için iframe yalnız bölüme 400 px kala yüklenir.
+ * Aracın dilleri FR/TR; EN ziyaretçi FR görür (metinde söyleniyor).
+ */
+function LiveViewer({ m, lang }) {
+  const ref = useRef(null)
+  const [near, setNear] = useState(false)
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    if (!('IntersectionObserver' in window)) {
+      setNear(true)
+      return
+    }
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setNear(true)
+          io.disconnect()
+        }
+      },
+      { rootMargin: '400px 0px' }
+    )
+    io.observe(el)
+    return () => io.disconnect()
+  }, [])
+
+  const viewerLang = lang === 'tr' ? 'tr' : 'fr'
+
+  return (
+    <Reveal className="metaliq__model">
+      <div className="live-viewer__head">
+        <h3 className="metaliq__h">{m.title}</h3>
+        <p className="live-viewer__text">{m.text}</p>
+      </div>
+      <div className="live-viewer__stage" ref={ref}>
+        {near && (
+          <iframe
+            key={viewerLang}
+            className="live-viewer__frame"
+            src={`/showcase/metaliq/3d/index.html?lang=${viewerLang}`}
+            title={m.frameTitle}
+            loading="lazy"
+            allow="fullscreen"
+            allowFullScreen
+          />
+        )}
+      </div>
+      <p className="live-viewer__note">{m.note}</p>
+    </Reveal>
+  )
+}
+
+/**
  * METALIQ — kendi ürünümüz, ücretli verilecek. Canlı araca bağlantı YOK
  * (kullanıcı kararı); tanıtım burada, ana sayfanın üst kısmında yapılır.
  *
@@ -86,7 +145,7 @@ function DemoVideo({ label }) {
  * içindir; bu bölümün eylemi ayrı bir ürünün demosudur.
  */
 export default function Metaliq() {
-  const { t } = useLanguage()
+  const { t, lang } = useLanguage()
   const m = t.metaliq
   const { tiles, docs } = METALIQ_MEDIA
 
@@ -186,6 +245,8 @@ export default function Metaliq() {
             </ul>
           </Reveal>
         </div>
+
+        <LiveViewer m={m.model} lang={lang} />
 
         {/* ---------- 11 iş türü ---------- */}
         <Reveal className="metaliq__types">

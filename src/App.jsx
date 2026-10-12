@@ -23,7 +23,7 @@ import { useDocumentMeta } from './hooks/useDocumentMeta.js'
  * Hedefin üstündeki boşluk CSS'teki scroll-margin-top ile verilir.
  */
 function ScrollManager() {
-  const { hash, pathname } = useLocation()
+  const { hash, pathname, key } = useLocation()
 
   useEffect(() => {
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -41,7 +41,9 @@ function ScrollManager() {
     })
 
     return () => window.cancelAnimationFrame(frame)
-  }, [hash, pathname])
+    // key: aynı #hash'e ikinci kez gidildiğinde de kaydırılsın
+    // (hero'daki kitle düğmeleri aynı #projeler'e farklı süzgeçle iner).
+  }, [hash, pathname, key])
 
   return null
 }

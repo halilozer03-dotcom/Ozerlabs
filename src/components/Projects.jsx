@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
 import Reveal from './Reveal.jsx'
 import SectionHead from './SectionHead.jsx'
@@ -57,7 +57,11 @@ function ProjectCard({ project, viewLabel, labels, featured = false }) {
         {project.status === 'design' ? labels.statusDesign : labels.statusLive}
       </span>
 
-      <div className={`project-card__cover${project.cover ? ' project-card__cover--shot' : ''}`}>
+      <div
+        className={`project-card__cover${project.cover ? ' project-card__cover--shot' : ''}${
+          project.screen ? ' project-card__cover--duo' : ''
+        }`}
+      >
         {/* Öne çıkan projede kapak, uygulamanın gerçek çıktısı: A4 yatay
             teknik çizim (kesit + ölçüler + detay X + izometrik). Logo
             plakası 782×260'lık alanda boş duruyordu. */}
@@ -68,6 +72,19 @@ function ProjectCard({ project, viewLabel, labels, featured = false }) {
             alt=""
             width="1020"
             height="600"
+            loading="lazy"
+            decoding="async"
+          />
+        )}
+
+        {/* İkinci gerçek ekran (BENDIQ: 4D pres karesi) çizimin yanında. */}
+        {project.screen && (
+          <img
+            className="project-card__screen"
+            src={project.screen}
+            alt=""
+            width="720"
+            height="1383"
             loading="lazy"
             decoding="async"
           />
@@ -114,8 +131,31 @@ function ProjectCard({ project, viewLabel, labels, featured = false }) {
   )
 }
 
+const FILTERS = ['all', 'industry', 'local']
+
 export default function Projects() {
   const { t } = useLanguage()
+  const location = useLocation()
+  const labels = t.sections.projects
+  const [filter, setFilter] = useState('all')
+
+  // Hero'daki kitle düğmeleri ızgarayı süzerek buraya indirir. Her
+  // tıklama yeni bir gezinme (key) olduğundan aynı düğmeye tekrar
+  // basmak da süzgeci yeniden uygular.
+  useEffect(() => {
+    const segment = location.state?.segment
+    if (FILTERS.includes(segment)) setFilter(segment)
+  }, [location.key, location.state])
+
+  const filterLabel = {
+    all: labels.filterAll,
+    industry: labels.filterIndustry,
+    local: labels.filterLocal,
+  }
+  const visible = t.projects.filter((p) => filter === 'all' || p.segments.includes(filter))
+  // Öne çıkan kart her zaman listenin ilki (kendi ürünümüz); süzgeç onu
+  // dışarıda bırakırsa tüm kartlar kompakt kalır.
+  const lead = t.projects[0]
 
   return (
     <section
@@ -135,19 +175,37 @@ export default function Projects() {
         {/* Hiyerarşik ızgara: beş eşit kart yerine kendi ürünümüz büyük,
             müşteri işleri kompakt. En güçlü iş öne çıkıyor ve bölüm
             1.771 px'den yarıya iniyor. */}
+        <div className="projects__filters" role="group" aria-label={labels.filterLabel}>
+          {FILTERS.map((key) => {
+            const count = key === 'all' ? t.projects.length : t.projects.filter((p) => p.segments.includes(key)).length
+            return (
+              <button
+                type="button"
+                key={key}
+                className="projects__filter"
+                aria-pressed={filter === key}
+                onClick={() => setFilter(key)}
+              >
+                {filterLabel[key]}
+                <span className="projects__filter-count">{count}</span>
+              </button>
+            )
+          })}
+        </div>
+
         <ul className="projects__grid">
-          {t.projects.map((p, i) => (
+          {visible.map((p, i) => (
             <Reveal
               as="li"
               delay={(i % 3) * 90}
-              className={i === 0 ? 'projects__lead' : undefined}
+              className={p === lead ? 'projects__lead' : undefined}
               key={p.title}
             >
               <ProjectCard
                 project={p}
-                viewLabel={t.sections.projects.view}
-                labels={t.sections.projects}
-                featured={i === 0}
+                viewLabel={labels.view}
+                labels={labels}
+                featured={p === lead}
               />
             </Reveal>
           ))}
