@@ -149,7 +149,9 @@ Yeni bir görev bunlardan birini bozuyorsa **önce nedenini söyle**, sonra doku
   kopyalanır). 11 iş türü (kutucuklarla aynı kurulum), korkuluklarda platine yandan
   (alın). **Çıktı YOK** (kullanıcı: "CAD'i kullanıma açma, sadece 3D"): paket ölçüldü —
   DXF/PDF/STL/CSV kodu 0; düzenleme paneli, komut çubuğu, kayıt yok. iframe bölüme
-  400 px kala yüklenir (~750 kB gzip). Aracın dilleri FR/TR; EN ziyaretçi FR görür.
+  400 px kala yüklenir (~750 kB gzip). Görüntüleyici HER DİLDE Fransızca (kullanıcı kararı).
+  Alın bağlantı: çelik/ferforje platine side, alü nez_de_dalle, cam F profil (glass_f30);
+  çitte alın seçeneği yok → platine + 4 ankraj (cims-cad PR, vitrine.js).
 - FacturIQ kartı logosu `public/brand/facturiq.webp` (kullanıcının verdiği logonun amblemi).
 
 **Sürtünme**

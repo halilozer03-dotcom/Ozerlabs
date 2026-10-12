@@ -102,7 +102,7 @@ export const translations = {
       },
       model: {
         title: 'Manipulez METALIQ en 3D',
-        text: "Le vrai visualiseur de METALIQ, avec les 11 ouvrages de la vidéo. Choisissez un ouvrage, faites-le pivoter, affichez ou masquez les cotes et les soudures, passez en vue de face ou de dessus, mesurez. Les garde-corps acier, fer forgé et aluminium sont fixés en nez de dalle ; l'escalier monte d'un étage (rez-de-chaussée → étage).",
+        text: "Le vrai visualiseur de METALIQ, avec les 11 ouvrages de la vidéo. Choisissez un ouvrage, faites-le pivoter, affichez ou masquez les cotes et les soudures, passez en vue de face ou de dessus, mesurez. Les garde-corps acier, fer forgé, aluminium et verre sont fixés en nez de dalle, la clôture sur platines ; l'escalier monte d'un étage (rez-de-chaussée → étage).",
         note: 'Démonstration en lecture seule : la saisie des cotes et les exports sont réservés à la version complète.',
         frameTitle: 'Visualiseur 3D METALIQ',
       },
@@ -315,7 +315,7 @@ export const translations = {
       },
       model: {
         title: 'Try METALIQ in 3D',
-        text: 'The real METALIQ viewer, with the 11 jobs from the video. Pick one, rotate it, show or hide dimensions and welds, switch to front or top view, measure. The steel, wrought-iron and aluminium railings are fixed to the slab edge; the staircase goes up one storey (ground floor to first floor).',
+        text: 'The real METALIQ viewer, with the 11 jobs from the video. Pick one, rotate it, show or hide dimensions and welds, switch to front or top view, measure. The steel, wrought-iron, aluminium and glass railings are fixed to the slab edge, the fence on base plates; the staircase goes up one storey (ground floor to first floor).',
         note: 'Read-only demo: entering dimensions and exports are for the full version. The viewer interface is in French.',
         frameTitle: 'METALIQ 3D viewer',
       },
@@ -528,8 +528,8 @@ export const translations = {
       },
       model: {
         title: "METALIQ'i 3D'de deneyin",
-        text: "METALIQ'in gerçek görüntüleyicisi, videodaki 11 iş türüyle. Birini seçin, döndürün, ölçüleri ve kaynakları açıp kapatın, önden ya da üstten bakın, ölçün. Çelik, ferforje ve alüminyum korkuluklar döşeme alnına bağlı; merdiven tek kat çıkar (zemin → 1. kat).",
-        note: 'Salt görüntüleme demosu: ölçü girişi ve dışa aktarım tam sürümde.',
+        text: "METALIQ'in gerçek görüntüleyicisi, videodaki 11 iş türüyle. Birini seçin, döndürün, ölçüleri ve kaynakları açıp kapatın, önden ya da üstten bakın, ölçün. Çelik, ferforje, alüminyum ve cam korkuluklar döşeme alnına, çit platinelere bağlı; merdiven tek kat çıkar (zemin → 1. kat).",
+        note: 'Salt görüntüleme demosu: ölçü girişi ve dışa aktarım tam sürümde. Görüntüleyicinin dili Fransızca.',
         frameTitle: 'METALIQ 3D görüntüleyici',
       },
       docs: {

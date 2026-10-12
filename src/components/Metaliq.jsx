@@ -76,9 +76,9 @@ function DemoVideo({ label }) {
  * aç/kapa gibi araçlar içinde çalışsın; 11 iş türü; alın bağlantı.
  * Canlı araca bağlantı DEĞİL: düzenleme ve dışa aktarım vitrin derlemesinde
  * yok. ~750 kB (gzip) olduğu için iframe yalnız bölüme 400 px kala yüklenir.
- * Aracın dilleri FR/TR; EN ziyaretçi FR görür (metinde söyleniyor).
+ * Görüntüleyici her dilde Fransızca (kullanıcı 12.10.2026; metinde söyleniyor).
  */
-function LiveViewer({ m, lang }) {
+function LiveViewer({ m }) {
   const ref = useRef(null)
   const [near, setNear] = useState(false)
 
@@ -102,8 +102,6 @@ function LiveViewer({ m, lang }) {
     return () => io.disconnect()
   }, [])
 
-  const viewerLang = lang === 'tr' ? 'tr' : 'fr'
-
   return (
     <Reveal className="metaliq__model">
       <div className="live-viewer__head">
@@ -113,9 +111,8 @@ function LiveViewer({ m, lang }) {
       <div className="live-viewer__stage" ref={ref}>
         {near && (
           <iframe
-            key={viewerLang}
             className="live-viewer__frame"
-            src={`/showcase/metaliq/3d/index.html?lang=${viewerLang}`}
+            src="/showcase/metaliq/3d/index.html"
             title={m.frameTitle}
             loading="lazy"
             allow="fullscreen"
@@ -145,7 +142,7 @@ function LiveViewer({ m, lang }) {
  * içindir; bu bölümün eylemi ayrı bir ürünün demosudur.
  */
 export default function Metaliq() {
-  const { t, lang } = useLanguage()
+  const { t } = useLanguage()
   const m = t.metaliq
   const { tiles, docs } = METALIQ_MEDIA
 
@@ -246,7 +243,7 @@ export default function Metaliq() {
           </Reveal>
         </div>
 
-        <LiveViewer m={m.model} lang={lang} />
+        <LiveViewer m={m.model} />
 
         {/* ---------- 11 iş türü ---------- */}
         <Reveal className="metaliq__types">
