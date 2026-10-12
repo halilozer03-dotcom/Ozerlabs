@@ -152,6 +152,9 @@ Yeni bir görev bunlardan birini bozuyorsa **önce nedenini söyle**, sonra doku
   400 px kala yüklenir (~750 kB gzip). Görüntüleyici HER DİLDE Fransızca (kullanıcı kararı).
   Alın bağlantı: çelik/ferforje platine side, alü nez_de_dalle, cam noktasal rotüllü (clamp, U 2000/6290/2000);
   çitte alın seçeneği yok → platine + 4 ankraj (cims-cad PR, vitrine.js).
+- **Video açılışı dönüşsüz** (kullanıcı 12.10): ilk sahne lazer panelli U korkuluk, platine yandan, 4,2 sn sabit
+  (record2.cjs `railing` phases hold 4.2, RAIL_ZOOM 0). Korkuluk kutucuğu da yandan bağlı (assets2.cjs).
+  3D asma kat: duvara dayalı, önde köşelerde 2 kolon, ara kolon yok (5420 × 2500 — yan aralık sınırı 2500).
 - FacturIQ kartı logosu `public/brand/facturiq.webp` (kullanıcının verdiği logonun amblemi).
 
 **Sürtünme**
