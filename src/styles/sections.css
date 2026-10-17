@@ -2362,3 +2362,25 @@ a.contact-detail:hover {
 .project-card:not(.project-card--featured) .project-card__screen {
   display: none;
 }
+
+/* BENDIQ kartı: platform durumu ve hazırlanan Windows sürümünün önizlemesi. */
+.project-card__platforms {
+  margin: var(--space-3) 0 0;
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  line-height: var(--lh-normal);
+}
+
+.project-card__platform-shot {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-top: var(--space-3);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+}
+
+.project-card:not(.project-card--featured) .project-card__platforms,
+.project-card:not(.project-card--featured) .project-card__platform-shot {
+  display: none;
+}

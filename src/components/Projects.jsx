@@ -119,6 +119,18 @@ function ProjectCard({ project, viewLabel, labels, featured = false }) {
         <span className="tag tag--brand">{project.tag}</span>
         <h3 className="project-card__title">{project.title}</h3>
         <p className="card__text">{project.desc}</p>
+        {project.platformNote && <p className="project-card__platforms">{project.platformNote}</p>}
+        {project.platformShot && (
+          <img
+            className="project-card__platform-shot"
+            src={project.platformShot}
+            alt={project.platformShotAlt}
+            width="1200"
+            height="675"
+            loading="lazy"
+            decoding="async"
+          />
+        )}
         <div className="project-card__meta">
           {project.meta.map((m) => (
             <span className="tag" key={m}>
