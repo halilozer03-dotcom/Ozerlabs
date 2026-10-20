@@ -17,7 +17,9 @@ function ProjectCard({ project, viewLabel, labels, featured = false }) {
   // Logolar müşteri sitelerinden gelir; erişilemezse baş harflere düşülür.
   const [logoFailed, setLogoFailed] = useState(false)
   const showLogo = project.logo && !logoFailed
-  const linked = Boolean(project.url)
+  // Öne çıkan BENDIQ kartında iki ayrı mağaza bağlantısı var; kartın
+  // tamamını bağlantı yapmak iç içe bağlantı üretirdi.
+  const linked = Boolean(project.url) && !featured
   // Bağlantısı verilmeyen ürün (ücretli, METALIQ): kart canlı adrese
   // gitmez, aynı sayfadaki tanıtım bölümüne (#metaliq) iner.
   const anchored = !linked && Boolean(project.anchor)
@@ -120,16 +122,34 @@ function ProjectCard({ project, viewLabel, labels, featured = false }) {
         <h3 className="project-card__title">{project.title}</h3>
         <p className="card__text">{project.desc}</p>
         {project.platformNote && <p className="project-card__platforms">{project.platformNote}</p>}
-        {project.platformShot && (
-          <img
-            className="project-card__platform-shot"
-            src={project.platformShot}
-            alt={project.platformShotAlt}
-            width="1200"
-            height="675"
-            loading="lazy"
-            decoding="async"
-          />
+        {featured && project.deviceShots && (
+          <div className="project-card__devices">
+            {project.deviceShots.map((shot) => (
+              <figure className="project-card__device" key={shot.label}>
+                <div className="project-card__device-media">
+                  <img
+                    src={shot.src}
+                    alt={shot.alt}
+                    width={shot.width}
+                    height={shot.height}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                <figcaption>{shot.label}</figcaption>
+              </figure>
+            ))}
+          </div>
+        )}
+        {featured && project.storeLinks && (
+          <div className="project-card__stores">
+            {project.storeLinks.map((store) => (
+              <a key={store.href} href={store.href} target="_blank" rel="noopener noreferrer">
+                {store.label}
+                <Icon name="arrow-up-right" size={16} />
+              </a>
+            ))}
+          </div>
         )}
         <div className="project-card__meta">
           {project.meta.map((m) => (

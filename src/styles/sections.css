@@ -1599,14 +1599,9 @@ a.contact-detail:hover {
     grid-template-columns: repeat(3, 1fr);
   }
 
-  /* Lead kart iki satır: kapak artık tam bir A4 çizim olduğu için kart
-     790 px ve tek satırda kalınca sağına 420 px boşluk düşüyordu.
-     İki satıra yayılınca o boşluğa iki kompakt kart giriyor ve ızgara
-     1.205 → 1.181 px'e iniyor. (Kapak 237 px'lik kesitken bunun tersi
-     geçerliydi: o zaman yayılma ızgarayı şişiriyordu.) */
+  /* Üç cihaz görseli aynı sırada okunabilsin diye BENDIQ tam genişlikte. */
   .projects__lead {
-    grid-column: span 2;
-    grid-row: span 2;
+    grid-column: span 3;
   }
 }
 
@@ -2363,7 +2358,7 @@ a.contact-detail:hover {
   display: none;
 }
 
-/* BENDIQ kartı: platform durumu ve hazırlanan Windows sürümünün önizlemesi. */
+/* BENDIQ kartında üç ekran ve mağaza bağlantıları. */
 .project-card__platforms {
   margin: var(--space-3) 0 0;
   font-size: var(--fs-sm);
@@ -2371,16 +2366,75 @@ a.contact-detail:hover {
   line-height: var(--lh-normal);
 }
 
-.project-card__platform-shot {
-  display: block;
-  width: 100%;
-  height: auto;
-  margin-top: var(--space-3);
-  border: 1px solid var(--border);
-  border-radius: var(--r-md);
+.project-card__devices {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
 }
 
-.project-card:not(.project-card--featured) .project-card__platforms,
-.project-card:not(.project-card--featured) .project-card__platform-shot {
-  display: none;
+.project-card__device {
+  min-width: 0;
+  margin: 0;
+}
+
+.project-card__device-media {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  padding: var(--space-3);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  background: var(--ink-900);
+}
+
+.project-card__device-media img {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: var(--r-sm);
+}
+
+.project-card__device figcaption {
+  margin-top: var(--space-2);
+  color: var(--text-soft);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  text-align: center;
+}
+
+.project-card__stores {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-5);
+}
+
+.project-card__stores a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: 44px;
+  padding: var(--space-3) var(--space-5);
+  border: 1px solid var(--brand-600);
+  border-radius: var(--r-sm);
+  color: var(--text);
+  font-weight: var(--fw-semibold);
+  transition: background-color var(--dur-fast) var(--ease-out);
+}
+
+.project-card__stores a:hover,
+.project-card__stores a:focus-visible {
+  background: var(--surface-2);
+}
+
+@media (min-width: 700px) {
+  .project-card__devices {
+    grid-template-columns: 0.8fr 1.1fr 1.1fr;
+  }
 }

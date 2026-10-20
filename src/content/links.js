@@ -4,6 +4,7 @@
    eskiyordu. */
 
 export const PLAY_BENDIQ = 'https://play.google.com/store/apps/details?id=com.ozer.bendpro'
+export const MICROSOFT_BENDIQ = 'https://apps.microsoft.com/detail/9n5ncgc9wx3z'
 
 /* Google İşletme Profili — hero'daki puan göstergesi buraya bağlanır.
    Ziyaretçi puanı kendi gözüyle doğrulayabilsin diye gösterilen her
