@@ -1,5 +1,156 @@
 export const posts = [
   {
+    slug: 'perte-au-pli-pli-essai',
+    date: '2026-10-25',
+    fr: {
+      title: "Perte au pli : mesurez-la sur votre presse plieuse avec un seul pli d'essai",
+      excerpt:
+        "Les tableaux de perte au pli sont des moyennes. Votre presse, votre tôle et votre matrice ont leur propre valeur — un pli d'essai, un pied à coulisse et une soustraction suffisent pour la trouver.",
+      content: `
+Un tableau de perte au pli donne une valeur moyenne. Votre presse plieuse, elle, plie avec **sa** matrice, **votre** lot de tôle et **son** réglage. L'écart entre les deux se retrouve sur la pièce : une cote finale qui tombe à côté, une tôle de plus à la ferraille.
+
+La bonne nouvelle : la perte au pli de votre machine se mesure en quelques minutes, avec un seul pli d'essai.
+
+## La méthode en trois gestes
+
+**1. Coupez une bande de longueur connue.** Notez sa longueur exacte : **L**. Mesurez-la, ne vous fiez pas à la cote demandée.
+
+**2. Faites un seul pli**, avec la tôle, l'épaisseur, la matrice (ouverture du V) et l'angle que vous utilisez en production.
+
+**3. Mesurez les deux ailes depuis l'angle extérieur** : **a** et **b**, au pied à coulisse.
+
+La perte au pli vaut alors :
+
+**BD = a + b − L**
+
+Pourquoi ? Parce qu'en mesurant les ailes à l'extérieur, vous comptez deux fois la zone du pli. La différence avec la longueur réellement coupée, c'est exactement ce que le pli « consomme ».
+
+## Un exemple chiffré
+
+Bande coupée : L = 100,0 mm. Après le pli, vous mesurez a = 51,6 mm et b = 51,7 mm.
+
+BD = 51,6 + 51,7 − 100,0 = **3,3 mm**
+
+Vous voulez maintenant un U de 30 / 50 / 30 mm (cotes extérieures), même tôle, même matrice, même angle. Deux plis :
+
+Développé = 30 + 50 + 30 − 2 × 3,3 = **103,4 mm**
+
+C'est la longueur à couper.
+
+## Les règles qui rendent la mesure fiable
+
+- **Une valeur par combinaison.** La perte au pli mesurée vaut pour cette nuance de tôle, cette épaisseur, cette matrice et cet angle. Changez l'un des quatre, refaites un pli d'essai.
+- **Mesurez à l'extérieur, toujours.** Si a + b est plus petit que L, la mesure a été prise à l'intérieur ou la bande est mal mesurée : la valeur n'est pas utilisable.
+- **Faites deux ou trois bandes.** Si les valeurs s'écartent, la cause est souvent la mesure ou le lot de tôle — mieux vaut le voir sur des chutes que sur une série.
+- **Le lot compte.** Une autre coulée, un autre sens de laminage peuvent décaler le résultat. Sur une pièce critique, un pli d'essai avant la série reste la règle.
+
+## Garder la valeur au lieu de la recalculer
+
+Une perte au pli mesurée ne sert que si on la retrouve le jour où on en a besoin. Dans **BENDIQ**, l'application de calcul de pliage pour presse plieuse, vous saisissez L, a et b : l'application fait la soustraction, refuse une mesure incohérente et garde la valeur pour la combinaison tôle + épaisseur + matrice. Le développé, l'ordre de pliage et le contrôle de collision en 4D partent ensuite de cette valeur mesurée.
+
+[BENDIQ sur Google Play](https://play.google.com/store/apps/details?id=com.ozer.bendpro) — 7 jours d'essai, sans carte bancaire.
+`.trim(),
+    },
+    en: {
+      title: "Bend Deduction: Measure It on Your Own Press Brake With One Test Bend",
+      excerpt:
+        "Bend deduction charts are averages. Your press, your sheet and your die have their own value — one test bend, a caliper and a subtraction are enough to find it.",
+      content: `
+A bend deduction chart gives an average. Your press brake bends with **its** die, **your** batch of sheet and **its** setup. The gap between the two ends up on the part: a final dimension that misses, one more sheet in the scrap bin.
+
+The good news: your machine's bend deduction takes a few minutes to measure, with a single test bend.
+
+## The method in three steps
+
+**1. Cut a strip of known length.** Write down its exact length: **L**. Measure it — don't trust the ordered size.
+
+**2. Make one bend**, with the material, thickness, die (V opening) and angle you use in production.
+
+**3. Measure both legs from the outside corner**: **a** and **b**, with a caliper.
+
+The bend deduction is then:
+
+**BD = a + b − L**
+
+Why? Measuring the legs on the outside counts the bend zone twice. The difference from the length you actually cut is exactly what the bend "uses up".
+
+## A worked example
+
+Cut strip: L = 100.0 mm. After bending you measure a = 51.6 mm and b = 51.7 mm.
+
+BD = 51.6 + 51.7 − 100.0 = **3.3 mm**
+
+Now you want a 30 / 50 / 30 mm U channel (outside dimensions), same sheet, same die, same angle. Two bends:
+
+Flat length = 30 + 50 + 30 − 2 × 3.3 = **103.4 mm**
+
+That is the length to cut.
+
+## Rules that make the measurement reliable
+
+- **One value per combination.** The measured deduction holds for this material grade, this thickness, this die and this angle. Change any of the four, make a new test bend.
+- **Always measure on the outside.** If a + b is smaller than L, the legs were measured on the inside or the strip was measured wrong: the value is not usable.
+- **Bend two or three strips.** If the values disagree, the cause is usually the measurement or the sheet batch — better to find out on offcuts than on a production run.
+- **The batch matters.** A different heat or rolling direction can shift the result. On a critical part, a test bend before the run is still the rule.
+
+## Keep the value instead of recalculating it
+
+A measured bend deduction is only useful if you can find it on the day you need it. In **BENDIQ**, the press brake bending calculator app, you enter L, a and b: the app does the subtraction, rejects an inconsistent measurement and stores the value for that material + thickness + die combination. The flat pattern, the bend sequence and the 4D collision check then start from that measured value.
+
+[BENDIQ on Google Play](https://play.google.com/store/apps/details?id=com.ozer.bendpro) — 7-day trial, no credit card.
+`.trim(),
+    },
+    tr: {
+      title: "Büküm Payı: Kendi Abkantınızda Tek Test Bükümüyle Ölçün",
+      excerpt:
+        "Büküm payı tabloları ortalamadır. Sizin abkantınızın, sacınızın ve kalıbınızın kendi değeri var — bulmak için bir test bükümü, bir kumpas ve bir çıkarma yeterli.",
+      content: `
+Büküm payı tablosu ortalama bir değer verir. Abkantınız ise **kendi** kalıbıyla, **sizin** sac partinizle ve **kendi** ayarıyla büker. Aradaki fark parçaya çıkar: tutmayan bir son ölçü, hurdaya giden bir sac daha.
+
+İyi haber: makinenizin büküm payını tek bir test bükümüyle birkaç dakikada ölçebilirsiniz.
+
+## Üç adımda yöntem
+
+**1. Boyu bilinen bir şerit kesin.** Tam boyunu not edin: **L**. Ölçün; istenen ölçüye güvenmeyin.
+
+**2. Tek bir büküm yapın** — üretimde kullandığınız malzeme, kalınlık, kalıp (V açıklığı) ve açıyla.
+
+**3. İki kanadı dış köşeden ölçün**: **a** ve **b**, kumpasla.
+
+Büküm payı:
+
+**BD = a + b − L**
+
+Neden? Kanatları dıştan ölçünce büküm bölgesini iki kez saymış olursunuz. Gerçekte kestiğiniz boyla arasındaki fark, bükümün "yediği" miktardır.
+
+## Sayılı örnek
+
+Kesilen şerit: L = 100,0 mm. Bükümden sonra a = 51,6 mm ve b = 51,7 mm ölçüyorsunuz.
+
+BD = 51,6 + 51,7 − 100,0 = **3,3 mm**
+
+Şimdi aynı sac, aynı kalıp, aynı açıyla 30 / 50 / 30 mm (dış ölçü) bir U istiyorsunuz. İki büküm:
+
+Açınım = 30 + 50 + 30 − 2 × 3,3 = **103,4 mm**
+
+Kesilecek boy bu.
+
+## Ölçümü güvenilir yapan kurallar
+
+- **Her kombinasyona bir değer.** Ölçülen büküm payı bu malzeme cinsi, bu kalınlık, bu kalıp ve bu açı için geçerlidir. Dördünden biri değişirse yeni test bükümü yapın.
+- **Hep dıştan ölçün.** a + b, L'den küçükse kanatlar içten ölçülmüş ya da şerit yanlış ölçülmüştür: değer kullanılamaz.
+- **İki-üç şerit bükün.** Değerler tutmuyorsa sebep çoğu zaman ölçüm ya da sac partisidir — bunu seride değil, artık parçada görmek daha iyidir.
+- **Parti fark eder.** Başka bir döküm ya da hadde yönü sonucu kaydırabilir. Kritik parçada seriden önce test bükümü yine kuraldır.
+
+## Değeri her seferinde yeniden hesaplamak yerine saklayın
+
+Ölçülmüş büküm payı, ihtiyaç duyduğunuz gün bulunursa işe yarar. Abkant büküm hesabı uygulaması **BENDIQ**'te L, a ve b'yi girersiniz: uygulama çıkarmayı yapar, tutarsız ölçümü kabul etmez ve değeri malzeme + kalınlık + kalıp kombinasyonu için saklar. Açınım, büküm sırası ve 4D çarpışma kontrolü bu ölçülmüş değerden hesaplanır.
+
+[Google Play'de BENDIQ](https://play.google.com/store/apps/details?id=com.ozer.bendpro) — 7 gün deneme, kredi kartı istenmez.
+`.trim(),
+    },
+  },
+  {
     slug: 'combien-de-temps-site-vitrine',
     date: '2026-08-23',
     fr: {
