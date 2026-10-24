@@ -14,7 +14,7 @@ export const GOOGLE_BUSINESS = 'https://www.google.com/maps?cid=1004853674244322
 /* İletişim adresi tek kaynak: footer'daki mailto ikonu, Contact.jsx'teki
    form yedeği ve index.html'deki JSON-LD "email" alanı aynı adresi
    göstermek zorunda. Adres değişirse üçü birlikte güncellenir. */
-export const CONTACT_EMAIL = 'ozer.labs@gmail.com'
+export const CONTACT_EMAIL = 'contact@ozerlabs.com'
 
 /* Marka profilleri tek kaynak.
 

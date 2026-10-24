@@ -4,8 +4,7 @@ import Reveal from './Reveal.jsx'
 import SectionHead from './SectionHead.jsx'
 import Icon from './Icon.jsx'
 import { BRAND } from '../content/brand.js'
-
-const CONTACT_EMAIL = 'ozer.labs@gmail.com'
+import { CONTACT_EMAIL } from '../content/links.js'
 
 /**
  * İletişim — eski CTA bandı buraya eridi: bandın başlığı artık bölümün

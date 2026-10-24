@@ -196,7 +196,7 @@ export const translations = {
       heading: 'Racontez-nous votre projet.',
       body: "Site web, application mobile ou système assisté par IA — on est là pour transformer votre idée en produit qui tourne.",
       details: [
-        { label: 'E-mail', value: 'ozer.labs@gmail.com', icon: 'mail' },
+        { label: 'E-mail', value: 'contact@ozerlabs.com', icon: 'mail' },
         { label: 'Localisation', value: 'Lyon, France', icon: 'map-pin' },
         { label: 'Réponse', value: '1-2 jours ouvrés', icon: 'clock' },
       ],
@@ -204,7 +204,7 @@ export const translations = {
       status: {
         sending: 'Envoi en cours…',
         sent: 'Message reçu. Nous revenons vers vous sous 1 à 2 jours ouvrés.',
-        fallback: "L'envoi automatique n'a pas abouti. Votre application e-mail va s'ouvrir — il ne reste qu'à envoyer. Si rien ne s'ouvre, écrivez directement à ozer.labs@gmail.com.",
+        fallback: "L'envoi automatique n'a pas abouti. Votre application e-mail va s'ouvrir — il ne reste qu'à envoyer. Si rien ne s'ouvre, écrivez directement à contact@ozerlabs.com.",
       },
     },
     ctaBand: {
@@ -409,7 +409,7 @@ export const translations = {
       heading: 'Tell us what you want to build.',
       body: "A website, a mobile app, or an AI-powered system — we're here to turn your idea into something that actually runs.",
       details: [
-        { label: 'Email', value: 'ozer.labs@gmail.com', icon: 'mail' },
+        { label: 'Email', value: 'contact@ozerlabs.com', icon: 'mail' },
         { label: 'Location', value: 'Lyon, France', icon: 'map-pin' },
         { label: 'Response', value: '1-2 business days', icon: 'clock' },
       ],
@@ -417,7 +417,7 @@ export const translations = {
       status: {
         sending: 'Sending…',
         sent: "Message received. We'll get back to you within 1-2 business days.",
-        fallback: 'Automatic sending failed. Your mail app will open — just hit send. If nothing opens, write directly to ozer.labs@gmail.com.',
+        fallback: 'Automatic sending failed. Your mail app will open — just hit send. If nothing opens, write directly to contact@ozerlabs.com.',
       },
     },
     ctaBand: {
@@ -622,7 +622,7 @@ export const translations = {
       heading: 'Ne yapmak istediğini anlat.',
       body: 'Web sitesi, mobil uygulama ya da yapay zekâ destekli bir sistem — fikrini gerçekten çalışan bir ürüne çevirmek için buradayız.',
       details: [
-        { label: 'E-posta', value: 'ozer.labs@gmail.com', icon: 'mail' },
+        { label: 'E-posta', value: 'contact@ozerlabs.com', icon: 'mail' },
         { label: 'Konum', value: 'Lyon, Fransa', icon: 'map-pin' },
         { label: 'Yanıt', value: '1-2 iş günü', icon: 'clock' },
       ],
@@ -630,7 +630,7 @@ export const translations = {
       status: {
         sending: 'Gönderiliyor…',
         sent: 'Mesaj bize ulaştı. 1-2 iş günü içinde dönüş yapıyoruz.',
-        fallback: "Otomatik gönderim olmadı. Mail uygulaman açılacak — sadece gönder'e basman yeterli. Hiçbir şey açılmadıysa doğrudan ozer.labs@gmail.com adresine yaz.",
+        fallback: "Otomatik gönderim olmadı. Mail uygulaman açılacak — sadece gönder'e basman yeterli. Hiçbir şey açılmadıysa doğrudan contact@ozerlabs.com adresine yaz.",
       },
     },
     ctaBand: {
