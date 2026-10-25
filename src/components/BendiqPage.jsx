@@ -30,8 +30,9 @@ function StoreLink({ href, className, children }) {
  * isteği 25.10.2026): ne olduğu, sahadaki faydası, ekranlar, Android /
  * Windows / web modu, 12 aylık yol haritası.
  *
- * Akış (karar sırası): ne yapar (hero) → almazsa ne kaybeder (maliyet) →
- * nasıl çalışır → kanıt (kullanım kılavuzu: gerçek ekranlar, her tuş) → hangi ekranda → kim ne kazanır →
+ * Akış (karar sırası): ne yapar (hero) → kullanım kılavuzu (gerçek ekranlar,
+ * her tuş; kullanıcı isteğiyle en üstte) → almazsa ne kaybeder (maliyet) →
+ * nasıl çalışır → hangi ekranda → kim ne kazanır →
  * sınırlar (güven) → yol haritası → itirazlar (SSS) → tek eylem.
  *
  * Birincil buton sayfada iki kez ve aynı hedefe gider: Google Play denemesi.
@@ -96,8 +97,11 @@ export default function BendiqPage() {
         </div>
       </section>
 
+      {/* ---------- Kullanım kılavuzu: hero'nun hemen altında (kullanıcı isteği 25.10) ---------- */}
+      <BendiqGuide lang={lang} />
+
       {/* ---------- Almazsa ne kaybeder ---------- */}
-      <section className="section" data-surface="base" aria-labelledby="bq-cost">
+      <section className="section" data-surface="raise" aria-labelledby="bq-cost">
         <div className="container">
           <SectionHead id="bq-cost" eyebrow={p.cost.eyebrow} title={p.cost.title} sub={p.cost.sub} />
           <ul className="grid grid--4">
@@ -120,7 +124,7 @@ export default function BendiqPage() {
       </section>
 
       {/* ---------- Nasıl çalışır ---------- */}
-      <section className="section" data-surface="raise" aria-labelledby="bq-flow">
+      <section className="section" data-surface="base" aria-labelledby="bq-flow">
         <div className="container">
           <SectionHead id="bq-flow" eyebrow={p.flow.eyebrow} title={p.flow.title} sub={p.flow.sub} />
           <ol className="bq-steps">
@@ -134,9 +138,6 @@ export default function BendiqPage() {
           </ol>
         </div>
       </section>
-
-      {/* ---------- Kanıt: kullanım kılavuzu, gerçek ekranlar ---------- */}
-      <BendiqGuide lang={lang} />
 
       {/* ---------- Platformlar ---------- */}
       <section className="section" data-surface="raise" aria-labelledby="bq-platforms">
