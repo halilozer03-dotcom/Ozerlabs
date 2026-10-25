@@ -18,6 +18,8 @@
    Yazılmayanlar (bilerek): fiyat rakamı (mağazada değişebilir; mağazaya
    bağlanılır), tasarruf yüzdesi/süre, "hatasız / ilk seferde", "makineye
    bağlanır". Çarpışma "yok" yalnız modellenen bileşenler için.
+   Birim: uygulama yalnız mm (inç işi 25.10 iptal); sınırlarda açıkça yazılır,
+   mağaza M0 ile aynı (en-US "Metric units: ... mm").
 
    Test kullanıcısı sayısı (roadmap.testers, "20"): kullanıcının verdiği bilgi
    (25.10.2026); değişirse üç dilde birlikte güncellenir.
@@ -138,6 +140,7 @@ export const bendiqPage = {
         "Le contrôle de collision couvre les outils, le bâti et la butée modélisés ; le reste se vérifie sur la machine.",
         "Le résultat suit votre calibrage : lot de matière, sens de laminage et usure de l'outil comptent.",
         "Sur une pièce critique, un pli d'essai reste la règle avant la série.",
+        'Toutes les cotes se saisissent et s’affichent en millimètres ; les pouces ne sont pas proposés.',
       ],
     },
     roadmap: {
@@ -300,6 +303,7 @@ export const bendiqPage = {
         'The collision check covers the modelled tooling, frame and back gauge; anything else is checked on the machine.',
         'Results follow your calibration: material batch, rolling direction and tool wear all matter.',
         'On a critical part, a test bend is still the rule before production.',
+        'Metric only: every dimension is entered and shown in mm; inches are not available.',
       ],
     },
     roadmap: {
@@ -462,6 +466,7 @@ export const bendiqPage = {
         'Çarpışma kontrolü modellenen takımı, gövdeyi ve arka dayamayı kapsar; geri kalanı makinede kontrol edilir.',
         'Sonuç kalibrasyonunuza bağlıdır: malzeme partisi, hadde yönü ve takım aşınması etkiler.',
         'Kritik parçada seri üretimden önce deneme bükümü yine kuraldır.',
+        'Bütün ölçüler milimetre ile girilir ve gösterilir; inç seçeneği yoktur.',
       ],
     },
     roadmap: {
