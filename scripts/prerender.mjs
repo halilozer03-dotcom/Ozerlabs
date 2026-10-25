@@ -267,8 +267,45 @@ for (const pr of SOCIAL_PROFILES.filter((x) => x.footer)) {
   }
 }
 
+/* 8) BENDIQ sayfası üç dilde aynı şekilde mi? Metni translations.js'te değil
+     kendi dosyasında (src/content/bendiqPage.js) durduğu için 5. denetim onu
+     görmez; aynı karşılaştırma burada yapılır. Görsel sayısı da kare listesiyle
+     eşleşmeli: eksik alt metin sessizce boş kalırdı. */
+const { bendiqPage, BENDIQ_PATH, BENDIQ_SHOTS } = await import(
+  new URL('../src/content/bendiqPage.js', import.meta.url).href
+)
+const bqRef = sekil(bendiqPage[LANG])
+for (const l of LANGS) {
+  if (!bendiqPage[l]) throw new Error(`prerender: bendiqPage.${l} yok`)
+  const cur = sekil(bendiqPage[l])
+  if (cur.join('|') !== bqRef.join('|')) {
+    const curSet = new Set(cur)
+    throw new Error(
+      `prerender: bendiqPage.${l} şekli ${LANG} ile ayrışıyor — eksik/farklı: ${bqRef.filter((x) => !curSet.has(x)).join(', ')}`,
+    )
+  }
+  if (bendiqPage[l].gallery.alts.length !== BENDIQ_SHOTS.length) {
+    throw new Error(`prerender: bendiqPage.${l}.gallery.alts ${BENDIQ_SHOTS.length} kare için yazılmalı`)
+  }
+  for (const key of BENDIQ_SHOTS) {
+    try {
+      await readFile(join(REPO, 'public', 'bendiq', l, `${key}.webp`))
+    } catch {
+      throw new Error(`prerender: public/bendiq/${l}/${key}.webp yok`)
+    }
+  }
+}
+
 /* Dizine girmesi istenen rotalar — sitemap de bu listeden üretilir. */
 const routes = [
+  {
+    path: BENDIQ_PATH.slice(1),
+    url: `${ORIGIN}${BENDIQ_PATH}`,
+    title: bendiqPage[LANG].meta.title,
+    description: bendiqPage[LANG].meta.description,
+    priority: '0.9',
+    changefreq: 'monthly',
+  },
   {
     path: 'blog',
     url: `${ORIGIN}/blog`,

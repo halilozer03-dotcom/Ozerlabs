@@ -14,6 +14,8 @@ import Contact from './components/Contact.jsx'
 import Footer from './components/Footer.jsx'
 import BlogList from './components/BlogList.jsx'
 import BlogPost from './components/BlogPost.jsx'
+import BendiqPage from './components/BendiqPage.jsx'
+import { BENDIQ_PATH } from './content/bendiqPage.js'
 import { LEGACY_SLUGS } from './content/redirects.js'
 import { useDocumentMeta } from './hooks/useDocumentMeta.js'
 
@@ -117,6 +119,8 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/blog" element={<BlogList />} />
+          {/* BENDIQ'in kendi tanıtım sayfası — yalnız ürünü anlatır. */}
+          <Route path={BENDIQ_PATH} element={<BendiqPage />} />
           {/* Adresi değişmiş yazılar yenisine yönlendirilir: paylaşılmış
               bağlantılar ve arama sonuçları kırılmaz. Liste tek kaynaktan
               (src/content/redirects.js) gelir; aynı listeden derleme anında

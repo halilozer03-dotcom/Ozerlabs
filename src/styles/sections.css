@@ -55,6 +55,8 @@
 /* ---------- Marka ---------- */
 .brand-link {
   display: inline-flex;
+  /* Menü uzayınca logo ezilip menünün altına taşıyordu (ölçüldü). */
+  flex: 0 0 auto;
   border-radius: var(--r-sm);
 }
 
@@ -111,7 +113,23 @@
   font-size: var(--fs-sm);
   font-weight: var(--fw-medium);
   color: var(--nav-fg);
+  /* Menü sekiz öğe (BENDIQ sayfası eklendi): 1024 px'te "Çalışma biçimi" /
+     "How we work" iki-üç satıra kırılıyordu (ölçüldü). Tek satır kalır,
+     1280-1439 px'te iç boşluk küçülür (TR 1280'de 12 px ile 42 px taşıyordu). */
+  white-space: nowrap;
   transition: color var(--dur-base) var(--ease-out);
+}
+
+@media (max-width: 1439px) {
+  .nav__link {
+    padding-inline: var(--space-2);
+  }
+
+  /* Taban ::after kuralı aşağıda geldiği için seçici bir kademe güçlü. */
+  .nav__links .nav__link::after {
+    left: var(--space-2);
+    right: var(--space-2);
+  }
 }
 
 .nav__link::after {
@@ -322,7 +340,10 @@
   margin-top: var(--space-8);
 }
 
-@media (min-width: 1024px) {
+/* Tam menü 1280 px'ten itibaren: sekiz öğe + dil seçici + CTA 1024'te
+   sığmıyordu (sağ blok kapsayıcıdan 140-230 px taşıyordu, ölçüldü);
+   altında hamburger çekmecesi aynı listeyi verir. */
+@media (min-width: 1280px) {
   .nav__links {
     display: flex;
   }

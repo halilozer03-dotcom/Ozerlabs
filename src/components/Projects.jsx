@@ -21,10 +21,19 @@ function ProjectCard({ project, viewLabel, labels, featured = false }) {
   // Bağlantısı verilmeyen ürün (ücretli, METALIQ): kart canlı adrese
   // gitmez, aynı sayfadaki tanıtım bölümüne (#metaliq) iner.
   const anchored = !linked && Boolean(project.anchor)
+  // Kendi tanıtım sayfası olan ürün (BENDIQ → /bendiq): kart o sayfaya gider;
+  // mağaza bağlantıları sayfanın içinde.
+  const paged = !linked && !anchored && Boolean(project.path)
 
   let Tag = 'div'
   let linkProps = {}
-  if (linked) {
+  if (paged) {
+    Tag = Link
+    linkProps = {
+      to: project.path,
+      'aria-label': `${project.title} — ${viewLabel}`,
+    }
+  } else if (linked) {
     Tag = 'a'
     linkProps = {
       href: project.url,
@@ -42,7 +51,7 @@ function ProjectCard({ project, viewLabel, labels, featured = false }) {
 
   return (
     <Tag
-      className={`card project-card${linked || anchored ? ' card--interactive' : ''}${featured ? ' project-card--featured' : ''}`}
+      className={`card project-card${linked || anchored || paged ? ' card--interactive' : ''}${featured ? ' project-card--featured' : ''}`}
       {...linkProps}
     >
       {/* Durum çipi: "yayında, her gün kullanılıyor" başlığı altında
@@ -105,7 +114,7 @@ function ProjectCard({ project, viewLabel, labels, featured = false }) {
           <span className="project-card__initials">{initialsOf(project.title)}</span>
         )}
 
-        {(linked || anchored) && (
+        {(linked || anchored || paged) && (
           <span className="project-card__overlay">
             <span>
               {anchored ? labels.watch : viewLabel}
