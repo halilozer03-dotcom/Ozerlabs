@@ -113,6 +113,13 @@ export const bendiqGuide = {
         screens: [],
       },
       {
+        id: 'machine',
+        tab: 'Mesurer la machine',
+        measure: true,
+        intro: "Le contrôle de collision 4D ne connaît pas votre presse tant que vous ne lui donnez pas ses cotes : sans elles, il affiche « non contrôlé », jamais « pas de collision ». Mesurez votre presse une fois au mètre ruban, 19 cotes guidées une par une ; la 4D dit ensuite, pour les parties mesurées, si une aile touche le tablier, la table ou le bâti.",
+        screens: [],
+      },
+      {
         id: '4d',
         tab: '4D et collision',
         intro: "Pour la 4D, une matrice et un poinçon doivent être choisis dans le catalogue (Réglages). Sinon, un bouton « Choisir les outils » vous y conduit directement. Glissez pour tourner, deux doigts pour zoomer.",
@@ -410,6 +417,13 @@ export const bendiqGuide = {
         screens: [],
       },
       {
+        id: 'machine',
+        tab: 'Measure the machine',
+        measure: true,
+        intro: 'The 4D collision check does not know your press brake until you give it its dimensions: without them it shows “not checked”, never “no collision”. Measure your press brake once with a tape measure, 19 guided dimensions one by one; the 4D then tells you, for the measured parts, whether a flange touches the beam, the bed or the frame.',
+        screens: [],
+      },
+      {
         id: '4d',
         tab: '4D and collision',
         intro: 'For 4D, a die and a punch must be selected from the catalogue (Settings). If not, a “Select tools” button takes you straight there. Drag to rotate, two fingers to zoom.',
@@ -696,6 +710,13 @@ export const bendiqGuide = {
         tab: 'Kalibrasyon',
         calib: true,
         intro: 'Standart tablo sizin abkantınızı bilmez. Bir deneme bükümü ölçersiniz; BENDIQ o malzeme + kalınlık + alt kalıp (V) + açı için büküm payını (BD) kaydeder ve sonraki her parçada kullanır.',
+        screens: [],
+      },
+      {
+        id: 'machine',
+        tab: 'Makineyi ölç',
+        measure: true,
+        intro: '4D çarpışma kontrolü, ölçülerini vermediğiniz sürece abkantınızı bilmez: ölçü yoksa “kontrol edilmedi” der, asla “çarpışma yok” demez. Abkantınızı bir kez şerit metreyle ölçün, 19 ölçü tek tek rehberli; 4D sonra ölçülen parçalar için kanadın kirişe, tablaya ya da gövdeye değip değmediğini söyler.',
         screens: [],
       },
       {

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { PLAY_BENDIQ } from '../content/links.js'
 import { bendiqGuide, guideSrc, GUIDE_SHOT_W, GUIDE_SHOT_H } from '../content/bendiqGuide.js'
 import { GUIDE_MARKERS } from '../content/bendiqGuideMarkers.js'
+import { bendiqMeasure } from '../content/bendiqMeasure.js'
 import SectionHead from './SectionHead.jsx'
 import Icon from './Icon.jsx'
 
@@ -132,7 +133,8 @@ function Arrow() {
 }
 
 /**
- * Kalibrasyon turu — tam ekran, adım adım. role="dialog" + Escape + odak
+ * Tam ekran tur (kalibrasyon ve "Makineyi ölç" aynı bileşen) — adım adım.
+ * Etiket `c.tags[s.tag]` varsa ondan, yoksa atölye / uygulama. role="dialog" + Escape + odak
  * dönüşü (çekmeceyle aynı sözleşme); ← / → ile adım değişir. Sayfa kaydırması
  * açıkken kilitlenir.
  */
@@ -196,7 +198,7 @@ function CalibTour({ lang, c, onClose }) {
         </div>
         <div className="bq-tour__copy">
           <span className={`tag bq-tour__tag${s.tag === 'shop' ? ' bq-tour__tag--shop' : ''}`}>
-            {s.tag === 'shop' ? c.shop : c.app}
+            {c.tags?.[s.tag] ?? (s.tag === 'shop' ? c.shop : c.app)}
           </span>
           <h3 className="bq-tour__h">{s.title}</h3>
           <p className="bq-tour__text">{s.text}</p>
@@ -212,10 +214,12 @@ function CalibTour({ lang, c, onClose }) {
                   </li>
                 ))}
               </ul>
-              <Link to={BLOG_CALIB} className="bq-tour__more" onClick={onClose}>
-                {c.tips.more}
-                <Icon name="arrow-right" size={16} />
-              </Link>
+              {c.tips.more && (
+                <Link to={BLOG_CALIB} className="bq-tour__more" onClick={onClose}>
+                  {c.tips.more}
+                  <Icon name="arrow-right" size={16} />
+                </Link>
+              )}
             </div>
           )}
         </div>
@@ -245,18 +249,21 @@ function CalibTour({ lang, c, onClose }) {
 /**
  * Kullanım kılavuzu — /bendiq sayfasında "kanıt" halkası: gerçek ekranlar,
  * her tuşun işi. Bölümler sekme, bölüm içinde ekranlar tek tek. Kalibrasyon
- * ayrı, tam ekran tur olarak açılır (kullanıcı isteği 25.10.2026).
+ * ayrı, tam ekran tur olarak açılır (kullanıcı isteği 25.10.2026); "Makineyi
+ * ölç" de öyle: uygulamanın 19 ölçüsü gerçek karelerle tek tek (25.10.2026).
  * Sayfanın birincil butonları değişmez; buradaki Play bağlantısı ikincildir.
  */
 export default function BendiqGuide({ lang }) {
   const g = bendiqGuide[lang] || bendiqGuide.fr
+  const mm = bendiqMeasure[lang] || bendiqMeasure.fr
   const [ch, setCh] = useState(0)
   const [sc, setSc] = useState(0)
-  const [tour, setTour] = useState(false)
+  const [tour, setTour] = useState(null)
   const opener = useRef(null)
   const tabRefs = useRef([])
 
   const chapter = g.chapters[ch]
+  const tourOf = (c) => (c.measure ? mm : g.calib)
   const screens = chapter.screens
   const screen = screens[Math.min(sc, screens.length - 1)]
 
@@ -273,7 +280,7 @@ export default function BendiqGuide({ lang }) {
     tabRefs.current[k]?.focus()
   }
   const closeTour = useCallback(() => {
-    setTour(false)
+    setTour(null)
     opener.current?.focus()
   }, [])
 
@@ -292,7 +299,7 @@ export default function BendiqGuide({ lang }) {
               aria-selected={k === ch}
               aria-controls="bq-guide-panel"
               tabIndex={k === ch ? 0 : -1}
-              className={`bq-tab${k === ch ? ' is-active' : ''}${c.calib ? ' bq-tab--calib' : ''}`}
+              className={`bq-tab${k === ch ? ' is-active' : ''}${c.calib || c.measure ? ' bq-tab--calib' : ''}`}
               onClick={() => pick(k)}
               ref={(el) => (tabRefs.current[k] = el)}
             >
@@ -303,10 +310,10 @@ export default function BendiqGuide({ lang }) {
         </div>
 
         <div className="bq-guide" role="tabpanel" id="bq-guide-panel" aria-labelledby={`bq-tab-${chapter.id}`}>
-          {chapter.calib ? (
+          {chapter.calib || chapter.measure ? (
             <div className="bq-guide__grid">
               <div className="bq-guide__visual">
-                <GuideShot lang={lang} shot={g.calib.preview} alt={g.calib.title} plain />
+                <GuideShot lang={lang} shot={tourOf(chapter).preview} alt={tourOf(chapter).title} plain />
               </div>
               <div className="bq-guide__lead">
                 <h3 className="bq-guide__h">{chapter.tab}</h3>
@@ -314,7 +321,7 @@ export default function BendiqGuide({ lang }) {
                 <button
                   type="button"
                   className="bq-calibcta"
-                  onClick={() => setTour(true)}
+                  onClick={() => setTour(chapter.measure ? 'measure' : 'calib')}
                   ref={opener}
                   aria-haspopup="dialog"
                 >
@@ -322,14 +329,14 @@ export default function BendiqGuide({ lang }) {
                     <Icon name="play" size={20} />
                   </span>
                   <span className="bq-calibcta__txt">
-                    <strong>{g.calib.cta}</strong>
-                    <small>{g.calib.ctaSub}</small>
+                    <strong>{tourOf(chapter).cta}</strong>
+                    <small>{tourOf(chapter).ctaSub}</small>
                   </span>
                 </button>
               </div>
               <div className="bq-guide__copy">
                 <ol className="bq-legend">
-                  {g.calib.summary.map((it, i) => (
+                  {tourOf(chapter).summary.map((it, i) => (
                     <li key={i}>
                       <span className="bq-legend__n bq-legend__n--soft" aria-hidden="true">
                         {i + 1}
@@ -395,7 +402,7 @@ export default function BendiqGuide({ lang }) {
         </div>
       </div>
 
-      {tour && <CalibTour lang={lang} c={g.calib} onClose={closeTour} />}
+      {tour && <CalibTour lang={lang} c={tour === 'measure' ? mm : g.calib} onClose={closeTour} key={tour} />}
     </section>
   )
 }

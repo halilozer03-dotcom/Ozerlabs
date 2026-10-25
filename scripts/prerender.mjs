@@ -325,6 +325,27 @@ for (const l of LANGS) {
   }
 }
 
+/* 10. denetim — "Makineyi ölç" turu (src/content/bendiqMeasure.js). Üç dilin
+   şekli aynı; her adımın karesi dilde var; kare listesi MEASURE_SHOTS ile
+   birebir (uygulamanın 19 adımı + açılış + doğrulama). */
+const { bendiqMeasure, MEASURE_SHOTS } = await import(new URL('../src/content/bendiqMeasure.js', import.meta.url).href)
+const mRef = sekil(bendiqMeasure[LANG])
+for (const l of LANGS) {
+  const ml = bendiqMeasure[l]
+  if (!ml) throw new Error(`prerender: bendiqMeasure.${l} yok`)
+  if (sekil(ml).join('|') !== mRef.join('|')) throw new Error(`prerender: bendiqMeasure.${l} şekli ${LANG} ile ayrışıyor`)
+  if (ml.steps.map((s) => s.shot).join('|') !== MEASURE_SHOTS.join('|')) throw new Error(`prerender: bendiqMeasure.${l} kare sırası MEASURE_SHOTS ile ayrışıyor`)
+  for (const s of ml.steps) if (!ml.tags[s.tag]) throw new Error(`prerender: bendiqMeasure.${l} etiket yok: ${s.tag}`)
+  if (!bendiqGuide[l].chapters.some((c) => c.measure)) throw new Error(`prerender: bendiqGuide.${l} "Makineyi ölç" bölümü yok`)
+  for (const k of [...MEASURE_SHOTS, ml.preview]) {
+    try {
+      await readFile(join(REPO, 'public', 'bendiq', 'kilavuz', l, `${k}.webp`))
+    } catch {
+      throw new Error(`prerender: public/bendiq/kilavuz/${l}/${k}.webp yok`)
+    }
+  }
+}
+
 /* Dizine girmesi istenen rotalar — sitemap de bu listeden üretilir. */
 const routes = [
   {
