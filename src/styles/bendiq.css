@@ -123,7 +123,7 @@
 
 @media (min-width: 940px) {
   .bq-platforms {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: var(--grid-gap);
   }
 }
@@ -139,10 +139,6 @@
 
 .bq-platform--main {
   border-color: var(--brand);
-}
-
-.bq-platform--soon {
-  border-style: dashed;
 }
 
 .bq-platform__shot {
@@ -183,10 +179,6 @@
   flex: 0 0 auto;
   margin-top: 3px;
   color: var(--success);
-}
-
-.bq-points__icon--soon {
-  color: var(--text-muted);
 }
 
 /* ---------- Sahada + sınırlar ---------- */

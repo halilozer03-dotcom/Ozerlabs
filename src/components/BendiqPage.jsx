@@ -28,7 +28,7 @@ function StoreLink({ href, className, children }) {
 /**
  * BENDIQ tanıtım sayfası — /bendiq. Yalnız BENDIQ'i anlatır (kullanıcı
  * isteği 25.10.2026): ne olduğu, sahadaki faydası, ekranlar, Android /
- * Windows / web modu. Yol haritası yok (kullanıcı 25.10: rakibe fikir vermesin).
+ * Windows. Web modu ve yol haritası yazılmaz (kullanıcı 25.10: rakibe fikir vermesin).
  *
  * Akış (karar sırası): ne yapar (hero) → kullanım kılavuzu (gerçek ekranlar,
  * her tuş; kullanıcı isteğiyle en üstte) → almazsa ne kaybeder (maliyet) →
@@ -36,7 +36,7 @@ function StoreLink({ href, className, children }) {
  * sınırlar (güven) → itirazlar (SSS) → tek eylem.
  *
  * Birincil buton sayfada iki kez ve aynı hedefe gider: Google Play denemesi.
- * Windows bağlantısı ikincil; web modu yayında olmadığı için bağlantısızdır.
+ * Windows bağlantısı ikincil.
  * Metin ve doğrulama notları: src/content/bendiqPage.js.
  */
 export default function BendiqPage() {
@@ -202,24 +202,6 @@ export default function BendiqPage() {
                   {pf.windows.cta}
                 </StoreLink>
               </div>
-            </Reveal>
-
-            <Reveal className="card bq-platform bq-platform--soon" delay={160}>
-              <span className="tag bq-platform__status">{pf.preparing}</span>
-              <span className="icon-badge icon-badge--sm">
-                <Icon name="globe" size={21} />
-              </span>
-              <h3 className="card__title">{pf.web.title}</h3>
-              <p className="card__text">{pf.web.lead}</p>
-              <ul className="bq-points">
-                {pf.web.points.map((pt) => (
-                  <li key={pt}>
-                    <Icon name="clock" size={16} className="bq-points__icon bq-points__icon--soon" />
-                    <span>{pt}</span>
-                  </li>
-                ))}
-              </ul>
-              <p className="bq-platform__note">{pf.web.note}</p>
             </Reveal>
           </div>
         </div>

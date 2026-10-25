@@ -7,9 +7,8 @@
    - Windows: bendiq-win/store/windows/fr-FR.md + Microsoft Store canlı sayfa
      (sürüm 1.1.31, 24.10.2026). Ayrı lisans, bir parçalık ücretsiz sonuç,
      iş listesi / proje dosyası / kurulum föyü / CSV kalibrasyon / segment stoğu.
-   - Web modu: YAYINDA DEĞİL. Abonelik kodunda platform olarak planlı
-     (entitlementRules MAX_ONLY_PLATFORMS web/ios); sayfada "hazırlanıyor"
-     diye durur. Yayınlanınca durum çipi ve metin değişir.
+   - Web modu: YAYINDA DEĞİL ve sayfada YAZILMAZ (kullanıcı 25.10.2026: planlanan
+     platform/özellik rakibe fikir vermesin). Yayınlanınca platform kartı eklenir.
    - Yol haritası YOK (kullanıcı 25.10.2026): sırada/planlanan özellik yazılmaz,
      rakibe fikir vermesin. Yalnız yayındaki özellik anlatılır.
    - FOLD modu + arka dayama ofseti bir kullanıcı isteğinden doğdu
@@ -78,10 +77,9 @@ export const bendiqPage = {
     },
     platforms: {
       eyebrow: 'Sur quel écran',
-      title: 'Android à la presse, Windows au bureau, le web ensuite',
-      sub: 'Chaque version a son rôle. Les deux premières sont disponibles aujourd’hui.',
+      title: 'Android à la presse, Windows au bureau',
+      sub: 'Chaque version a son rôle. Les deux sont disponibles aujourd’hui.',
       available: 'Disponible',
-      preparing: 'En préparation',
       android: {
         title: 'Android',
         lead: "L'outil reste dans la poche, à côté de la presse. Pas d'aller-retour au bureau pour un développé.",
@@ -109,16 +107,6 @@ export const bendiqPage = {
         note: "Licence séparée de celle du téléphone. Avant d'acheter, vous voyez une fois gratuitement le résultat d'une pièce.",
         cta: 'Voir sur Microsoft Store',
         shotAlt: 'BENDIQ sur Windows : cotes à gauche, plan technique 2D coté à droite, boutons 3D, 4D, DXF, 1:1 et PDF.',
-      },
-      web: {
-        title: 'Mode web',
-        lead: "Pour l'iPhone, l'iPad et le Mac : BENDIQ dans le navigateur, sans installation.",
-        points: [
-          "Rien à installer : une adresse, et l'outil s'ouvre",
-          'Le même compte Google que sur Android et Windows',
-          'Vérifier un développé au bureau, en déplacement ou chez le client',
-        ],
-        note: "Pas encore disponible. Ce bloc décrit l'objectif, pas une fonction livrée.",
       },
     },
     field: {
@@ -203,10 +191,9 @@ export const bendiqPage = {
     },
     platforms: {
       eyebrow: 'On which screen',
-      title: 'Android at the press, Windows at the desk, the web next',
-      sub: 'Each version has its job. The first two are available today.',
+      title: 'Android at the press, Windows at the desk',
+      sub: 'Each version has its job. Both are available today.',
       available: 'Available',
-      preparing: 'In preparation',
       android: {
         title: 'Android',
         lead: 'The tool stays in your pocket, next to the press. No trip to the office for a flat pattern.',
@@ -234,16 +221,6 @@ export const bendiqPage = {
         note: 'Licensed separately from the phone. Before buying, you can see the result of one part once for free.',
         cta: 'View on Microsoft Store',
         shotAlt: 'BENDIQ on Windows: dimensions on the left, dimensioned 2D technical drawing on the right, 3D, 4D, DXF, 1:1 and PDF buttons.',
-      },
-      web: {
-        title: 'Web mode',
-        lead: 'For iPhone, iPad and Mac: BENDIQ in the browser, nothing to install.',
-        points: [
-          'Nothing to install: open an address and the tool starts',
-          'The same Google account as on Android and Windows',
-          'Check a flat pattern at the office, on the road or at the customer’s',
-        ],
-        note: 'Not available yet. This block describes the goal, not a shipped feature.',
       },
     },
     field: {
@@ -328,10 +305,9 @@ export const bendiqPage = {
     },
     platforms: {
       eyebrow: 'Hangi ekranda',
-      title: 'Abkantın yanında Android, masada Windows, sırada web',
-      sub: 'Her sürümün bir işi var. İlk ikisi bugün kullanılabilir.',
+      title: 'Abkantın yanında Android, masada Windows',
+      sub: 'Her sürümün bir işi var. İkisi de bugün kullanılabilir.',
       available: 'Yayında',
-      preparing: 'Hazırlanıyor',
       android: {
         title: 'Android',
         lead: 'Araç cebinizde, abkantın yanında durur. Bir açınım için ofise gidip gelmezsiniz.',
@@ -359,16 +335,6 @@ export const bendiqPage = {
         note: 'Telefon lisansından ayrı lisanslanır. Satın almadan önce bir parçanın sonucunu bir kez ücretsiz görürsünüz.',
         cta: "Microsoft Store'da gör",
         shotAlt: 'Windows’ta BENDIQ: solda ölçüler, sağda ölçülendirilmiş 2D teknik resim; 3D, 4D, DXF, 1:1 ve PDF düğmeleri.',
-      },
-      web: {
-        title: 'Web modu',
-        lead: 'iPhone, iPad ve Mac için: kurulum gerektirmeden tarayıcıda BENDIQ.',
-        points: [
-          'Kurulum yok: adresi açın, araç başlasın',
-          'Android ve Windows’taki aynı Google hesabı',
-          'Açınımı ofiste, yolda ya da müşterinin yanında kontrol edin',
-        ],
-        note: 'Henüz yayında değil. Bu blok hedefi anlatır, teslim edilmiş bir özelliği değil.',
       },
     },
     field: {
