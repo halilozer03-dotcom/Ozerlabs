@@ -28,12 +28,12 @@ function StoreLink({ href, className, children }) {
 /**
  * BENDIQ tanıtım sayfası — /bendiq. Yalnız BENDIQ'i anlatır (kullanıcı
  * isteği 25.10.2026): ne olduğu, sahadaki faydası, ekranlar, Android /
- * Windows / web modu, 12 aylık yol haritası.
+ * Windows / web modu. Yol haritası yok (kullanıcı 25.10: rakibe fikir vermesin).
  *
  * Akış (karar sırası): ne yapar (hero) → kullanım kılavuzu (gerçek ekranlar,
  * her tuş; kullanıcı isteğiyle en üstte) → almazsa ne kaybeder (maliyet) →
  * nasıl çalışır → hangi ekranda → kim ne kazanır →
- * sınırlar (güven) → yol haritası → itirazlar (SSS) → tek eylem.
+ * sınırlar (güven) → itirazlar (SSS) → tek eylem.
  *
  * Birincil buton sayfada iki kez ve aynı hedefe gider: Google Play denemesi.
  * Windows bağlantısı ikincil; web modu yayında olmadığı için bağlantısızdır.
@@ -255,45 +255,8 @@ export default function BendiqPage() {
         </div>
       </section>
 
-      {/* ---------- 12 aylık yol haritası ---------- */}
-      <section className="section" data-surface="raise" aria-labelledby="bq-roadmap">
-        <div className="container">
-          <SectionHead id="bq-roadmap" eyebrow={p.roadmap.eyebrow} title={p.roadmap.title} sub={p.roadmap.sub} />
-          <ol className="bq-roadmap">
-            {p.roadmap.phases.map((ph, i) => (
-              <Reveal as="li" className={`bq-phase bq-phase--${i}`} key={ph.when} delay={i * 90}>
-                <div className="bq-phase__head">
-                  <span className="bq-phase__when">{ph.when}</span>
-                  <span className={`tag bq-phase__status${i === 0 ? ' tag--live' : ''}`}>
-                    {i === 0 && <span className="tag__dot" />}
-                    {ph.status}
-                  </span>
-                </div>
-                <ul className="bq-points">
-                  {ph.items.map((it) => (
-                    <li key={it}>
-                      <Icon
-                        name={i === 0 ? 'check' : 'clock'}
-                        size={16}
-                        className={`bq-points__icon${i === 0 ? '' : ' bq-points__icon--soon'}`}
-                      />
-                      <span>{it}</span>
-                    </li>
-                  ))}
-                </ul>
-              </Reveal>
-            ))}
-          </ol>
-          <Reveal className="bq-roadmap__foot">
-            <p className="bq-roadmap__origin">{p.roadmap.origin}</p>
-            <p className="bq-roadmap__origin">{p.roadmap.testers}</p>
-            <p className="bq-roadmap__note">{p.roadmap.note}</p>
-          </Reveal>
-        </div>
-      </section>
-
       {/* ---------- SSS ---------- */}
-      <section className="section" data-surface="base" aria-labelledby="bq-faq">
+      <section className="section" data-surface="raise" aria-labelledby="bq-faq">
         <div className="container container-read">
           <SectionHead id="bq-faq" title={p.faq.title} />
           <div className="bq-faq">

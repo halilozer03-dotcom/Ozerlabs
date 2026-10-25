@@ -9,10 +9,9 @@
      iş listesi / proje dosyası / kurulum föyü / CSV kalibrasyon / segment stoğu.
    - Web modu: YAYINDA DEĞİL. Abonelik kodunda platform olarak planlı
      (entitlementRules MAX_ONLY_PLATFORMS web/ios); sayfada "hazırlanıyor"
-     diye ve yol haritasında durur. Yayınlanınca durum çipi ve metin değişir.
-   - Yol haritası "sıradaki" adımı: çevrimdışı kurumsal/beta lisans anahtarı
-     (Android b28e400, Windows aac625a — main'de, mağazada değil) ve
-     güncellenmiş makine listesi (Android ae59c79, Windows 1.1.32 notu).
+     diye durur. Yayınlanınca durum çipi ve metin değişir.
+   - Yol haritası YOK (kullanıcı 25.10.2026): sırada/planlanan özellik yazılmaz,
+     rakibe fikir vermesin. Yalnız yayındaki özellik anlatılır.
    - FOLD modu + arka dayama ofseti bir kullanıcı isteğinden doğdu
      (ozer-bend-pro1 CLAUDE.md "Arka dayama ofseti + FOLD modu").
    Yazılmayanlar (bilerek): fiyat rakamı (mağazada değişebilir; mağazaya
@@ -21,8 +20,6 @@
    Birim: uygulama yalnız mm (inç işi 25.10 iptal); sınırlarda açıkça yazılır,
    mağaza M0 ile aynı (en-US "Metric units: ... mm").
 
-   Test kullanıcısı sayısı (roadmap.testers, "20"): kullanıcının verdiği bilgi
-   (25.10.2026); değişirse üç dilde birlikte güncellenir.
    Görseller: Play mağaza kareleri (store/listing/assets/screenshots/<dil>),
    540×960 webp, dile göre. Karelerdeki sayılar mağaza demosudur.
    Üç dilin şekli prerender.mjs'te denetlenir (anahtar + dizi uzunluğu). */
@@ -142,44 +139,6 @@ export const bendiqPage = {
         "Sur une pièce critique, un pli d'essai reste la règle avant la série.",
         'Toutes les cotes se saisissent et s’affichent en millimètres ; les pouces ne sont pas proposés.',
       ],
-    },
-    roadmap: {
-      eyebrow: 'Feuille de route',
-      title: 'Livré, en cours, prévu',
-      sub: "Ce qui est livré, ce qui arrive, ce qui est visé. Seules les fonctions « disponibles » sont dans la licence aujourd'hui.",
-      phases: [
-        {
-          when: "Aujourd'hui",
-          status: 'Disponible',
-          items: [
-            'Android sur Google Play, Windows sur Microsoft Store',
-            'Perte au pli calibrée sur votre machine',
-            '4D avec 621 outils du catalogue et contrôle de collision',
-            'Mode opérateur pas à pas et décalage de butée arrière',
-            'DXF R12, gabarit 1:1 et PDF',
-          ],
-        },
-        {
-          when: 'Prochaine mise à jour',
-          status: 'Développé, dans la prochaine version',
-          items: [
-            "Accès entreprise et bêta : clé de licence liée à l'appareil, sans connexion Internet",
-            'Liste des machines mise à jour : DURMA AD-S, Prima Power eP, HACO SynchroMaster, Boschert G-Bend',
-          ],
-        },
-        {
-          when: 'Planifié',
-          status: 'Objectif',
-          items: [
-            "Mode web pour iPhone, iPad et Mac, dans le navigateur",
-            'Nouveaux outils au catalogue à partir des DXF de matrices envoyés par les ateliers',
-            'Nouvelles machines ajoutées à partir des demandes reçues',
-          ],
-        },
-      ],
-      origin: "Vos demandes comptent : le mode opérateur pas à pas et le décalage de butée arrière ont été ajoutés à la demande d'un utilisateur.",
-      testers: "20 utilisateurs test l'utilisent activement : grâce à leurs retours, chaque mise à jour la rend plus stable.",
-      note: "Feuille de route indicative, sans date : l'ordre peut changer selon les retours d'atelier.",
     },
     faq: {
       title: 'Questions fréquentes',
@@ -306,44 +265,6 @@ export const bendiqPage = {
         'Metric only: every dimension is entered and shown in mm; inches are not available.',
       ],
     },
-    roadmap: {
-      eyebrow: 'Roadmap',
-      title: 'Shipped, coming, planned',
-      sub: 'What is shipped, what is coming, what we are aiming for. Only “available” features are part of the licence today.',
-      phases: [
-        {
-          when: 'Today',
-          status: 'Available',
-          items: [
-            'Android on Google Play, Windows on Microsoft Store',
-            'Bend deduction calibrated on your machine',
-            '4D with 621 catalogue tools and collision check',
-            'Step-by-step operator mode and back gauge offset',
-            'R12 DXF, 1:1 template and PDF',
-          ],
-        },
-        {
-          when: 'Next update',
-          status: 'Built, in the next release',
-          items: [
-            'Company and beta access: licence key tied to the device, no internet connection needed',
-            'Updated machine list: DURMA AD-S, Prima Power eP, HACO SynchroMaster, Boschert G-Bend',
-          ],
-        },
-        {
-          when: 'Planned',
-          status: 'Goal',
-          items: [
-            'Web mode for iPhone, iPad and Mac, in the browser',
-            'New catalogue tools from die DXF files sent in by shops',
-            'New machines added from the requests we receive',
-          ],
-        },
-      ],
-      origin: 'Your requests count: the step-by-step operator mode and the back gauge offset were added at a user’s request.',
-      testers: '20 test users work with it actively: thanks to their feedback, every update makes it more stable.',
-      note: 'Indicative roadmap, no dates: order may change with feedback from the shop floor.',
-    },
     faq: {
       title: 'Frequently asked questions',
       items: [
@@ -468,44 +389,6 @@ export const bendiqPage = {
         'Kritik parçada seri üretimden önce deneme bükümü yine kuraldır.',
         'Bütün ölçüler milimetre ile girilir ve gösterilir; inç seçeneği yoktur.',
       ],
-    },
-    roadmap: {
-      eyebrow: 'Yol haritası',
-      title: 'Yayında, sırada, planlanan',
-      sub: 'Teslim edilen, gelmek üzere olan ve hedeflenen. Bugün lisansa yalnız “yayında” olan özellikler dahildir.',
-      phases: [
-        {
-          when: 'Bugün',
-          status: 'Yayında',
-          items: [
-            "Android Google Play'de, Windows Microsoft Store'da",
-            'Kendi makinenize kalibre edilmiş büküm payı',
-            '621 katalog takımı ve çarpışma kontrolüyle 4D',
-            'Adım adım operatör modu ve arka dayama ofseti',
-            'R12 DXF, 1:1 şablon ve PDF',
-          ],
-        },
-        {
-          when: 'Sıradaki güncelleme',
-          status: 'Geliştirildi, sıradaki sürümde',
-          items: [
-            'Firma ve beta erişimi: cihaza bağlı lisans anahtarı, internet bağlantısı gerekmeden',
-            'Güncellenmiş makine listesi: DURMA AD-S, Prima Power eP, HACO SynchroMaster, Boschert G-Bend',
-          ],
-        },
-        {
-          when: 'Planlanan',
-          status: 'Hedef',
-          items: [
-            'iPhone, iPad ve Mac için tarayıcıda web modu',
-            'Atölyelerin gönderdiği kalıp DXF’lerinden kataloğa yeni takımlar',
-            'Gelen isteklere göre yeni makineler',
-          ],
-        },
-      ],
-      origin: 'İstekleriniz yön verir: adım adım operatör modu ve arka dayama ofseti bir kullanıcının isteğiyle eklendi.',
-      testers: 'Uygulamayı aktif kullanan 20 test kullanıcısı ve geri dönüşleri sayesinde her yeni güncelleme uygulamayı daha kararlı hale getiriyor.',
-      note: 'Yol haritası yön göstericidir, tarih verilmez: sıra atölyeden gelen geri bildirime göre değişebilir.',
     },
     faq: {
       title: 'Sık sorulan sorular',
