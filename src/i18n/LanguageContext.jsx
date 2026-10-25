@@ -1,17 +1,17 @@
-import { createContext, useContext, useState, useEffect } from 'react'
+import { createContext, useContext, useEffect } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { translations } from './translations.js'
+import { LANGS, langFromPath, localizePath, stripLang } from './routes.js'
 
 const LanguageContext = createContext(null)
-const SUPPORTED = ['fr', 'en', 'tr']
 
-/* Anahtar v2: eskisi ("ozerlabs-lang") her açılışta otomatik yazılıyordu, bu
-   yüzden "kullanıcı seçti" ile "tarayıcıdan tahmin edildi" ayırt edilemiyordu.
-   Artık buraya YALNIZCA kullanıcının dil düğmesine basması yazar. */
-const STORAGE_KEY = 'ozerlabs-lang-v2'
+/* Anahtar v2: yalnızca kullanıcının dil seçicisine basması yazar (otomatik
+   tespit yazmaz). Eski "ozerlabs-lang" her açılışta yazıldığı için seçim ile
+   tahmin ayırt edilemiyordu, artık okunmuyor. */
+export const STORAGE_KEY = 'ozerlabs-lang-v2'
 
-/* Ülke → dil. Site üç dil sunuyor; listede olmayan ülke İngilizce görür.
-   Fransızca listesi: Fransa ve Fransızcanın resmî/yaygın olduğu komşular +
-   Mağrip — işin müşteri kitlesi bu coğrafyada. */
+/* Ülke → dil. Listede olmayan ülke İngilizce önerisi alır. Fransızca listesi:
+   Fransa ve Fransızcanın resmî/yaygın olduğu komşular + Mağrip. */
 const COUNTRY_LANG = {
   TR: 'tr',
   FR: 'fr',
@@ -24,79 +24,70 @@ const COUNTRY_LANG = {
   TN: 'fr',
 }
 
-function okuSecim() {
+export function readStoredLang() {
   try {
     const v = window.localStorage.getItem(STORAGE_KEY)
-    return SUPPORTED.includes(v) ? v : null
+    return LANGS.includes(v) ? v : null
   } catch {
     return null // gizli sekme / depolama kapalı
   }
 }
 
-function tarayiciDili() {
-  const code = (navigator.language || '').slice(0, 2).toLowerCase()
-  return SUPPORTED.includes(code) ? code : null
+export function storeLang(code) {
+  try {
+    window.localStorage.setItem(STORAGE_KEY, code)
+  } catch {
+    /* depolama yoksa seçim yalnız bu gezinmede geçerli */
+  }
 }
 
-/* İlk boyama senkron olmak zorunda: kullanıcının kendi seçimi, yoksa tarayıcı
-   dili, o da tutmuyorsa sitenin varsayılanı (fr). Ülke bilgisi ağdan geldiği
-   için bir adım sonra devreye girer. */
-function baslangicDili() {
-  if (typeof window === 'undefined') return 'fr'
-  return okuSecim() || tarayiciDili() || 'fr'
+export function browserLang() {
+  if (typeof navigator === 'undefined') return null
+  const code = (navigator.language || '').slice(0, 2).toLowerCase()
+  return LANGS.includes(code) ? code : null
 }
 
 /* Ülkeyi kendi origin'imizden okuruz: Cloudflare her sitede /cdn-cgi/trace
-   sunar ve `loc=XX` satırında ziyaretçinin ülkesini verir. Üçüncü taraf bir
-   IP servisine istek gitmez, ziyaretçinin IP'si dışarı çıkmaz. */
-async function ulkeKodu(signal) {
+   sunar, `loc=XX` satırı ziyaretçinin ülkesidir. Üçüncü taraf IP servisi
+   yok, ziyaretçinin IP'si dışarı çıkmaz. Yerelde uç yok → null. */
+export async function countryLang(signal) {
   const res = await fetch('/cdn-cgi/trace', { signal })
-  if (!res.ok) return null // yerel geliştirmede bu uç nokta yok
-  return res.text().then((t) => t.match(/^loc=([A-Z]{2})$/m)?.[1] || null)
+  if (!res.ok) return null
+  const loc = (await res.text()).match(/^loc=([A-Z]{2})$/m)?.[1]
+  return loc ? COUNTRY_LANG[loc] || 'en' : null
 }
 
+/**
+ * DİL = ADRES. `/` fr, `/en` en, `/tr` tr (src/i18n/routes.js).
+ *
+ * Eskiden dil çalışma anında seçiliyordu (seçim > ülke > tarayıcı) ve tek
+ * adreste üç dil vardı. Ölçülen sonuç: içerik ilk çizimden sonra dil
+ * değiştiriyordu (CLS 0,179 / 0,222) ve hreflang kurulamıyordu. Artık
+ * içerik adresin dilindedir; tercih edilen dil yalnızca ÖNERİ olarak
+ * gösterilir (LangSuggest.jsx) — tek istisna, kullanıcının daha önce dil
+ * seçicisiyle açıkça seçtiği dildir (App.jsx → StoredLangRedirect).
+ */
 export function LanguageProvider({ children }) {
-  const [lang, setLangState] = useState(baslangicDili)
+  const location = useLocation()
+  const navigate = useNavigate()
+  const lang = langFromPath(location.pathname)
 
-  // Açık seçim kalıcıdır ve ülke tespitini kalıcı olarak devre dışı bırakır.
+  /** Aynı sayfanın başka dildeki adresi (ürün/yazı/bölüm korunur). */
+  const pathFor = (code) => localizePath(stripLang(location.pathname), code)
+
+  /* Açık seçim: kalıcıdır, aynı sayfanın o dildeki adresine gider. */
   const setLang = (code) => {
-    if (!SUPPORTED.includes(code)) return
-    try {
-      window.localStorage.setItem(STORAGE_KEY, code)
-    } catch {
-      /* depolama yoksa seçim yalnızca bu oturumda geçerli olur */
-    }
-    setLangState(code)
+    if (!LANGS.includes(code)) return
+    storeLang(code)
+    if (code === lang) return
+    navigate({ pathname: pathFor(code), search: location.search, hash: location.hash })
   }
 
   useEffect(() => {
     document.documentElement.lang = lang
   }, [lang])
 
-  // Ülkeye göre dil — yalnızca kullanıcı henüz kendi seçimini yapmadıysa.
-  useEffect(() => {
-    if (okuSecim()) return
-
-    const controller = new AbortController()
-
-    ulkeKodu(controller.signal)
-      .then((loc) => {
-        if (!loc) return
-        // Bilinen ülke kendi dilini, bilinmeyen ülke İngilizceyi alır.
-        const hedef = COUNTRY_LANG[loc] || 'en'
-        // Seçim değil tespit: localStorage'a yazılmaz, kullanıcı istediğinde
-        // düğmeyle değiştirebilsin ve bir sonraki ziyarette yine ülkesi geçerli olsun.
-        setLangState((mevcut) => (mevcut === hedef ? mevcut : hedef))
-      })
-      .catch(() => {
-        /* ağ hatası veya iptal: tarayıcı dilinden gelen değer olduğu gibi kalır */
-      })
-
-    return () => controller.abort()
-  }, [])
-
-  const value = { lang, setLang, t: translations[lang] }
-
+  const value = { lang, setLang, pathFor, t: translations[lang] }
   return <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>
 }
 
@@ -104,4 +95,10 @@ export function useLanguage() {
   const ctx = useContext(LanguageContext)
   if (!ctx) throw new Error('useLanguage must be used within a LanguageProvider')
   return ctx
+}
+
+/** Dile göre yol üreticisi: `lp('/blog')` → `/en/blog`. */
+export function useLocalePath() {
+  const { lang } = useLanguage()
+  return (path) => localizePath(path, lang)
 }

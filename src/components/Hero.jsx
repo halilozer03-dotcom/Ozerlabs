@@ -1,99 +1,73 @@
-import { Link } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
-import { GOOGLE_BUSINESS } from '../content/links.js'
+import { PLAY_BENDIQ } from '../content/links.js'
+import { track } from '../lib/track.js'
 import Icon from './Icon.jsx'
 import HeroVisual from './HeroVisual.jsx'
 
+/**
+ * Hero = BENDIQ (kullanıcı kararı 08.10.2026: birinci ürün, CAD ya da web
+ * hizmetlerinin arkasına taşınmaz). Kime: abkant operatörü ve sac atölyesi.
+ * Hangi sorun: yanlış açınım = hurda parça. Ne yapar: açınım + büküm payı,
+ * 2D/3D/4D kontrol.
+ *
+ * Birincil eylem Google Play'dir — genel teklif formuna DÖNÜŞTÜRÜLMEZ.
+ * İkincil eylem aynı sayfadaki özellik bölümüne iner (#bendiq).
+ *
+ * Güven göstergeleri yalnızca mağaza listesinde yazanlardır (08.10.2026'da
+ * okundu): 30 gün deneme, abonelik yok / tek seferlik satın alma, hesap yok,
+ * 25 dil. Fiyat listede görünmediği için yazılmaz.
+ *
+ * İlk ekrandaki metin hiçbir gecikmeli görünürlük koşuluna bağlı değildir
+ * (Reveal yok): sunucudan gelen HTML'de yerindedir — LCP öğesi budur.
+ */
 export default function Hero() {
   const { t } = useLanguage()
-  const [line1, line2, line3] = t.hero.titleLines
-
-  // Güven göstergeleri sitede zaten var olan bilgilerden gelir —
-  // yeni, doğrulanamaz iddia eklenmez.
-  //
-  // Google puanı bunun tek istisnası değil, tam tersi örneği: sayı
-  // uydurulmuyor, gerçek İşletme Profilinden geliyor ve ziyaretçinin
-  // kendi gözüyle doğrulayabilmesi için o profile linkli veriliyor.
-  // Puan veya değerlendirme sayısı değişirse translations.js'teki
-  // eyebrow.rating üç dilde birlikte güncellenir.
-  const trust = [
-    { icon: 'check-circle', value: t.eyebrow.status.value, label: t.eyebrow.status.label },
-    { icon: 'map-pin', value: t.eyebrow.location.value, label: t.eyebrow.location.label },
-    {
-      icon: 'clock',
-      value: t.contact.details[2].value,
-      label: t.contact.details[2].label,
-    },
-    {
-      icon: 'star',
-      value: t.eyebrow.rating.value,
-      label: t.eyebrow.rating.label,
-      href: GOOGLE_BUSINESS,
-    },
-  ]
+  const h = t.hero
 
   return (
     <section className="hero dot-grid" data-surface="void" aria-labelledby="hero-title">
       <div className="container hero__inner">
         <div className="hero__copy">
           <span className="tag tag--brand hero__badge">
-            <Icon name="sparkles" size={13} />
-            {t.hero.badge}
+            <Icon name="smartphone" size={13} />
+            {h.badge}
           </span>
 
           <h1 className="hero__title" id="hero-title">
-            {line1} {line2} <span className="accent">{line3}</span>
+            {h.title}
           </h1>
 
-          <p className="hero__sub">{t.hero.sub}</p>
+          <p className="hero__sub">{h.sub}</p>
 
-          {/* Hedefler metinle eşleşmek ZORUNDA. 08-08 yeniden tasarımında
-              ctaPrimary "Projeleri Gör"den "Ücretsiz Teklif Al"a döndü ama
-              hash'ler eski kalmıştı: birincil buton projelere, ikincil buton
-              iletişime gidiyordu. Butonun yazdığı yere götürmemesi, sitenin
-              tek ticari eylemini kaybettiriyordu. */}
           <div className="hero__actions">
-            <Link to={{ pathname: '/', hash: '#iletisim' }} className="btn btn--primary">
-              {t.hero.ctaPrimary}
-              <Icon name="arrow-right" size={17} className="btn__icon" />
-            </Link>
-            <Link to={{ pathname: '/', hash: '#projeler' }} className="btn btn--secondary">
-              {t.hero.ctaSecondaryShort}
-              <Icon name="layers" size={17} />
-            </Link>
+            <a
+              href={PLAY_BENDIQ}
+              className="btn btn--primary"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => track('store_click', { topic: 'hero' })}
+            >
+              {h.ctaPrimary}
+              <Icon name="arrow-up-right" size={17} className="btn__icon" />
+            </a>
+            <a href="#bendiq" className="btn btn--secondary">
+              {h.ctaSecondary}
+              <Icon name="arrow-down" size={17} />
+            </a>
           </div>
 
           <ul className="hero__trust">
-            {trust.map((item) => {
-              const govde = (
-                <>
-                  <span className="trust-item__icon">
-                    <Icon name={item.icon} size={18} />
-                  </span>
-                  <span>
-                    <strong className="trust-item__value">{item.value}</strong>
-                    <span className="trust-item__label">{item.label}</span>
-                  </span>
-                </>
-              )
-
-              return (
-                <li key={item.label}>
-                  {item.href ? (
-                    <a
-                      className="trust-item trust-item--link"
-                      href={item.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {govde}
-                    </a>
-                  ) : (
-                    <span className="trust-item">{govde}</span>
-                  )}
-                </li>
-              )
-            })}
+            {h.trust.map((item) => (
+              <li key={item.value} className="trust-item">
+                <span className="trust-item__icon">
+                  <Icon name={item.icon} size={18} />
+                </span>
+                <span>
+                  <strong className="trust-item__value">{item.value}</strong>
+                  <span className="trust-item__label">{item.label}</span>
+                </span>
+              </li>
+            ))}
           </ul>
         </div>
 

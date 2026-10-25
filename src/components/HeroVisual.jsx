@@ -1,25 +1,26 @@
 import { useLanguage } from '../i18n/LanguageContext.jsx'
 import { PLAY_BENDIQ } from '../content/links.js'
+import { track } from '../lib/track.js'
 import Icon from './Icon.jsx'
 
 /**
- * Hero görseli: Google Play'de yayında olan BENDIQ uygulamasının
- * gerçek ekranı. Önceki sürümdeki maket pano (uydurma grafik ve
- * istatistikler) kaldırıldı — iddianın süsü değil kanıtı gösteriliyor.
+ * Hero görseli: BENDIQ'in gerçek ekranı, SAYFANIN DİLİNDE. Fransızca sayfa
+ * Fransızca, İngilizce sayfa İngilizce arayüzü gösterir (Play listesindeki
+ * ekran görüntüleri Türkçe; fr/en kareleri uygulamanın kendisinden çekildi —
+ * bkz. ~/.claude/tools/bendiq-screens/). Görsel dekoratif DEĞİL: ürünün
+ * kanıtı, gerçek alt metni var.
  *
- * Görsel dekoratif DEĞİL: ürünün çalıştığının kanıtı olduğu için
- * gerçek alt metni var ve ekran okuyuculara açık.
- * Oran gerçek cihazın kendi oranı (384×832 CSS px → 720×1560) ve sabit
- * olduğu için CLS üretmez. 9:16'ya sıkıştırmak kareyi kırpıyordu.
+ * Oran cihazın kendi oranı (384×832 CSS px → 720×1560), sabit olduğu için
+ * CLS üretmez. srcset: telefonda 360 px'lik kare yeter (ekranda ≤ 302 px).
  *
- * Tamamı Play sayfasına giden tek bir bağlantı. Alt yazı zaten
- * "Google Play'de yayında" diyordu ama tıklanmıyordu; ziyaretçinin ilk
- * gördüğü kanıt, ürüne giden yolun da kendisi olmalı. Bağlantının
- * erişilebilir adı görsel alt metni değil ayrı bir eylem cümlesi
- * (visualLink) — "…1106,8 mm…" bir bağlantı adı olarak anlamsız kalıyor.
+ * Yükleme önceliği ölçüme göre: mobilde LCP öğesi başlık metnidir (görsel
+ * ilk ekranın altında), masaüstünde görsel. `fetchpriority` verilmez —
+ * mobilde yazı tipleriyle bant genişliği yarıştırıyordu; `loading="eager"`
+ * masaüstünde geç başlamasını önler.
  */
 export default function HeroVisual() {
-  const { t } = useLanguage()
+  const { lang, t } = useLanguage()
+  const src = (w) => `/bendiq/screen-${lang}-${w}.webp`
 
   return (
     <div className="hero-visual">
@@ -31,16 +32,18 @@ export default function HeroVisual() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label={t.hero.visualLink}
+        onClick={() => track('store_click', { topic: 'hero-visual' })}
       >
         <figure className="device">
           <img
             className="device__screen"
-            src="/bendiq-teknik-cizim.webp"
+            src={src(720)}
+            srcSet={`${src(360)} 360w, ${src(720)} 720w`}
+            sizes="(min-width: 1024px) 282px, min(302px, calc(100vw - 72px))"
             alt={t.hero.visualAlt}
             width="720"
             height="1560"
             loading="eager"
-            fetchpriority="high"
             decoding="async"
           />
         </figure>

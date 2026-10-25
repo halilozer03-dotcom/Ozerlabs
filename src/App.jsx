@@ -1,26 +1,29 @@
 import { useEffect } from 'react'
-import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom'
-import { LanguageProvider, useLanguage } from './i18n/LanguageContext.jsx'
+import { BrowserRouter, Routes, Route, useLocation, useNavigate } from 'react-router-dom'
+import { LanguageProvider, useLanguage, readStoredLang } from './i18n/LanguageContext.jsx'
+import { localizePath, stripLang } from './i18n/routes.js'
+import { useSeo } from './hooks/useSeo.js'
 
 import Nav from './components/Nav.jsx'
 import Hero from './components/Hero.jsx'
-import TechStrip from './components/TechStrip.jsx'
-import Metaliq from './components/Metaliq.jsx'
-import Services from './components/Services.jsx'
+import BendiqSection from './components/BendiqSection.jsx'
+import MetaliqTeaser from './components/MetaliqTeaser.jsx'
 import Projects from './components/Projects.jsx'
+import Services from './components/Services.jsx'
 import About from './components/About.jsx'
 import Pricing from './components/Pricing.jsx'
 import Contact from './components/Contact.jsx'
 import Footer from './components/Footer.jsx'
 import BlogList from './components/BlogList.jsx'
 import BlogPost from './components/BlogPost.jsx'
-import { LEGACY_SLUGS } from './content/redirects.js'
-import { useDocumentMeta } from './hooks/useDocumentMeta.js'
+import MetaliqPage from './components/MetaliqPage.jsx'
+import NotFound from './components/NotFound.jsx'
+import LangSuggest from './components/LangSuggest.jsx'
 
 /**
- * Rota değişiminde konumlandırma:
- * hash varsa ilgili bölüme, yoksa sayfa başına.
- * Hedefin üstündeki boşluk CSS'teki scroll-margin-top ile verilir.
+ * Rota değişiminde konumlandırma: hash varsa ilgili bölüme, yoksa sayfa
+ * başına. Hedefin üstündeki boşluk CSS'teki scroll-margin-top ile verilir
+ * (sabit başlık hedefi kapatmasın).
  */
 function ScrollManager() {
   const { hash, pathname } = useLocation()
@@ -36,7 +39,7 @@ function ScrollManager() {
 
     // Hedef bölüm henüz boyanmamış olabilir — bir kare bekle.
     const frame = window.requestAnimationFrame(() => {
-      const el = document.querySelector(hash)
+      const el = document.getElementById(decodeURIComponent(hash.slice(1)))
       if (el) el.scrollIntoView({ behavior, block: 'start' })
     })
 
@@ -47,16 +50,26 @@ function ScrollManager() {
 }
 
 /**
- * Hiçbir rota eşleşmediğinde devreye girer (bilinmeyen adres — Cloudflare SPA
- * fallback yüzünden uygulama yine de açılır). Ekrana hiçbir şey basmaz;
- * bilinmeyen adresin gövde davranışı bugünküyle birebir aynı kalır. Tek işi
- * sekmede bir önceki sayfanın başlığının kalmasını engellemek: sitenin
- * varsayılan başlığını ziyaretçinin dilinde yazar. Böylece HER rota durumunda
- * başlığın tek ve belirli bir sahibi olur.
+ * Kullanıcı daha önce dil seçicisiyle AÇIKÇA bir dil seçtiyse ve başka dilde
+ * bir adrese geldiyse, aynı sayfanın kendi dilindeki adresine geçer. Yalnız
+ * ilk yüklemede çalışır. Ülke/tarayıcı tahmini burada KULLANILMAZ (öneri
+ * olarak LangSuggest'te gösterilir): IP'ye göre otomatik yönlendirme Google'ın
+ * tek dil görmesine yol açar; açık seçim ise yalnız o tarayıcıda vardır.
  */
-function DefaultMeta() {
-  const { t } = useLanguage()
-  useDocumentMeta(t.meta?.title, t.meta?.description)
+function StoredLangRedirect() {
+  const { lang } = useLanguage()
+  const { pathname, search, hash } = useLocation()
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    const stored = readStoredLang()
+    if (stored && stored !== lang) {
+      navigate({ pathname: localizePath(stripLang(pathname), stored), search, hash }, { replace: true })
+    }
+    // Yalnız ilk yükleme.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   return null
 }
 
@@ -70,70 +83,59 @@ function SkipLink() {
 }
 
 /**
- * Ana sayfa sekiz bölüm:
- * Hero (teknoloji şeridi gömülü) → METALIQ (kendi ürünümüz, üstte
- * öne çıkarıldı — kullanıcı kararı 07.10.2026) → Hizmetler → Projeler →
- * Çalışma biçimi (eski Hakkımızda + Süreç) → Kapsam →
- * İletişim (eski CTA bandı burada) → Footer (son yazılar burada).
- * Zemin ritmi korunur: void → raise → base → raise → base → raise → base → void.
- *
- * Blog önizlemesi ana sayfadan indi: ziyaretçiyi dönüşümden
- * uzaklaştıran tek bölümdü. Yazılar navigasyonda ve footer'da.
+ * Ana sayfa (kullanıcı kararı 08.10.2026): BENDIQ önde, METALIQ ikinci.
+ * Hero (BENDIQ) → BENDIQ faydası → METALIQ kısa tanıtım → teslim edilmiş
+ * müşteri projeleri → web/mobil hizmetler → çalışma biçimi → kapsam →
+ * iletişim. Zemin ritmi: void → base → raise → base → raise → base → raise → base.
  */
 function Home() {
-  const { t } = useLanguage()
-
-  /* Sunucudan gelen kabuk fr'dir (index.html). Ziyaretçi başka bir dildeyse
-     sekmedeki başlık ve arama sonucu açıklaması da o dile geçmeli — bugüne
-     kadar yalnızca <html lang> değişiyordu. Blog sayfaları da aynı hook'u
-     kullanır; başlığı yazan tek yer odur. Optional chaining bilerek: eksik
-     bir çeviri anahtarı en fazla başlığın güncellenmemesine yol açsın, ASLA
-     uygulamayı düşürüp beyaz ekran vermesin. */
-  useDocumentMeta(t.meta?.title, t.meta?.description)
+  useSeo({ kind: 'home' })
 
   return (
     <main id="main">
       <Hero />
-      <TechStrip />
-      <Metaliq />
-      <Services />
+      <BendiqSection />
+      <MetaliqTeaser />
       <Projects />
+      <Services />
       <About />
       <Pricing />
-      <Contact />
+      <Contact id="iletisim" surface="base" />
     </main>
+  )
+}
+
+/* Her dil için aynı rota ağacı: fr öneksiz, en/tr önekli. */
+const PREFIXES = ['', '/en', '/tr']
+
+export function AppShell() {
+  return (
+    <LanguageProvider>
+      <ScrollManager />
+      <StoredLangRedirect />
+      <SkipLink />
+      <Nav />
+      <Routes>
+        {PREFIXES.flatMap((p) => [
+          <Route key={`${p}home`} path={p || '/'} element={<Home />} />,
+          <Route key={`${p}metaliq`} path={`${p}/metaliq`} element={<MetaliqPage />} />,
+          <Route key={`${p}blog`} path={`${p}/blog`} element={<BlogList />} />,
+          <Route key={`${p}post`} path={`${p}/blog/:slug`} element={<BlogPost />} />,
+        ])}
+        {/* Bilinmeyen adres: sunucu da HTTP 404 döner (wrangler.toml →
+            not_found_handling = "404-page"). Ana sayfaya 200 ile düşülmez. */}
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+      <Footer />
+      <LangSuggest />
+    </LanguageProvider>
   )
 }
 
 export default function App() {
   return (
-    <LanguageProvider>
-      <BrowserRouter>
-        <ScrollManager />
-        <SkipLink />
-        <Nav />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/blog" element={<BlogList />} />
-          {/* Adresi değişmiş yazılar yenisine yönlendirilir: paylaşılmış
-              bağlantılar ve arama sonuçları kırılmaz. Liste tek kaynaktan
-              (src/content/redirects.js) gelir; aynı listeden derleme anında
-              eski adres için kanonik hedefi doğru gösteren statik sayfa da
-              üretilir. */}
-          {Object.entries(LEGACY_SLUGS).map(([oldSlug, newSlug]) => (
-            <Route
-              key={oldSlug}
-              path={`/blog/${oldSlug}`}
-              element={<Navigate to={`/blog/${newSlug}`} replace />}
-            />
-          ))}
-          <Route path="/blog/:slug" element={<BlogPost />} />
-          {/* Yalnızca <head> sahipliği için — gövde çıktısı yok, bkz. DefaultMeta.
-              404 sayfası EKLEMEZ: bilinmeyen adresin görünen davranışı aynı kalır. */}
-          <Route path="*" element={<DefaultMeta />} />
-        </Routes>
-        <Footer />
-      </BrowserRouter>
-    </LanguageProvider>
+    <BrowserRouter>
+      <AppShell />
+    </BrowserRouter>
   )
 }

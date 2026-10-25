@@ -1,41 +1,48 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 
 const prefersReducedMotion = () =>
-  typeof window !== 'undefined' &&
-  window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+/* Sunucuda useLayoutEffect uyarı verir; orada efekt zaten çalışmaz. */
+const useIsoLayoutEffect = typeof window === 'undefined' ? useEffect : useLayoutEffect
 
 /**
- * Öğe görünüme girdiğinde bir kez true döner.
- * rootMargin negatif alt değerle: kart ekranın dibinde belirmez,
- * biraz yukarı geldiğinde tetiklenir — daha doğal his.
+ * Görünüme girince beliren içerik — İLK EKRANI ASLA GİZLEMEZ.
+ *
+ * Eski düzen: main.jsx <html>'e `js-reveal` ekliyor, CSS her .reveal'ı
+ * görünene kadar opacity:0 tutuyordu. İçerik artık sunucudan HTML olarak
+ * geldiği için bu, ilk ekrandaki metni önce gösterip sonra gizleyip yeniden
+ * açardı (yanıp sönme) ve LCP'yi animasyon süresine bağlardı.
+ *
+ * Yeni düzen: öğe varsayılan olarak GÖRÜNÜR çizilir (sunucu çıktısı da öyle).
+ * İstemcide, boyamadan önce (layout effect) yalnızca ekranın ALTINDA kalan
+ * öğeler "kurulur" (gizlenir) ve görünüme girince belirir. Ekranda zaten
+ * görünen ya da hareket azaltma tercih edilen durumda hiçbir şey gizlenmez.
+ *
+ * Döner: [ref, durum] — 'static' | 'armed' | 'shown'
  */
 export function useReveal({ threshold = 0.12, rootMargin = '0px 0px -12% 0px' } = {}) {
   const ref = useRef(null)
-  // Hareket azaltma açıksa animasyonu hiç kurma, doğrudan görünür başlat.
-  const [visible, setVisible] = useState(prefersReducedMotion)
+  const [state, setState] = useState('static')
 
-  useEffect(() => {
+  useIsoLayoutEffect(() => {
     const el = ref.current
-    if (!el || visible) return
+    if (!el || prefersReducedMotion() || typeof IntersectionObserver === 'undefined') return
+    if (el.getBoundingClientRect().top < window.innerHeight) return // ilk ekranda: dokunma
 
-    if (typeof IntersectionObserver === 'undefined') {
-      setVisible(true)
-      return
-    }
-
+    setState('armed')
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setVisible(true)
+          setState('shown')
           observer.disconnect()
         }
       },
-      { threshold, rootMargin }
+      { threshold, rootMargin },
     )
-
     observer.observe(el)
     return () => observer.disconnect()
-  }, [threshold, rootMargin, visible])
+  }, [threshold, rootMargin])
 
-  return [ref, visible]
+  return [ref, state]
 }

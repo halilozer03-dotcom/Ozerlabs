@@ -5,6 +5,11 @@
 
 export const PLAY_BENDIQ = 'https://play.google.com/store/apps/details?id=com.ozer.bendpro'
 
+/* BENDIQ gizlilik politikası — uygulamanın kendisinin gösterdiği adres
+   (ozer-bend-pro1 src/utils/constants.js → PRIVACY_POLICY_URL), Play
+   listesindeki bağlantıyla aynı. 08.10.2026'da 200 döndüğü ölçüldü. */
+export const BENDIQ_PRIVACY = 'https://halilozer03-dotcom.github.io/ozer-bend-pro-privacy/'
+
 /* Google İşletme Profili — hero'daki puan göstergesi buraya bağlanır.
    Ziyaretçi puanı kendi gözüyle doğrulayabilsin diye gösterilen her
    değerlendirme sayısı bu adrese linklidir. Profil "hizmet bölgesi"
