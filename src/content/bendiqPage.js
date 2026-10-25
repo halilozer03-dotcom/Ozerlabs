@@ -145,7 +145,7 @@ export const bendiqPage = {
     },
     roadmap: {
       eyebrow: 'Feuille de route',
-      title: 'Les 12 prochains mois',
+      title: 'Livré, en cours, prévu',
       sub: "Ce qui est livré, ce qui arrive, ce qui est visé. Seules les fonctions « disponibles » sont dans la licence aujourd'hui.",
       phases: [
         {
@@ -161,14 +161,14 @@ export const bendiqPage = {
         },
         {
           when: 'Prochaine mise à jour',
-          status: 'Développé, en cours de publication',
+          status: 'Développé, dans la prochaine version',
           items: [
             "Accès entreprise et bêta : clé de licence liée à l'appareil, sans connexion Internet",
             'Liste des machines mise à jour : DURMA AD-S, Prima Power eP, HACO SynchroMaster, Boschert G-Bend',
           ],
         },
         {
-          when: "D'ici 12 mois",
+          when: 'Planifié',
           status: 'Objectif',
           items: [
             "Mode web pour iPhone, iPad et Mac, dans le navigateur",
@@ -179,7 +179,7 @@ export const bendiqPage = {
       ],
       origin: "Vos demandes comptent : le mode opérateur pas à pas et le décalage de butée arrière ont été ajoutés à la demande d'un utilisateur.",
       testers: "20 utilisateurs test l'utilisent activement : grâce à leurs retours, chaque mise à jour la rend plus stable.",
-      note: "Feuille de route indicative : l'ordre et les délais peuvent changer selon les retours d'atelier.",
+      note: "Feuille de route indicative, sans date : l'ordre peut changer selon les retours d'atelier.",
     },
     faq: {
       title: 'Questions fréquentes',
@@ -308,7 +308,7 @@ export const bendiqPage = {
     },
     roadmap: {
       eyebrow: 'Roadmap',
-      title: 'The next 12 months',
+      title: 'Shipped, coming, planned',
       sub: 'What is shipped, what is coming, what we are aiming for. Only “available” features are part of the licence today.',
       phases: [
         {
@@ -324,14 +324,14 @@ export const bendiqPage = {
         },
         {
           when: 'Next update',
-          status: 'Built, being released',
+          status: 'Built, in the next release',
           items: [
             'Company and beta access: licence key tied to the device, no internet connection needed',
             'Updated machine list: DURMA AD-S, Prima Power eP, HACO SynchroMaster, Boschert G-Bend',
           ],
         },
         {
-          when: 'Within 12 months',
+          when: 'Planned',
           status: 'Goal',
           items: [
             'Web mode for iPhone, iPad and Mac, in the browser',
@@ -342,7 +342,7 @@ export const bendiqPage = {
       ],
       origin: 'Your requests count: the step-by-step operator mode and the back gauge offset were added at a user’s request.',
       testers: '20 test users work with it actively: thanks to their feedback, every update makes it more stable.',
-      note: 'Indicative roadmap: order and timing may change with feedback from the shop floor.',
+      note: 'Indicative roadmap, no dates: order may change with feedback from the shop floor.',
     },
     faq: {
       title: 'Frequently asked questions',
@@ -471,7 +471,7 @@ export const bendiqPage = {
     },
     roadmap: {
       eyebrow: 'Yol haritası',
-      title: 'Önümüzdeki 12 ay',
+      title: 'Yayında, sırada, planlanan',
       sub: 'Teslim edilen, gelmek üzere olan ve hedeflenen. Bugün lisansa yalnız “yayında” olan özellikler dahildir.',
       phases: [
         {
@@ -487,14 +487,14 @@ export const bendiqPage = {
         },
         {
           when: 'Sıradaki güncelleme',
-          status: 'Geliştirildi, yayına çıkıyor',
+          status: 'Geliştirildi, sıradaki sürümde',
           items: [
             'Firma ve beta erişimi: cihaza bağlı lisans anahtarı, internet bağlantısı gerekmeden',
             'Güncellenmiş makine listesi: DURMA AD-S, Prima Power eP, HACO SynchroMaster, Boschert G-Bend',
           ],
         },
         {
-          when: '12 ay içinde',
+          when: 'Planlanan',
           status: 'Hedef',
           items: [
             'iPhone, iPad ve Mac için tarayıcıda web modu',
@@ -505,7 +505,7 @@ export const bendiqPage = {
       ],
       origin: 'İstekleriniz yön verir: adım adım operatör modu ve arka dayama ofseti bir kullanıcının isteğiyle eklendi.',
       testers: 'Uygulamayı aktif kullanan 20 test kullanıcısı ve geri dönüşleri sayesinde her yeni güncelleme uygulamayı daha kararlı hale getiriyor.',
-      note: 'Yol haritası yön göstericidir: sıra ve süre atölyeden gelen geri bildirime göre değişebilir.',
+      note: 'Yol haritası yön göstericidir, tarih verilmez: sıra atölyeden gelen geri bildirime göre değişebilir.',
     },
     faq: {
       title: 'Sık sorulan sorular',
