@@ -310,9 +310,10 @@ kırar** (üçü de bozularak test edildi):
 3. `read_console_messages` (hata var mı) + `read_page` (içerik ve yapı).
 4. **Üç dilde** kontrol: fr, en, tr. Dil düğmesiyle geçilir.
 5. Etkileşim değiştiyse: çekmece aç/kapa, Escape, form gönderimi.
-6. `resize_window` **kullanma** — cihaz öykünmesi açıp hayalet görüntü
-   üretiyor; responsive bakılacaksa sekme yeniden açılır.
-7. Görsel değişiklikte ekran görüntüsü ile kanıtla.
+6. Mobil görünüm kendi ekranında telefon modunda: `resize_window`
+   `width: 384, height: 832`, iş bitince `preset: "desktop"`; hayalet görüntü
+   olursa `tabs_close` + `preview_start` (2026-10-23, `memory/test-ve-dogrulama-duzeni.md`).
+7. Ekran görüntüsü yalnız kritik görsel kanıtta; iş bitince silinir.
 
 Test edilmediyse "doğrulandı" denmez. Ölçülmediyse "hızlandı / iyileşti /
 dönüşüm arttı" denmez.
