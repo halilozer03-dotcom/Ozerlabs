@@ -72,7 +72,6 @@ export const translations = {
       ],
     },
     banner: { tagline: "On transforme une idée en produit, et un produit en résultat." },
-    techstrip: { title: 'Les technologies derrière nos projets livrés' },
     metaliq: {
       eyebrow: 'METALIQ · notre logiciel de métallerie',
       title: 'Pas une simple vue 3D : les documents pour fabriquer',
@@ -142,7 +141,7 @@ export const translations = {
     },
     services: [
       { icon: 'globe', id: 'WD—01', title: 'Design Web', desc: "Des sites qui s'ouvrent vite, impeccables sur mobile et visibles dans les recherches. De la vitrine au système de commande, de bout en bout." },
-      { icon: 'smartphone', id: 'MB—02', title: 'Android / iOS', desc: "Une seule base de code, deux stores. Des applications au rendu natif avec React & Capacitor — déjà publiées sur Google Play." },
+      { icon: 'smartphone', id: 'MB—02', title: 'Android / iOS', desc: "Une seule base de code, deux stores. Des applications au rendu natif, déjà publiées sur Google Play." },
       { icon: 'cpu', id: 'AI—03', title: 'Solutions assistées par IA', desc: "Des moteurs de calcul et des flux qui automatisent le travail manuel. Pas de l'IA décorative : de l'ingénierie qui vous fait gagner du temps." },
     ],
     solutions: {
@@ -183,13 +182,13 @@ export const translations = {
       ],
     },
     projects: [
-      { tag: 'MOBILE · ANDROID', logo: '/bendiq-logo.webp', cover: '/bendiq-kapak.webp', screen: '/bendiq-4d-pres.webp', platformNote: "Android : disponible sur Google Play. Windows : disponible sur Microsoft Store, licence séparée. Mode web pour iPhone, iPad et Mac : en préparation.", platformShot: '/bendiq-windows.webp', platformShotAlt: "BENDIQ sur Windows : cotes à gauche, plan technique 2D coté à droite, boutons 3D, 4D, DXF, 1:1 et PDF.", title: 'BENDIQ', segments: ['industry'], desc: "Calcul de pliage pour presse plieuse : développé et perte au pli apprise de votre machine, plan 2D coté, 3D au vrai rayon, la presse plieuse complète en 4D avec simulateur de collision, DXF pour le laser, gabarit 1:1 et PDF. 16 langues.", meta: ['REACT · CAPACITOR', '2026'], path: '/bendiq' },
-      { tag: 'LOGICIEL MÉTIER · WEB', title: 'METALIQ', segments: ['industry'], cover: '/showcase/metaliq/cover.webp', desc: 'Logiciel de conception 3D pour la métallerie : garde-corps, escaliers, portes et portails, clôtures, mezzanines et pergolas, avec liste de débit, DXF et dossier de fabrication.', meta: ['REACT · THREE.JS', '2026'], anchor: 'metaliq' },
-      { tag: 'SAAS · WEB', title: 'FacturIQ', segments: ['local'], logo: '/brand/facturiq.webp', status: 'design', desc: "Facturation électronique pour artisans et TPE : devis, acompte, solde et avoir, factures Factur-X vérifiées selon la norme EN 16931, export FEC pour le comptable.", meta: ['TYPESCRIPT · POSTGRESQL', '2026'] },
-      { tag: 'SITE CLIENT · WEB', title: 'HD Auto', segments: ['local'], desc: 'Site vitrine pour un garage automobile, avec présentation des services et prise de rendez-vous.', meta: ['HTML · CSS · JS', '2026'], logo: '/brand/hd-auto.webp', url: 'https://wwwhdauto.com' },
-      { tag: 'SITE CLIENT · WEB', title: 'Maison Fairouz', segments: ['local'], desc: "Site vitrine trilingue pour une pâtisserie orientale artisanale, avec galerie de créations et espace admin.", meta: ['REACT · CLOUDFLARE', '2026'], logo: '/brand/maison-fairouz.webp', url: 'https://maisonfairouz.com' },
-      { tag: 'SITE CLIENT · WEB', title: 'CIMS', segments: ['industry', 'local'], logo: '/brand/cims-metal.webp', desc: 'Site vitrine pour une entreprise de métallerie et serrurerie, avec galerie de réalisations et demande de devis en ligne.', meta: ['REACT · FIREBASE', '2026'], url: 'https://cims-metal.com' },
-      { tag: 'SITE CLIENT · WEB', title: 'Yürük Hukuk & Danışmanlık', segments: ['local'], desc: "Site vitrine pour un cabinet d'avocats spécialisé en droit commercial, avec présentation des domaines d'expertise et localisation.", meta: ['REACT · CLOUDFLARE', '2026'], logo: 'https://yurukhukuk.com/assets/logo-mark-CCAZKFpe.png', url: 'https://yurukhukuk.com' },
+      { tag: 'MOBILE · ANDROID', logo: '/bendiq-logo.webp', cover: '/bendiq-kapak.webp', screen: '/bendiq-4d-pres.webp', platformNote: "Android : disponible sur Google Play. Windows : disponible sur Microsoft Store, licence séparée. Mode web pour iPhone, iPad et Mac : en préparation.", platformShot: '/bendiq-windows.webp', platformShotAlt: "BENDIQ sur Windows : cotes à gauche, plan technique 2D coté à droite, boutons 3D, 4D, DXF, 1:1 et PDF.", title: 'BENDIQ', segments: ['industry'], desc: "Calcul de pliage pour presse plieuse : développé et perte au pli apprise de votre machine, plan 2D coté, 3D au vrai rayon, la presse plieuse complète en 4D avec simulateur de collision, DXF pour le laser, gabarit 1:1 et PDF. 16 langues.", meta: ['2026'], path: '/bendiq' },
+      { tag: 'LOGICIEL MÉTIER · WEB', title: 'METALIQ', segments: ['industry'], cover: '/showcase/metaliq/cover.webp', desc: 'Logiciel de conception 3D pour la métallerie : garde-corps, escaliers, portes et portails, clôtures, mezzanines et pergolas, avec liste de débit, DXF et dossier de fabrication.', meta: ['2026'], anchor: 'metaliq' },
+      { tag: 'SAAS · WEB', title: 'FacturIQ', segments: ['local'], logo: '/brand/facturiq.webp', status: 'design', desc: "Facturation électronique pour artisans et TPE : devis, acompte, solde et avoir, factures Factur-X vérifiées selon la norme EN 16931, export FEC pour le comptable.", meta: ['2026'] },
+      { tag: 'SITE CLIENT · WEB', title: 'HD Auto', segments: ['local'], desc: 'Site vitrine pour un garage automobile, avec présentation des services et prise de rendez-vous.', meta: ['2026'], logo: '/brand/hd-auto.webp', url: 'https://wwwhdauto.com' },
+      { tag: 'SITE CLIENT · WEB', title: 'Maison Fairouz', segments: ['local'], desc: "Site vitrine trilingue pour une pâtisserie orientale artisanale, avec galerie de créations et espace admin.", meta: ['2026'], logo: '/brand/maison-fairouz.webp', url: 'https://maisonfairouz.com' },
+      { tag: 'SITE CLIENT · WEB', title: 'CIMS', segments: ['industry', 'local'], logo: '/brand/cims-metal.webp', desc: 'Site vitrine pour une entreprise de métallerie et serrurerie, avec galerie de réalisations et demande de devis en ligne.', meta: ['2026'], url: 'https://cims-metal.com' },
+      { tag: 'SITE CLIENT · WEB', title: 'Yürük Hukuk & Danışmanlık', segments: ['local'], desc: "Site vitrine pour un cabinet d'avocats spécialisé en droit commercial, avec présentation des domaines d'expertise et localisation.", meta: ['2026'], logo: 'https://yurukhukuk.com/assets/logo-mark-CCAZKFpe.png', url: 'https://yurukhukuk.com' },
     ],
     contact: {
       heading: 'Racontez-nous votre projet.',
@@ -286,7 +285,6 @@ export const translations = {
       ],
     },
     banner: { tagline: 'We turn an idea into a product, and a product into results.' },
-    techstrip: { title: 'The technology behind the projects we shipped' },
     metaliq: {
       eyebrow: 'METALIQ · our metalwork software',
       title: 'Not just a 3D view: the documents to build it',
@@ -356,7 +354,7 @@ export const translations = {
     },
     services: [
       { icon: 'globe', id: 'WD—01', title: 'Web Design', desc: 'Sites that load fast, look right on a phone, and show up in search. End to end, from a landing page to a full ordering system.' },
-      { icon: 'smartphone', id: 'MB—02', title: 'Android / iOS', desc: 'One codebase, two stores. Native-feeling apps built with React & Capacitor — already published on Google Play.' },
+      { icon: 'smartphone', id: 'MB—02', title: 'Android / iOS', desc: 'One codebase, two stores. Native-feeling apps, already published on Google Play.' },
       { icon: 'cpu', id: 'AI—03', title: 'AI-Powered Solutions', desc: 'Calculation engines and workflows that automate manual work. Not decorative AI — engineering that gives you hours back.' },
     ],
     solutions: {
@@ -397,13 +395,13 @@ export const translations = {
       ],
     },
     projects: [
-      { tag: 'MOBILE · ANDROID', logo: '/bendiq-logo.webp', cover: '/bendiq-kapak.webp', screen: '/bendiq-4d-pres.webp', platformNote: "Android: available on Google Play. Windows: available on Microsoft Store, licensed separately. Web mode for iPhone, iPad and Mac: in preparation.", platformShot: '/bendiq-windows.webp', platformShotAlt: "BENDIQ on Windows: dimensions on the left, dimensioned 2D technical drawing on the right, 3D, 4D, DXF, 1:1 and PDF buttons.", title: 'BENDIQ', segments: ['industry'], desc: 'Bending calculator for press brakes: flat pattern and bend deduction learned from your own machine, dimensioned 2D drawing, 3D at the real radius, the full press brake in 4D with a collision simulator, DXF for the laser, 1:1 template and PDF. 16 languages.', meta: ['REACT · CAPACITOR', '2026'], path: '/bendiq' },
-      { tag: 'BUSINESS SOFTWARE · WEB', title: 'METALIQ', segments: ['industry'], cover: '/showcase/metaliq/cover.webp', desc: '3D design software for metal fabricators: railings, staircases, doors and gates, fences, mezzanines and pergolas, with cut list, DXF and fabrication file.', meta: ['REACT · THREE.JS', '2026'], anchor: 'metaliq' },
-      { tag: 'SAAS · WEB', title: 'FacturIQ', segments: ['local'], logo: '/brand/facturiq.webp', status: 'design', desc: 'E-invoicing for tradespeople and small businesses: quotes, deposits, balance and credit notes, Factur-X invoices checked against EN 16931, and an FEC export for the accountant.', meta: ['TYPESCRIPT · POSTGRESQL', '2026'] },
-      { tag: 'CLIENT SITE · WEB', title: 'HD Auto', segments: ['local'], desc: 'Showcase site for an auto garage, with service highlights and appointment booking.', meta: ['HTML · CSS · JS', '2026'], logo: '/brand/hd-auto.webp', url: 'https://wwwhdauto.com' },
-      { tag: 'CLIENT SITE · WEB', title: 'Maison Fairouz', segments: ['local'], desc: 'Trilingual showcase site for an artisan oriental pastry shop, with a creations gallery and admin panel.', meta: ['REACT · CLOUDFLARE', '2026'], logo: '/brand/maison-fairouz.webp', url: 'https://maisonfairouz.com' },
-      { tag: 'CLIENT SITE · WEB', title: 'CIMS', segments: ['industry', 'local'], logo: '/brand/cims-metal.webp', desc: 'Showcase site for a metalworking and fabrication company, with a project gallery and an online quote request.', meta: ['REACT · FIREBASE', '2026'], url: 'https://cims-metal.com' },
-      { tag: 'CLIENT SITE · WEB', title: 'Yürük Hukuk & Danışmanlık', segments: ['local'], desc: 'Showcase site for a commercial law firm, with practice areas presentation and office location.', meta: ['REACT · CLOUDFLARE', '2026'], logo: 'https://yurukhukuk.com/assets/logo-mark-CCAZKFpe.png', url: 'https://yurukhukuk.com' },
+      { tag: 'MOBILE · ANDROID', logo: '/bendiq-logo.webp', cover: '/bendiq-kapak.webp', screen: '/bendiq-4d-pres.webp', platformNote: "Android: available on Google Play. Windows: available on Microsoft Store, licensed separately. Web mode for iPhone, iPad and Mac: in preparation.", platformShot: '/bendiq-windows.webp', platformShotAlt: "BENDIQ on Windows: dimensions on the left, dimensioned 2D technical drawing on the right, 3D, 4D, DXF, 1:1 and PDF buttons.", title: 'BENDIQ', segments: ['industry'], desc: 'Bending calculator for press brakes: flat pattern and bend deduction learned from your own machine, dimensioned 2D drawing, 3D at the real radius, the full press brake in 4D with a collision simulator, DXF for the laser, 1:1 template and PDF. 16 languages.', meta: ['2026'], path: '/bendiq' },
+      { tag: 'BUSINESS SOFTWARE · WEB', title: 'METALIQ', segments: ['industry'], cover: '/showcase/metaliq/cover.webp', desc: '3D design software for metal fabricators: railings, staircases, doors and gates, fences, mezzanines and pergolas, with cut list, DXF and fabrication file.', meta: ['2026'], anchor: 'metaliq' },
+      { tag: 'SAAS · WEB', title: 'FacturIQ', segments: ['local'], logo: '/brand/facturiq.webp', status: 'design', desc: 'E-invoicing for tradespeople and small businesses: quotes, deposits, balance and credit notes, Factur-X invoices checked against EN 16931, and an FEC export for the accountant.', meta: ['2026'] },
+      { tag: 'CLIENT SITE · WEB', title: 'HD Auto', segments: ['local'], desc: 'Showcase site for an auto garage, with service highlights and appointment booking.', meta: ['2026'], logo: '/brand/hd-auto.webp', url: 'https://wwwhdauto.com' },
+      { tag: 'CLIENT SITE · WEB', title: 'Maison Fairouz', segments: ['local'], desc: 'Trilingual showcase site for an artisan oriental pastry shop, with a creations gallery and admin panel.', meta: ['2026'], logo: '/brand/maison-fairouz.webp', url: 'https://maisonfairouz.com' },
+      { tag: 'CLIENT SITE · WEB', title: 'CIMS', segments: ['industry', 'local'], logo: '/brand/cims-metal.webp', desc: 'Showcase site for a metalworking and fabrication company, with a project gallery and an online quote request.', meta: ['2026'], url: 'https://cims-metal.com' },
+      { tag: 'CLIENT SITE · WEB', title: 'Yürük Hukuk & Danışmanlık', segments: ['local'], desc: 'Showcase site for a commercial law firm, with practice areas presentation and office location.', meta: ['2026'], logo: 'https://yurukhukuk.com/assets/logo-mark-CCAZKFpe.png', url: 'https://yurukhukuk.com' },
     ],
     contact: {
       heading: 'Tell us what you want to build.',
@@ -500,7 +498,6 @@ export const translations = {
       ],
     },
     banner: { tagline: 'Fikri ürüne, ürünü sonuca çeviriyoruz.' },
-    techstrip: { title: 'Teslim ettiğimiz projelerin arkasındaki teknolojiler' },
     metaliq: {
       eyebrow: 'METALIQ · metal imalat yazılımımız',
       title: 'Basit bir 3D görsel değil: imalat için belgeler',
@@ -570,7 +567,7 @@ export const translations = {
     },
     services: [
       { icon: 'globe', id: 'WD—01', title: 'Web Tasarım', desc: 'Hızlı açılan, telefonda kusursuz duran ve aramalarda görünen siteler. Kurumsal sayfadan sipariş sistemine kadar uçtan uca.' },
-      { icon: 'smartphone', id: 'MB—02', title: 'Android / iOS', desc: 'Tek kod tabanı, iki mağaza. React & Capacitor ile native hisli uygulamalar — Google Play\'de yayınlanmış işlerle kanıtlı.' },
+      { icon: 'smartphone', id: 'MB—02', title: 'Android / iOS', desc: 'Tek kod tabanı, iki mağaza. Native hisli uygulamalar; Google Play\'de yayınlanmış işlerle kanıtlı.' },
       { icon: 'cpu', id: 'AI—03', title: 'AI Destekli Çözümler', desc: 'Elle yapılan işi otomatiğe alan hesaplama motorları ve akıllı akışlar. Süs olsun diye yapay zekâ değil; sana saat kazandıran mühendislik.' },
     ],
     solutions: {
@@ -611,13 +608,13 @@ export const translations = {
       ],
     },
     projects: [
-      { tag: 'MOBILE · ANDROID', logo: '/bendiq-logo.webp', cover: '/bendiq-kapak.webp', screen: '/bendiq-4d-pres.webp', platformNote: "Android: Google Play'de yayında. Windows: Microsoft Store'da yayında, ayrı lisans. iPhone, iPad ve Mac için web modu: hazırlanıyor.", platformShot: '/bendiq-windows.webp', platformShotAlt: "Windows'ta BENDIQ: solda ölçüler, sağda ölçülendirilmiş 2D teknik resim; 3D, 4D, DXF, 1:1 ve PDF düğmeleri.", title: 'BENDIQ', segments: ['industry'], desc: "Abkant pres için büküm hesabı: makinenizden öğrenilen büküm payı ve açınım, ölçülendirilmiş 2D çizim, gerçek radüslü 3D, çarpışma simülatörüyle abkantın tamamı 4D'de, lazer için DXF, 1:1 şablon ve PDF. 16 dil.", meta: ['REACT · CAPACITOR', '2026'], path: '/bendiq' },
-      { tag: 'İŞ YAZILIMI · WEB', title: 'METALIQ', segments: ['industry'], cover: '/showcase/metaliq/cover.webp', desc: 'Metal imalatçıları için 3D tasarım yazılımı: korkuluk, merdiven, kapı ve bahçe kapısı, çit, asma kat ve pergola; kesim listesi, DXF ve imalat dosyası.', meta: ['REACT · THREE.JS', '2026'], anchor: 'metaliq' },
-      { tag: 'SAAS · WEB', title: 'FacturIQ', segments: ['local'], logo: '/brand/facturiq.webp', status: 'design', desc: 'Zanaatkâr ve küçük işletmeler için e-fatura: teklif, avans, bakiye ve iade faturası; EN 16931 kurallarıyla denetlenen Factur-X faturaları ve muhasebeci için FEC dışa aktarımı.', meta: ['TYPESCRIPT · POSTGRESQL', '2026'] },
-      { tag: 'MÜŞTERİ · WEB', title: 'HD Auto', segments: ['local'], desc: 'Oto tamir ve bakım servisi için hizmet tanıtımı ve randevu alma özellikli tanıtım sitesi.', meta: ['HTML · CSS · JS', '2026'], logo: '/brand/hd-auto.webp', url: 'https://wwwhdauto.com' },
-      { tag: 'MÜŞTERİ · WEB', title: 'Maison Fairouz', segments: ['local'], desc: 'Doğu pastacılığı için üç dilli (FR/TR/AR) tanıtım sitesi, ürün galerisi ve admin paneliyle.', meta: ['REACT · CLOUDFLARE', '2026'], logo: '/brand/maison-fairouz.webp', url: 'https://maisonfairouz.com' },
-      { tag: 'MÜŞTERİ · WEB', title: 'CIMS', segments: ['industry', 'local'], logo: '/brand/cims-metal.webp', desc: 'Metal imalat ve montaj firması için referans galerisi ve online teklif talebi içeren tanıtım sitesi.', meta: ['REACT · FIREBASE', '2026'], url: 'https://cims-metal.com' },
-      { tag: 'MÜŞTERİ · WEB', title: 'Yürük Hukuk & Danışmanlık', segments: ['local'], desc: 'Ticaret hukuku alanında uzman bir avukatlık bürosu için uzmanlık alanları ve konum bilgisi içeren tanıtım sitesi.', meta: ['REACT · CLOUDFLARE', '2026'], logo: 'https://yurukhukuk.com/assets/logo-mark-CCAZKFpe.png', url: 'https://yurukhukuk.com' },
+      { tag: 'MOBILE · ANDROID', logo: '/bendiq-logo.webp', cover: '/bendiq-kapak.webp', screen: '/bendiq-4d-pres.webp', platformNote: "Android: Google Play'de yayında. Windows: Microsoft Store'da yayında, ayrı lisans. iPhone, iPad ve Mac için web modu: hazırlanıyor.", platformShot: '/bendiq-windows.webp', platformShotAlt: "Windows'ta BENDIQ: solda ölçüler, sağda ölçülendirilmiş 2D teknik resim; 3D, 4D, DXF, 1:1 ve PDF düğmeleri.", title: 'BENDIQ', segments: ['industry'], desc: "Abkant pres için büküm hesabı: makinenizden öğrenilen büküm payı ve açınım, ölçülendirilmiş 2D çizim, gerçek radüslü 3D, çarpışma simülatörüyle abkantın tamamı 4D'de, lazer için DXF, 1:1 şablon ve PDF. 16 dil.", meta: ['2026'], path: '/bendiq' },
+      { tag: 'İŞ YAZILIMI · WEB', title: 'METALIQ', segments: ['industry'], cover: '/showcase/metaliq/cover.webp', desc: 'Metal imalatçıları için 3D tasarım yazılımı: korkuluk, merdiven, kapı ve bahçe kapısı, çit, asma kat ve pergola; kesim listesi, DXF ve imalat dosyası.', meta: ['2026'], anchor: 'metaliq' },
+      { tag: 'SAAS · WEB', title: 'FacturIQ', segments: ['local'], logo: '/brand/facturiq.webp', status: 'design', desc: 'Zanaatkâr ve küçük işletmeler için e-fatura: teklif, avans, bakiye ve iade faturası; EN 16931 kurallarıyla denetlenen Factur-X faturaları ve muhasebeci için FEC dışa aktarımı.', meta: ['2026'] },
+      { tag: 'MÜŞTERİ · WEB', title: 'HD Auto', segments: ['local'], desc: 'Oto tamir ve bakım servisi için hizmet tanıtımı ve randevu alma özellikli tanıtım sitesi.', meta: ['2026'], logo: '/brand/hd-auto.webp', url: 'https://wwwhdauto.com' },
+      { tag: 'MÜŞTERİ · WEB', title: 'Maison Fairouz', segments: ['local'], desc: 'Doğu pastacılığı için üç dilli (FR/TR/AR) tanıtım sitesi, ürün galerisi ve admin paneliyle.', meta: ['2026'], logo: '/brand/maison-fairouz.webp', url: 'https://maisonfairouz.com' },
+      { tag: 'MÜŞTERİ · WEB', title: 'CIMS', segments: ['industry', 'local'], logo: '/brand/cims-metal.webp', desc: 'Metal imalat ve montaj firması için referans galerisi ve online teklif talebi içeren tanıtım sitesi.', meta: ['2026'], url: 'https://cims-metal.com' },
+      { tag: 'MÜŞTERİ · WEB', title: 'Yürük Hukuk & Danışmanlık', segments: ['local'], desc: 'Ticaret hukuku alanında uzman bir avukatlık bürosu için uzmanlık alanları ve konum bilgisi içeren tanıtım sitesi.', meta: ['2026'], logo: 'https://yurukhukuk.com/assets/logo-mark-CCAZKFpe.png', url: 'https://yurukhukuk.com' },
     ],
     contact: {
       heading: 'Ne yapmak istediğini anlat.',

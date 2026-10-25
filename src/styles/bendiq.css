@@ -115,59 +115,6 @@
   color: var(--text-soft);
 }
 
-/* ---------- Ekranlar ---------- */
-.bq-gallery {
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: minmax(200px, 62%);
-  gap: var(--grid-gap-mobile);
-  margin: 0;
-  padding: 0 0 var(--space-4);
-  list-style: none;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  overscroll-behavior-x: contain;
-  -webkit-overflow-scrolling: touch;
-}
-
-@media (min-width: 620px) {
-  .bq-gallery {
-    grid-auto-columns: minmax(200px, 34%);
-  }
-}
-
-@media (min-width: 1100px) {
-  .bq-gallery {
-    grid-auto-columns: minmax(0, 1fr);
-    gap: var(--space-4);
-    overflow-x: visible;
-  }
-
-  .bq-gallery__hint {
-    display: none;
-  }
-}
-
-.bq-gallery__item {
-  scroll-snap-align: start;
-}
-
-.bq-gallery__item img {
-  display: block;
-  width: 100%;
-  height: auto;
-  border-radius: var(--r-md);
-  border: 1px solid var(--border);
-  background: var(--surface-inset);
-}
-
-.bq-gallery__hint {
-  margin-top: var(--space-2);
-  font-family: var(--font-mono);
-  font-size: var(--fs-xs);
-  color: var(--text-muted);
-}
-
 /* ---------- Platformlar ---------- */
 .bq-platforms {
   display: grid;
@@ -423,4 +370,557 @@
 
 .bq-final__actions {
   justify-content: center;
+}
+
+/* ---------- Kullanım kılavuzu (BendiqGuide.jsx) ---------- */
+.bq-tabs {
+  display: flex;
+  gap: var(--space-2);
+  margin: 0 0 var(--space-6);
+  padding: 0 0 var(--space-2);
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (min-width: 1100px) {
+  .bq-tabs {
+    flex-wrap: wrap;
+    overflow-x: visible;
+  }
+}
+
+.bq-tab {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 44px;
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid var(--border);
+  border-radius: var(--r-full);
+  background: var(--surface);
+  color: var(--text-soft);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  scroll-snap-align: start;
+  cursor: pointer;
+  transition: border-color var(--dur-base) var(--ease-out), color var(--dur-base) var(--ease-out);
+}
+
+.bq-tab:hover {
+  color: var(--text);
+  border-color: var(--border-strong);
+}
+
+.bq-tab.is-active {
+  color: var(--text);
+  border-color: var(--brand);
+  background: var(--surface-2);
+}
+
+.bq-tab__n {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: var(--r-full);
+  background: var(--surface-inset);
+  font-family: var(--font-mono);
+  font-size: var(--fs-2xs);
+  color: var(--text-muted);
+}
+
+.bq-tab.is-active .bq-tab__n {
+  background: var(--brand-tint);
+  color: var(--brand);
+}
+
+.bq-tab--calib:not(.is-active) {
+  border-style: dashed;
+  border-color: var(--brand);
+}
+
+.bq-guide {
+  padding: var(--space-6) var(--space-4);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  background: var(--surface);
+}
+
+.bq-guide__grid {
+  display: grid;
+  grid-template-areas: 'lead' 'visual' 'copy';
+  gap: var(--space-6);
+}
+
+.bq-guide__lead {
+  grid-area: lead;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+@media (min-width: 860px) {
+  .bq-guide {
+    padding: var(--space-8);
+  }
+
+  .bq-guide__grid {
+    grid-template-columns: minmax(0, 320px) minmax(0, 1fr);
+    grid-template-rows: auto 1fr;
+    grid-template-areas: 'visual lead' 'visual copy';
+    align-items: start;
+    gap: var(--space-4) var(--space-12);
+  }
+}
+
+.bq-guide__visual {
+  grid-area: visual;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  width: 100%;
+  max-width: 280px;
+  margin-inline: auto;
+}
+
+@media (min-width: 860px) {
+  .bq-guide__visual {
+    max-width: 320px;
+  }
+}
+
+.bq-shotframe {
+  position: relative;
+  margin: 0;
+}
+
+.bq-shotframe img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 576 / 1248;
+  border-radius: var(--r-lg);
+  border: 1px solid var(--border-strong);
+  background: var(--surface-inset);
+}
+
+/* Numaralı işaret: karede ölçülen yere oturur; nötr renk (neon mavi değil). */
+.bq-mark {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  transform: translate(-50%, -50%);
+  border-radius: var(--r-full);
+  background: var(--text);
+  color: var(--bg);
+  box-shadow: 0 0 0 2px var(--bg), var(--shadow-md);
+  font-family: var(--font-mono);
+  font-size: var(--fs-2xs);
+  font-weight: var(--fw-semibold);
+  pointer-events: none;
+}
+
+.bq-pager {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.bq-pager__btn {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--r-full);
+  background: var(--surface-2);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.bq-pager__btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.bq-pager__txt {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+}
+
+.bq-flip {
+  transform: rotate(180deg);
+}
+
+.bq-guide__copy {
+  grid-area: copy;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  min-width: 0;
+}
+
+.bq-guide__h {
+  font-size: var(--fs-h3);
+}
+
+.bq-guide__intro {
+  font-size: var(--fs-md);
+  line-height: var(--lh-normal);
+  color: var(--text);
+}
+
+.bq-legend {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--fs-sm);
+  line-height: var(--lh-normal);
+  color: var(--text-soft);
+}
+
+.bq-legend li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+
+.bq-legend__n {
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: var(--r-full);
+  background: var(--text);
+  color: var(--bg);
+  font-family: var(--font-mono);
+  font-size: var(--fs-2xs);
+  font-weight: var(--fw-semibold);
+}
+
+.bq-legend__n--soft {
+  background: var(--brand-tint);
+  color: var(--brand);
+}
+
+.bq-legend--plain {
+  margin-top: 0;
+}
+
+/* Kalibrasyon turunu açan düğme: sekme içinde, sayfanın iki birincil
+   butonundan biri değil. */
+.bq-calibcta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  width: 100%;
+  margin-top: var(--space-2);
+  padding: var(--space-4) var(--space-6);
+  border: 1px solid var(--brand);
+  border-radius: var(--r-md);
+  background: var(--surface-2);
+  color: var(--text);
+  text-align: left;
+  cursor: pointer;
+  transition: transform var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out);
+}
+
+.bq-calibcta:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.bq-calibcta__icon {
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--r-full);
+  background: var(--brand-tint);
+  color: var(--brand);
+}
+
+.bq-calibcta__txt {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.bq-calibcta__txt strong {
+  font-family: var(--font-display);
+  font-size: var(--fs-md);
+}
+
+.bq-calibcta__txt small {
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+}
+
+.bq-guide__end {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-top: var(--space-6);
+  color: var(--text-soft);
+  font-size: var(--fs-sm);
+}
+
+/* ---------- Kalibrasyon turu (tam ekran) ---------- */
+.bq-tour {
+  position: fixed;
+  inset: 0;
+  z-index: calc(var(--z-drawer) + 10);
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+}
+
+.bq-tour__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--border);
+}
+
+.bq-tour__titles {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.bq-tour__title {
+  font-family: var(--font-display);
+  font-size: var(--fs-md);
+  font-weight: var(--fw-semibold);
+  color: var(--text);
+}
+
+.bq-tour__count {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+}
+
+.bq-tour__close {
+  flex: 0 0 auto;
+}
+
+.bq-tour__bar {
+  height: 3px;
+  background: var(--surface-2);
+}
+
+.bq-tour__bar span {
+  display: block;
+  height: 100%;
+  background: var(--data);
+  transition: width var(--dur-base) var(--ease-out);
+}
+
+.bq-tour__body {
+  flex: 1 1 auto;
+  display: grid;
+  gap: var(--space-6);
+  align-content: start;
+  padding: var(--space-6) var(--space-4);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+@media (min-width: 860px) {
+  .bq-tour__body {
+    grid-template-columns: minmax(0, 360px) minmax(0, 560px);
+    justify-content: center;
+    align-items: start;
+    gap: var(--space-12);
+    padding: var(--space-8);
+  }
+}
+
+.bq-tour__visual {
+  width: 100%;
+  max-width: 240px;
+  margin-inline: auto;
+}
+
+@media (min-width: 860px) {
+  .bq-tour__visual {
+    max-width: 360px;
+  }
+}
+
+.bq-tour__copy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  min-width: 0;
+}
+
+.bq-tour__tag {
+  align-self: flex-start;
+}
+
+.bq-tour__tag--shop {
+  color: var(--warning);
+  border-color: var(--warning);
+}
+
+.bq-tour__h {
+  font-size: var(--fs-h3);
+}
+
+.bq-tour__text {
+  font-size: var(--fs-md);
+  line-height: var(--lh-normal);
+  color: var(--text);
+}
+
+.bq-tour__tips {
+  margin-top: var(--space-4);
+  padding: var(--space-6);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  background: var(--surface-inset);
+}
+
+.bq-tour__tips h4 {
+  font-size: var(--fs-md);
+}
+
+.bq-tour__more {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+  color: var(--brand);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+}
+
+.bq-tour__foot {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4) calc(var(--space-3) + env(safe-area-inset-bottom));
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.bq-tour__foot .btn {
+  flex: 1 1 0;
+  max-width: 280px;
+}
+
+.bq-tour__foot .btn:disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.bq-tour__next {
+  margin-left: auto;
+  border-color: var(--brand);
+}
+
+/* Atölye çizimleri: ölçü camgöbeği (--data), sac ve takım nötr. */
+.bq-diagram {
+  display: block;
+  width: 100%;
+  height: auto;
+  padding: var(--space-4);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  background: var(--surface);
+}
+
+.bq-dg-sheet {
+  fill: var(--surface-2);
+  stroke: var(--text-soft);
+  stroke-width: 2;
+}
+
+.bq-dg-part {
+  fill: none;
+  stroke: var(--text-soft);
+  stroke-width: 8;
+  stroke-linejoin: round;
+}
+
+.bq-dg-tool {
+  fill: var(--surface-2);
+  stroke: var(--border-strong);
+  stroke-width: 2;
+}
+
+.bq-dg-dash {
+  stroke: var(--warning);
+  stroke-width: 2;
+  stroke-dasharray: 6 5;
+}
+
+.bq-dg-angle {
+  fill: none;
+  stroke: var(--warning);
+  stroke-width: 2;
+}
+
+.bq-dg-dim {
+  stroke: var(--data);
+  stroke-width: 2;
+}
+
+.bq-dg-ext {
+  stroke: var(--data);
+  stroke-width: 1;
+  opacity: 0.6;
+}
+
+.bq-dg-head {
+  fill: var(--data);
+}
+
+.bq-dg-dot {
+  fill: var(--warning);
+}
+
+.bq-diagram text {
+  text-anchor: middle;
+  font-family: var(--font-mono);
+}
+
+.bq-diagram .bq-dg-left {
+  text-anchor: start;
+}
+
+/* SVG içi yazı boyutu viewBox birimidir (320 genişlik), sayfa px'i değil. */
+.bq-dg-val {
+  fill: var(--data);
+  font-size: 16px;
+  font-weight: var(--fw-semibold);
+}
+
+.bq-dg-note {
+  fill: var(--text-muted);
+  font-size: 12px;
+}
+
+.bq-dg-big {
+  fill: var(--text);
+  font-size: 24px;
+  font-weight: var(--fw-semibold);
 }

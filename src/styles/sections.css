@@ -655,66 +655,6 @@
 }
 
 /* ============================================================
-   3. TEKNOLOJİ ŞERİDİ — hero ile hizmetler arasında köprü
-   ============================================================ */
-.techstrip {
-  position: relative;
-  z-index: 2;
-  margin-top: calc(var(--section-y) * -0.5);
-  padding: var(--space-8) clamp(var(--space-6), 4vw, var(--space-12));
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--r-xl);
-  box-shadow: var(--shadow-lg);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-6);
-  text-align: center;
-}
-
-.techstrip__title {
-  font-family: var(--font-mono);
-  font-size: var(--fs-2xs);
-  font-weight: var(--fw-medium);
-  letter-spacing: var(--tracking-wider);
-  text-transform: uppercase;
-  color: var(--text-muted);
-}
-
-.techstrip__list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: var(--space-3) var(--space-6);
-}
-
-.techstrip__item {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
-  font-family: var(--font-display);
-  font-size: var(--fs-md);
-  font-weight: var(--fw-semibold);
-  color: var(--text);
-  letter-spacing: -0.01em;
-  transition: color var(--dur-base) var(--ease-out);
-}
-
-.techstrip__item:hover {
-  color: var(--brand-600);
-}
-
-.techstrip__item svg {
-  color: var(--text-muted);
-  transition: color var(--dur-base) var(--ease-out);
-}
-
-.techstrip__item:hover svg {
-  color: var(--brand-600);
-}
-
-/* ============================================================
    4. PROJELER
    ============================================================ */
 .project-card {

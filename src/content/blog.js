@@ -356,7 +356,7 @@ BENDIQ calcule le facteur K et le développé à partir de données machine rée
 
 ## Pourquoi construire un produit, pas seulement des sites
 
-Développer BENDIQ en parallèle des sites clients a demandé une infrastructure différente : CI/CD via GitHub Actions, build et signature automatiques, gestion de licence via Supabase, publication sur Google Play. C'est plus de travail qu'un site vitrine — mais un produit continue de générer de la valeur sans qu'on reparte de zéro à chaque nouveau client.
+Développer BENDIQ en parallèle des sites clients a demandé une infrastructure différente : build et signature automatiques, gestion des licences, publication sur Google Play. C'est plus de travail qu'un site vitrine — mais un produit continue de générer de la valeur sans qu'on reparte de zéro à chaque nouveau client.
 
 ## Et maintenant ?
 
@@ -385,7 +385,7 @@ BENDIQ calculates K-factor and developed length from real machine data, shows a 
 
 ## Why build a product, not just websites
 
-Building BENDIQ alongside client sites required different infrastructure: CI/CD via GitHub Actions, automatic build and signing, license management through Supabase, publishing to Google Play. It's more upfront work than a showcase site — but a product keeps generating value without starting from scratch for every new client.
+Building BENDIQ alongside client sites required different infrastructure: automatic build and signing, license management, publishing to Google Play. It's more upfront work than a showcase site — but a product keeps generating value without starting from scratch for every new client.
 
 ## What's next
 
@@ -414,7 +414,7 @@ BENDIQ, gerçek makine verilerinden K-faktörü ve açınım uzunluğunu hesapl�
 
 ## Neden Sadece Site Değil, Ürün İnşa Etmek?
 
-BENDIQ'i müşteri siteleriyle paralel geliştirmek farklı bir altyapı gerektirdi: GitHub Actions üzerinden CI/CD, otomatik build ve imzalama, Supabase üzerinden lisans yönetimi, Google Play'e yayınlama. Bir vitrin sitesinden daha fazla ön emek — ama bir ürün, her yeni müşteride sıfırdan başlamadan değer üretmeye devam ediyor.
+BENDIQ'i müşteri siteleriyle paralel geliştirmek farklı bir altyapı gerektirdi: otomatik build ve imzalama, lisans yönetimi, Google Play'e yayınlama. Bir vitrin sitesinden daha fazla ön emek — ama bir ürün, her yeni müşteride sıfırdan başlamadan değer üretmeye devam ediyor.
 
 ## Sırada Ne Var?
 

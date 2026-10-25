@@ -4,7 +4,6 @@ import { LanguageProvider, useLanguage } from './i18n/LanguageContext.jsx'
 
 import Nav from './components/Nav.jsx'
 import Hero from './components/Hero.jsx'
-import TechStrip from './components/TechStrip.jsx'
 import Metaliq from './components/Metaliq.jsx'
 import Services from './components/Services.jsx'
 import Projects from './components/Projects.jsx'
@@ -98,7 +97,6 @@ function Home() {
   return (
     <main id="main">
       <Hero />
-      <TechStrip />
       <Metaliq />
       <Services />
       <Projects />

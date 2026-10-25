@@ -19,6 +19,8 @@
    bağlanılır), tasarruf yüzdesi/süre, "hatasız / ilk seferde", "makineye
    bağlanır". Çarpışma "yok" yalnız modellenen bileşenler için.
 
+   Test kullanıcısı sayısı (roadmap.testers, "20"): kullanıcının verdiği bilgi
+   (25.10.2026); değişirse üç dilde birlikte güncellenir.
    Görseller: Play mağaza kareleri (store/listing/assets/screenshots/<dil>),
    540×960 webp, dile göre. Karelerdeki sayılar mağaza demosudur.
    Üç dilin şekli prerender.mjs'te denetlenir (anahtar + dizi uzunluğu). */
@@ -73,21 +75,6 @@ export const bendiqPage = {
         { k: 'Voir', text: 'Plan 2D coté, 3D au vrai rayon, puis la presse complète en 4D avec 621 outils du catalogue et contrôle de collision.' },
         { k: 'Plier', text: "Mode opérateur pas à pas : angle, cote de butée arrière et retournement de la pièce à chaque pli." },
         { k: 'Exporter', text: 'DXF R12 pour le laser et le plasma, gabarit de découpe 1:1 sur A4, page de développé et rapport en PDF.' },
-      ],
-    },
-    gallery: {
-      eyebrow: "Dans l'application",
-      title: 'Les écrans, tels quels',
-      sub: "Captures de l'application Android dans votre langue. Les valeurs affichées sont un exemple de démonstration.",
-      hint: 'Faites glisser pour voir les 7 écrans',
-      alts: [
-        "Simulation 4D : poinçon et matrice réels du catalogue, pli par pli.",
-        "Calibrage : la perte au pli de votre machine à partir d'un pli d'essai mesuré.",
-        "Collision détectée au pli 4 : l'aile C touche le poinçon à 7,3 mm, avant de découper la tôle.",
-        'Écran principal : développé, longueur et poids affichés dès la saisie des cotes.',
-        "Fiche de pliage pas à pas : angle, cote de butée et orientation de la pièce pour chaque pli.",
-        'Développé prêt pour le laser : fichier DXF ou gabarit papier 1:1 issus du même calcul.',
-        "Plan coté et PDF : l'atelier et le client reçoivent le même plan.",
       ],
     },
     platforms: {
@@ -188,6 +175,7 @@ export const bendiqPage = {
         },
       ],
       origin: "Vos demandes comptent : le mode opérateur pas à pas et le décalage de butée arrière ont été ajoutés à la demande d'un utilisateur.",
+      testers: "20 utilisateurs test l'utilisent activement : grâce à leurs retours, chaque mise à jour la rend plus stable.",
       note: "Feuille de route indicative : l'ordre et les délais peuvent changer selon les retours d'atelier.",
     },
     faq: {
@@ -249,21 +237,6 @@ export const bendiqPage = {
         { k: 'See', text: 'Dimensioned 2D drawing, 3D at the real radius, then the full press brake in 4D with 621 catalogue tools and a collision check.' },
         { k: 'Bend', text: 'Step-by-step operator mode: angle, back gauge value and when to flip the part, for every bend.' },
         { k: 'Export', text: 'R12 DXF for laser and plasma, 1:1 cutting template on A4, flat pattern page and report as PDF.' },
-      ],
-    },
-    gallery: {
-      eyebrow: 'Inside the app',
-      title: 'The screens, as they are',
-      sub: 'Screenshots of the Android app in your language. The values shown are a demo example.',
-      hint: 'Swipe to see all 7 screens',
-      alts: [
-        '4D simulation: real catalogue punch and die, bend by bend.',
-        'Calibration: your machine’s bend deduction from one measured test bend.',
-        'Collision found on bend 4: flange C hits the punch at 7.3 mm, before the sheet is cut.',
-        'Main screen: flat length, length and weight shown as soon as the dimensions are entered.',
-        'Step-by-step bend card: angle, back gauge value and part orientation for every bend.',
-        'Flat pattern ready for the laser: DXF file or 1:1 paper template from the same calculation.',
-        'Dimensioned drawing and PDF: the shop floor and the customer get the same drawing.',
       ],
     },
     platforms: {
@@ -364,6 +337,7 @@ export const bendiqPage = {
         },
       ],
       origin: 'Your requests count: the step-by-step operator mode and the back gauge offset were added at a user’s request.',
+      testers: '20 test users work with it actively: thanks to their feedback, every update makes it more stable.',
       note: 'Indicative roadmap: order and timing may change with feedback from the shop floor.',
     },
     faq: {
@@ -425,21 +399,6 @@ export const bendiqPage = {
         { k: 'Gör', text: 'Ölçülendirilmiş 2D resim, gerçek radüslü 3D, ardından 621 katalog takımı ve çarpışma kontrolüyle abkantın tamamı 4D’de.' },
         { k: 'Bük', text: 'Adım adım operatör modu: her bükümde açı, arka dayama ölçüsü ve parçayı çevirme anı.' },
         { k: 'Çıktı al', text: 'Lazer ve plazma için R12 DXF, A4’te 1:1 kesim şablonu, açınım sayfası ve rapor PDF olarak.' },
-      ],
-    },
-    gallery: {
-      eyebrow: 'Uygulamanın içinden',
-      title: 'Ekranlar, olduğu gibi',
-      sub: 'Android uygulamasının kendi dilinizdeki ekran görüntüleri. Görünen değerler tanıtım örneğidir.',
-      hint: '7 ekranı görmek için kaydırın',
-      alts: [
-        '4D simülasyon: gerçek katalog zımbası ve kalıbıyla, büküm büküm.',
-        'Kalibrasyon: ölçülen tek deneme bükümünden makinenizin büküm payı.',
-        '4. bükümde çarpışma: C kanadı zımbaya 7,3 mm’de değiyor, sac kesilmeden.',
-        'Ana ekran: ölçüler girilince açınım, boy ve ağırlık hemen ekranda.',
-        'Adım adım büküm kartı: her büküm için açı, arka dayama ölçüsü ve parçanın yönü.',
-        'Lazere hazır açınım: aynı hesaptan DXF dosyası ya da 1:1 kâğıt şablon.',
-        'Ölçülü teknik resim ve PDF: atölyeye ve müşteriye aynı çizim gider.',
       ],
     },
     platforms: {
@@ -540,6 +499,7 @@ export const bendiqPage = {
         },
       ],
       origin: 'İstekleriniz yön verir: adım adım operatör modu ve arka dayama ofseti bir kullanıcının isteğiyle eklendi.',
+      testers: 'Uygulamayı aktif kullanan 20 test kullanıcısı ve geri dönüşleri sayesinde her yeni güncelleme uygulamayı daha kararlı hale getiriyor.',
       note: 'Yol haritası yön göstericidir: sıra ve süre atölyeden gelen geri bildirime göre değişebilir.',
     },
     faq: {

@@ -13,6 +13,7 @@ import {
 import Reveal from './Reveal.jsx'
 import SectionHead from './SectionHead.jsx'
 import Icon from './Icon.jsx'
+import BendiqGuide from './BendiqGuide.jsx'
 
 /** Dışarı (mağazaya) giden bağlantı: yeni sekme, ok ikonu. */
 function StoreLink({ href, className, children }) {
@@ -30,7 +31,7 @@ function StoreLink({ href, className, children }) {
  * Windows / web modu, 12 aylık yol haritası.
  *
  * Akış (karar sırası): ne yapar (hero) → almazsa ne kaybeder (maliyet) →
- * nasıl çalışır → kanıt (gerçek ekranlar) → hangi ekranda → kim ne kazanır →
+ * nasıl çalışır → kanıt (kullanım kılavuzu: gerçek ekranlar, her tuş) → hangi ekranda → kim ne kazanır →
  * sınırlar (güven) → yol haritası → itirazlar (SSS) → tek eylem.
  *
  * Birincil buton sayfada iki kez ve aynı hedefe gider: Google Play denemesi.
@@ -134,29 +135,8 @@ export default function BendiqPage() {
         </div>
       </section>
 
-      {/* ---------- Kanıt: gerçek ekranlar ---------- */}
-      <section className="section" data-surface="base" aria-labelledby="bq-gallery">
-        <div className="container">
-          <SectionHead id="bq-gallery" eyebrow={p.gallery.eyebrow} title={p.gallery.title} sub={p.gallery.sub} />
-          {/* Dar ekranda yatay kaydırma (scroll-snap); sayfa yatay taşmaz. */}
-          <ul className="bq-gallery" tabIndex={0} aria-label={p.gallery.title}>
-            {BENDIQ_SHOTS.map((key, i) => (
-              <li className="bq-gallery__item" key={key}>
-                <img
-                  className="bq-shot"
-                  src={shotSrc(lang, key)}
-                  alt={p.gallery.alts[i]}
-                  width={SHOT_W}
-                  height={SHOT_H}
-                  loading="lazy"
-                  decoding="async"
-                />
-              </li>
-            ))}
-          </ul>
-          <p className="bq-gallery__hint">{p.gallery.hint}</p>
-        </div>
-      </section>
+      {/* ---------- Kanıt: kullanım kılavuzu, gerçek ekranlar ---------- */}
+      <BendiqGuide lang={lang} />
 
       {/* ---------- Platformlar ---------- */}
       <section className="section" data-surface="raise" aria-labelledby="bq-platforms">
@@ -305,6 +285,7 @@ export default function BendiqPage() {
           </ol>
           <Reveal className="bq-roadmap__foot">
             <p className="bq-roadmap__origin">{p.roadmap.origin}</p>
+            <p className="bq-roadmap__origin">{p.roadmap.testers}</p>
             <p className="bq-roadmap__note">{p.roadmap.note}</p>
           </Reveal>
         </div>

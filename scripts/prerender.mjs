@@ -284,15 +284,44 @@ for (const l of LANGS) {
       `prerender: bendiqPage.${l} şekli ${LANG} ile ayrışıyor — eksik/farklı: ${bqRef.filter((x) => !curSet.has(x)).join(', ')}`,
     )
   }
-  if (bendiqPage[l].gallery.alts.length !== BENDIQ_SHOTS.length) {
-    throw new Error(`prerender: bendiqPage.${l}.gallery.alts ${BENDIQ_SHOTS.length} kare için yazılmalı`)
-  }
   for (const key of BENDIQ_SHOTS) {
     try {
       await readFile(join(REPO, 'public', 'bendiq', l, `${key}.webp`))
     } catch {
       throw new Error(`prerender: public/bendiq/${l}/${key}.webp yok`)
     }
+  }
+}
+
+/* 9. denetim — kullanım kılavuzu (src/content/bendiqGuide.js). Üç dilin şekli
+   aynı; her karenin dosyası dilde var; işaretli karede madde sayısı işaret
+   sayısına eşit (numara ile madde kayarsa kılavuz yanlış tuşu anlatır). */
+const { bendiqGuide, GUIDE_DIAGRAMS } = await import(new URL('../src/content/bendiqGuide.js', import.meta.url).href)
+const { GUIDE_MARKERS } = await import(new URL('../src/content/bendiqGuideMarkers.js', import.meta.url).href)
+const gRef = sekil(bendiqGuide[LANG])
+for (const l of LANGS) {
+  const gl = bendiqGuide[l]
+  if (!gl) throw new Error(`prerender: bendiqGuide.${l} yok`)
+  if (sekil(gl).join('|') !== gRef.join('|')) throw new Error(`prerender: bendiqGuide.${l} şekli ${LANG} ile ayrışıyor`)
+  const kareler = [
+    ...gl.chapters.flatMap((c) => c.screens),
+    ...gl.calib.steps.filter((s) => s.shot),
+    { shot: gl.calib.preview, items: null },
+  ]
+  for (const k of kareler) {
+    try {
+      await readFile(join(REPO, 'public', 'bendiq', 'kilavuz', l, `${k.shot}.webp`))
+    } catch {
+      throw new Error(`prerender: public/bendiq/kilavuz/${l}/${k.shot}.webp yok`)
+    }
+    const m = GUIDE_MARKERS[l]?.[k.shot]
+    if (!m) throw new Error(`prerender: bendiqGuideMarkers ${l}.${k.shot} yok`)
+    if (k.items && m.length && m.length !== k.items.length) {
+      throw new Error(`prerender: kılavuz ${l}.${k.shot}: ${m.length} işaret, ${k.items.length} madde`)
+    }
+  }
+  for (const s of gl.calib.steps) {
+    if (!s.shot && !GUIDE_DIAGRAMS.includes(s.diagram)) throw new Error(`prerender: kılavuz ${l} adımında kare/çizim yok: ${s.title}`)
   }
 }
 
