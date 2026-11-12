@@ -284,7 +284,8 @@ for (const l of LANGS) {
       `prerender: bendiqPage.${l} şekli ${LANG} ile ayrışıyor — eksik/farklı: ${bqRef.filter((x) => !curSet.has(x)).join(', ')}`,
     )
   }
-  for (const key of BENDIQ_SHOTS) {
+  // win = Windows yeni arayüz karesi (platform kartı + ana sayfa BENDIQ kartı).
+  for (const key of [...BENDIQ_SHOTS, 'win']) {
     try {
       await readFile(join(REPO, 'public', 'bendiq', l, `${key}.webp`))
     } catch {

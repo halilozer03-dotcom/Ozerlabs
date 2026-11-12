@@ -5,10 +5,14 @@ import { PLAY_BENDIQ } from '../content/links.js'
 import {
   bendiqPage,
   MS_STORE_BENDIQ,
+  IOS_APP_BENDIQ,
   BENDIQ_SHOTS,
   shotSrc,
   SHOT_W,
   SHOT_H,
+  winShotSrc,
+  WIN_SHOT_W,
+  WIN_SHOT_H,
 } from '../content/bendiqPage.js'
 import Reveal from './Reveal.jsx'
 import SectionHead from './SectionHead.jsx'
@@ -26,17 +30,54 @@ function StoreLink({ href, className, children }) {
 }
 
 /**
+ * iPhone / iPad'den gelen ziyaretçi Google Play'e gönderilmez: birincil
+ * deneme düğmesi o cihazda app.ozerlabs.com'u açar. iPadOS Safari kendini
+ * Mac olarak tanıtır; dokunmatik Mac yok, bu yüzden "Macintosh + dokunma"
+ * iPad sayılır. Gövde prerender edilmediği için ilk boyamada okunur.
+ */
+/** Platform kartının yayın durumu (yeşil nokta). */
+function Status({ label }) {
+  return (
+    <span className="tag tag--live">
+      <span className="tag__dot" />
+      {label}
+    </span>
+  )
+}
+
+/** Platform kartındaki onay işaretli madde listesi. */
+function Points({ items }) {
+  return (
+    <ul className="bq-points">
+      {items.map((pt) => (
+        <li key={pt}>
+          <Icon name="check" size={16} className="bq-points__icon" />
+          <span>{pt}</span>
+        </li>
+      ))}
+    </ul>
+  )
+}
+
+function isAppleMobile() {
+  if (typeof navigator === 'undefined') return false
+  const ua = navigator.userAgent || ''
+  return /iPhone|iPad|iPod/.test(ua) || (ua.includes('Macintosh') && navigator.maxTouchPoints > 1)
+}
+
+/**
  * BENDIQ tanıtım sayfası — /bendiq. Yalnız BENDIQ'i anlatır (kullanıcı
  * isteği 25.10.2026): ne olduğu, sahadaki faydası, ekranlar, Android /
- * Windows. Web modu ve yol haritası yazılmaz (kullanıcı 25.10: rakibe fikir vermesin).
+ * iPhone-iPad (13.11.2026'dan beri, app.ozerlabs.com) / Windows. Yol haritası
+ * ve yayında olmayan özellik yazılmaz (kullanıcı 25.10: rakibe fikir vermesin).
  *
  * Akış (karar sırası): ne yapar (hero) → kullanım kılavuzu (gerçek ekranlar,
  * her tuş; kullanıcı isteğiyle en üstte) → almazsa ne kaybeder (maliyet) →
  * nasıl çalışır → hangi ekranda → kim ne kazanır →
  * sınırlar (güven) → itirazlar (SSS) → tek eylem.
  *
- * Birincil buton sayfada iki kez ve aynı hedefe gider: Google Play denemesi.
- * Windows bağlantısı ikincil.
+ * Birincil buton sayfada iki kez ve aynı hedefe gider: Google Play denemesi;
+ * iPhone/iPad'de app.ozerlabs.com (isAppleMobile). Windows bağlantısı ikincil.
  * Metin ve doğrulama notları: src/content/bendiqPage.js.
  */
 export default function BendiqPage() {
@@ -47,6 +88,8 @@ export default function BendiqPage() {
   useDocumentMeta(p.meta?.title, p.meta?.description)
 
   const pf = p.platforms
+  const apple = isAppleMobile()
+  const tryHref = apple ? IOS_APP_BENDIQ : PLAY_BENDIQ
 
   return (
     <main id="main" className="bq">
@@ -54,6 +97,13 @@ export default function BendiqPage() {
       <section className="hero bq-hero" data-surface="void" aria-labelledby="bq-title">
         <div className="container hero__inner">
           <div className="hero__copy">
+            {/* Duyuru: yalnız yayındaki platform/arayüz (13.11.2026). Platform
+                bölümüne iner; birincil eylem sayısını artırmaz. */}
+            <Link to={{ hash: '#platformlar' }} className="tag tag--brand bq-news">
+              <Icon name="sparkles" size={13} />
+              {p.hero.news}
+              <Icon name="arrow-down" size={13} />
+            </Link>
             <span className="eyebrow">{p.hero.eyebrow}</span>
             <h1 className="hero__title" id="bq-title">
               {p.hero.title} <span className="accent">{p.hero.accent}</span>
@@ -61,8 +111,8 @@ export default function BendiqPage() {
             <p className="hero__sub">{p.hero.sub}</p>
 
             <div className="hero__actions">
-              <StoreLink href={PLAY_BENDIQ} className="btn btn--primary">
-                {p.hero.ctaPlay}
+              <StoreLink href={tryHref} className="btn btn--primary">
+                {apple ? p.hero.ctaIos : p.hero.ctaPlay}
               </StoreLink>
               <StoreLink href={MS_STORE_BENDIQ} className="btn btn--secondary">
                 {p.hero.ctaWindows}
@@ -140,28 +190,20 @@ export default function BendiqPage() {
       </section>
 
       {/* ---------- Platformlar ---------- */}
-      <section className="section" data-surface="raise" aria-labelledby="bq-platforms">
+      <section className="section" id="platformlar" data-surface="raise" aria-labelledby="bq-platforms">
         <div className="container">
           <SectionHead id="bq-platforms" eyebrow={pf.eyebrow} title={pf.title} sub={pf.sub} />
           <div className="bq-platforms">
             <Reveal className="card bq-platform bq-platform--main">
-              <span className="tag tag--live bq-platform__status">
-                <span className="tag__dot" />
-                {pf.available}
-              </span>
+              <div className="bq-platform__tags">
+                <Status label={pf.available} />
+              </div>
               <span className="icon-badge icon-badge--sm">
                 <Icon name="smartphone" size={21} />
               </span>
               <h3 className="card__title">{pf.android.title}</h3>
               <p className="card__text">{pf.android.lead}</p>
-              <ul className="bq-points">
-                {pf.android.points.map((pt) => (
-                  <li key={pt}>
-                    <Icon name="check" size={16} className="bq-points__icon" />
-                    <span>{pt}</span>
-                  </li>
-                ))}
-              </ul>
+              <Points items={pf.android.points} />
               <div className="card__foot">
                 <StoreLink href={PLAY_BENDIQ} className="btn btn--secondary btn--full">
                   {pf.android.cta}
@@ -169,38 +211,67 @@ export default function BendiqPage() {
               </div>
             </Reveal>
 
-            <Reveal className="card bq-platform" delay={80}>
-              <span className="tag tag--live bq-platform__status">
-                <span className="tag__dot" />
-                {pf.available}
-              </span>
+            {/* iPhone / iPad: App Store yok — kurulum adımları kartın kendisinde. */}
+            <Reveal className="card bq-platform" id="iphone" delay={80}>
+              <div className="bq-platform__tags">
+                <span className="tag tag--brand">{pf.newTag}</span>
+                <Status label={pf.available} />
+              </div>
               <span className="icon-badge icon-badge--sm">
-                <Icon name="layers" size={21} />
+                <Icon name="smartphone" size={21} />
               </span>
-              <h3 className="card__title">{pf.windows.title}</h3>
-              <p className="card__text">{pf.windows.lead}</p>
+              <h3 className="card__title">{pf.ios.title}</h3>
+              <p className="card__text">{pf.ios.lead}</p>
+              <p className="bq-install__title">{pf.ios.stepsTitle}</p>
+              <ol className="bq-install">
+                {pf.ios.steps.map((s, i) => (
+                  <li key={s}>
+                    <span className="bq-install__n" aria-hidden="true">
+                      {i + 1}
+                    </span>
+                    <span>{s}</span>
+                  </li>
+                ))}
+              </ol>
+              <Points items={pf.ios.points} />
+              <p className="bq-platform__note">{pf.ios.note}</p>
+              <div className="card__foot">
+                <StoreLink href={IOS_APP_BENDIQ} className="btn btn--secondary btn--full">
+                  {pf.ios.cta}
+                </StoreLink>
+              </div>
+            </Reveal>
+
+            {/* Windows: tam genişlik, yeni arayüzün gerçek karesi (dile göre). */}
+            <Reveal className="card bq-platform bq-platform--desk" delay={120}>
+              <div className="bq-platform__head">
+                <div className="bq-platform__tags">
+                  <span className="tag tag--brand">{pf.windows.newTag}</span>
+                  <Status label={pf.available} />
+                </div>
+                <span className="icon-badge icon-badge--sm">
+                  <Icon name="layers" size={21} />
+                </span>
+                <h3 className="card__title">{pf.windows.title}</h3>
+                <p className="card__text">{pf.windows.lead}</p>
+              </div>
               <img
                 className="bq-platform__shot"
-                src="/bendiq-windows.webp"
+                src={winShotSrc(lang)}
                 alt={pf.windows.shotAlt}
-                width="1200"
-                height="675"
+                width={WIN_SHOT_W}
+                height={WIN_SHOT_H}
                 loading="lazy"
                 decoding="async"
               />
-              <ul className="bq-points">
-                {pf.windows.points.map((pt) => (
-                  <li key={pt}>
-                    <Icon name="check" size={16} className="bq-points__icon" />
-                    <span>{pt}</span>
-                  </li>
-                ))}
-              </ul>
-              <p className="bq-platform__note">{pf.windows.note}</p>
-              <div className="card__foot">
-                <StoreLink href={MS_STORE_BENDIQ} className="btn btn--secondary btn--full">
-                  {pf.windows.cta}
-                </StoreLink>
+              <div className="bq-platform__rest">
+                <Points items={pf.windows.points} />
+                <p className="bq-platform__note">{pf.windows.note}</p>
+                <div className="card__foot">
+                  <StoreLink href={MS_STORE_BENDIQ} className="btn btn--secondary btn--full">
+                    {pf.windows.cta}
+                  </StoreLink>
+                </div>
               </div>
             </Reveal>
           </div>
@@ -264,8 +335,8 @@ export default function BendiqPage() {
             </h2>
             <p className="section-sub">{p.final.sub}</p>
             <div className="hero__actions bq-final__actions">
-              <StoreLink href={PLAY_BENDIQ} className="btn btn--primary">
-                {p.final.ctaPlay}
+              <StoreLink href={tryHref} className="btn btn--primary">
+                {apple ? p.final.ctaIos : p.final.ctaPlay}
               </StoreLink>
               <StoreLink href={MS_STORE_BENDIQ} className="btn btn--secondary">
                 {p.final.ctaWindows}

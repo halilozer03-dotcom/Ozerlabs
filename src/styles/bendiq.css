@@ -15,6 +15,28 @@
   aspect-ratio: 540 / 960;
 }
 
+/* Duyuru: yeni platform / arayüz. Uzun ve dile göre değişken — sarabilir.
+   Büyük harf yok: Türkçede text-transform "iPhone"u "İPHONE" yapıyor. */
+.bq-news {
+  text-transform: none;
+  letter-spacing: normal;
+  white-space: normal;
+  text-align: left;
+  max-width: 100%;
+  text-decoration: none;
+  transition: border-color var(--dur-base) var(--ease-out);
+}
+
+.bq-news svg {
+  flex: 0 0 auto;
+}
+
+@media (hover: hover) {
+  .bq-news:hover {
+    border-color: var(--brand);
+  }
+}
+
 .bq-trust {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -132,13 +154,98 @@
   gap: var(--space-2);
 }
 
-.bq-platform__status {
-  align-self: flex-start;
+/* Durum + "Yeni" etiketleri aynı satırda, dar kartta alta kayar. */
+.bq-platform__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
   margin-bottom: var(--space-4);
 }
 
 .bq-platform--main {
   border-color: var(--brand);
+}
+
+/* Windows: tam genişlik. Geniş ekranda solda metin, sağda arayüz karesi;
+   dar ekranda sıra: başlık → kare → maddeler → eylem. */
+.bq-platform--desk {
+  grid-column: 1 / -1;
+}
+
+@media (min-width: 940px) {
+  .bq-platform--desk {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr);
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+      'head shot'
+      'rest shot';
+    column-gap: var(--space-8);
+    align-items: start;
+  }
+
+  .bq-platform--desk .bq-platform__head {
+    grid-area: head;
+  }
+
+  .bq-platform--desk .bq-platform__shot {
+    grid-area: shot;
+    align-self: center;
+    margin-top: 0;
+  }
+
+  .bq-platform--desk .bq-platform__rest {
+    grid-area: rest;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+}
+
+/* iPhone kurulum adımları: kartın içinde, numaralı ve içe gömük yüzeyde. */
+.bq-install__title {
+  margin-top: var(--space-4);
+  font-family: var(--font-mono);
+  font-size: var(--fs-2xs);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--text-soft);
+}
+
+.bq-install {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin: var(--space-2) 0 0;
+  padding: var(--space-4);
+  list-style: none;
+  background: var(--surface-inset);
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  font-size: var(--fs-sm);
+  line-height: var(--lh-normal);
+  color: var(--text);
+}
+
+.bq-install li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+
+.bq-install__n {
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  width: var(--space-6);
+  height: var(--space-6);
+  border-radius: var(--r-xs);
+  background: var(--brand-tint);
+  color: var(--brand);
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
 }
 
 .bq-platform__shot {

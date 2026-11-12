@@ -4,11 +4,23 @@
    - Android: Play mağaza girişi ozer-bend-pro1/store/listing/<dil>.md
      (7 gün deneme kartsız, ücretsiz mod günde 3 parça, 621 katalog takımı,
      DXF R12, 1:1 şablon, 16 dil). Play sayfası canlı (200).
-   - Windows: bendiq-win/store/windows/fr-FR.md + Microsoft Store canlı sayfa
-     (sürüm 1.1.31, 24.10.2026). Ayrı lisans, bir parçalık ücretsiz sonuç,
-     iş listesi / proje dosyası / kurulum föyü / CSV kalibrasyon / segment stoğu.
-   - Web modu: YAYINDA DEĞİL ve sayfada YAZILMAZ (kullanıcı 25.10.2026: planlanan
-     platform/özellik rakibe fikir vermesin). Yayınlanınca platform kartı eklenir.
+   - Windows (13.11.2026 yeniden ölçüldü): Microsoft Store canlı ürün verisi
+     (What's New = 1.1.35; açıklamada "Essai gratuit de 3 jours … sans carte" +
+     "voyez une fois gratuitement le résultat d'une pièce", "Pack atelier :
+     1 ordinateur + 1 téléphone"). Yeni arayüz 1.1.33'ten beri: üstte komut
+     çubuğu, solda ölçüler, ortada teknik resim, sağda sonuç + çıktılar.
+     Görsel public/bendiq/<dil>/win.webp: gerçek Electron kabuğu (bendiq-win
+     desktop + 1.1.33 renderer, test sunucusu), dile göre çekildi, alttaki
+     durum çubuğu (sürüm yazısı) kırpıldı. 1.1.36 (14.11 yayın) maddeleri
+     yayına çıkmadan yazılmaz.
+   - iPhone / iPad (13.11.2026 yayına girdi, kullanıcı): App Store YOK, PWA —
+     app.ozerlabs.com (canlı 200, manifest standalone, ad BENDIQ). Safari →
+     Paylaş → Ana Ekrana Ekle (iOS 26'da "•••" menüsünde); Chrome iOS'ta Paylaş
+     adres çubuğunda. Deneme YALNIZ Google girişiyle 7 gün tam, kart yok, hesap
+     başına bir kez (bendiq-ios CLAUDE.md + canlıda ölçülmüş). Lisans hesaba
+     bağlı, Android/Windows'tan tamamen ayrı (pakete girmez). 16 dil. 2D/3D/4D,
+     kalibrasyon, DXF, 1:1, PDF bendiq-ios kaynağında var; yapay zekâ tarama
+     iOS'ta YOK (Android maddesi iOS'a yazılmaz). Fiyat yazılmaz.
    - Yol haritası YOK (kullanıcı 25.10.2026): sırada/planlanan özellik yazılmaz,
      rakibe fikir vermesin. Yalnız yayındaki özellik anlatılır.
    - FOLD modu + arka dayama ofseti bir kullanıcı isteğinden doğdu
@@ -27,6 +39,14 @@ export const BENDIQ_PATH = '/bendiq'
 
 export const MS_STORE_BENDIQ = 'https://apps.microsoft.com/detail/9N5NCGC9WX3Z'
 
+/* iPhone / iPad: App Store yok, Safari'de açılan uygulama (PWA). */
+export const IOS_APP_BENDIQ = 'https://app.ozerlabs.com'
+
+/* Windows yeni arayüz karesi (dile göre), 1200×650. */
+export const winShotSrc = (lang) => `/bendiq/${lang}/win.webp`
+export const WIN_SHOT_W = 1200
+export const WIN_SHOT_H = 650
+
 /* Kare adları üç dilde aynı; sıra mağazadaki sıradır. */
 export const BENDIQ_SHOTS = ['01_4d', '02_cal', '03_col', '04_main', '05_fold', '06_prod', '07_2d']
 export const shotSrc = (lang, key) => `/bendiq/${lang}/${key}.webp`
@@ -38,16 +58,18 @@ export const bendiqPage = {
     meta: {
       title: 'BENDIQ — Calcul de pliage et simulation 4D pour presse plieuse',
       description:
-        "Développé et perte au pli calibrés sur votre presse plieuse, ordre de pliage, contrôle de collision 4D, DXF, gabarit 1:1 et PDF. Android et Windows, essai 7 jours.",
+        "Développé et perte au pli calibrés sur votre presse plieuse, ordre de pliage, contrôle de collision 4D, DXF, gabarit 1:1 et PDF. Sur Android, iPhone, iPad et Windows, essai gratuit sans carte.",
     },
     hero: {
+      news: 'Nouveau : BENDIQ sur iPhone et iPad · nouvelle interface Windows',
       eyebrow: 'BENDIQ · Pour les opérateurs de presse plieuse',
       title: 'Voyez la pièce pliée',
       accent: 'avant de découper la tôle',
       sub: "BENDIQ calcule le développé avec la perte au pli mesurée sur votre machine, cherche l'ordre de pliage et montre en 4D si une aile touche l'outil. Tout cela avant la découpe.",
       ctaPlay: 'Essayer 7 jours sur Google Play',
+      ctaIos: 'Essayer 7 jours sur iPhone',
       ctaWindows: 'Version Windows',
-      trust: ['Android · Google Play', 'Windows · Microsoft Store', 'Essai 7 jours sans carte bancaire', 'Résiliable à tout moment'],
+      trust: ['Android · Google Play', 'iPhone et iPad · Safari', 'Windows · Microsoft Store', 'Essai gratuit sans carte bancaire', 'Résiliable à tout moment'],
       shotAlt:
         "Écran 4D de BENDIQ : presse plieuse à l'échelle, pli 3 sur l'aile C à 96°, pupitre CNC affichant l'ordre A B C D.",
     },
@@ -77,9 +99,28 @@ export const bendiqPage = {
     },
     platforms: {
       eyebrow: 'Sur quel écran',
-      title: 'Android à la presse, Windows au bureau',
-      sub: 'Chaque version a son rôle. Les deux sont disponibles aujourd’hui.',
+      title: 'Le téléphone à la presse, Windows au bureau',
+      sub: 'Android, iPhone, iPad et Windows sont disponibles aujourd’hui. Chaque version a sa propre licence.',
       available: 'Disponible',
+      newTag: 'Nouveau',
+      ios: {
+        title: 'iPhone et iPad',
+        lead: "Sans App Store : BENDIQ s'ouvre dans Safari, se pose sur l'écran d'accueil et s'ouvre ensuite comme une application.",
+        stepsTitle: 'Installer en 3 gestes',
+        steps: [
+          'Ouvrez app.ozerlabs.com dans Safari.',
+          'Touchez Partager (sur iOS 26, dans le menu « ••• »).',
+          'Choisissez « Sur l’écran d’accueil », puis ouvrez BENDIQ depuis son icône.',
+        ],
+        points: [
+          'Développé, perte au pli calibrée, 2D, 3D et 4D avec contrôle de collision',
+          'DXF, gabarit 1:1 et PDF',
+          '7 jours d’essai complet avec un compte Google, sans carte bancaire',
+          'Licence liée à votre compte, distincte d’Android et de Windows',
+        ],
+        note: 'Avec Chrome sur iPhone, le bouton Partager se trouve dans la barre d’adresse.',
+        cta: 'Ouvrir app.ozerlabs.com',
+      },
       android: {
         title: 'Android',
         lead: "L'outil reste dans la poche, à côté de la presse. Pas d'aller-retour au bureau pour un développé.",
@@ -95,18 +136,20 @@ export const bendiqPage = {
       },
       windows: {
         title: 'Windows',
-        lead: 'Le grand écran pour préparer la série : plusieurs pièces, plusieurs fichiers, un seul poste.',
+        newTag: 'Nouvelle interface',
+        lead: 'Un seul écran pour préparer la série : les commandes en haut, les cotes à gauche, le plan coté au centre, le résultat et les exports à droite.',
         points: [
+          'Ordre de pliage manuel : vous fixez la séquence, le rapport signale une collision',
+          "Import DXF d'une section, segments contrôlés avant d'appliquer",
+          'Profils machine : outils et cotes de bâti pour chaque presse (abonnement annuel)',
           'Liste de travail multi-pièces, PDF et DXF par lot',
           'Fichiers projet .bendiq : ouvrir, enregistrer, récents',
           'Fiche de réglage PDF depuis la 4D, une carte par pli',
-          'Import de la table de calibrage depuis un CSV',
-          "Stock de segments de l'atelier",
-          '2D à côté de la 3D/4D, Ctrl+Z / Ctrl+Y',
+          'Raccourcis clavier : F1 pour la liste, Ctrl+P imprimer, Ctrl+E DXF, F5 4D',
         ],
-        note: "Licence séparée de celle du téléphone. Avant d'acheter, vous voyez une fois gratuitement le résultat d'une pièce.",
+        note: 'Licence séparée de celle du téléphone. Essai gratuit de 3 jours sur votre ordinateur, sans carte bancaire.',
         cta: 'Voir sur Microsoft Store',
-        shotAlt: 'BENDIQ sur Windows : cotes à gauche, plan technique 2D coté à droite, boutons 3D, 4D, DXF, 1:1 et PDF.',
+        shotAlt: "Nouvelle interface de BENDIQ sur Windows : barre de commandes en haut, cotes d'un profil en U à gauche, plan technique coté au centre, longueur de coupe, poids et boutons DXF, 1:1, PDF et Imprimer à droite.",
       },
     },
     field: {
@@ -132,17 +175,19 @@ export const bendiqPage = {
       title: 'Questions fréquentes',
       items: [
         { q: 'BENDIQ pilote-t-il ma presse plieuse ?', a: "Non. BENDIQ calcule, prépare et simule. Il ne se connecte pas à la machine et ne lui envoie aucun programme : vous reportez les valeurs vous-même." },
+        { q: 'BENDIQ fonctionne-t-il sur iPhone ?', a: "Oui, sur iPhone et iPad, sans passer par l'App Store. Ouvrez app.ozerlabs.com dans Safari, touchez Partager puis « Sur l'écran d'accueil » : BENDIQ s'ouvre ensuite depuis son icône, comme une application. Continuez avec Google pour l'essai de 7 jours sans carte." },
         { q: 'Le développé sera-t-il juste sur ma machine ?', a: "Les tables standard sont un point de départ. Mesurez un pli d'essai : BENDIQ enregistre la perte au pli de votre machine pour cette matière, cette épaisseur et ce V. Avant une série, un pli d'essai sur les pièces critiques reste nécessaire." },
-        { q: 'Que puis-je faire sans licence ?', a: "Sur Android : 7 jours d'essai complet sans carte bancaire (connexion Google), puis le développé de 3 pièces par jour avec aperçu 2D/3D. Sur Windows : le résultat d'une pièce, une fois. Vos projets et calibrages ne sont pas supprimés." },
-        { q: 'La licence du téléphone vaut-elle sur Windows ?', a: 'Non, Windows a sa propre licence. Un pack atelier réunit un ordinateur et un téléphone. Les prix sont affichés dans chaque store.' },
+        { q: 'Que puis-je faire sans licence ?', a: "Sur Android : 7 jours d'essai complet sans carte bancaire (connexion Google), puis le développé de 3 pièces par jour avec aperçu 2D/3D. Sur iPhone et iPad : 7 jours d'essai complet avec un compte Google, sans carte bancaire. Sur Windows : 3 jours d'essai sans carte bancaire, puis le résultat d'une pièce, une fois. Sur Android et Windows, vos projets et calibrages ne sont pas supprimés." },
+        { q: 'Une licence vaut-elle sur les autres appareils ?', a: "Non. Android, iPhone/iPad et Windows ont chacun leur licence. Le pack atelier réunit un ordinateur Windows et un téléphone Android. Les prix sont affichés dans chaque store et, sur iPhone, dans l'application." },
         { q: "Mon outil n'est pas dans le catalogue.", a: "Envoyez le DXF de votre matrice : nous le testons et l'ajoutons au catalogue." },
-        { q: "Dans quelles langues ?", a: "L'application Android est en 16 langues, dont le français, l'anglais et le turc. La version Windows en propose 25." },
+        { q: "Dans quelles langues ?", a: "Les applications Android et iPhone sont en 16 langues, dont le français, l'anglais et le turc. La version Windows en propose 25." },
       ],
     },
     final: {
       title: 'Essayez-la sur votre prochaine pièce',
-      sub: "7 jours d'essai complet sur Android, sans carte bancaire. Résiliable à tout moment.",
+      sub: "Essai gratuit sans carte bancaire : 7 jours sur Android et iPhone, 3 jours sur Windows. Résiliable à tout moment.",
       ctaPlay: 'Essayer sur Google Play',
+      ctaIos: 'Essayer sur iPhone',
       ctaWindows: 'Version Windows',
       contact: 'Une question avant d’essayer ? Écrivez-nous',
     },
@@ -152,16 +197,18 @@ export const bendiqPage = {
     meta: {
       title: 'BENDIQ — Press brake bending calculator and 4D simulation',
       description:
-        'Flat pattern and bend deduction calibrated on your own press brake, bend sequence, 4D collision check, DXF, 1:1 template and PDF. Android and Windows, 7-day trial.',
+        'Flat pattern and bend deduction calibrated on your own press brake, bend sequence, 4D collision check, DXF, 1:1 template and PDF. On Android, iPhone, iPad and Windows, free trial with no card.',
     },
     hero: {
+      news: 'New: BENDIQ on iPhone and iPad · new Windows interface',
       eyebrow: 'BENDIQ · Built for press brake operators',
       title: 'See the bent part',
       accent: 'before you cut the sheet',
       sub: 'BENDIQ calculates the flat pattern with the bend deduction measured on your machine, finds the bend sequence and shows in 4D whether a flange hits the tooling. All before cutting.',
       ctaPlay: 'Try 7 days on Google Play',
+      ctaIos: 'Try 7 days on iPhone',
       ctaWindows: 'Windows version',
-      trust: ['Android · Google Play', 'Windows · Microsoft Store', '7-day trial, no credit card', 'Cancel anytime'],
+      trust: ['Android · Google Play', 'iPhone and iPad · Safari', 'Windows · Microsoft Store', 'Free trial, no credit card', 'Cancel anytime'],
       shotAlt:
         'BENDIQ 4D screen: full-scale press brake, bend 3 on flange C at 96°, CNC panel showing the sequence A B C D.',
     },
@@ -191,9 +238,28 @@ export const bendiqPage = {
     },
     platforms: {
       eyebrow: 'On which screen',
-      title: 'Android at the press, Windows at the desk',
-      sub: 'Each version has its job. Both are available today.',
+      title: 'The phone at the press, Windows at the desk',
+      sub: 'Android, iPhone, iPad and Windows are available today. Each version has its own licence.',
       available: 'Available',
+      newTag: 'New',
+      ios: {
+        title: 'iPhone and iPad',
+        lead: 'No App Store needed: BENDIQ opens in Safari, sits on your home screen and then opens like an app.',
+        stepsTitle: 'Install in 3 taps',
+        steps: [
+          'Open app.ozerlabs.com in Safari.',
+          'Tap Share (on iOS 26, inside the “•••” menu).',
+          'Choose “Add to Home Screen”, then open BENDIQ from its icon.',
+        ],
+        points: [
+          'Flat pattern, calibrated bend deduction, 2D, 3D and 4D with collision check',
+          'DXF, 1:1 template and PDF',
+          '7-day full trial with a Google account, no credit card',
+          'Licence tied to your account, separate from Android and Windows',
+        ],
+        note: 'In Chrome on iPhone, the Share button is in the address bar.',
+        cta: 'Open app.ozerlabs.com',
+      },
       android: {
         title: 'Android',
         lead: 'The tool stays in your pocket, next to the press. No trip to the office for a flat pattern.',
@@ -209,18 +275,20 @@ export const bendiqPage = {
       },
       windows: {
         title: 'Windows',
-        lead: 'The big screen to prepare a batch: several parts, several files, one workstation.',
+        newTag: 'New interface',
+        lead: 'One screen to prepare a batch: commands at the top, dimensions on the left, the dimensioned drawing in the middle, result and exports on the right.',
         points: [
+          'Manual bend sequence: you set the order, the report flags a collision',
+          'DXF import of a section, segments checked before applying',
+          'Machine profiles: tooling and frame dimensions for each press brake (annual plan)',
           'Multi-part job list, batch PDF and DXF',
           '.bendiq project files: open, save, recent',
           'PDF setup sheet from the 4D view, one card per bend',
-          'Calibration table import from CSV',
-          'Shop segment stock',
-          '2D next to 3D/4D, Ctrl+Z / Ctrl+Y',
+          'Keyboard shortcuts: F1 for the list, Ctrl+P print, Ctrl+E DXF, F5 4D',
         ],
-        note: 'Licensed separately from the phone. Before buying, you can see the result of one part once for free.',
+        note: 'Licensed separately from the phone. 3-day free trial on your computer, no credit card.',
         cta: 'View on Microsoft Store',
-        shotAlt: 'BENDIQ on Windows: dimensions on the left, dimensioned 2D technical drawing on the right, 3D, 4D, DXF, 1:1 and PDF buttons.',
+        shotAlt: 'New BENDIQ interface on Windows: command bar at the top, U-profile dimensions on the left, dimensioned technical drawing in the middle, flat length, weight and DXF, 1:1, PDF and Print buttons on the right.',
       },
     },
     field: {
@@ -246,17 +314,19 @@ export const bendiqPage = {
       title: 'Frequently asked questions',
       items: [
         { q: 'Does BENDIQ control my press brake?', a: 'No. BENDIQ calculates, prepares and simulates. There is no link between BENDIQ and the machine, and no program is sent to it: you enter the values yourself.' },
+        { q: 'Does BENDIQ work on iPhone?', a: 'Yes, on iPhone and iPad, without the App Store. Open app.ozerlabs.com in Safari, tap Share, then “Add to Home Screen”: BENDIQ then opens from its icon, like an app. Continue with Google for the 7-day trial with no card.' },
         { q: 'Will the flat pattern be right on my machine?', a: 'Standard charts are a starting point. Measure one test bend: BENDIQ stores your machine’s bend deduction for that material, thickness and V. Before a batch, a test bend on critical parts is still needed.' },
-        { q: 'What can I do without a licence?', a: 'On Android: a 7-day full trial without a credit card (Google sign-in), then the flat pattern of 3 parts a day with 2D/3D preview. On Windows: the result of one part, once. Your projects and calibrations are not deleted.' },
-        { q: 'Does the phone licence work on Windows?', a: 'No, Windows has its own licence. A shop pack combines one computer and one phone. Prices are shown in each store.' },
+        { q: 'What can I do without a licence?', a: 'On Android: a 7-day full trial without a credit card (Google sign-in), then the flat pattern of 3 parts a day with 2D/3D preview. On iPhone and iPad: a 7-day full trial with a Google account, no credit card. On Windows: a 3-day trial without a credit card, then the result of one part, once. On Android and Windows, your projects and calibrations are not deleted.' },
+        { q: 'Does one licence work on other devices?', a: 'No. Android, iPhone/iPad and Windows each have their own licence. The shop pack combines one Windows computer and one Android phone. Prices are shown in each store and, on iPhone, in the app.' },
         { q: 'My tool is not in the catalogue.', a: 'Send us your die’s DXF file: we test it and add it to the catalogue.' },
-        { q: 'Which languages?', a: 'The Android app is available in 16 languages, including French, English and Turkish. The Windows version offers 25.' },
+        { q: 'Which languages?', a: 'The Android and iPhone apps are available in 16 languages, including French, English and Turkish. The Windows version offers 25.' },
       ],
     },
     final: {
       title: 'Try it on your next part',
-      sub: '7-day full trial on Android, no credit card. Cancel anytime.',
+      sub: 'Free trial with no credit card: 7 days on Android and iPhone, 3 days on Windows. Cancel anytime.',
       ctaPlay: 'Try on Google Play',
+      ctaIos: 'Try on iPhone',
       ctaWindows: 'Windows version',
       contact: 'A question before trying? Write to us',
     },
@@ -266,16 +336,18 @@ export const bendiqPage = {
     meta: {
       title: 'BENDIQ — Abkant büküm hesabı ve 4D simülasyon',
       description:
-        'Kendi abkantınıza kalibre edilmiş açınım ve büküm payı, büküm sırası, 4D çarpışma kontrolü, DXF, 1:1 şablon ve PDF. Android ve Windows, 7 gün deneme.',
+        'Kendi abkantınıza kalibre edilmiş açınım ve büküm payı, büküm sırası, 4D çarpışma kontrolü, DXF, 1:1 şablon ve PDF. Android, iPhone, iPad ve Windows’ta, kartsız ücretsiz deneme.',
     },
     hero: {
+      news: 'Yeni: BENDIQ artık iPhone ve iPad’de · Windows’ta yeni arayüz',
       eyebrow: 'BENDIQ · Abkant operatörleri için',
       title: 'Bükülmüş parçayı görün,',
       accent: 'sacı sonra kesin',
       sub: 'BENDIQ açınımı kendi makinenizde ölçülen büküm payıyla hesaplar, büküm sırasını arar ve bir kanadın takıma çarpıp çarpmadığını 4D’de gösterir. Hepsi kesimden önce.',
       ctaPlay: "Google Play'de 7 gün deneyin",
+      ctaIos: "iPhone'da 7 gün deneyin",
       ctaWindows: 'Windows sürümü',
-      trust: ['Android · Google Play', 'Windows · Microsoft Store', '7 gün deneme, kredi kartı yok', 'İstediğiniz an iptal'],
+      trust: ['Android · Google Play', 'iPhone ve iPad · Safari', 'Windows · Microsoft Store', 'Ücretsiz deneme, kredi kartı yok', 'İstediğiniz an iptal'],
       shotAlt:
         'BENDIQ 4D ekranı: gerçek ölçekli abkant, C kanadında 3. büküm 96°, CNC panelde A B C D sırası.',
     },
@@ -305,9 +377,28 @@ export const bendiqPage = {
     },
     platforms: {
       eyebrow: 'Hangi ekranda',
-      title: 'Abkantın yanında Android, masada Windows',
-      sub: 'Her sürümün bir işi var. İkisi de bugün kullanılabilir.',
+      title: 'Abkantın yanında telefon, masada Windows',
+      sub: 'Android, iPhone, iPad ve Windows bugün kullanılabilir. Her sürümün kendi lisansı var.',
       available: 'Yayında',
+      newTag: 'Yeni',
+      ios: {
+        title: 'iPhone ve iPad',
+        lead: 'App Store gerekmez: BENDIQ Safari’de açılır, ana ekrana eklenir ve sonra uygulama gibi açılır.',
+        stepsTitle: '3 adımda kurulum',
+        steps: [
+          'Safari’de app.ozerlabs.com adresini açın.',
+          'Paylaş’a dokunun (iOS 26’da “•••” menüsünün içinde).',
+          '“Ana Ekrana Ekle”yi seçin, sonra BENDIQ’i simgesinden açın.',
+        ],
+        points: [
+          'Açınım, kalibre edilmiş büküm payı, çarpışma kontrolüyle 2D, 3D ve 4D',
+          'DXF, 1:1 şablon ve PDF',
+          'Google hesabıyla 7 gün tam deneme, kredi kartı yok',
+          'Lisans hesabınıza bağlı, Android ve Windows’tan ayrı',
+        ],
+        note: 'iPhone’da Chrome kullanıyorsanız Paylaş düğmesi adres çubuğundadır.',
+        cta: 'app.ozerlabs.com’u aç',
+      },
       android: {
         title: 'Android',
         lead: 'Araç cebinizde, abkantın yanında durur. Bir açınım için ofise gidip gelmezsiniz.',
@@ -323,18 +414,20 @@ export const bendiqPage = {
       },
       windows: {
         title: 'Windows',
-        lead: 'Seri işi hazırlamak için büyük ekran: birden çok parça, birden çok dosya, tek masa.',
+        newTag: 'Yeni arayüz',
+        lead: 'Seri işi tek ekranda hazırlayın: komutlar üstte, ölçüler solda, ölçülü teknik resim ortada, sonuç ve çıktılar sağda.',
         points: [
+          'Elle büküm sırası: sırayı siz belirlersiniz, çarpışma varsa rapor söyler',
+          'Bir kesitin DXF’ini içe alma, uygulamadan önce segment kontrolü',
+          'Makine profilleri: her abkant için ayrı takım ve gövde ölçüleri (yıllık abonelik)',
           'Çok parçalı iş listesi, toplu PDF ve DXF',
           '.bendiq proje dosyaları: aç, kaydet, son kullanılanlar',
           '4D görünümden kurulum föyü PDF, her büküme bir kart',
-          'Kalibrasyon tablosunu CSV’den içe aktarma',
-          'Atölyenin segment stoğu',
-          '2D, 3D/4D’nin yanında; Ctrl+Z / Ctrl+Y',
+          'Klavye kısayolları: F1 liste, Ctrl+P yazdır, Ctrl+E DXF, F5 4D',
         ],
-        note: 'Telefon lisansından ayrı lisanslanır. Satın almadan önce bir parçanın sonucunu bir kez ücretsiz görürsünüz.',
+        note: 'Telefon lisansından ayrı lisanslanır. Bilgisayarınızda 3 gün ücretsiz deneme, kredi kartı yok.',
         cta: "Microsoft Store'da gör",
-        shotAlt: 'Windows’ta BENDIQ: solda ölçüler, sağda ölçülendirilmiş 2D teknik resim; 3D, 4D, DXF, 1:1 ve PDF düğmeleri.',
+        shotAlt: 'Windows’ta BENDIQ’in yeni arayüzü: üstte komut çubuğu, solda U profilin ölçüleri, ortada ölçülü teknik resim, sağda kesim boyu, ağırlık ve DXF, 1:1, PDF, Yazdır düğmeleri.',
       },
     },
     field: {
@@ -360,17 +453,19 @@ export const bendiqPage = {
       title: 'Sık sorulan sorular',
       items: [
         { q: 'BENDIQ abkantımı kumanda eder mi?', a: 'Hayır. BENDIQ hesaplar, hazırlar ve simüle eder. Makineyle bağlantısı yoktur, program göndermez: değerleri makineye siz girersiniz.' },
+        { q: 'BENDIQ iPhone’da çalışır mı?', a: 'Evet, iPhone ve iPad’de, App Store’a gerek olmadan. Safari’de app.ozerlabs.com adresini açın, Paylaş’a ve ardından “Ana Ekrana Ekle”ye dokunun: BENDIQ bundan sonra simgesinden uygulama gibi açılır. Kartsız 7 günlük deneme için Google ile devam edin.' },
         { q: 'Açınım benim makinemde doğru çıkar mı?', a: 'Standart tablolar başlangıç noktasıdır. Bir deneme bükümü ölçün: BENDIQ o malzeme, kalınlık ve V için makinenizin büküm payını kaydeder. Seri üretimden önce kritik parçada deneme bükümü yine gerekir.' },
-        { q: 'Lisans olmadan ne yapabilirim?', a: 'Android’de: kredi kartı istemeyen 7 gün tam deneme (Google girişi), sonra günde 3 parçanın açınımı ve 2D/3D önizleme. Windows’ta: bir parçanın sonucu, bir kez. Projeleriniz ve kalibrasyonlarınız silinmez.' },
-        { q: 'Telefon lisansı Windows’ta geçer mi?', a: 'Hayır, Windows’un kendi lisansı var. Atölye paketi bir bilgisayar ile bir telefonu birleştirir. Fiyatlar her mağazada görünür.' },
+        { q: 'Lisans olmadan ne yapabilirim?', a: 'Android’de: kredi kartı istemeyen 7 gün tam deneme (Google girişi), sonra günde 3 parçanın açınımı ve 2D/3D önizleme. iPhone ve iPad’de: Google hesabıyla 7 gün tam deneme, kredi kartı yok. Windows’ta: kredi kartı istemeyen 3 gün deneme, sonra bir parçanın sonucu, bir kez. Android ve Windows’ta projeleriniz ve kalibrasyonlarınız silinmez.' },
+        { q: 'Bir lisans öteki cihazlarda geçer mi?', a: 'Hayır. Android, iPhone/iPad ve Windows’un her birinin kendi lisansı var. Atölye paketi bir Windows bilgisayar ile bir Android telefonu birleştirir. Fiyatlar her mağazada, iPhone’da ise uygulamanın içinde görünür.' },
         { q: 'Takımım katalogda yok.', a: 'Kalıbınızın DXF dosyasını gönderin: test edip kataloğa ekleyelim.' },
-        { q: 'Hangi dillerde?', a: 'Android uygulaması Türkçe, Fransızca ve İngilizce dahil 16 dilde. Windows sürümü 25 dil sunar.' },
+        { q: 'Hangi dillerde?', a: 'Android ve iPhone uygulamaları Türkçe, Fransızca ve İngilizce dahil 16 dilde. Windows sürümü 25 dil sunar.' },
       ],
     },
     final: {
       title: 'Bir sonraki parçanızda deneyin',
-      sub: 'Android’de 7 gün tam deneme, kredi kartı yok. İstediğiniz an iptal.',
+      sub: 'Kredi kartı istemeyen ücretsiz deneme: Android ve iPhone’da 7 gün, Windows’ta 3 gün. İstediğiniz an iptal.',
       ctaPlay: "Google Play'de deneyin",
+      ctaIos: "iPhone'da deneyin",
       ctaWindows: 'Windows sürümü',
       contact: 'Denemeden önce sorunuz mu var? Bize yazın',
     },

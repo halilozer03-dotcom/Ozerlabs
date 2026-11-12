@@ -1,5 +1,6 @@
+import { Link } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
-import { PLAY_BENDIQ } from '../content/links.js'
+import { BENDIQ_PATH } from '../content/bendiqPage.js'
 import Icon from './Icon.jsx'
 
 /**
@@ -18,11 +19,13 @@ import Icon from './Icon.jsx'
  * Oran 698×1557 ve sabit
  * olduğu için CLS üretmez. 9:16'ya sıkıştırmak kareyi kırpıyordu.
  *
- * Tamamı Play sayfasına giden tek bir bağlantı. Alt yazı zaten
- * "Google Play'de yayında" diyordu ama tıklanmıyordu; ziyaretçinin ilk
- * gördüğü kanıt, ürüne giden yolun da kendisi olmalı. Bağlantının
- * erişilebilir adı görsel alt metni değil ayrı bir eylem cümlesi
- * (visualLink) — "…1106,8 mm…" bir bağlantı adı olarak anlamsız kalıyor.
+ * Tamamı tek bir bağlantı: ziyaretçinin ilk gördüğü kanıt, ürüne giden
+ * yolun da kendisi olmalı. 13.11.2026'ya kadar Google Play'e gidiyordu;
+ * BENDIQ iPhone/iPad'e (app.ozerlabs.com) de gelince iPhone'dan gelen
+ * ziyaretçi Play'de çıkmaza düşmesin diye /bendiq platform bölümüne iner
+ * (orada üç platformun da bağlantısı ve iPhone kurulum adımları var).
+ * Bağlantının erişilebilir adı görsel alt metni değil ayrı bir eylem
+ * cümlesi (visualLink) — "…1106,8 mm…" bir bağlantı adı olarak anlamsız kalıyor.
  */
 export default function HeroVisual() {
   const { t } = useLanguage()
@@ -31,11 +34,9 @@ export default function HeroVisual() {
     <div className="hero-visual">
       <div className="hero-visual__glow" aria-hidden="true" />
 
-      <a
+      <Link
         className="hero-visual__link"
-        href={PLAY_BENDIQ}
-        target="_blank"
-        rel="noopener noreferrer"
+        to={{ pathname: BENDIQ_PATH, hash: '#platformlar' }}
         aria-label={t.hero.visualLink}
       >
         <figure className="device">
@@ -54,9 +55,9 @@ export default function HeroVisual() {
         <span className="device__caption">
           <i className="device__dot" aria-hidden="true" />
           {t.hero.visualCaption}
-          <Icon name="arrow-up-right" size={14} />
+          <Icon name="arrow-right" size={14} />
         </span>
-      </a>
+      </Link>
     </div>
   )
 }

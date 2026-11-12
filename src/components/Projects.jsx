@@ -135,7 +135,7 @@ function ProjectCard({ project, viewLabel, labels, featured = false }) {
             src={project.platformShot}
             alt={project.platformShotAlt}
             width="1200"
-            height="675"
+            height="650"
             loading="lazy"
             decoding="async"
           />
