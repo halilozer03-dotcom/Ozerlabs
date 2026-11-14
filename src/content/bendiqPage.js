@@ -11,8 +11,8 @@
      çubuğu, solda ölçüler, ortada teknik resim, sağda sonuç + çıktılar.
      Görsel public/bendiq/<dil>/win.webp: gerçek Electron kabuğu (bendiq-win
      desktop + 1.1.33 renderer, test sunucusu), dile göre çekildi, alttaki
-     durum çubuğu (sürüm yazısı) kırpıldı. 1.1.36 (14.11 yayın) maddeleri
-     yayına çıkmadan yazılmaz.
+     durum çubuğu (sürüm yazısı) kırpıldı. 1.1.36 maddesi mağazada canlı
+     görüldükten sonra eklendi (14.11.2026).
    - iPhone / iPad (13.11.2026 yayına girdi, kullanıcı): App Store YOK, PWA —
      app.ozerlabs.com (canlı 200, manifest standalone, ad BENDIQ). Safari →
      Paylaş → Ana Ekrana Ekle (iOS 26'da "•••" menüsünde); Chrome iOS'ta Paylaş
@@ -139,6 +139,7 @@ export const bendiqPage = {
         newTag: 'Nouvelle interface',
         lead: 'Un seul écran pour préparer la série : les commandes en haut, les cotes à gauche, le plan coté au centre, le résultat et les exports à droite.',
         points: [
+          'Plus stable : un angle vide ou hors de 1–179° ne dessine plus de section, l’import DXF ouvre plus de fichiers et donne la raison d’un angle refusé, mise à jour de sécurité',
           'Ordre de pliage manuel : vous fixez la séquence, le rapport signale une collision',
           "Import DXF d'une section, segments contrôlés avant d'appliquer",
           'Profils machine : outils et cotes de bâti pour chaque presse (abonnement annuel)',
@@ -278,6 +279,7 @@ export const bendiqPage = {
         newTag: 'New interface',
         lead: 'One screen to prepare a batch: commands at the top, dimensions on the left, the dimensioned drawing in the middle, result and exports on the right.',
         points: [
+          'More stable: an empty angle or one outside 1–179° no longer draws a section, DXF import opens more files and gives the reason when an angle is refused, security update',
           'Manual bend sequence: you set the order, the report flags a collision',
           'DXF import of a section, segments checked before applying',
           'Machine profiles: tooling and frame dimensions for each press brake (annual plan)',
@@ -417,6 +419,7 @@ export const bendiqPage = {
         newTag: 'Yeni arayüz',
         lead: 'Seri işi tek ekranda hazırlayın: komutlar üstte, ölçüler solda, ölçülü teknik resim ortada, sonuç ve çıktılar sağda.',
         points: [
+          'Daha kararlı: boş ya da 1–179° dışı açı artık kesit çizmez, DXF içe alma daha çok dosya açar ve reddedilen açının nedenini yazar, güvenlik güncellemesi',
           'Elle büküm sırası: sırayı siz belirlersiniz, çarpışma varsa rapor söyler',
           'Bir kesitin DXF’ini içe alma, uygulamadan önce segment kontrolü',
           'Makine profilleri: her abkant için ayrı takım ve gövde ölçüleri (yıllık abonelik)',
