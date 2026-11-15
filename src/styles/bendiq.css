@@ -172,6 +172,26 @@
   grid-column: 1 / -1;
 }
 
+/* Linux: tam genişlik, kare yok (arayüz Windows'la aynı). Geniş ekranda
+   solda başlık, sağda maddeler + eylem — yarım kart boş sütun bırakırdı. */
+.bq-platform--wide {
+  grid-column: 1 / -1;
+}
+
+@media (min-width: 940px) {
+  .bq-platform--wide {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr);
+    column-gap: var(--space-8);
+    align-items: start;
+  }
+
+  .bq-platform--wide .bq-platform__rest {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
 @media (min-width: 940px) {
   .bq-platform--desk {
     display: grid;

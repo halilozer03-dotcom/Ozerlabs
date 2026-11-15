@@ -40,8 +40,8 @@ export const translations = {
       ctaPrimary: 'Devis gratuit',
       segments: { label: 'Voir les réalisations :', industry: 'Solutions industrielles', local: 'Solutions pour commerces locaux' },
       visualAlt: "Bandeau BENDIQ, puis l'écran principal de l'application : développé 306,8 mm, longueur 400 mm et poids 1,93 kg en haut, cotes d'un profil en C à bords tombés (20, 40, 200, 40, 20 mm) et boutons 3D et 4D.",
-      visualCaption: 'Nouveau : BENDIQ sur iPhone',
-      visualLink: 'Découvrir BENDIQ sur Android, iPhone et Windows',
+      visualCaption: 'Nouveau : BENDIQ sur Linux',
+      visualLink: 'Découvrir BENDIQ sur Android, iPhone, Windows et Linux',
     },
     about: {
       eyebrow: 'Qui',
@@ -182,7 +182,7 @@ export const translations = {
       ],
     },
     projects: [
-      { tag: 'ANDROID · IOS · WINDOWS', logo: '/bendiq-logo.webp', cover: '/bendiq-kapak.webp', screen: '/bendiq-4d-pres.webp', platformNote: "Android : Google Play. Nouveau, iPhone et iPad : s'ouvre dans Safari sur app.ozerlabs.com, sans App Store. Windows : Microsoft Store, nouvelle interface. Chaque plateforme a sa propre licence.", platformShot: '/bendiq/fr/win.webp', platformShotAlt: "Nouvelle interface de BENDIQ sur Windows : barre de commandes en haut, cotes d'un profil en U à gauche, plan technique coté au centre, longueur de coupe, poids et boutons DXF, 1:1, PDF et Imprimer à droite.", title: 'BENDIQ', segments: ['industry'], desc: "Calcul de pliage pour presse plieuse : développé et perte au pli apprise de votre machine, plan 2D coté, 3D au vrai rayon, la presse plieuse complète en 4D avec simulateur de collision, DXF pour le laser, gabarit 1:1 et PDF. 16 langues.", meta: ['2026'], path: '/bendiq' },
+      { tag: 'ANDROID · IOS · WINDOWS · LINUX', logo: '/bendiq-logo.webp', cover: '/bendiq-kapak.webp', screen: '/bendiq-4d-pres.webp', platformNote: "Nouveau, Linux : Snap Store, même interface que Windows. Android : Google Play. iPhone et iPad : s'ouvre dans Safari sur app.ozerlabs.com, sans App Store. Windows : Microsoft Store. Windows et Linux partagent la licence ordinateur ; le téléphone a la sienne.", platformShot: '/bendiq/fr/win.webp', platformShotAlt: "Nouvelle interface de BENDIQ sur Windows : barre de commandes en haut, cotes d'un profil en U à gauche, plan technique coté au centre, longueur de coupe, poids et boutons DXF, 1:1, PDF et Imprimer à droite.", title: 'BENDIQ', segments: ['industry'], desc: "Calcul de pliage pour presse plieuse : développé et perte au pli apprise de votre machine, plan 2D coté, 3D au vrai rayon, la presse plieuse complète en 4D avec simulateur de collision, DXF pour le laser, gabarit 1:1 et PDF. 16 langues.", meta: ['2026'], path: '/bendiq' },
       { tag: 'LOGICIEL MÉTIER · WEB', title: 'METALIQ', segments: ['industry'], cover: '/showcase/metaliq/cover.webp', desc: 'Logiciel de conception 3D pour la métallerie : garde-corps, escaliers, portes et portails, clôtures, mezzanines et pergolas, avec liste de débit, DXF et dossier de fabrication.', meta: ['2026'], anchor: 'metaliq' },
       { tag: 'SAAS · WEB', title: 'FacturIQ', segments: ['local'], logo: '/brand/facturiq.webp', status: 'design', desc: "Facturation électronique pour artisans et TPE : devis, acompte, solde et avoir, factures Factur-X vérifiées selon la norme EN 16931, export FEC pour le comptable.", meta: ['2026'] },
       { tag: 'SITE CLIENT · WEB', title: 'HD Auto', segments: ['local'], desc: 'Site vitrine pour un garage automobile, avec présentation des services et prise de rendez-vous.', meta: ['2026'], logo: '/brand/hd-auto.webp', url: 'https://wwwhdauto.com' },
@@ -253,8 +253,8 @@ export const translations = {
       ctaPrimary: 'Get a Free Quote',
       segments: { label: 'See our work:', industry: 'Industrial solutions', local: 'Local business solutions' },
       visualAlt: 'BENDIQ banner, then the app main screen: flat length 306.8 mm, length 400 mm and weight 1.93 kg at the top, dimensions of a lipped C profile (20, 40, 200, 40, 20 mm) and the 3D and 4D buttons.',
-      visualCaption: 'New: BENDIQ on iPhone',
-      visualLink: 'Discover BENDIQ on Android, iPhone and Windows',
+      visualCaption: 'New: BENDIQ on Linux',
+      visualLink: 'Discover BENDIQ on Android, iPhone, Windows and Linux',
     },
     about: {
       eyebrow: 'Who',
@@ -395,7 +395,7 @@ export const translations = {
       ],
     },
     projects: [
-      { tag: 'ANDROID · IOS · WINDOWS', logo: '/bendiq-logo.webp', cover: '/bendiq-kapak.webp', screen: '/bendiq-4d-pres.webp', platformNote: "Android: Google Play. New, iPhone and iPad: opens in Safari at app.ozerlabs.com, no App Store. Windows: Microsoft Store, new interface. Each platform has its own licence.", platformShot: '/bendiq/en/win.webp', platformShotAlt: "New BENDIQ interface on Windows: command bar at the top, U-profile dimensions on the left, dimensioned technical drawing in the middle, flat length, weight and DXF, 1:1, PDF and Print buttons on the right.", title: 'BENDIQ', segments: ['industry'], desc: 'Bending calculator for press brakes: flat pattern and bend deduction learned from your own machine, dimensioned 2D drawing, 3D at the real radius, the full press brake in 4D with a collision simulator, DXF for the laser, 1:1 template and PDF. 16 languages.', meta: ['2026'], path: '/bendiq' },
+      { tag: 'ANDROID · IOS · WINDOWS · LINUX', logo: '/bendiq-logo.webp', cover: '/bendiq-kapak.webp', screen: '/bendiq-4d-pres.webp', platformNote: "New, Linux: Snap Store, same interface as Windows. Android: Google Play. iPhone and iPad: opens in Safari at app.ozerlabs.com, no App Store. Windows: Microsoft Store. Windows and Linux share the computer licence; the phone has its own.", platformShot: '/bendiq/en/win.webp', platformShotAlt: "New BENDIQ interface on Windows: command bar at the top, U-profile dimensions on the left, dimensioned technical drawing in the middle, flat length, weight and DXF, 1:1, PDF and Print buttons on the right.", title: 'BENDIQ', segments: ['industry'], desc: 'Bending calculator for press brakes: flat pattern and bend deduction learned from your own machine, dimensioned 2D drawing, 3D at the real radius, the full press brake in 4D with a collision simulator, DXF for the laser, 1:1 template and PDF. 16 languages.', meta: ['2026'], path: '/bendiq' },
       { tag: 'BUSINESS SOFTWARE · WEB', title: 'METALIQ', segments: ['industry'], cover: '/showcase/metaliq/cover.webp', desc: '3D design software for metal fabricators: railings, staircases, doors and gates, fences, mezzanines and pergolas, with cut list, DXF and fabrication file.', meta: ['2026'], anchor: 'metaliq' },
       { tag: 'SAAS · WEB', title: 'FacturIQ', segments: ['local'], logo: '/brand/facturiq.webp', status: 'design', desc: 'E-invoicing for tradespeople and small businesses: quotes, deposits, balance and credit notes, Factur-X invoices checked against EN 16931, and an FEC export for the accountant.', meta: ['2026'] },
       { tag: 'CLIENT SITE · WEB', title: 'HD Auto', segments: ['local'], desc: 'Showcase site for an auto garage, with service highlights and appointment booking.', meta: ['2026'], logo: '/brand/hd-auto.webp', url: 'https://wwwhdauto.com' },
@@ -466,8 +466,8 @@ export const translations = {
       ctaPrimary: 'Ücretsiz Teklif Al',
       segments: { label: 'Örnek işler:', industry: 'Endüstriyel çözümler', local: 'Yerel işletme çözümleri' },
       visualAlt: 'BENDIQ bandı ve altında uygulamanın ana ekranı: üstte açınım 306,8 mm, boy 400 mm ve ağırlık 1,93 kg; dudaklı C profilin ölçüleri (20, 40, 200, 40, 20 mm) ve 3D, 4D düğmeleri.',
-      visualCaption: "Yeni: BENDIQ artık iPhone'da",
-      visualLink: "BENDIQ'i Android, iPhone ve Windows'ta keşfedin",
+      visualCaption: "Yeni: BENDIQ artık Linux'ta",
+      visualLink: "BENDIQ'i Android, iPhone, Windows ve Linux'ta keşfedin",
     },
     about: {
       eyebrow: 'Kim',
@@ -608,7 +608,7 @@ export const translations = {
       ],
     },
     projects: [
-      { tag: 'ANDROID · IOS · WINDOWS', logo: '/bendiq-logo.webp', cover: '/bendiq-kapak.webp', screen: '/bendiq-4d-pres.webp', platformNote: "Android: Google Play. Yeni, iPhone ve iPad: App Store gerekmeden Safari'de app.ozerlabs.com adresinde açılır. Windows: Microsoft Store, yeni arayüz. Her platformun kendi lisansı var.", platformShot: '/bendiq/tr/win.webp', platformShotAlt: "Windows'ta BENDIQ'in yeni arayüzü: üstte komut çubuğu, solda U profilin ölçüleri, ortada ölçülü teknik resim, sağda kesim boyu, ağırlık ve DXF, 1:1, PDF, Yazdır düğmeleri.", title: 'BENDIQ', segments: ['industry'], desc: "Abkant pres için büküm hesabı: makinenizden öğrenilen büküm payı ve açınım, ölçülendirilmiş 2D çizim, gerçek radüslü 3D, çarpışma simülatörüyle abkantın tamamı 4D'de, lazer için DXF, 1:1 şablon ve PDF. 16 dil.", meta: ['2026'], path: '/bendiq' },
+      { tag: 'ANDROID · IOS · WINDOWS · LINUX', logo: '/bendiq-logo.webp', cover: '/bendiq-kapak.webp', screen: '/bendiq-4d-pres.webp', platformNote: "Yeni, Linux: Snap Store, Windows ile aynı arayüz. Android: Google Play. iPhone ve iPad: App Store gerekmeden Safari'de app.ozerlabs.com adresinde açılır. Windows: Microsoft Store. Windows ve Linux bilgisayar lisansını paylaşır; telefonun lisansı ayrıdır.", platformShot: '/bendiq/tr/win.webp', platformShotAlt: "Windows'ta BENDIQ'in yeni arayüzü: üstte komut çubuğu, solda U profilin ölçüleri, ortada ölçülü teknik resim, sağda kesim boyu, ağırlık ve DXF, 1:1, PDF, Yazdır düğmeleri.", title: 'BENDIQ', segments: ['industry'], desc: "Abkant pres için büküm hesabı: makinenizden öğrenilen büküm payı ve açınım, ölçülendirilmiş 2D çizim, gerçek radüslü 3D, çarpışma simülatörüyle abkantın tamamı 4D'de, lazer için DXF, 1:1 şablon ve PDF. 16 dil.", meta: ['2026'], path: '/bendiq' },
       { tag: 'İŞ YAZILIMI · WEB', title: 'METALIQ', segments: ['industry'], cover: '/showcase/metaliq/cover.webp', desc: 'Metal imalatçıları için 3D tasarım yazılımı: korkuluk, merdiven, kapı ve bahçe kapısı, çit, asma kat ve pergola; kesim listesi, DXF ve imalat dosyası.', meta: ['2026'], anchor: 'metaliq' },
       { tag: 'SAAS · WEB', title: 'FacturIQ', segments: ['local'], logo: '/brand/facturiq.webp', status: 'design', desc: 'Zanaatkâr ve küçük işletmeler için e-fatura: teklif, avans, bakiye ve iade faturası; EN 16931 kurallarıyla denetlenen Factur-X faturaları ve muhasebeci için FEC dışa aktarımı.', meta: ['2026'] },
       { tag: 'MÜŞTERİ · WEB', title: 'HD Auto', segments: ['local'], desc: 'Oto tamir ve bakım servisi için hizmet tanıtımı ve randevu alma özellikli tanıtım sitesi.', meta: ['2026'], logo: '/brand/hd-auto.webp', url: 'https://wwwhdauto.com' },

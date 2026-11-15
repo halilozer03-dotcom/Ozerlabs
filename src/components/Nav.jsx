@@ -7,13 +7,14 @@ import Logo from './Logo.jsx'
 import Icon from './Icon.jsx'
 
 /** Menü tek kaynaktan üretilir: masaüstü ve çekmece aynı listeyi kullanır.
-    Sıra sayfadaki bölüm sırasıdır; METALIQ hero'nun hemen altında. */
+    BENDIQ ilk öğe (kullanıcı kararı 15.11.2026: BENDIQ yeniden ön planda;
+    07.10'da METALIQ öne alınmıştı). Geri kalanı sayfadaki bölüm sırasıdır. */
 export const NAV_ITEMS = [
-  { key: 'metaliq', section: 'metaliq' },
   { key: 'bendiq', path: '/bendiq' },
+  { key: 'projects', section: 'projeler' },
   { key: 'services', section: 'hizmetler' },
   { key: 'solutions', section: 'cozumler' },
-  { key: 'projects', section: 'projeler' },
+  { key: 'metaliq', section: 'metaliq' },
   { key: 'about', section: 'hakkimda' },
   { key: 'pricing', section: 'fiyatlandirma' },
   { key: 'blog', path: '/blog' },

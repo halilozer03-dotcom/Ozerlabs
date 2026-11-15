@@ -6,6 +6,7 @@ import {
   bendiqPage,
   MS_STORE_BENDIQ,
   IOS_APP_BENDIQ,
+  SNAP_BENDIQ,
   BENDIQ_SHOTS,
   shotSrc,
   SHOT_W,
@@ -68,7 +69,8 @@ function isAppleMobile() {
 /**
  * BENDIQ tanıtım sayfası — /bendiq. Yalnız BENDIQ'i anlatır (kullanıcı
  * isteği 25.10.2026): ne olduğu, sahadaki faydası, ekranlar, Android /
- * iPhone-iPad (13.11.2026'dan beri, app.ozerlabs.com) / Windows. Yol haritası
+ * iPhone-iPad (13.11.2026'dan beri, app.ozerlabs.com) / Windows / Linux
+ * (15.11.2026'dan beri sitede, Snap Store). Yol haritası
  * ve yayında olmayan özellik yazılmaz (kullanıcı 25.10: rakibe fikir vermesin).
  *
  * Akış (karar sırası): ne yapar (hero) → kullanım kılavuzu (gerçek ekranlar,
@@ -270,6 +272,31 @@ export default function BendiqPage() {
                 <div className="card__foot">
                   <StoreLink href={MS_STORE_BENDIQ} className="btn btn--secondary btn--full">
                     {pf.windows.cta}
+                  </StoreLink>
+                </div>
+              </div>
+            </Reveal>
+
+            {/* Linux (15.11.2026): Snap Store. Arayüz Windows'la aynı olduğu için
+                ayrı kare yok — Windows karesini "Linux" diye göstermek yanıltırdı. */}
+            <Reveal className="card bq-platform bq-platform--wide" id="linux" delay={160}>
+              <div className="bq-platform__head">
+                <div className="bq-platform__tags">
+                  <span className="tag tag--brand">{pf.newTag}</span>
+                  <Status label={pf.available} />
+                </div>
+                <span className="icon-badge icon-badge--sm">
+                  <Icon name="cpu" size={21} />
+                </span>
+                <h3 className="card__title">{pf.linux.title}</h3>
+                <p className="card__text">{pf.linux.lead}</p>
+              </div>
+              <div className="bq-platform__rest">
+                <Points items={pf.linux.points} />
+                <p className="bq-platform__note">{pf.linux.note}</p>
+                <div className="card__foot">
+                  <StoreLink href={SNAP_BENDIQ} className="btn btn--secondary btn--full">
+                    {pf.linux.cta}
                   </StoreLink>
                 </div>
               </div>

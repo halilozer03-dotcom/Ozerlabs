@@ -5,6 +5,7 @@ import { BLOG_LABELS } from './BlogShared.jsx'
 import Logo from './Logo.jsx'
 import Icon from './Icon.jsx'
 import { SOCIAL_PROFILES, CONTACT_EMAIL } from '../content/links.js'
+import { BENDIQ_PATH } from '../content/bendiqPage.js'
 
 /**
  * Sosyal hesaplar tek yerden yönetilir: src/content/links.js.
@@ -25,13 +26,16 @@ export default function Footer() {
   const blogLabels = BLOG_LABELS[lang] || BLOG_LABELS.tr
 
   // Süreç ayrı bölüm olmaktan çıkıp Çalışma biçimi içine girdi.
+  // BENDIQ ilk sırada, kendi sayfasına gider (kullanıcı kararı 15.11.2026);
+  // geri kalanı ana sayfa bölüm sırası.
   const company = [
-    { label: t.nav.metaliq, hash: '#metaliq' },
-    { label: t.nav.services, hash: '#hizmetler' },
-    { label: t.nav.solutions, hash: '#cozumler' },
-    { label: t.nav.projects, hash: '#projeler' },
-    { label: t.nav.about, hash: '#hakkimda' },
-    { label: t.nav.pricing, hash: '#fiyatlandirma' },
+    { label: t.nav.bendiq, to: BENDIQ_PATH },
+    { label: t.nav.projects, to: { pathname: '/', hash: '#projeler' } },
+    { label: t.nav.services, to: { pathname: '/', hash: '#hizmetler' } },
+    { label: t.nav.solutions, to: { pathname: '/', hash: '#cozumler' } },
+    { label: t.nav.metaliq, to: { pathname: '/', hash: '#metaliq' } },
+    { label: t.nav.about, to: { pathname: '/', hash: '#hakkimda' } },
+    { label: t.nav.pricing, to: { pathname: '/', hash: '#fiyatlandirma' } },
   ]
 
   // Ana sayfadaki blog önizlemesi buraya indi: en yeni üç yazı.
@@ -71,8 +75,8 @@ export default function Footer() {
             <h2 className="footer__col-title">{t.footer.columns.company}</h2>
             <ul className="footer__list">
               {company.map((c) => (
-                <li key={c.hash}>
-                  <Link to={{ pathname: '/', hash: c.hash }}>{c.label}</Link>
+                <li key={c.label}>
+                  <Link to={c.to}>{c.label}</Link>
                 </li>
               ))}
               <li>

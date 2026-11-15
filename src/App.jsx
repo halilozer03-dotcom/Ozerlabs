@@ -74,8 +74,9 @@ function SkipLink() {
 
 /**
  * Ana sayfa sekiz bölüm:
- * Hero (teknoloji şeridi gömülü) → METALIQ (kendi ürünümüz, üstte
- * öne çıkarıldı — kullanıcı kararı 07.10.2026) → Hizmetler → Projeler →
+ * Hero (görsel BENDIQ) → Projeler (öne çıkan kart BENDIQ; kullanıcı kararı
+ * 15.11.2026: BENDIQ yeniden ön planda — 07.10'da METALIQ hero'nun altına
+ * alınmıştı) → Hizmetler → METALIQ (projelerdeki kartı buraya iner) →
  * Çalışma biçimi (eski Hakkımızda + Süreç) → Kapsam →
  * İletişim (eski CTA bandı burada) → Footer (son yazılar burada).
  * Zemin ritmi korunur: void → raise → base → raise → base → raise → base → void.
@@ -97,9 +98,9 @@ function Home() {
   return (
     <main id="main">
       <Hero />
-      <Metaliq />
-      <Services />
       <Projects />
+      <Services />
+      <Metaliq />
       <About />
       <Pricing />
       <Contact />
