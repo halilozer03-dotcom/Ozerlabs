@@ -37,9 +37,14 @@ const ISLER = [
     boy: 256,
   },
   {
-    ad: 'cims-metal',
-    kaynak: 'C:/Users/halil/prod-metal/src/assets/logo-cims-head.jpg',
-    kirp: { left: 20, top: 0, width: 404, height: 404 },
+    /* Logo yatay (868×421): alttaki "HM-METAL" yazısı kart başlığında
+       zaten var, yalnız amblem alınır ve logonun kendi lacivert zeminiyle
+       kareye oturtulur (kırpma kenardaki kaynakçıyı keserdi). */
+    ad: 'hm-metal',
+    kaynak: 'C:/Users/halil/hm-metal-site/src/assets/brand/hm-logo-2026-868.webp',
+    kirp: { left: 70, top: 25, width: 740, height: 290 },
+    sigdir: 'contain',
+    zemin: { r: 4, g: 22, b: 41 },
     boy: 256,
   },
 ]
@@ -51,7 +56,7 @@ for (const is of ISLER) {
   if (is.kirp) p = p.extract(is.kirp)
   const hedef = join(CIKTI, `${is.ad}.webp`)
   const bilgi = await p
-    .resize(is.boy, is.boy, { fit: 'cover' })
+    .resize(is.boy, is.boy, { fit: is.sigdir ?? 'cover', background: is.zemin })
     .webp({ quality: 88 })
     .toFile(hedef)
   console.log(`${is.ad}.webp  ${bilgi.width}x${bilgi.height}  ${(bilgi.size / 1024).toFixed(1)} KB`)
